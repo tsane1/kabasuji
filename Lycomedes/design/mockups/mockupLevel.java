@@ -19,6 +19,7 @@ import javax.swing.JProgressBar;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ImageIcon;
 
 public class mockupLevel {
 
@@ -118,6 +119,10 @@ public class mockupLevel {
 		frame.getContentPane().add(panel_2);
 		frame.getContentPane().add(lblScore);
 		frame.getContentPane().add(panel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\John\\Documents\\CS 3431 - Databases\\Window_Builder_Sandbox\\12x12gridedit.jpg"));
+		panel.add(lblNewLabel_1);
 		frame.getContentPane().add(lblTime);
 		frame.getContentPane().add(panel_3);
 		frame.getContentPane().add(panel_1);

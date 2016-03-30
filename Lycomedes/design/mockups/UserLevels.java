@@ -1,3 +1,5 @@
+package mockups;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-public class MockUpGui2 {
+public class UserLevels {
 
 	private JFrame frame;
 
@@ -23,7 +25,7 @@ public class MockUpGui2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MockUpGui2 window = new MockUpGui2();
+					UserLevels window = new UserLevels();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +37,7 @@ public class MockUpGui2 {
 	/**
 	 * Create the application.
 	 */
-	public MockUpGui2() {
+	public UserLevels() {
 		initialize();
 	}
 
