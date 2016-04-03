@@ -79,7 +79,7 @@ public class Gooey {
 		btnNewButton.setToolTipText("sticky gooey fingers");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Ella stella eh eh");
+				System.out.println("Ella ella work eh");
 			}
 		});
 		frame.getContentPane().add(btnNewButton);
