@@ -130,12 +130,6 @@ public class LevelBuilderGui extends JFrame {
 		
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
 		
-		JLabel lblNewLabel_2 = new JLabel("New Level Name: ");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Segoe UI Semilight", Font.BOLD, 14));
-		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		
 		JButton btnNewButton = new JButton("Save Level");
 		btnNewButton.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
 		GroupLayout gl_PuzzelPanel = new GroupLayout(PuzzelPanel);
@@ -146,21 +140,15 @@ public class LevelBuilderGui extends JFrame {
 					.addComponent(lblPuzzleLevelBuilder, GroupLayout.PREFERRED_SIZE, 229, Short.MAX_VALUE)
 					.addGap(34))
 				.addGroup(gl_PuzzelPanel.createSequentialGroup()
-					.addGap(73)
-					.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(83, Short.MAX_VALUE))
-				.addGroup(gl_PuzzelPanel.createSequentialGroup()
 					.addGap(54)
-					.addGroup(gl_PuzzelPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-						.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE))
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(48, Short.MAX_VALUE))
 				.addGroup(gl_PuzzelPanel.createSequentialGroup()
 					.addContainerGap(104, Short.MAX_VALUE)
 					.addComponent(formattedTextField_1, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
 					.addGap(102))
 				.addGroup(gl_PuzzelPanel.createSequentialGroup()
-					.addContainerGap(88, Short.MAX_VALUE)
+					.addContainerGap(100, Short.MAX_VALUE)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 					.addGap(75))
 		);
@@ -169,11 +157,7 @@ public class LevelBuilderGui extends JFrame {
 				.addGroup(gl_PuzzelPanel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblPuzzleLevelBuilder, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(29)
+					.addGap(112)
 					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(formattedTextField_1, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
@@ -193,12 +177,6 @@ public class LevelBuilderGui extends JFrame {
 		lblLightningLevelBuilder.setForeground(new Color(255, 215, 0));
 		lblLightningLevelBuilder.setFont(new Font("Kristen ITC", Font.BOLD, 18));
 		
-		JLabel label_1 = new JLabel("New Level Name: ");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("Segoe UI Semilight", Font.BOLD, 14));
-		
-		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
-		
 		JLabel lblNewLabel_3 = new JLabel("Total Time Allowed (in seconds):");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setFont(new Font("Segoe UI Semilight", Font.BOLD, 14));
@@ -210,14 +188,6 @@ public class LevelBuilderGui extends JFrame {
 		GroupLayout gl_LightningPanel = new GroupLayout(LightningPanel);
 		gl_LightningPanel.setHorizontalGroup(
 			gl_LightningPanel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_LightningPanel.createSequentialGroup()
-					.addGap(76)
-					.addComponent(label_1)
-					.addContainerGap(77, Short.MAX_VALUE))
-				.addGroup(gl_LightningPanel.createSequentialGroup()
-					.addContainerGap(59, Short.MAX_VALUE)
-					.addComponent(formattedTextField_2, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
-					.addGap(48))
 				.addGroup(gl_LightningPanel.createSequentialGroup()
 					.addContainerGap(84, Short.MAX_VALUE)
 					.addGroup(gl_LightningPanel.createParallelGroup(Alignment.LEADING)
@@ -236,11 +206,7 @@ public class LevelBuilderGui extends JFrame {
 				.addGroup(gl_LightningPanel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblLightningLevelBuilder)
-					.addGap(5)
-					.addComponent(label_1)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(formattedTextField_2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-					.addGap(53)
+					.addGap(117)
 					.addComponent(lblNewLabel_3)
 					.addGap(18)
 					.addComponent(formattedTextField_3, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
@@ -259,12 +225,6 @@ public class LevelBuilderGui extends JFrame {
 		lblReleaseLevelBuilder.setHorizontalAlignment(SwingConstants.CENTER);
 		lblReleaseLevelBuilder.setForeground(new Color(50, 205, 50));
 		lblReleaseLevelBuilder.setFont(new Font("Kristen ITC", Font.BOLD, 18));
-		
-		JLabel label_2 = new JLabel("New Level Name: ");
-		label_2.setFont(new Font("Segoe UI Semilight", Font.BOLD, 14));
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JFormattedTextField formattedTextField_4 = new JFormattedTextField();
 		
 		JLabel lblNewLabel_4 = new JLabel("Total Allowed Moves:");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -430,16 +390,10 @@ public class LevelBuilderGui extends JFrame {
 									.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(34, Short.MAX_VALUE))
-				.addGroup(gl_ReleasePanel.createSequentialGroup()
-					.addContainerGap(73, Short.MAX_VALUE)
-					.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-					.addGap(64))
+					.addContainerGap(30, Short.MAX_VALUE))
 				.addGroup(gl_ReleasePanel.createSequentialGroup()
 					.addContainerGap(38, Short.MAX_VALUE)
-					.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(formattedTextField_4, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblReleaseLevelBuilder))
+					.addComponent(lblReleaseLevelBuilder)
 					.addGap(30))
 		);
 		gl_ReleasePanel.setVerticalGroup(
@@ -447,11 +401,7 @@ public class LevelBuilderGui extends JFrame {
 				.addGroup(gl_ReleasePanel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblReleaseLevelBuilder)
-					.addGap(18)
-					.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(formattedTextField_4, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addGap(105)
 					.addComponent(lblNewLabel_4)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(formattedTextField_5, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
