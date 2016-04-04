@@ -1,7 +1,6 @@
 package mockups;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -54,28 +53,22 @@ public class LevelBuilderGui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 800);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnNewButton_1 = new JButton("Back");
-		btnNewButton_1.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		JButton undoButton = new JButton("Undo");
+		undoButton.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
 		
-		JButton btnNewButton_2 = new JButton("Undo");
-		btnNewButton_2.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
-		
-		JLabel lblNewLabel = new JLabel("Kabasuji Level Builder");
-		lblNewLabel.setForeground(new Color(30, 144, 255));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Kristen ITC", Font.BOLD, 32));
+		JLabel titleLabel = new JLabel("Kabasuji Level Builder");
+		titleLabel.setForeground(new Color(30, 144, 255));
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("Kristen ITC", Font.BOLD, 32));
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("C:\\Users\\John\\Documents\\CS 3431 - Databases\\Window_Builder_Sandbox\\12x12gridedit.jpg"));
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane LevelAttributeTabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
 		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\John\\Documents\\CS 3431 - Databases\\Window_Builder_Sandbox\\hexominoesblank.jpg"));
@@ -86,22 +79,19 @@ public class LevelBuilderGui extends JFrame {
 					.addContainerGap(12, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnNewButton_2)
-								.addComponent(btnNewButton_1))
+							.addComponent(undoButton)
 							.addGap(87)
-							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 478, GroupLayout.PREFERRED_SIZE))
+							.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 478, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(79)
 									.addComponent(label, GroupLayout.PREFERRED_SIZE, 518, GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-									.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 374, GroupLayout.PREFERRED_SIZE)
-									.addGap(99)))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(124)
+									.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 383, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(LevelAttributeTabbedPane, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -109,25 +99,25 @@ public class LevelBuilderGui extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(undoButton)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnNewButton_1)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnNewButton_2))
-						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(58)
-							.addComponent(label, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(48)
-							.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 484, GroupLayout.PREFERRED_SIZE)))
-					.addGap(57))
+							.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(58)
+									.addComponent(label, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(48)
+									.addComponent(LevelAttributeTabbedPane, GroupLayout.PREFERRED_SIZE, 484, GroupLayout.PREFERRED_SIZE)))))
+					.addContainerGap())
 		);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Puzzle Level", null, panel_1, null);
+		JPanel PuzzelPanel = new JPanel();
+		PuzzelPanel.setBackground(Color.WHITE);
+		LevelAttributeTabbedPane.addTab("Puzzle Level", null, PuzzelPanel, null);
+		LevelAttributeTabbedPane.setBackgroundAt(0, Color.WHITE);
 		
 		JLabel lblNewLabel_1 = new JLabel("Total Number of Moves:");
 		lblNewLabel_1.setFont(new Font("Segoe UI Semilight", Font.BOLD, 14));
@@ -148,35 +138,35 @@ public class LevelBuilderGui extends JFrame {
 		
 		JButton btnNewButton = new JButton("Save Level");
 		btnNewButton.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_1.createSequentialGroup()
+		GroupLayout gl_PuzzelPanel = new GroupLayout(PuzzelPanel);
+		gl_PuzzelPanel.setHorizontalGroup(
+			gl_PuzzelPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_PuzzelPanel.createSequentialGroup()
 					.addGap(27)
 					.addComponent(lblPuzzleLevelBuilder, GroupLayout.PREFERRED_SIZE, 229, Short.MAX_VALUE)
 					.addGap(34))
-				.addGroup(gl_panel_1.createSequentialGroup()
+				.addGroup(gl_PuzzelPanel.createSequentialGroup()
 					.addGap(73)
 					.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(83, Short.MAX_VALUE))
-				.addGroup(gl_panel_1.createSequentialGroup()
+				.addGroup(gl_PuzzelPanel.createSequentialGroup()
 					.addGap(54)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_PuzzelPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
 						.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(48, Short.MAX_VALUE))
-				.addGroup(gl_panel_1.createSequentialGroup()
+				.addGroup(gl_PuzzelPanel.createSequentialGroup()
 					.addContainerGap(104, Short.MAX_VALUE)
 					.addComponent(formattedTextField_1, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
 					.addGap(102))
-				.addGroup(gl_panel_1.createSequentialGroup()
+				.addGroup(gl_PuzzelPanel.createSequentialGroup()
 					.addContainerGap(88, Short.MAX_VALUE)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 					.addGap(75))
 		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
+		gl_PuzzelPanel.setVerticalGroup(
+			gl_PuzzelPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_PuzzelPanel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblPuzzleLevelBuilder, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -191,10 +181,12 @@ public class LevelBuilderGui extends JFrame {
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(53))
 		);
-		panel_1.setLayout(gl_panel_1);
+		PuzzelPanel.setLayout(gl_PuzzelPanel);
 		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Lightning Level", null, panel_2, null);
+		JPanel LightningPanel = new JPanel();
+		LightningPanel.setBackground(Color.WHITE);
+		LevelAttributeTabbedPane.addTab("Lightning Level", null, LightningPanel, null);
+		LevelAttributeTabbedPane.setBackgroundAt(1, Color.WHITE);
 		
 		JLabel lblLightningLevelBuilder = new JLabel("Lightning Level Builder");
 		lblLightningLevelBuilder.setHorizontalAlignment(SwingConstants.CENTER);
@@ -215,36 +207,36 @@ public class LevelBuilderGui extends JFrame {
 		
 		JButton button = new JButton("Save Level");
 		button.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
-		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
+		GroupLayout gl_LightningPanel = new GroupLayout(LightningPanel);
+		gl_LightningPanel.setHorizontalGroup(
+			gl_LightningPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_LightningPanel.createSequentialGroup()
 					.addGap(76)
 					.addComponent(label_1)
 					.addContainerGap(77, Short.MAX_VALUE))
-				.addGroup(gl_panel_2.createSequentialGroup()
+				.addGroup(gl_LightningPanel.createSequentialGroup()
 					.addContainerGap(59, Short.MAX_VALUE)
 					.addComponent(formattedTextField_2, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
 					.addGap(48))
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addContainerGap(32, Short.MAX_VALUE)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblLightningLevelBuilder)
-						.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+				.addGroup(gl_LightningPanel.createSequentialGroup()
 					.addContainerGap(84, Short.MAX_VALUE)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_LightningPanel.createParallelGroup(Alignment.LEADING)
 						.addComponent(button, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 						.addComponent(formattedTextField_3, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
 					.addGap(66))
+				.addGroup(gl_LightningPanel.createSequentialGroup()
+					.addContainerGap(32, Short.MAX_VALUE)
+					.addGroup(gl_LightningPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblLightningLevelBuilder)
+						.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(5)
+		gl_LightningPanel.setVerticalGroup(
+			gl_LightningPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_LightningPanel.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(lblLightningLevelBuilder)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(5)
 					.addComponent(label_1)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(formattedTextField_2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
@@ -256,10 +248,12 @@ public class LevelBuilderGui extends JFrame {
 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(61))
 		);
-		panel_2.setLayout(gl_panel_2);
+		LightningPanel.setLayout(gl_LightningPanel);
 		
-		JPanel panel_3 = new JPanel();
-		tabbedPane.addTab("Release Level", null, panel_3, null);
+		JPanel ReleasePanel = new JPanel();
+		ReleasePanel.setBackground(Color.WHITE);
+		LevelAttributeTabbedPane.addTab("Release Level", null, ReleasePanel, null);
+		LevelAttributeTabbedPane.setBackgroundAt(2, Color.WHITE);
 		
 		JLabel lblReleaseLevelBuilder = new JLabel("Release Level Builder");
 		lblReleaseLevelBuilder.setHorizontalAlignment(SwingConstants.CENTER);
@@ -374,83 +368,83 @@ public class LevelBuilderGui extends JFrame {
 		
 		JButton button_1 = new JButton("Save Level");
 		button_1.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
-		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
-		gl_panel_3.setHorizontalGroup(
-			gl_panel_3.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_3.createSequentialGroup()
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_3.createSequentialGroup()
+		GroupLayout gl_ReleasePanel = new GroupLayout(ReleasePanel);
+		gl_ReleasePanel.setHorizontalGroup(
+			gl_ReleasePanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_ReleasePanel.createSequentialGroup()
+					.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_ReleasePanel.createSequentialGroup()
 							.addGap(99)
-							.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_3.createSequentialGroup()
+							.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_ReleasePanel.createSequentialGroup()
 									.addGap(45)
 									.addComponent(label_17, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(label_15, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(label_16, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel_3.createSequentialGroup()
-									.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel_3.createSequentialGroup()
+								.addGroup(gl_ReleasePanel.createSequentialGroup()
+									.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_ReleasePanel.createSequentialGroup()
 											.addGap(45)
 											.addComponent(label_18, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 											.addPreferredGap(ComponentPlacement.UNRELATED)
 											.addComponent(label_10, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.TRAILING)
 											.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-											.addGroup(gl_panel_3.createSequentialGroup()
+											.addGroup(gl_ReleasePanel.createSequentialGroup()
 												.addComponent(label_14, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 												.addPreferredGap(ComponentPlacement.RELATED)
 												.addComponent(label_19, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 												.addGap(12)
 												.addComponent(label_11, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))))
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.LEADING)
 										.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 										.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))))
-						.addGroup(gl_panel_3.createSequentialGroup()
+						.addGroup(gl_ReleasePanel.createSequentialGroup()
 							.addGap(64)
-							.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNewLabel_4, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel_3.createSequentialGroup()
+								.addGroup(gl_ReleasePanel.createSequentialGroup()
 									.addGap(10)
-									.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
 										.addComponent(formattedTextField_5, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)))))
-						.addGroup(gl_panel_3.createSequentialGroup()
+						.addGroup(gl_ReleasePanel.createSequentialGroup()
 							.addGap(42)
-							.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_3.createSequentialGroup()
+							.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_ReleasePanel.createSequentialGroup()
 									.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 									.addGap(13)
 									.addComponent(label_7, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 									.addGap(6)
 									.addComponent(label_12, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel_3.createSequentialGroup()
+								.addGroup(gl_ReleasePanel.createSequentialGroup()
 									.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(label_8, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(label_13, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel_3.createSequentialGroup()
+								.addGroup(gl_ReleasePanel.createSequentialGroup()
 									.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))))
 					.addContainerGap(34, Short.MAX_VALUE))
-				.addGroup(gl_panel_3.createSequentialGroup()
+				.addGroup(gl_ReleasePanel.createSequentialGroup()
 					.addContainerGap(73, Short.MAX_VALUE)
 					.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
 					.addGap(64))
-				.addGroup(gl_panel_3.createSequentialGroup()
+				.addGroup(gl_ReleasePanel.createSequentialGroup()
 					.addContainerGap(38, Short.MAX_VALUE)
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.TRAILING)
 						.addComponent(formattedTextField_4, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblReleaseLevelBuilder))
 					.addGap(30))
 		);
-		gl_panel_3.setVerticalGroup(
-			gl_panel_3.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_3.createSequentialGroup()
+		gl_ReleasePanel.setVerticalGroup(
+			gl_ReleasePanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_ReleasePanel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblReleaseLevelBuilder)
 					.addGap(18)
@@ -464,7 +458,7 @@ public class LevelBuilderGui extends JFrame {
 					.addGap(18)
 					.addComponent(lblNewLabel_5)
 					.addGap(13)
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_7, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_12, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
@@ -472,7 +466,7 @@ public class LevelBuilderGui extends JFrame {
 						.addComponent(label_15, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_16, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_8, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
@@ -480,7 +474,7 @@ public class LevelBuilderGui extends JFrame {
 						.addComponent(label_13, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_10, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_ReleasePanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_14, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
@@ -491,7 +485,7 @@ public class LevelBuilderGui extends JFrame {
 					.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(34))
 		);
-		panel_3.setLayout(gl_panel_3);
+		ReleasePanel.setLayout(gl_ReleasePanel);
 		contentPane.setLayout(gl_contentPane);
 	}
 }
