@@ -66,12 +66,12 @@ public class LevelBuilderGui extends JFrame {
 		titleLabel.setFont(new Font("Kristen ITC", Font.BOLD, 32));
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(LevelBuilderGui.class.getResource("/images/12x12gridedit.jpg")));
+		label.setIcon(new ImageIcon("./resources/images/12x12gridedit.jpg"));
 		
 		JTabbedPane LevelAttributeTabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setIcon(new ImageIcon(this.getClass().getResource("/images/12x12gridedit.jpg")));
+		lblNewLabel_7.setIcon(new ImageIcon("./resources/images/12x12gridedit.jpg"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
