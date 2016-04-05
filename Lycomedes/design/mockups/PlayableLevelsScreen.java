@@ -1,5 +1,3 @@
-package mockups;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,8 +11,9 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
-public class GameLevels {
+public class MockUpGui {
 
 	private JFrame frame;
 
@@ -25,7 +24,7 @@ public class GameLevels {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GameLevels window = new GameLevels();
+					MockUpGui window = new MockUpGui();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +36,7 @@ public class GameLevels {
 	/**
 	 * Create the application.
 	 */
-	public GameLevels() {
+	public MockUpGui() {
 		initialize();
 	}
 
@@ -51,6 +50,7 @@ public class GameLevels {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JTextPane txtpnKabasuji = new JTextPane();
+		txtpnKabasuji.setForeground(SystemColor.textHighlight);
 		txtpnKabasuji.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		txtpnKabasuji.setText("Kabasuji");
 		
