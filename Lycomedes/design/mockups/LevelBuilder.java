@@ -60,13 +60,6 @@ public class LevelBuilder extends JFrame {
 		lblKabasuji.setBounds(350, 13, 249, 97);
 		contentPane.add(lblKabasuji);
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnBack.setForeground(SystemColor.textHighlight);
-		btnBack.setBackground(SystemColor.textHighlight);
-		btnBack.setBounds(12, 13, 97, 25);
-		contentPane.add(btnBack);
-		
 	}
 	
 	private void populate() {
@@ -95,10 +88,6 @@ public class LevelBuilder extends JFrame {
 		label.setForeground(new Color(255, 0, 0));
 		label.setFont(new Font("Kristen ITC", Font.BOLD, 18));
 		
-		JButton button = new JButton("Save Level");
-		button.setBounds(12, 404, 115, 37);
-		button.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
-		
 		JFormattedTextField formattedTextField = new JFormattedTextField();
 		formattedTextField.setBounds(31, 103, 188, 41);
 		
@@ -108,7 +97,6 @@ public class LevelBuilder extends JFrame {
 		label_1.setFont(new Font("Segoe UI Semilight", Font.BOLD, 14));
 		puzzle.setLayout(null);
 		puzzle.add(label);
-		puzzle.add(button);
 		puzzle.add(formattedTextField);
 		puzzle.add(label_1);
 		
@@ -127,14 +115,9 @@ public class LevelBuilder extends JFrame {
 		label_3.setBounds(8, 57, 234, 20);
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setFont(new Font("Segoe UI Semilight", Font.BOLD, 14));
-		
-		JButton button_1 = new JButton("Save Level");
-		button_1.setBounds(12, 404, 115, 37);
-		button_1.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
 		lightning.setLayout(null);
 		lightning.add(label_2);
 		lightning.add(label_3);
-		lightning.add(button_1);
 		
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
 		formattedTextField_1.setBounds(31, 103, 188, 41);
@@ -264,10 +247,6 @@ public class LevelBuilder extends JFrame {
 		label_23.setForeground(new Color(50, 205, 50));
 		label_23.setFont(new Font("Kristen ITC", Font.BOLD, 18));
 		
-		JButton button_2 = new JButton("Save Level");
-		button_2.setBounds(12, 403, 115, 37);
-		button_2.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
-		
 		JLabel label_24 = new JLabel("Total Allowed Moves:");
 		label_24.setBounds(46, 57, 158, 20);
 		label_24.setHorizontalAlignment(SwingConstants.CENTER);
@@ -293,11 +272,15 @@ public class LevelBuilder extends JFrame {
 		release.add(label_21);
 		release.add(label_22);
 		release.add(label_23);
-		release.add(button_2);
 		release.add(label_24);
 		
 		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
 		formattedTextField_2.setBounds(31, 103, 188, 41);
 		release.add(formattedTextField_2);
+		
+		JButton button = new JButton("Save Level");
+		button.setBounds(34, 34, 115, 37);
+		contentPane.add(button);
+		button.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
 	}
 }
