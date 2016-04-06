@@ -14,11 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-public class UserLevels extends AppView {
+public class UserLevels {
 
-	/**
-	 * 
-	 */
 	private JFrame frame;
 
 	/**
@@ -41,7 +38,6 @@ public class UserLevels extends AppView {
 	 * Create the application.
 	 */
 	public UserLevels() {
-		super();
 		initialize();
 	}
 
@@ -51,7 +47,7 @@ public class UserLevels extends AppView {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 524, 504);
+		frame.setBounds(100, 100, 1132, 602);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JTextPane txtpnKabasuji = new JTextPane();

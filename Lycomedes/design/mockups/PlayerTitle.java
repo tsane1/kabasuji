@@ -6,10 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.SystemColor;
+
 import javax.swing.JButton;
 import javax.swing.JSpinner;
+import javax.swing.SwingConstants;
 import javax.swing.JFormattedTextField;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -39,18 +43,31 @@ public class PlayerTitle extends JFrame {
 	 * Create the frame.
 	 */
 	public PlayerTitle() {
+		initWindow();
+		populate();
+	}
+	
+	private void initWindow() {
+		setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		setTitle("Kabasuji");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 800);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblKabasuji = new JLabel("KABASUJI");
-		lblKabasuji.setForeground(Color.BLACK);
-		lblKabasuji.setFont(new Font("Times New Roman", Font.BOLD, 72));
-		lblKabasuji.setBounds(283, 0, 363, 121);
+		lblKabasuji.setHorizontalAlignment(SwingConstants.CENTER);
+		lblKabasuji.setForeground(SystemColor.textHighlight);
+		lblKabasuji.setFont(new Font("Kristen ITC", Font.BOLD, 32));
+		lblKabasuji.setBounds(350, 13, 249, 97);
 		contentPane.add(lblKabasuji);
+		
+	}
+	
+	private void populate() {
+		
 	}
 }
