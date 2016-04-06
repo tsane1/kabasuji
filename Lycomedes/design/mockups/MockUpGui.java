@@ -1,5 +1,6 @@
-import java.awt.EventQueue;
+package mockups;
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
 import javax.swing.GroupLayout;
@@ -92,7 +93,7 @@ public class MockUpGui {
 		
 		JButton button_13 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t15");
 		
-		JButton btnNewButton_2 = new JButton("");
+		JButton btnNewButton_2 = new JButton("temp text");
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBackground(Color.WHITE);
 		btnNewButton_2.setIcon(new ImageIcon("C:\\Users\\Michael\\Pictures\\Saved Pictures\\back arrow.JPG"));
