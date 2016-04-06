@@ -14,8 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-public class UserLevels {
+public class UserLevels extends AppView {
 
+	/**
+	 * 
+	 */
 	private JFrame frame;
 
 	/**
@@ -38,6 +41,7 @@ public class UserLevels {
 	 * Create the application.
 	 */
 	public UserLevels() {
+		super();
 		initialize();
 	}
 

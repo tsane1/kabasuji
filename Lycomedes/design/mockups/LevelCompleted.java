@@ -22,7 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class LevelCompleted {
+public class LevelCompleted extends AppView {
 
 	private JFrame frame;
 	private JLabel lblKabasuji;
@@ -48,6 +48,7 @@ public class LevelCompleted {
 	 * Create the application.
 	 */
 	public LevelCompleted() {
+		super();
 		initialize();
 	}
 
