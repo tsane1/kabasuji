@@ -3,7 +3,9 @@ package mockups;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.SystemColor;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.SwingConstants;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Level extends JFrame {
 
@@ -71,6 +76,12 @@ public class Level extends JFrame {
 	  JPanel board = new JPanel();
 		board.setBounds(283, 125, 384, 384);
 		contentPane.add(board);
+		board.setLayout(null);
+		
+		JButton btnFuckyou = new JButton("FUCKYOU");
+		btnFuckyou.setIcon(new ImageIcon(getClass().getClassLoader().getResource("/imgs/Star.png")));
+		btnFuckyou.setBounds(99, 128, 97, 25);
+		board.add(btnFuckyou);
 		
 		JPanel bullpen = new JPanel();
 		bullpen.setBounds(12, 522, 908, 218);
