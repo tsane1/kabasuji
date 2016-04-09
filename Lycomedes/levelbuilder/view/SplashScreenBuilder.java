@@ -43,7 +43,7 @@ public void showSplash() {
  setVisible(true);
 
  // Wait a little while, maybe while loading resources
- try { Thread.sleep(10000); } catch (Exception e) {}
+ try { Thread.sleep(1000); } catch (Exception e) {}
 
  setVisible(false);
 }
