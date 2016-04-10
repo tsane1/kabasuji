@@ -68,7 +68,7 @@ public class BuilderSplashScreen extends JWindow {
 	        timer1 = new Timer(50, al);
 	        timer1.start();
 	    }
-	    public static void main(String[] args) {
-	        execute = new BuilderSplashScreen();
-	    }
+	    //public static void main(String[] args) {
+	    //    execute = new BuilderSplashScreen();
+	    //}
 	}

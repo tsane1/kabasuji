@@ -1,10 +1,35 @@
 package levelbuilder;
 
-public class LevelBuilder {
+import java.awt.EventQueue;
 
+import model.LevelBuilderModel;
+import view.BuilderSplashScreen;
+import view.MainBuilderScreen;
+
+public class LevelBuilder {
+	
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//main class for launch
+		
+		LevelBuilderModel m = new LevelBuilderModel();
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					//Load the Splash Screen
+					BuilderSplashScreen sc = new BuilderSplashScreen();
+					//Sleep
+					Thread.sleep(1000);
+					//Launch into the main builder
+					MainBuilderScreen frame = new MainBuilderScreen(m);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }
