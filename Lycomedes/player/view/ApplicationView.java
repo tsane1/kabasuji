@@ -35,10 +35,11 @@ public class ApplicationView extends JFrame {
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setForeground(SystemColor.textHighlight);
 		lblTitle.setFont(new Font("Kristen ITC", Font.BOLD, 32));
-		lblTitle.setBounds(0,0,930,75);
+		lblTitle.setBounds(0,13,930,75);
 		contentPane.add(lblTitle);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setBackground(SystemColor.text);
 		btnBack.setFont(new Font("Kristen ITC", Font.BOLD, 12));
 		btnBack.setForeground(SystemColor.textHighlight);
 		btnBack.setBounds(12, 13, 97, 25);
