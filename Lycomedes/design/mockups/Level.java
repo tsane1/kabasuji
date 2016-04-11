@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.image.BufferedImage;
-import java.net.URL;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -79,12 +78,10 @@ public class Level extends JFrame {
 		contentPane.add(board);
 		board.setLayout(null);
 		
-		JButton btnUpset = new JButton("");
-		btnUpset.setIcon(new ImageIcon(Level.class.getResource("/imgs/Star.png")));
-		URL url = Level.class.getResource("/imgs/Star.png");
-		System.out.println(url);
-		btnUpset.setBounds(99, 128, 97, 25);
-		board.add(btnUpset);
+		JButton btnFuckyou = new JButton("FUCKYOU");
+		btnFuckyou.setIcon(new ImageIcon(getClass().getClassLoader().getResource("/imgs/Star.png")));
+		btnFuckyou.setBounds(99, 128, 97, 25);
+		board.add(btnFuckyou);
 		
 		JPanel bullpen = new JPanel();
 		bullpen.setBounds(12, 522, 908, 218);
@@ -95,8 +92,7 @@ public class Level extends JFrame {
 		lblTimeLeft.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTimeLeft.setBounds(760, 123, 97, 16);
 		contentPane.add(lblTimeLeft);
-		
-		JLabel lblMovesLeft = new JLabel("Moves Left:");
+				JLabel lblMovesLeft = new JLabel("Moves Left:");
 		lblMovesLeft.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMovesLeft.setFont(new Font("Kristen ITC", Font.BOLD, 12));
 		lblMovesLeft.setBounds(760, 226, 97, 16);
