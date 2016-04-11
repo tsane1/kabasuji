@@ -21,9 +21,10 @@ public class LevelBuilder {
 					//Load the Splash Screen
 					BuilderSplashScreen sc = new BuilderSplashScreen();
 					//Sleep
-					Thread.sleep(sc.splashScreenDelay());
+					//Thread.sleep(500);
 					//Launch into the main builder
 					MainBuilderScreen frame = new MainBuilderScreen(m);
+					//Thread.sleep(500);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
