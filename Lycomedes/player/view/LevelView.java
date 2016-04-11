@@ -11,9 +11,9 @@ import model.Level;
 
 public class LevelView extends ApplicationView {
 	private Level level;
-	private BoardView board;
-	private BullpenView bullpen;
-	private AchievementView stars;
+//	private BoardView board;
+//	private BullpenView bullpen;
+//	private AchievementView stars;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
