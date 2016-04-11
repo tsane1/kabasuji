@@ -3,14 +3,15 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.LevelBuilderModel;
+
 public class DeleteLevelController implements ActionListener{
 
 	LevelBuilderModel model;
-	LevelBuilderApplication app;
+	//LevelBuilderApplication app;
 	
-	public DeleteLevelController(LevelBuilderApplication app, LevelBuilderModel m) {
+	public DeleteLevelController(LevelBuilderModel m) {
 		this.model = m;
-		this.app = app;
 	}
 
 	@Override
