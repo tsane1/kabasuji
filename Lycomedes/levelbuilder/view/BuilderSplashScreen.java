@@ -29,7 +29,7 @@ public class BuilderSplashScreen extends JWindow {
 		Container container = getContentPane();
         container.setLayout(null);
         
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setIconTextGap(10);
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Chase\\Desktop\\BuilderSplashScreen.png"));

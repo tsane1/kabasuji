@@ -2,13 +2,14 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.LevelBuilderModel;
 
 public class DeleteLevelController implements ActionListener{
 
 	LevelBuilderModel model;
 	LevelBuilderApplication app;
 	
-	public DeleteLevelController(LevelBuilderApplication app, LevelBuilderModel m) {
+	public DeleteLevelController(LevelBuilder app, LevelBuilder m) {
 		this.model = m;
 		this.app = app;
 	}
