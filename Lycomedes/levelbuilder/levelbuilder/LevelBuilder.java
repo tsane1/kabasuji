@@ -21,7 +21,7 @@ public class LevelBuilder {
 					//Load the Splash Screen
 					BuilderSplashScreen sc = new BuilderSplashScreen();
 					//Sleep
-					Thread.sleep(1000);
+					Thread.sleep(sc.splashScreenDelay());
 					//Launch into the main builder
 					MainBuilderScreen frame = new MainBuilderScreen(m);
 					frame.setVisible(true);

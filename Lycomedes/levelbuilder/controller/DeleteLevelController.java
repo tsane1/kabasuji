@@ -4,14 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.LevelBuilderModel;
 
+import model.LevelBuilderModel;
+
 public class DeleteLevelController implements ActionListener{
 
 	LevelBuilderModel model;
-	LevelBuilderApplication app;
+	//LevelBuilderApplication app;
 	
+<<<<<<< HEAD
 	public DeleteLevelController(LevelBuilder app, LevelBuilder m) {
+=======
+	public DeleteLevelController(LevelBuilderModel m) {
+>>>>>>> refs/remotes/origin/master
 		this.model = m;
-		this.app = app;
 	}
 
 	@Override
