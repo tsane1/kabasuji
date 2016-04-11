@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class LevelSelect extends JFrame {
 
@@ -65,75 +68,111 @@ public class LevelSelect extends JFrame {
 		btnBack.setBackground(SystemColor.textHighlight);
 		btnBack.setBounds(12, 13, 97, 25);
 		contentPane.add(btnBack);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(180, 153, 604, 450);
+		contentPane.add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		
+		JButton button = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t1");
+		button.setBackground(SystemColor.menu);
+		
+		JButton button_1 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t2");
+		
+		JButton button_2 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t3");
+		
+		JButton button_3 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t4");
+		
+		JButton button_4 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t5");
+		
+		JButton button_5 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t10");
+		
+		JButton button_6 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t9");
+		
+		JButton button_7 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t8");
+		
+		JButton button_8 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t7");
+		
+		JButton button_9 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t6");
+		
+		JButton button_10 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t11");
+		
+		JButton button_11 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t12");
+		
+		JButton button_12 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t13");
+		
+		JButton button_13 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t14");
+		
+		JButton button_14 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t15");
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(42)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(button, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_4, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(button_9, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_8, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_7, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_6, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_5, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(button_10, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_11, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_12, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_13, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(button_14, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(45, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(22)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(button, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_4, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+					.addGap(70)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(button_9, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_8, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_7, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_6, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_5, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+					.addGap(70)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(button_10, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_11, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_12, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_13, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_14, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(46, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
 	}
 	
 	public void populate() {
-		JButton btnUserLevels = new JButton("User Levels");
-		btnUserLevels.setBackground(SystemColor.textHighlight);
-		btnUserLevels.setForeground(SystemColor.textHighlight);
-		btnUserLevels.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnUserLevels.setBounds(765, 683, 155, 57);
-		contentPane.add(btnUserLevels);
-			
-		JButton btnLevel12 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t12");
-		btnLevel12.setBounds(322, 500, 95, 80);
-		contentPane.add(btnLevel12);
-		
-		JButton btnLevel13 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t13");
-		btnLevel13.setBounds(427, 500, 95, 80);
-		contentPane.add(btnLevel13);
-		
-		JButton btnLevel14 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t14");
-		btnLevel14.setBounds(532, 500, 95, 80);
-		contentPane.add(btnLevel14);
-		
-		JButton btnLevel15 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t15");
-		btnLevel15.setBounds(637, 500, 95, 80);
-		contentPane.add(btnLevel15);
-		
-		JButton btnLevel11 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t11");
-		btnLevel11.setBounds(217, 500, 95, 80);
-		contentPane.add(btnLevel11);
-		
-		JButton btnLevel6 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t6");
-		btnLevel6.setBounds(217, 350, 95, 80);
-		contentPane.add(btnLevel6);
-		
-		JButton btnLevel8 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t8");
-		btnLevel8.setBounds(427, 350, 95, 80);
-		contentPane.add(btnLevel8);
-		
-		JButton btnLevel7 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t7");
-		btnLevel7.setBounds(322, 350, 95, 80);
-		contentPane.add(btnLevel7);
-		
-		JButton btnLevel9 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t9");
-		btnLevel9.setBounds(532, 350, 95, 80);
-		contentPane.add(btnLevel9);
-		
-		JButton btnLevel10 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t10");
-		btnLevel10.setBounds(637, 350, 95, 80);
-		contentPane.add(btnLevel10);
-		
-		JButton btnLevel5 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t5");
-		btnLevel5.setBounds(637, 200, 95, 80);
-		contentPane.add(btnLevel5);
-		
-		JButton btnLevel4 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t4");
-		btnLevel4.setBounds(532, 200, 95, 80);
-		contentPane.add(btnLevel4);
-		
-		JButton btnLevel3 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t3");
-		btnLevel3.setBounds(427, 200, 95, 80);
-		contentPane.add(btnLevel3);
-		
-		JButton btnLevel2 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t\t2");
-		btnLevel2.setBounds(322, 200, 95, 80);
-		contentPane.add(btnLevel2);
-		
-		JButton btnLevel1 = new JButton("\t\t\t\t\t\t\t\t\t\t\t\t1");
-		btnLevel1.setBackground(SystemColor.menu);
-		btnLevel1.setBounds(217, 200, 95, 80);
-		contentPane.add(btnLevel1);
 	}
 }
