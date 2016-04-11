@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.image.BufferedImage;
+import java.net.URL;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -78,10 +79,12 @@ public class Level extends JFrame {
 		contentPane.add(board);
 		board.setLayout(null);
 		
-		JButton btnFuckyou = new JButton("FUCKYOU");
-		btnFuckyou.setIcon(new ImageIcon(getClass().getClassLoader().getResource("/imgs/Star.png")));
-		btnFuckyou.setBounds(99, 128, 97, 25);
-		board.add(btnFuckyou);
+		JButton btnUpset = new JButton("");
+		btnUpset.setIcon(new ImageIcon(Level.class.getResource("/imgs/Star.png")));
+		URL url = Level.class.getResource("/imgs/Star.png");
+		System.out.println(url);
+		btnUpset.setBounds(99, 128, 97, 25);
+		board.add(btnUpset);
 		
 		JPanel bullpen = new JPanel();
 		bullpen.setBounds(12, 522, 908, 218);
