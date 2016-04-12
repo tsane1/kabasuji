@@ -86,7 +86,7 @@ public class MainBuilderScreen extends JFrame {
 		
 		//deleteLevelBtn.addActionListener(new DeleteLevelController(this, model));
 		//editLevelBtn.addActionListener(new EditLevelController(this, model));
-		//newLevelBtn.addActionListener(new NewLevelController(this, model));
+		newLevelBtn.addActionListener(new NewLevelController(this, model));
 		
 		//refresh();
 	}

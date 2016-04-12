@@ -10,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
+
+import model.LevelBuilderModel;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTabbedPane;
 import javax.swing.JFormattedTextField;
@@ -18,11 +21,15 @@ import java.awt.event.ActionEvent;
 
 public class BuilderScreen extends JFrame {
 
+	LevelBuilderModel model;
+	MainBuilderScreen prevScreen;
+	
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -35,11 +42,14 @@ public class BuilderScreen extends JFrame {
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the frame.
 	 */
-	public BuilderScreen() {
+	public BuilderScreen(LevelBuilderModel m) {
+		this.model = m;
+		
 		initWindow();
 		populate();
 	}
@@ -293,4 +303,14 @@ public class BuilderScreen extends JFrame {
 		BackBtn.setBounds(34, 85, 115, 37);
 		contentPane.add(BackBtn);
 	}
+	
+
+	public void setPreviousFrame(MainBuilderScreen screen) {
+		prevScreen = screen;
+	}
+
+	public MainBuilderScreen getPreviousFrame() {
+		return prevScreen;
+	}
+	
 }
