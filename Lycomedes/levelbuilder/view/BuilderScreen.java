@@ -13,6 +13,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JTabbedPane;
 import javax.swing.JFormattedTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BuilderScreen extends JFrame {
 
@@ -282,5 +284,13 @@ public class BuilderScreen extends JFrame {
 		button.setBounds(34, 34, 115, 37);
 		contentPane.add(button);
 		button.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
+		
+		JButton BackBtn = new JButton("Back");
+		BackBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		BackBtn.setBounds(34, 85, 115, 37);
+		contentPane.add(BackBtn);
 	}
 }
