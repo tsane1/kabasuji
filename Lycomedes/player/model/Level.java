@@ -10,10 +10,24 @@ public class Level {
 		this.name = name;
 		this.type = type;
 	}
+	
+	public Level(){
+		//nothing
+	}
+	
 	public String getLevelName() {
 		return name + ": " + type;
 	}
+	
+	public void setLevelName(String name){
+		this.name = name;
+	}
+	
 	public String getLevelType() {
 		return type;
+	}
+	
+	public void setLevelType(String type){
+		this.type = type;
 	}
 }

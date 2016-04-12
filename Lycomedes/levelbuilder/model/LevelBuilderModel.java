@@ -1,9 +1,63 @@
 package model;
 
+import java.util.Stack;
+import controller.Move;
+
 public class LevelBuilderModel {
 
-	public LevelBuilderModel() {
-		// TODO Auto-generated constructor stub
+	Level currentLevel;
+	Stack<Move> undoStack = new Stack<Move>();
+	Stack<Move> redoStack = new Stack<Move>();
+	
+	Piece selectedPiece;
+	
+	public LevelBuilderModel(Level L) {
+		this.currentLevel = L;
+	}
+	
+	public LevelBuilderModel(){
+		this(new Level());
+	}
+	
+	public Level getLevel(){
+		return currentLevel;
+	}
+	
+	public void setLevel(Level L){
+		this.currentLevel = L;
 	}
 
+	public void trackMoves(Move m){
+		undoStack.add(m);
+		redoStack.clear();
+	}
+	
+	/*
+	 * get/set undo moves
+	 */
+	public Move getLastMove(){
+		if(undoStack.isEmpty()) {
+			return null;
+		}
+		return undoStack.pop();
+	}
+	
+	public void addMoveToUndo(Move m){
+		undoStack.push(m);
+	}
+	
+	/*
+	 * get/set redo moves
+	 */
+	public void addRedoableMove(Move m){
+		redoStack.push(m);
+	}
+	
+	public Move getredoMove(){
+		if(redoStack.isEmpty()){
+			return null;
+		}
+		return redoStack.pop();
+	}
+	
 }
