@@ -32,7 +32,7 @@ public class PlayerSplashScreen extends JWindow {
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setIconTextGap(10);
-		lblNewLabel.setIcon(new ImageIcon(PlayerSplashScreen.class.getResource("/imgs/12x12gridedit.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(PlayerSplashScreen.class.getResource("/imgs/PlayerSplashScreen.png")));
 		lblNewLabel.setBounds(0, 0, 900, 700);
 		getContentPane().add(lblNewLabel);
 
@@ -59,10 +59,12 @@ public class PlayerSplashScreen extends JWindow {
 			}
 
 			private void createFrame() throws HeadlessException {
-				JFrame frame = new JFrame();
-				frame.setSize(500, 500);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setVisible(true);
+				try {
+					LevelSelectView frame = new LevelSelectView();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		};
 		timer1 = new Timer(50, al);

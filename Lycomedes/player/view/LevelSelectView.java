@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 
 public class LevelSelectView extends ApplicationView {
 
-	
+	// delete later, testing only
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

@@ -27,7 +27,7 @@ public class BuilderSplashScreen extends JWindow {
 	    private static Timer timer1;
 	    
 	public BuilderSplashScreen() {
-		setLayout(null);
+		getContentPane().setLayout(null);
 
 		Container container = getContentPane();
         container.setLayout(null);
@@ -35,9 +35,9 @@ public class BuilderSplashScreen extends JWindow {
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setIconTextGap(10);
-		lblNewLabel.setIcon(new ImageIcon("/design/imgs/BuilderSplashScreen.png"));
+		lblNewLabel.setIcon(new ImageIcon(BuilderSplashScreen.class.getResource("/imgs/BuilderSplashScreen.png")));
 		lblNewLabel.setBounds(0, 0, 900, 700);
-		add(lblNewLabel);
+		getContentPane().add(lblNewLabel);
 		
 		progressBar.setMaximum(50);
         progressBar.setBounds(150, 670, 600, 15);
@@ -66,9 +66,9 @@ public class BuilderSplashScreen extends JWindow {
 	        timer1 = new Timer(50, al);
 	        timer1.start();
 	    }
-	    //public static void main(String[] args) {
-	    //    execute = new BuilderSplashScreen();
-	    //}
+	    public static void main(String[] args) {
+	        execute = new BuilderSplashScreen();
+	    }
 	  
 	  public int splashScreenDelay()
 	  {

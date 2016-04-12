@@ -4,8 +4,6 @@
 	<classpathentry kind="src" path="design"/>
 	<classpathentry kind="src" path="player"/>
 	<classpathentry kind="src" path="levelbuilder"/>
-	<classpathentry kind="lib" path="jgoodies-forms-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
