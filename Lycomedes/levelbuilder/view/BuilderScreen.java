@@ -27,7 +27,7 @@ public class BuilderScreen extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
+	 * Launch the application. This is evidently not needed as we will launch from the main screen
 	 */
 	/*
 	public static void main(String[] args) {
