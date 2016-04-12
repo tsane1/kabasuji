@@ -20,6 +20,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class BuilderScreen extends JFrame {
 
@@ -292,17 +293,23 @@ public class BuilderScreen extends JFrame {
 		formattedTextField_2.setBounds(31, 103, 188, 41);
 		release.add(formattedTextField_2);
 		
-		JButton button = new JButton("Save Level");
-		button.setBounds(34, 34, 115, 37);
-		contentPane.add(button);
-		button.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
+		JButton saveBtn = new JButton("Save Level");
+		saveBtn.setBounds(34, 34, 115, 37);
+		contentPane.add(saveBtn);
+		saveBtn.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
 		
-		JButton BackBtn = new JButton("Back");
+		JButton BackBtn = new JButton("");
+		BackBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/back arrow.JPG")));
 		BackBtn.addActionListener(new PreviousController(this, model));
 
 
 		BackBtn.setBounds(34, 85, 115, 37);
 		contentPane.add(BackBtn);
+		
+		JButton undoBtn = new JButton("");
+		undoBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/Undo.png")));
+		undoBtn.setBounds(34, 141, 115, 37);
+		contentPane.add(undoBtn);
 	}
 	
 
@@ -313,5 +320,4 @@ public class BuilderScreen extends JFrame {
 	public MainBuilderScreen getPreviousFrame() {
 		return prevScreen;
 	}
-	
 }
