@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import superview.ApplicationView;
+
 public class LevelSelectView extends ApplicationView {
 
 	// delete later, testing only

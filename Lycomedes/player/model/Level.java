@@ -1,8 +1,10 @@
 package model;
 
 public class Level {
-	private String name;
-	private String type;
+	private String name, type;
+	private Piece[] placedPieces;
+	private Board theBoard;
+	private Bullpen theBullpen;
 	
 	public Level(String name, String type) {
 		this.name = name;

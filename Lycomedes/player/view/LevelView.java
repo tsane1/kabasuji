@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import model.Level;
+import superview.ApplicationView;
 
 public class LevelView extends ApplicationView {
 	private Level level;
