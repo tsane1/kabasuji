@@ -11,11 +11,23 @@ public class Level extends supers.Model {
 		this.type = type;
 	}
 	
+	public Level(){
+		
+	}
+	
 	public String getLevelName() {
 		return name + ": " + type;
 	}
 
 	public String getLevelType() {
 		return type;
+	}
+	
+	public void setLevelName(String name){
+		this.name = name;
+	}
+	
+	public void setLevelType(String type){
+		this.type = type;
 	}
 }

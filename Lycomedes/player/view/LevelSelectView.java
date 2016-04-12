@@ -15,6 +15,11 @@ import supers.Model;
 
 public class LevelSelectView extends Application {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// delete later, testing only
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
