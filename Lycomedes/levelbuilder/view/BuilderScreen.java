@@ -10,17 +10,26 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
+
+import model.LevelBuilderModel;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTabbedPane;
 import javax.swing.JFormattedTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BuilderScreen extends JFrame {
 
+	LevelBuilderModel model;
+	MainBuilderScreen prevScreen;
+	
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -33,11 +42,14 @@ public class BuilderScreen extends JFrame {
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the frame.
 	 */
-	public BuilderScreen() {
+	public BuilderScreen(LevelBuilderModel m) {
+		this.model = m;
+		
 		initWindow();
 		populate();
 	}
@@ -282,5 +294,23 @@ public class BuilderScreen extends JFrame {
 		button.setBounds(34, 34, 115, 37);
 		contentPane.add(button);
 		button.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
+		
+		JButton BackBtn = new JButton("Back");
+		BackBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		BackBtn.setBounds(34, 85, 115, 37);
+		contentPane.add(BackBtn);
 	}
+	
+
+	public void setPreviousFrame(MainBuilderScreen screen) {
+		prevScreen = screen;
+	}
+
+	public MainBuilderScreen getPreviousFrame() {
+		return prevScreen;
+	}
+	
 }

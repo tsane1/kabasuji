@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+
+import model.LevelBuilderModel;
+
 import javax.swing.*;
 import java.awt.Container;
 
@@ -32,7 +35,7 @@ public class BuilderSplashScreen extends JWindow {
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setIconTextGap(10);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Chase\\Desktop\\BuilderSplashScreen.png"));
+		lblNewLabel.setIcon(new ImageIcon("/design/imgs/BuilderSplashScreen.png"));
 		lblNewLabel.setBounds(0, 0, 900, 700);
 		add(lblNewLabel);
 		
@@ -43,6 +46,7 @@ public class BuilderSplashScreen extends JWindow {
         setSize(900, 700);
         setLocationRelativeTo(null);
         setVisible(true);
+        
 	}
 	
 	  private void loadProgressBar() {
@@ -51,19 +55,13 @@ public class BuilderSplashScreen extends JWindow {
 	                count++;
 	                progressBar.setValue(count);
 	                System.out.println(count);
-	                if (count == 100) {
-	                    createFrame();
-	                    execute.setVisible(false);//swapped this around with timer1.stop()
-	                    timer1.stop();
+	                if (count == 65) {
+	                	timer1.stop();
+	                	setVisible(false);
+	                	dispose();
 	                }
 	            }
 
-	            private void createFrame() throws HeadlessException {
-	                JFrame frame = new JFrame();
-	                frame.setSize(500, 500);
-	                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	                frame.setVisible(true);
-	            }
 	        };
 	        timer1 = new Timer(50, al);
 	        timer1.start();

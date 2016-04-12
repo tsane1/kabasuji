@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -85,7 +86,7 @@ public class MainBuilderScreen extends JFrame {
 		
 		//deleteLevelBtn.addActionListener(new DeleteLevelController(this, model));
 		//editLevelBtn.addActionListener(new EditLevelController(this, model));
-		//newLevelBtn.addActionListener(new NewLevelController(this, model));
+		newLevelBtn.addActionListener(new NewLevelController(this, model));
 		
 		//refresh();
 	}
