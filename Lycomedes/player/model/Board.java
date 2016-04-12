@@ -5,8 +5,8 @@ public class Board {
 	private Tile boardArray[][];
 	private Piece[] placedPieces;
 	
-	public Board(Tile[][] tiles) {
-		this.boardArray = tiles;
+	public Board() {
+		
 	}
 	
 	public void place(int row, int col, Piece piece) {

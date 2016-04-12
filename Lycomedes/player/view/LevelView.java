@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import model.Board;
+import model.Bullpen;
 import model.Level;
 import superview.ApplicationView;
 
@@ -37,10 +39,15 @@ public class LevelView extends ApplicationView {
 	public LevelView(Level level) {
 		super(level.getLevelName());
 		this.level = level;
+		
 		populate();
 	}
 
 	private void populate() {
+	  BoardView bv = new BoardView(new Board());
+	  contentPane.add(bv);
 	  
+	  BullpenView bv2 = new BullpenView(new Bullpen());
+	  contentPane.add(bv2);
 	}
 }

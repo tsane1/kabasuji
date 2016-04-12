@@ -9,12 +9,15 @@ public class BoardView extends JPanel {
 	private Board board;
 	
 	public BoardView(Board board) {
+		super();
 		this.board = board;
 		setLayout(null);
 		
-		JLabel lblBoard = new JLabel("");
-		lblBoard.setIcon(new ImageIcon(BoardView.class.getResource("/imgs/12x12gridedit.jpg")));
-		lblBoard.setBounds(0, 0, 384, 384);
-		add(lblBoard);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(BoardView.class.getResource("/imgs/12x12gridedit.jpg")));
+		label.setBounds(0, 0, 384, 384);
+		add(label);
+		
+		this.setBounds(283, 110, 384, 384);
 	}
 }
