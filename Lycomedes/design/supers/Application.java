@@ -1,4 +1,4 @@
-package superview;
+package supers;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,20 +8,29 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
+
+import controller.BackController;
+
 import javax.swing.SwingConstants;
 
-public class ApplicationView extends JFrame {
-	protected JPanel contentPane;
+public class Application extends JFrame implements IApplication {
+	protected JButton btnBack;
+	protected Model model;
 	
-	public ApplicationView() {
-		initWindow("Kabasuji");
+	public Application(Model m) {
+		this(m, "Kabasuji");
 	}
 	
-	public ApplicationView(String inputTitle) {
+	public Application(Model m, String inputTitle) {
+		this.model = m;
 		initWindow(inputTitle);
+		populate();
+		installControllers();
+		initModel();
 	}
 	
 	private void initWindow(String inputTitle) {
+		JPanel contentPane;
 		setTitle(inputTitle);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 800);
@@ -38,11 +47,32 @@ public class ApplicationView extends JFrame {
 		lblTitle.setBounds(0,13,930,75);
 		contentPane.add(lblTitle);
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
 		btnBack.setBackground(SystemColor.text);
 		btnBack.setFont(new Font("Kristen ITC", Font.BOLD, 12));
 		btnBack.setForeground(SystemColor.textHighlight);
 		btnBack.setBounds(12, 13, 97, 25);
 		contentPane.add(btnBack);
+		
+		// install back button controller
+		btnBack.addActionListener(new BackController(this, model));
+	}
+
+	@Override
+	public void populate() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void installControllers() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initModel() {
+		// TODO Auto-generated method stub
+		
 	}
 }

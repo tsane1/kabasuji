@@ -12,7 +12,6 @@ public class BullpenView extends JPanel {
 		super();
 		this.bullpen = bullpen;
 		setLayout(null);
-			
 		this.setBounds(12, 522, 908, 218);
 	}
 }

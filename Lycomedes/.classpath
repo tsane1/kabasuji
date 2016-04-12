@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="design"/>
 	<classpathentry kind="src" path="player"/>
 	<classpathentry kind="src" path="levelbuilder"/>
+	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
