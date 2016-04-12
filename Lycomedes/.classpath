@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="design/|player/|levelbuilder/" kind="src" path=""/>
+	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="src" path="design"/>
 	<classpathentry kind="src" path="player"/>
 	<classpathentry kind="src" path="levelbuilder"/>
