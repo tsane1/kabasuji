@@ -12,10 +12,12 @@ public class BackController implements ActionListener {
 		
 	public BackController(Application view, Model m) {
 		this.view = view;
+		this.model = m;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Back button pressed!");
+		// TODO: add actual functionality
 	}
 }

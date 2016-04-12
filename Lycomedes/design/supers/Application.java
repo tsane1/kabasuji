@@ -14,6 +14,7 @@ import controller.BackController;
 import javax.swing.SwingConstants;
 
 public class Application extends JFrame implements IApplication {
+	protected JPanel contentPane;
 	protected JButton btnBack;
 	protected Model model;
 	
@@ -30,7 +31,6 @@ public class Application extends JFrame implements IApplication {
 	}
 	
 	private void initWindow(String inputTitle) {
-		JPanel contentPane;
 		setTitle(inputTitle);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 800);
@@ -72,6 +72,12 @@ public class Application extends JFrame implements IApplication {
 
 	@Override
 	public void initModel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void refresh() {
 		// TODO Auto-generated method stub
 		
 	}

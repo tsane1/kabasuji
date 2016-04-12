@@ -16,7 +16,7 @@ public class LevelBuilderModel {
 	}
 	
 	public LevelBuilderModel(){
-		this(new Level());
+		this(new Level("",""));
 	}
 	
 	public Level getLevel(){
