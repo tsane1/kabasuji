@@ -11,11 +11,8 @@ public class DeleteLevelController implements ActionListener{
 	LevelBuilderModel model;
 	//LevelBuilderApplication app;
 	
-<<<<<<< HEAD
 	public DeleteLevelController(LevelBuilder app, LevelBuilder m) {
-=======
-	public DeleteLevelController(LevelBuilderModel m) {
->>>>>>> refs/remotes/origin/master
+
 		this.model = m;
 	}
 
