@@ -6,7 +6,7 @@ public class Board {
 	private Piece[] placedPieces;
 	
 	public Board(Tile[][] tiles) {
-		
+		this.boardArray = tiles;
 	}
 	
 	public void place(int row, int col, Piece piece) {
