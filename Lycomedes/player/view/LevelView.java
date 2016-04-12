@@ -15,19 +15,20 @@ import javax.swing.border.EmptyBorder;
 import model.Board;
 import model.Bullpen;
 import model.Level;
-import superview.ApplicationView;
+import supers.Model;
 
-public class LevelView extends ApplicationView {
+public class LevelView extends supers.Application {
 	private Level level;
 //	private BoardView board;
 //	private BullpenView bullpen;
 //	private AchievementView stars;
 	
+	// for testing only
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LevelView frame = new LevelView(new Level("Level 1", "Puzzle"));
+					LevelView frame = new LevelView(new Level("Level x", "type"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,17 +38,12 @@ public class LevelView extends ApplicationView {
 	}
 
 	public LevelView(Level level) {
-		super(level.getLevelName());
+		super(level, level.getLevelName());
 		this.level = level;
-		
-		populate();
 	}
-
-	private void populate() {
-	  BoardView bv = new BoardView(new Board());
-	  contentPane.add(bv);
+	
+	@Override
+	public void populate() {
 	  
-	  BullpenView bv2 = new BullpenView(new Bullpen());
-	  contentPane.add(bv2);
 	}
 }
