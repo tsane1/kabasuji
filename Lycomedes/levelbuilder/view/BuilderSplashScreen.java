@@ -56,12 +56,19 @@ public class BuilderSplashScreen extends JWindow {
 	                progressBar.setValue(count);
 	                System.out.println(count);
 	                if (count == 65) {
-	                	timer1.stop();
+	                	createFrame();
 	                	setVisible(false);
-	                	dispose();
+	                	timer1.stop();
 	                }
 	            }
-
+	            private void createFrame() throws HeadlessException {
+	      				try {
+	      					BuilderScreen frame = new BuilderScreen(new LevelBuilderModel());
+	      					frame.setVisible(true);
+	      				} catch (Exception e) {
+	      					e.printStackTrace();
+	      				}
+	      			}
 	        };
 	        timer1 = new Timer(50, al);
 	        timer1.start();

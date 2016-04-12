@@ -51,7 +51,7 @@ public class PlayerSplashScreen extends JWindow {
 				count++;
 				progressBar.setValue(count);
 				System.out.println(count);
-				if (count == 100) {
+				if (count == 65) {
 					createFrame();
 					execute.setVisible(false);//swapped this around with timer1.stop()
 					timer1.stop();
