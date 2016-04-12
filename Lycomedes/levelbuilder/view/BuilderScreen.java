@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+import controller.NewLevelController;
+import controller.PreviousController;
 import model.LevelBuilderModel;
 
 import javax.swing.SwingConstants;
@@ -296,10 +298,9 @@ public class BuilderScreen extends JFrame {
 		button.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
 		
 		JButton BackBtn = new JButton("Back");
-		BackBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		BackBtn.addActionListener(new PreviousController(this, model));
+
+
 		BackBtn.setBounds(34, 85, 115, 37);
 		contentPane.add(BackBtn);
 	}
