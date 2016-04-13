@@ -12,63 +12,49 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controller.BackController;
 import model.Board;
 import model.Bullpen;
 import model.Level;
+import supers.Application;
 import supers.Model;
+import supers.Screen;
 
-public class LevelView extends JFrame implements supers.IApplication {
+public class LevelView extends Screen{
 	private Level level;
-//	private BoardView board;
-//	private BullpenView bullpen;
-//	private AchievementView stars;
-	
-	// for testing only
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LevelView frame = new LevelView(new Level("Level x", "type"));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private BoardView board;
+	private BullpenView bullpen;
 
 	public LevelView(Level level) {
+		super(level.getLevelName(), level);
 		this.level = level;
 	}
-
+	
 	@Override
-	public void populate(JPanel contentPane) {
-		BoardView bv = new BoardView(new Board());
-		BullpenView vb = new BullpenView(new Bullpen());
-		
-		contentPane.add(bv);
-		contentPane.add(vb);
+	public void populate() {
+		board = new BoardView(level.getBoard());
+		bullpen = new BullpenView(level.getBullpen());
+		this.add(board);
+		this.add(bullpen);
 	}
-
+	
 	@Override
 	public void installControllers() {
-		// TODO Auto-generated method stub
 		
 	}
+	
 
 	@Override
 	public void initModel() {
-		// TODO Auto-generated method stub
-		
+		// Method intentionally unimplemented, must be overridden to use
 	}
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
-		
+		// Method intentionally unimplemented, must be overridden to use
 	}
 	
-	public String getName() {
-		return this.level.getLevelName();
+	public Level getLevel() {
+		return this.level;
 	}
 }

@@ -30,4 +30,16 @@ public class Level extends supers.Model {
 	public void setLevelType(String type){
 		this.type = type;
 	}
+	
+	public Board getBoard() {
+		return this.theBoard;
+	}
+	
+	public Bullpen getBullpen() {
+		return this.theBullpen;
+	}
+	
+	public void quit() {
+		System.out.println("Saving state and exiting.");
+	}
 }
