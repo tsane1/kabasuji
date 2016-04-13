@@ -6,6 +6,7 @@ import model.LevelBuilderModel;
 import view.BuilderSplashScreen;
 import view.BuilderLevelSelect;
 
+// testing change
 public class LevelBuilder {
 	
 	/**
@@ -19,13 +20,13 @@ public class LevelBuilder {
 			public void run() {
 				try {
 					//Load the Splash Screen
-					BuilderSplashScreen sc = new BuilderSplashScreen();
+					BuilderSplashScreen sc = new BuilderSplashScreen(m);
 					//Sleep
-					Thread.sleep(500);
+					//Thread.sleep(500);
 					//Launch into the main builder
 					BuilderLevelSelect frame = new BuilderLevelSelect(m);
 					//Thread.sleep(500);
-					frame.setVisible(true);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
