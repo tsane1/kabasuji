@@ -20,7 +20,7 @@ public class LevelSelectController implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		System.out.println("Level selected");
 	}
 	
 }

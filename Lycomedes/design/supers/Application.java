@@ -1,6 +1,7 @@
 package supers;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JButton;
@@ -19,9 +20,13 @@ public class Application extends JFrame {
 	public Application(Screen scr) {
 		setTitle("Kabasuji");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 800);
+		setSize(950, 800);
 		
 		setCurrScreen(scr);
+	}
+	
+	public Dimension getPreferredSize() {
+		return new Dimension(950, 800);
 	}
 	
 	public void handshake(Screen scr) {
@@ -35,6 +40,8 @@ public class Application extends JFrame {
 	public void setCurrScreen(Screen newScr) {
 		this.currScreen = newScr;
 		setContentPane(this.currScreen);
+		pack();
+		revalidate();
 		drawScreen();
 	}
 	
