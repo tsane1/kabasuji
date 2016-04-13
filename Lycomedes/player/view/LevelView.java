@@ -17,7 +17,7 @@ import model.Bullpen;
 import model.Level;
 import supers.Model;
 
-public class LevelView extends supers.Application {
+public class LevelView extends JFrame implements supers.IApplication {
 	private Level level;
 //	private BoardView board;
 //	private BullpenView bullpen;
@@ -38,12 +38,37 @@ public class LevelView extends supers.Application {
 	}
 
 	public LevelView(Level level) {
-		super(level, level.getLevelName());
 		this.level = level;
 	}
-	
+
 	@Override
-	public void populate() {
-	  
+	public void populate(JPanel contentPane) {
+		BoardView bv = new BoardView(new Board());
+		BullpenView vb = new BullpenView(new Bullpen());
+		
+		contentPane.add(bv);
+		contentPane.add(vb);
+	}
+
+	@Override
+	public void installControllers() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initModel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public String getName() {
+		return this.level.getLevelName();
 	}
 }

@@ -5,10 +5,13 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.JButton;
-import supers.Application;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import supers.IApplication;
 import supers.Model;
 
-public class LevelSelectView extends Application {
+public class LevelSelectView extends JFrame implements IApplication {
 
 	// delete later, testing only
 	public static void main(String[] args) {
@@ -25,10 +28,10 @@ public class LevelSelectView extends Application {
 	}
 
 	public LevelSelectView() {
-		super(new Model(), "Select a Level");
+		
 	}
 	
-	public void populate() {
+	public void populate(JPanel contentPane) {
 		JButton btnUserLevels = new JButton("User Levels");
 		btnUserLevels.setBackground(SystemColor.text);
 		btnUserLevels.setForeground(SystemColor.textHighlight);
@@ -140,5 +143,27 @@ public class LevelSelectView extends Application {
 		btnLevel1.setFont(new Font("Kristen ITC", Font.BOLD, 20));
 		btnLevel1.setBounds(217, 200, 95, 80);
 		contentPane.add(btnLevel1);
+	}
+
+	@Override
+	public void installControllers() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initModel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public String getName() {
+		return "Select a Level";
 	}
 }

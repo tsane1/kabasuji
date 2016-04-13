@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+
+import supers.Application;
+
 import javax.swing.*;
 import java.awt.Container;
 
@@ -60,7 +63,7 @@ public class PlayerSplashScreen extends JWindow {
 
 			private void createFrame() throws HeadlessException {
 				try {
-					LevelSelectView frame = new LevelSelectView();
+					Application frame = new Application(new LevelSelectView());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

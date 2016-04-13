@@ -13,25 +13,13 @@ import controller.BackController;
 
 import javax.swing.SwingConstants;
 
-public class Application extends JFrame implements IApplication {
-	protected JPanel contentPane;
-	protected JButton btnBack;
-	protected Model model;
+public class Application extends JFrame {
+	private JPanel contentPane = new JPanel();
+	private JLabel lblTitle = new JLabel();
+	private JButton btnBack;
+	private IApplication currentScreen;
 	
-	public Application(Model m) {
-		this(m, "Kabasuji");
-	}
-	
-	public Application(Model m, String inputTitle) {
-		this.model = m;
-		initWindow(inputTitle);
-		populate();
-		installControllers();
-		initModel();
-	}
-	
-	private void initWindow(String inputTitle) {
-		setTitle(inputTitle);
+	public Application(IApplication app) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 950, 800);
 		contentPane = new JPanel();
@@ -40,7 +28,15 @@ public class Application extends JFrame implements IApplication {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTitle = new JLabel(inputTitle);
+		this.currentScreen = app;
+		initWindow(app.getName());
+		paintScreen(app);
+	}
+	
+	private void initWindow(String inputTitle) {
+		setTitle(inputTitle);
+		
+		lblTitle = new JLabel(inputTitle);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setForeground(SystemColor.textHighlight);
 		lblTitle.setFont(new Font("Kristen ITC", Font.BOLD, 32));
@@ -55,30 +51,31 @@ public class Application extends JFrame implements IApplication {
 		contentPane.add(btnBack);
 		
 		// install back button controller
-		btnBack.addActionListener(new BackController(this, model));
+		btnBack.addActionListener(new BackController(this, new Model()));
+	}
+	
+	public void paintScreen(IApplication app) {
+		populate();
+		installControllers();
+		initModel();
+		this.getContentPane().repaint();
 	}
 
-	@Override
-	public void populate() {
-		// TODO Auto-generated method stub
-		
+	private void populate() {
+		initWindow(currentScreen.getName());
+		currentScreen.populate(contentPane);
 	}
-
-	@Override
-	public void installControllers() {
-		// TODO Auto-generated method stub
-		
+	private void installControllers() {
+		currentScreen.installControllers();
 	}
-
-	@Override
-	public void initModel() {
-		// TODO Auto-generated method stub
-		
+	private void initModel() {
+		currentScreen.initModel();
 	}
-
-	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
-		
+		currentScreen.refresh();
+	}
+	
+	public String getCurrentScreenID() {
+		return currentScreen.getName();
 	}
 }

@@ -12,7 +12,7 @@ public class Level extends supers.Model {
 	}
 	
 	public Level(){
-		
+		this("test", "level");
 	}
 	
 	public String getLevelName() {
