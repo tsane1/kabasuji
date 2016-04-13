@@ -26,7 +26,11 @@ public class BuilderSplashScreen extends JWindow {
 	    private static int count;
 	    private static Timer timer1;
 	    
-	public BuilderSplashScreen() {
+	    LevelBuilderModel model;
+	    
+	public BuilderSplashScreen(LevelBuilderModel m) {
+		this.model = m;
+		
 		getContentPane().setLayout(null);
 
 		Container container = getContentPane();
@@ -56,28 +60,26 @@ public class BuilderSplashScreen extends JWindow {
 	                progressBar.setValue(count);
 	                System.out.println(count);
 	                if (count == 60) {
-	                	//createFrame();
+	                	createFrame();
 	                	setVisible(false);
 	                	timer1.stop();
 	                }
 	            }
-	            /*
+	           
 	            private void createFrame() throws HeadlessException {
 	      				try {
-	      					BuilderScreen frame = new BuilderScreen(new LevelBuilderModel());
-	      					frame.setVisible(true);
+	      					MainBuilderScreen mbs = new MainBuilderScreen(model);
+	      					mbs.setVisible(true);
 	      				} catch (Exception e) {
 	      					e.printStackTrace();
 	      				}
 	      			}
-	      			*/
+	      			
 	        };
 	        timer1 = new Timer(50, al);
 	        timer1.start();
 	    }
-	    public static void main(String[] args) {
-	        execute = new BuilderSplashScreen();
-	    }
+
 	  
 	  public int splashScreenDelay()
 	  {
