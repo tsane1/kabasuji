@@ -39,6 +39,7 @@ public class LevelEdit extends Screen {
 	private BoardView board;
 	private BullpenView bullpen;
 	public LevelBuilderModel model;
+	Model model2;
 
 	public LevelEdit(Level level) {
 		super(level.getLevelName(), level);
@@ -267,7 +268,7 @@ public class LevelEdit extends Screen {
 		
 		JButton backBtn = new JButton("");
 		backBtn.setIcon(new ImageIcon(LevelEdit.class.getResource("/imgs/back arrow.JPG")));
-		backBtn.addActionListener(new PreviousController(this, model));
+		backBtn.addActionListener(new PreviousController(this, model2));
 		backBtn.setBounds(22, 38, 80, 37);
 		this.add(backBtn);
 		
@@ -275,15 +276,15 @@ public class LevelEdit extends Screen {
 		undoBtn.setIcon(new ImageIcon(LevelEdit.class.getResource("/imgs/Undo.png")));
 		undoBtn.addActionListener(new UndoController(this, model));
 		undoBtn.setBounds(102, 92, 53, 37);
-		contentPane.add(undoBtn);
+		this.add(undoBtn);
 		
 		JButton redoBtn = new JButton("");
 		redoBtn.setIcon(new ImageIcon(LevelEdit.class.getResource("/imgs/Redo.png")));
 		redoBtn.addActionListener(new RedoController(this, model));
 		redoBtn.setBounds(32, 87, 53, 37);
-		contentPane.add(redoBtn);
+		this.add(redoBtn);
 	}
-	}
+	
 	
 	@Override
 	public void installControllers() {
