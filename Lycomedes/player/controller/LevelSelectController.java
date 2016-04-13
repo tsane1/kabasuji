@@ -6,20 +6,21 @@ import java.awt.event.ActionListener;
 import model.Level;
 import supers.Application;
 import supers.Model;
+import supers.Screen;
 import view.LevelSelectView;
 import view.LevelView;
 
-public class SelectLevelController implements ActionListener {
-	private Application view;
+public class LevelSelectController implements ActionListener {
+	private Screen screen;
 	private Model model;
 		
-	public SelectLevelController(Application view, Model m) {
-		this.view = view;
+	public LevelSelectController(Screen s, Model m) {
+		this.screen = s;
 		this.model = m;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println();
+		
 	}
 	
 }

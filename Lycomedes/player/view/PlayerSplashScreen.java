@@ -9,7 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
+import model.Level;
 import supers.Application;
+import supers.Model;
+import supers.Screen;
 
 import javax.swing.*;
 import java.awt.Container;
@@ -63,7 +66,8 @@ public class PlayerSplashScreen extends JWindow {
 
 			private void createFrame() throws HeadlessException {
 				try {
-					Application frame = new Application(new LevelSelectView());
+					Application frame = new Application(new LevelView(new Level()));
+					frame.handshake(frame.getCurrScreen());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
