@@ -3,6 +3,7 @@ package view;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,8 +24,7 @@ public class LevelSelectView extends Screen {
 	public LevelSelectView(Model m) {
 		super("Select a Level", m);
 		this.model = m;
-	}
-	
+	}		
 	@Override
 	public void populate() {
 		btnUserLevels.setName("User Levels");
@@ -152,8 +152,18 @@ public class LevelSelectView extends Screen {
 		btnLevel1.setForeground(SystemColor.textHighlight);
 		btnLevel1.setFont(new Font("Kristen ITC", Font.BOLD, 20));
 		btnLevel1.setBounds(217, 200, 95, 80);
+<<<<<<< HEAD
 		this.add(btnLevel1);
 		
+=======
+		contentPane.add(btnLevel1);
+		
+		for(int i = 0; i<= (buttons.size()-1); i++){
+			String name = buttons.get(i).getName();
+			buttons.get(i).setActionCommand(name);
+			
+		}
+>>>>>>> branch 'master' of https://github.com/tsane1/lycomedes.git
 	}
 
 
