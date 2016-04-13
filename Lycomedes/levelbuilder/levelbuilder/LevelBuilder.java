@@ -3,8 +3,9 @@ package levelbuilder;
 import java.awt.EventQueue;
 
 import model.LevelBuilderModel;
+import supers.Model;
 import view.BuilderSplashScreen;
-import view.BuilderLevelSelect;
+import view.LevelEditSelectView;
 
 // testing change
 public class LevelBuilder {
@@ -14,17 +15,17 @@ public class LevelBuilder {
 	 */
 	public static void main(String[] args) {
 		
-		LevelBuilderModel m = new LevelBuilderModel();
+		Model m = new Model();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					//Load the Splash Screen
-					BuilderSplashScreen sc = new BuilderSplashScreen(m);
+					BuilderSplashScreen sc = new BuilderSplashScreen();
 					//Sleep
 					//Thread.sleep(500);
 					//Launch into the main builder
-					BuilderLevelSelect frame = new BuilderLevelSelect(m);
+					LevelEditSelectView frame = new LevelEditSelectView(m);
 					//Thread.sleep(500);
 					//frame.setVisible(true);
 				} catch (Exception e) {

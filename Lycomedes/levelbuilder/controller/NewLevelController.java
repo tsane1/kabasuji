@@ -3,16 +3,19 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.Level;
 import model.LevelBuilderModel;
-import view.BuilderScreen;
-import view.BuilderLevelSelect;
+import supers.Model;
+import view.LevelViewB;
+import view.LevelEditSelectView;
+import view.LevelViewB;
 
 public class NewLevelController implements ActionListener {
 
-	LevelBuilderModel model;
-	BuilderLevelSelect main;
+	Level model;
+	LevelEditSelectView main;
 	
-	public NewLevelController(BuilderLevelSelect screen, LevelBuilderModel m) {
+	public NewLevelController(LevelEditSelectView screen, Level m) {
 		this.main = screen;
 		this.model = m;
 	}
@@ -22,7 +25,7 @@ public class NewLevelController implements ActionListener {
 		try {
 			main.setVisible(false);
 			
-			BuilderScreen screen2 = new BuilderScreen(model);
+			LevelViewB screen2 = new LevelViewB(model);
 			screen2.setPreviousFrame(main);
 			screen2.setVisible(true);
 		}

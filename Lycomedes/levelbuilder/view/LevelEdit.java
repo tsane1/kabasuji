@@ -1,97 +1,52 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EtchedBorder;
-
-import controller.NewLevelController;
-import controller.PreviousController;
-import controller.RedoController;
-import controller.UndoController;
-import model.LevelBuilderModel;
-
-import javax.swing.SwingConstants;
 import javax.swing.JTabbedPane;
-import javax.swing.JFormattedTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
-public class BuilderScreen extends JFrame {
+import controller.BackController;
+import controller.PreviousController;
+import model.Board;
+import model.Bullpen;
+import model.Level;
+import supers.Application;
+import supers.Model;
+import supers.Screen;
 
-	LevelBuilderModel model;
-	BuilderLevelSelect prevScreen;
-	
-	private JPanel contentPane;
+public class LevelEdit extends Screen {
+	private Screen prevScreen;
+	private Level level;
+	private BoardView board;
+	private BullpenView bullpen;
 
-	/**
-	 * Launch the application. This is evidently not needed as we will launch from the main screen
-	 */
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuilderScreen frame = new BuilderScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
-
-	/**
-	 * Create the frame.
-	 */
-	public BuilderScreen(LevelBuilderModel m) {
-		this.model = m;
-		
-		initWindow();
-		populate();
+	public LevelEdit(Level level) {
+		super(level.getLevelName(), level);
+		this.level = level;
 	}
 	
-	private void initWindow() {
-		setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		setTitle("Kabasuji");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 800);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblKabasuji = new JLabel("Level Builder");
-		lblKabasuji.setHorizontalAlignment(SwingConstants.CENTER);
-		lblKabasuji.setForeground(SystemColor.textHighlight);
-		lblKabasuji.setFont(new Font("Kristen ITC", Font.BOLD, 32));
-		lblKabasuji.setBounds(350, 13, 249, 97);
-		contentPane.add(lblKabasuji);
-		
-	}
-	
-	private void populate() {
-		JPanel board = new JPanel();
-		board.setBounds(283, 125, 384, 384);
-		contentPane.add(board);
-		
-		JPanel bullpen = new JPanel();
-		bullpen.setBounds(12, 522, 908, 218);
-		contentPane.add(bullpen);
+	@Override
+	public void populate() {
+		board = new BoardView(level.getBoard());
+		bullpen = new BullpenView(level.getBullpen());
+		this.add(board);
+		this.add(bullpen);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
 		tabbedPane.setBounds(673, 38, 250, 484);
-		contentPane.add(tabbedPane);
+		this.add(tabbedPane);
 		
 		JPanel puzzle = new JPanel();
 		puzzle.setBackground(Color.WHITE);
@@ -296,19 +251,19 @@ public class BuilderScreen extends JFrame {
 		release.add(formattedTextField_2);
 		
 		JButton saveBtn = new JButton("");
-		saveBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/Save.png")));
+		saveBtn.setIcon(new ImageIcon(LevelEdit.class.getResource("/imgs/Save.png")));
 		saveBtn.setBounds(102, 26, 50, 54);
-		contentPane.add(saveBtn);
+		this.add(saveBtn);
 		saveBtn.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
 		
 		JButton backBtn = new JButton("");
-		backBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/back arrow.JPG")));
+		backBtn.setIcon(new ImageIcon(LevelEdit.class.getResource("/imgs/back arrow.JPG")));
 		backBtn.addActionListener(new PreviousController(this, model));
 		backBtn.setBounds(22, 38, 80, 37);
-		contentPane.add(backBtn);
+		this.add(backBtn);
 		
 		JButton undoBtn = new JButton("");
-		undoBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/Undo.png")));
+		undoBtn.setIcon(new ImageIcon(Le.class.getResource("/imgs/Undo.png")));
 		undoBtn.addActionListener(new UndoController(this, model));
 		undoBtn.setBounds(102, 92, 53, 37);
 		contentPane.add(undoBtn);
@@ -319,13 +274,33 @@ public class BuilderScreen extends JFrame {
 		redoBtn.setBounds(32, 87, 53, 37);
 		contentPane.add(redoBtn);
 	}
+	}
+	
+	@Override
+	public void installControllers() {
+		super.installControllers();
+	}
 	
 
-	public void setPreviousFrame(BuilderLevelSelect screen) {
+	@Override
+	public void initModel() {
+		// Method intentionally unimplemented, must be overridden to use
+	}
+
+	@Override
+	public void refresh() {
+		// Method intentionally unimplemented, must be overridden to use
+	}
+	
+	public Level getLevel() {
+		return this.level;
+	}
+	
+	public void setPreviousFrame(Screen screen) {
 		prevScreen = screen;
 	}
 
-	public BuilderLevelSelect getPreviousFrame() {
-		return prevScreen;
+	public LevelEdit getPreviousFrame() {
+		return (LevelEdit)prevScreen;
 	}
 }

@@ -20,12 +20,12 @@ import supers.Application;
 import supers.Model;
 import supers.Screen;
 
-public class LevelView extends Screen {
+public class LevelPlay extends Screen {
 	private Level level;
 	private BoardView board;
 	private BullpenView bullpen;
 
-	public LevelView(Level level) {
+	public LevelPlay(Level level) {
 		super(level.getLevelName(), level);
 		this.level = level;
 	}

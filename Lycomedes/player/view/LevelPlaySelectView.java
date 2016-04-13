@@ -14,11 +14,11 @@ import supers.IScreen;
 import supers.Model;
 import supers.Screen;
 
-public class LevelSelectView extends Screen {
+public class LevelPlaySelectView extends Screen {
 	private ArrayList<JButton> defaultLevelButtons = new ArrayList<JButton>(15);
 	private JButton btnUserLevels = new JButton("User Levels");
 
-	public LevelSelectView(Model m) {
+	public LevelPlaySelectView(Model m) {
 		super("Select a Level", m);
 	}		
 	@Override

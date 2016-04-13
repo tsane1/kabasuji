@@ -7,8 +7,8 @@ import model.Level;
 import supers.Application;
 import supers.Model;
 import supers.Screen;
-import view.LevelSelectView;
-import view.LevelView;
+import view.LevelPlaySelectView;
+import view.LevelPlay;
 
 public class BackController implements ActionListener {
 	private Screen screen;
@@ -24,7 +24,7 @@ public class BackController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(app.getCurrScreen().getName().contains(":")) {
-			app.setCurrScreen(new LevelSelectView(new Model()));
+			app.setCurrScreen(new LevelPlaySelectView(new Model()));
 		}
 	}
 }
