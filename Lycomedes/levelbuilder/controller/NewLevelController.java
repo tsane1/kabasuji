@@ -6,9 +6,8 @@ import java.awt.event.ActionListener;
 import model.Level;
 import model.LevelBuilderModel;
 import supers.Model;
-import view.LevelViewB;
+import view.LevelEdit;
 import view.LevelEditSelectView;
-import view.LevelViewB;
 
 public class NewLevelController implements ActionListener {
 
@@ -25,7 +24,7 @@ public class NewLevelController implements ActionListener {
 		try {
 			main.setVisible(false);
 			
-			LevelViewB screen2 = new LevelViewB(model);
+			LevelEdit screen2 = new LevelEdit(model);
 			screen2.setPreviousFrame(main);
 			screen2.setVisible(true);
 		}

@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.LevelBuilderModel;
-import view.BuilderScreen;
+import view.LevelEdit;
 
 public class RedoController implements ActionListener {
 
 	LevelBuilderModel model;
-	BuilderScreen screen;
+	LevelEdit screen;
 	
-	public RedoController(BuilderScreen bs, LevelBuilderModel lbm) {
+	public RedoController(LevelEdit bs, LevelBuilderModel lbm) {
 		this.screen = bs;
 		this.model = lbm;
 	}

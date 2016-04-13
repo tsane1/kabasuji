@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.LevelBuilderModel;
-import view.BuilderScreen;
+import view.LevelEdit;
 
 public class UndoController implements ActionListener {
 
 	LevelBuilderModel model;
-	BuilderScreen screen;
+	LevelEdit screen;
 	
-	public UndoController(BuilderScreen bs, LevelBuilderModel lbm) {
+	public UndoController(LevelEdit bs, LevelBuilderModel lbm) {
 		this.screen = bs;
 		this.model = lbm;
 	}

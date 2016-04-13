@@ -18,18 +18,27 @@ import javax.swing.border.EmptyBorder;
 
 import controller.BackController;
 import controller.PreviousController;
+import controller.RedoController;
+import controller.UndoController;
 import model.Board;
 import model.Bullpen;
 import model.Level;
+import model.LevelBuilderModel;
 import supers.Application;
 import supers.Model;
 import supers.Screen;
 
 public class LevelEdit extends Screen {
+	/**
+	 * Eclipse said so
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Screen prevScreen;
 	private Level level;
 	private BoardView board;
 	private BullpenView bullpen;
+	public LevelBuilderModel model;
 
 	public LevelEdit(Level level) {
 		super(level.getLevelName(), level);
@@ -263,13 +272,13 @@ public class LevelEdit extends Screen {
 		this.add(backBtn);
 		
 		JButton undoBtn = new JButton("");
-		undoBtn.setIcon(new ImageIcon(Le.class.getResource("/imgs/Undo.png")));
+		undoBtn.setIcon(new ImageIcon(LevelEdit.class.getResource("/imgs/Undo.png")));
 		undoBtn.addActionListener(new UndoController(this, model));
 		undoBtn.setBounds(102, 92, 53, 37);
 		contentPane.add(undoBtn);
 		
 		JButton redoBtn = new JButton("");
-		redoBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/Redo.png")));
+		redoBtn.setIcon(new ImageIcon(LevelEdit.class.getResource("/imgs/Redo.png")));
 		redoBtn.addActionListener(new RedoController(this, model));
 		redoBtn.setBounds(32, 87, 53, 37);
 		contentPane.add(redoBtn);
@@ -300,7 +309,7 @@ public class LevelEdit extends Screen {
 		prevScreen = screen;
 	}
 
-	public LevelEdit getPreviousFrame() {
-		return (LevelEdit)prevScreen;
+	public LevelEditSelectView getPreviousFrame() {
+		return (LevelEditSelectView)prevScreen;
 	}
 }

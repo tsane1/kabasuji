@@ -5,17 +5,16 @@ import java.awt.event.ActionListener;
 
 import model.LevelBuilderModel;
 import supers.Model;
-import view.BuilderScreen;
+import view.LevelEdit;
 import view.LevelEditSelectView;
-import view.LevelViewB;
 
 
 public class PreviousController implements ActionListener {
 	Model model;
-	LevelViewB bs;
+	LevelEdit bs;
 	
 	
-	public PreviousController (LevelViewB bs, Model  model) {
+	public PreviousController (LevelEdit bs, Model  model) {
 		this.bs = bs;
 		this.model = model;
 	}
@@ -29,7 +28,7 @@ public class PreviousController implements ActionListener {
 			LevelEditSelectView mbs = bs.getPreviousFrame();
 			
 			bs.setVisible(false);
-			bs.dispose();
+			//bs.dispose();
 			mbs.setVisible(true);
 		} catch (Exception ex) {
 			System.err.println("Prev controller not working!! noo");
