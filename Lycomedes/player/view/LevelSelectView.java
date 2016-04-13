@@ -3,6 +3,7 @@ package view;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -32,22 +33,39 @@ public class LevelSelectView extends JFrame implements IApplication {
 									btnLevel11, btnLevel12, btnLevel13, btnLevel14, btnLevel15;
 	private JButton btnUserLevels = new JButton("User Levels");
 
+	private ArrayList<JButton> buttons = new ArrayList<JButton> ();
+	
 	public LevelSelectView() {
 		btnLevel1 = new JButton("1");
+		buttons.add(btnLevel1);
 		btnLevel2 = new JButton("2");
+		buttons.add(btnLevel2);
 		btnLevel3 = new JButton("3");
+		buttons.add(btnLevel3);
 		btnLevel4 = new JButton("4");
+		buttons.add(btnLevel4);
 		btnLevel5 = new JButton("5");
+		buttons.add(btnLevel5);
 		btnLevel6 = new JButton("6");
+		buttons.add(btnLevel6);
 		btnLevel7 = new JButton("7");
+		buttons.add(btnLevel7);
 		btnLevel8 = new JButton("8");
+		buttons.add(btnLevel8);
 		btnLevel9 = new JButton("9");
+		buttons.add(btnLevel9);
 		btnLevel10 = new JButton("10");
+		buttons.add(btnLevel10);
 		btnLevel11 = new JButton("11");
+		buttons.add(btnLevel11);
 		btnLevel12 = new JButton("12");
+		buttons.add(btnLevel12);
 		btnLevel13 = new JButton("13");
+		buttons.add(btnLevel13);
 		btnLevel14 = new JButton("14");
+		buttons.add(btnLevel14);
 		btnLevel15 = new JButton("15");
+		buttons.add(btnLevel15);
 		
 	}
 	
@@ -147,6 +165,12 @@ public class LevelSelectView extends JFrame implements IApplication {
 		btnLevel1.setFont(new Font("Kristen ITC", Font.BOLD, 20));
 		btnLevel1.setBounds(217, 200, 95, 80);
 		contentPane.add(btnLevel1);
+		
+		for(int i = 0; i<= (buttons.size()-1); i++){
+			String name = buttons.get(i).getName();
+			buttons.get(i).setActionCommand(name);
+			
+		}
 	}
 
 	@Override
