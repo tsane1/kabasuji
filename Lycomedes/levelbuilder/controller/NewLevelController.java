@@ -5,34 +5,24 @@ import java.awt.event.ActionListener;
 
 import model.Level;
 import model.LevelBuilderModel;
+import supers.Application;
 import supers.Model;
 import view.LevelEdit;
 import view.LevelEditSelectView;
 
 public class NewLevelController implements ActionListener {
 
-	Level model;
-	LevelEditSelectView main;
+	Model model;
+	Application app;
 	
-	public NewLevelController(LevelEditSelectView screen, Level m) {
-		this.main = screen;
+	public NewLevelController(Application a, Model m) {
 		this.model = m;
+		this.app = a;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		try {
-			main.setVisible(false);
-			
-			LevelEdit screen2 = new LevelEdit(model);
-			screen2.setPreviousFrame(main);
-			screen2.setVisible(true);
-		}
-		catch(Exception e){
-			System.err.println("New Level Button Controller Error");
-			e.printStackTrace();
-		}
-		
+	public void actionPerformed(ActionEvent e) {
+		app.setCurrScreen(new LevelEdit(new Level("", "")));
 	}
 
 }

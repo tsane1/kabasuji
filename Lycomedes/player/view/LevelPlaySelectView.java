@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controller.LevelSelectController;
+import controller.LevelPlayController;
 import supers.IScreen;
 import supers.Model;
 import supers.Screen;
@@ -53,12 +53,17 @@ public class LevelPlaySelectView extends Screen {
 	public void installControllers() {
 		int idx;
 		for(idx = 0; idx < 15; idx++) {
-			defaultLevelButtons.get(idx).addActionListener(new LevelSelectController(this.app, this.model));
+			defaultLevelButtons.get(idx).addActionListener(new LevelPlayController(this.app, this.model));
 		}
 	}
 
 	@Override
 	public void initModel() {
 	
+	}
+	
+	@Override
+	public String getName() {
+		return "LevelPlaySelect";
 	}
 }

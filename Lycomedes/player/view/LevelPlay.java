@@ -25,9 +25,9 @@ public class LevelPlay extends Screen {
 	private BoardView board;
 	private BullpenView bullpen;
 
-	public LevelPlay(Level level) {
-		super(level.getLevelName(), level);
-		this.level = level;
+	public LevelPlay(Level l) {
+		super(l.getLevelName(), l);
+		this.level = l;
 	}
 	
 	@Override
@@ -56,5 +56,10 @@ public class LevelPlay extends Screen {
 	
 	public Level getLevel() {
 		return this.level;
+	}
+	
+	@Override
+	public String getName() {
+		return "LevelPlay";
 	}
 }

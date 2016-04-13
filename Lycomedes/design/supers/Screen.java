@@ -72,6 +72,6 @@ public class Screen extends JPanel implements IScreen {
 	
 	@Override
 	public String getName() {
-		return this.title;
+		return "SET A NAME FOR YOUR SCREEN";
 	}
 }

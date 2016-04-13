@@ -10,11 +10,11 @@ import supers.Screen;
 import view.LevelPlaySelectView;
 import view.LevelPlay;
 
-public class LevelSelectController implements ActionListener {
+public class LevelPlayController implements ActionListener {
 	private Model model;
 	private Application app;
 		
-	public LevelSelectController(Application a, Model m) {
+	public LevelPlayController(Application a, Model m) {
 		this.app = a;
 		this.model = m;
 	}

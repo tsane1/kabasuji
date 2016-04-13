@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.DeleteLevelController;
 import controller.LevelEditController;
-import controller.LevelSelectController;
+import controller.LevelPlayController;
 import controller.NewLevelController;
 import mockups.Derek_Sandbox;
 import model.LevelBuilderModel;
@@ -75,12 +75,18 @@ public class LevelEditSelectView extends Screen {
 	public void installControllers() {
 		int idx;
 		for(idx = 0; idx < 15; idx++) {
-			userLevelButtons.get(idx).addActionListener(new LevelSelectController(this.app, this.model));
+			userLevelButtons.get(idx).addActionListener(new LevelEditController(this.app, this.model));
 		}
+		btnNewLevel.addActionListener(new NewLevelController(this.app, this.model));
 	}
 
 	@Override
 	public void initModel() {
 	
 	}	
+	
+	@Override
+	public String getName() {
+		return "LevelEditSelect";
+	}
 }

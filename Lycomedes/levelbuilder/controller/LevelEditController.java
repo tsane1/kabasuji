@@ -8,6 +8,7 @@ import supers.Application;
 import supers.Model;
 import supers.Screen;
 import view.LevelPlaySelectView;
+import view.LevelEdit;
 import view.LevelPlay;
 
 public class LevelEditController implements ActionListener {
@@ -21,7 +22,6 @@ public class LevelEditController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String levelName = "Level " + e.getActionCommand();
-		app.setCurrScreen(new LevelPlay(new Level(levelName, "Puzzle")));
-	}
-	
+		app.setCurrScreen(new LevelEdit(new Level(levelName, "Puzzle")));
+	}	
 }

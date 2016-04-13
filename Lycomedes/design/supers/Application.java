@@ -51,4 +51,9 @@ public class Application extends JFrame {
 		currScreen.installControllers();
 		currScreen.initModel();
 	}
+	
+	@Override
+	public String toString() {
+		return "app";
+	}
 }
