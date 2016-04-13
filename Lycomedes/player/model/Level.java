@@ -1,6 +1,6 @@
 package model;
 
-public class Level {
+public class Level extends supers.Model {
 	private String name, type;
 	private Piece[] placedPieces;
 	private Board theBoard;
@@ -12,19 +12,19 @@ public class Level {
 	}
 	
 	public Level(){
-		//nothing
+		
 	}
 	
 	public String getLevelName() {
 		return name + ": " + type;
 	}
+
+	public String getLevelType() {
+		return type;
+	}
 	
 	public void setLevelName(String name){
 		this.name = name;
-	}
-	
-	public String getLevelType() {
-		return type;
 	}
 	
 	public void setLevelType(String type){

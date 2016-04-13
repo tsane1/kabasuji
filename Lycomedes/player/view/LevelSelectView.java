@@ -10,9 +10,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import superview.ApplicationView;
+import supers.Application;
+import supers.Model;
 
-public class LevelSelectView extends ApplicationView {
+public class LevelSelectView extends Application {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// delete later, testing only
 	public static void main(String[] args) {
@@ -29,11 +35,11 @@ public class LevelSelectView extends ApplicationView {
 	}
 
 	public LevelSelectView() {
-		super("Select a Level");
+		super(new Model(), "Select a Level");
 		populate();
 	}
 	
-	private void populate() {
+	public void populate() {
 		JButton btnUserLevels = new JButton("User Levels");
 		btnUserLevels.setBackground(SystemColor.text);
 		btnUserLevels.setForeground(SystemColor.textHighlight);

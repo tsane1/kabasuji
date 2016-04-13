@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class Bullpen {
 	private ArrayList<Piece> pieces;
 	
+	public Bullpen() {
+		
+	}
 	public Bullpen(ArrayList<Piece> pieces) {
 		this.pieces = pieces;
 	}
