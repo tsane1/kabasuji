@@ -1,9 +1,12 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import model.LevelBuilderModel;
 import view.BuilderScreen;
 
-public class RedoController {
+public class RedoController implements ActionListener {
 
 	LevelBuilderModel model;
 	BuilderScreen screen;
@@ -27,5 +30,11 @@ public class RedoController {
 		//screen.redraw();
 		//screen.repaint();
 		return true;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// "doRedo" should prolly be implemented here
+		
 	}
 }

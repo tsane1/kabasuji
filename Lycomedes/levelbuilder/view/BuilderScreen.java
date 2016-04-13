@@ -13,6 +13,8 @@ import javax.swing.border.EtchedBorder;
 
 import controller.NewLevelController;
 import controller.PreviousController;
+import controller.RedoController;
+import controller.UndoController;
 import model.LevelBuilderModel;
 
 import javax.swing.SwingConstants;
@@ -293,23 +295,29 @@ public class BuilderScreen extends JFrame {
 		formattedTextField_2.setBounds(31, 103, 188, 41);
 		release.add(formattedTextField_2);
 		
-		JButton saveBtn = new JButton("Save Level");
-		saveBtn.setBounds(34, 34, 115, 37);
+		JButton saveBtn = new JButton("");
+		saveBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/Save.png")));
+		saveBtn.setBounds(102, 26, 50, 54);
 		contentPane.add(saveBtn);
 		saveBtn.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
 		
-		JButton BackBtn = new JButton("");
-		BackBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/back arrow.JPG")));
-		BackBtn.addActionListener(new PreviousController(this, model));
-
-
-		BackBtn.setBounds(34, 85, 115, 37);
-		contentPane.add(BackBtn);
+		JButton backBtn = new JButton("");
+		backBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/back arrow.JPG")));
+		backBtn.addActionListener(new PreviousController(this, model));
+		backBtn.setBounds(22, 38, 80, 37);
+		contentPane.add(backBtn);
 		
 		JButton undoBtn = new JButton("");
 		undoBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/Undo.png")));
-		undoBtn.setBounds(34, 141, 115, 37);
+		undoBtn.addActionListener(new UndoController(this, model));
+		undoBtn.setBounds(102, 92, 53, 37);
 		contentPane.add(undoBtn);
+		
+		JButton redoBtn = new JButton("");
+		redoBtn.setIcon(new ImageIcon(BuilderScreen.class.getResource("/imgs/Redo.png")));
+		redoBtn.addActionListener(new RedoController(this, model));
+		redoBtn.setBounds(32, 87, 53, 37);
+		contentPane.add(redoBtn);
 	}
 	
 

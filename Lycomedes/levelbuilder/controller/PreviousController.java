@@ -8,7 +8,7 @@ import view.BuilderScreen;
 import view.MainBuilderScreen;
 
 
-public class PreviousController<Two> implements ActionListener {
+public class PreviousController implements ActionListener {
 	LevelBuilderModel model;
 	BuilderScreen bs;
 	
