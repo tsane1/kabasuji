@@ -7,13 +7,13 @@ To run the LevelBuilder application:
 
 Go to Lycomedes -> 
 			levelbuilder -> 
-				LevelBuilder -> 
-					BuilderSplashScreen.java and run
+						view -> 
+							BuilderSplashScreen.java and run
 
 To run the Game Mode application:
 
 Go to Lycomedes -> 
 			player -> 
 				view -> 
-					PlayerSelectScreen.java and run
+					PlayerSplashScreen.java and run
 

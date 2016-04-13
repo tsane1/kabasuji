@@ -91,7 +91,7 @@ public class LevelEdit extends Screen {
 		label_2.setForeground(new Color(255, 215, 0));
 		label_2.setFont(new Font("Kristen ITC", Font.BOLD, 18));
 		
-		JLabel label_3 = new JLabel("Total Time Allowed (in seconds):");
+		JLabel label_3 = new JLabel("Time Allowed (in seconds):");
 		label_3.setBounds(8, 57, 234, 20);
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setFont(new Font("Segoe UI Semilight", Font.BOLD, 14));
