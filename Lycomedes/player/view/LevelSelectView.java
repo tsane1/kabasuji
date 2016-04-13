@@ -1,24 +1,14 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import supers.Application;
 import supers.Model;
 
 public class LevelSelectView extends Application {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	// delete later, testing only
 	public static void main(String[] args) {
@@ -36,7 +26,6 @@ public class LevelSelectView extends Application {
 
 	public LevelSelectView() {
 		super(new Model(), "Select a Level");
-		populate();
 	}
 	
 	public void populate() {
