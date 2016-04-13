@@ -35,6 +35,13 @@ public class RedoController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// "doRedo" should prolly be implemented here
+		try{
+			doRedo();
+		}
+		catch(Exception ex){
+			System.err.println("EXCEPTION CAUGHT : RedoController");
+			ex.printStackTrace();
+		}
 		
 	}
 }
