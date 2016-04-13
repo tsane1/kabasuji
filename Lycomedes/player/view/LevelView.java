@@ -20,7 +20,7 @@ import supers.Application;
 import supers.Model;
 import supers.Screen;
 
-public class LevelView extends Screen{
+public class LevelView extends Screen {
 	private Level level;
 	private BoardView board;
 	private BullpenView bullpen;
@@ -40,7 +40,7 @@ public class LevelView extends Screen{
 	
 	@Override
 	public void installControllers() {
-		
+		super.installControllers();
 	}
 	
 

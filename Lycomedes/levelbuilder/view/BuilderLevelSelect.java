@@ -18,13 +18,15 @@ import controller.EditLevelController;
 import controller.NewLevelController;
 import mockups.Derek_Sandbox;
 import model.LevelBuilderModel;
+import supers.Model;
+import supers.Screen;
 
 import javax.swing.ScrollPaneConstants;
 
-public class MainBuilderScreen extends JFrame {
+public class BuilderLevelSelect extends Screen {
 
 	//the model
-	LevelBuilderModel model;
+	Model model;
 
 	//previous screen to handle back
 	//BuilderScreen prevScreen;
@@ -35,8 +37,10 @@ public class MainBuilderScreen extends JFrame {
 	JButton newLevelBtn;
 	JScrollPane levelsScrollPane;
 	
-	public MainBuilderScreen(LevelBuilderModel m) {
+	public BuilderLevelSelect(Model m) {
+		super("Select a Level", m);
 		this.model = m;
+	}
 		
 		setTitle("Kabasuji Level Builder");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

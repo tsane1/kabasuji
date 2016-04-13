@@ -27,7 +27,7 @@ import javax.swing.ImageIcon;
 public class BuilderScreen extends JFrame {
 
 	LevelBuilderModel model;
-	MainBuilderScreen prevScreen;
+	BuilderLevelSelect prevScreen;
 	
 	private JPanel contentPane;
 
@@ -321,11 +321,11 @@ public class BuilderScreen extends JFrame {
 	}
 	
 
-	public void setPreviousFrame(MainBuilderScreen screen) {
+	public void setPreviousFrame(BuilderLevelSelect screen) {
 		prevScreen = screen;
 	}
 
-	public MainBuilderScreen getPreviousFrame() {
+	public BuilderLevelSelect getPreviousFrame() {
 		return prevScreen;
 	}
 }

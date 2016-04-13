@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import model.LevelBuilderModel;
 import view.BuilderScreen;
-import view.MainBuilderScreen;
+import view.BuilderLevelSelect;
 
 
 public class PreviousController implements ActionListener {
@@ -24,7 +24,7 @@ public class PreviousController implements ActionListener {
 		// get value
 		try {
 			bs.setVisible(false);
-			MainBuilderScreen mbs = bs.getPreviousFrame();
+			BuilderLevelSelect mbs = bs.getPreviousFrame();
 			
 			bs.setVisible(false);
 			bs.dispose();

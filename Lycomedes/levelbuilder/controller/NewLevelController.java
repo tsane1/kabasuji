@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 
 import model.LevelBuilderModel;
 import view.BuilderScreen;
-import view.MainBuilderScreen;
+import view.BuilderLevelSelect;
 
 public class NewLevelController implements ActionListener {
 
 	LevelBuilderModel model;
-	MainBuilderScreen main;
+	BuilderLevelSelect main;
 	
-	public NewLevelController(MainBuilderScreen screen, LevelBuilderModel m) {
+	public NewLevelController(BuilderLevelSelect screen, LevelBuilderModel m) {
 		this.main = screen;
 		this.model = m;
 	}

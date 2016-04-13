@@ -66,8 +66,7 @@ public class PlayerSplashScreen extends JWindow {
 
 			private void createFrame() throws HeadlessException {
 				try {
-					Application frame = new Application(new LevelView(new Level()));
-					frame.handshake(frame.getCurrScreen());
+					Application frame = new Application(new LevelSelectView(new Level()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

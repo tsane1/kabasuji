@@ -13,10 +13,10 @@ import java.awt.SystemColor;
 import javax.swing.JButton;
 
 public class Screen extends JPanel implements IScreen {
-	private String title;
+	protected String title;
 	private JButton btnBack;
-	private Model model;
-	private Application app;
+	protected Model model;
+	protected Application app;
 	
 	public Screen(String title, Model m) {
 		this.title = title;
@@ -37,6 +37,7 @@ public class Screen extends JPanel implements IScreen {
 		this.add(lblTitle);
 		
 		btnBack = new JButton("Back");
+		btnBack.setActionCommand(title);
 		btnBack.setBackground(SystemColor.text);
 		btnBack.setFont(new Font("Kristen ITC", Font.BOLD, 12));
 		btnBack.setForeground(SystemColor.textHighlight);
@@ -44,9 +45,8 @@ public class Screen extends JPanel implements IScreen {
 		this.add(btnBack);
 	}
 	
-	public void finish(Application a) {
+	public void handshake(Application a) {
 		this.app = a;
-		btnBack.addActionListener(new BackController(this.app, this, model));
 	}
 	
 	@Override
@@ -56,7 +56,8 @@ public class Screen extends JPanel implements IScreen {
 
 	@Override
 	public void installControllers() {
-	// Method intentionally unimplemented, must be overridden to use
+		btnBack.addActionListener(new BackController(this.app, this, model));
+		// overridden installControllers() methods MUST call super.installControllers();
 	}
 
 	@Override

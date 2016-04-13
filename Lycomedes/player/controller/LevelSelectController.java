@@ -11,16 +11,17 @@ import view.LevelSelectView;
 import view.LevelView;
 
 public class LevelSelectController implements ActionListener {
-	private Screen screen;
 	private Model model;
+	private Application app;
 		
-	public LevelSelectController(Screen s, Model m) {
-		this.screen = s;
+	public LevelSelectController(Application a, Model m) {
+		this.app = a;
 		this.model = m;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Level selected");
+		String levelName = "Level " + e.getActionCommand();
+		app.setCurrScreen(new LevelView(new Level(levelName, "Puzzle")));
 	}
 	
 }

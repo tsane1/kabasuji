@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import model.LevelBuilderModel;
 import view.BuilderSplashScreen;
-import view.MainBuilderScreen;
+import view.BuilderLevelSelect;
 
 public class LevelBuilder {
 	
@@ -23,7 +23,7 @@ public class LevelBuilder {
 					//Sleep
 					Thread.sleep(500);
 					//Launch into the main builder
-					MainBuilderScreen frame = new MainBuilderScreen(m);
+					BuilderLevelSelect frame = new BuilderLevelSelect(m);
 					//Thread.sleep(500);
 					frame.setVisible(true);
 				} catch (Exception e) {

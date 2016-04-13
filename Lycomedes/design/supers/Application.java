@@ -29,8 +29,8 @@ public class Application extends JFrame {
 		return new Dimension(950, 800);
 	}
 	
-	public void handshake(Screen scr) {
-		scr.finish(this);
+	private void handshake(Screen scr) {
+		scr.handshake(this);
 	}
 	
 	public Screen getCurrScreen() {
@@ -40,6 +40,7 @@ public class Application extends JFrame {
 	public void setCurrScreen(Screen newScr) {
 		this.currScreen = newScr;
 		setContentPane(this.currScreen);
+		handshake(this.currScreen);
 		pack();
 		revalidate();
 		drawScreen();
