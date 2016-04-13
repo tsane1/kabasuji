@@ -9,22 +9,17 @@ import supers.Model;
 import view.LevelSelectView;
 import view.LevelView;
 
-public class BackController implements ActionListener {
+public class SelectLevelController implements ActionListener {
 	private Application view;
 	private Model model;
 		
-	public BackController(Application view, Model m) {
+	public SelectLevelController(Application view, Model m) {
 		this.view = view;
 		this.model = m;
 	}
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(view.getCurrentScreen().getName().contains(":")) {
-			view.getContentPane().removeAll();
-			view.getContentPane().repaint();
-			view.paintScreen(new LevelSelectView());
-		}
-		else if(view.getCurrentScreen().getName().equals("Select a Level")); 
+		System.out.println();
 	}
+	
 }

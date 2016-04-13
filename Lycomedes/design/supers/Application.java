@@ -75,7 +75,7 @@ public class Application extends JFrame {
 		currentScreen.refresh();
 	}
 	
-	public String getCurrentScreenID() {
-		return currentScreen.getName();
+	public IApplication getCurrentScreen() {
+		return currentScreen;
 	}
 }
