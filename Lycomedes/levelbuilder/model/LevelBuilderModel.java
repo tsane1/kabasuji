@@ -2,8 +2,9 @@ package model;
 
 import java.util.Stack;
 import controller.Move;
+import supers.Model;
 
-public class LevelBuilderModel {
+public class LevelBuilderModel extends Model{
 
 	Level currentLevel;
 	Stack<Move> undoStack = new Stack<Move>();
