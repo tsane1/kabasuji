@@ -1,6 +1,6 @@
 package model;
 
-public class Tile {
+public abstract class Tile {
 	private int row, col;
 	private static final int sideLength = 32;
 	private boolean covered;

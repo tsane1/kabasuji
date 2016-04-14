@@ -9,6 +9,7 @@ import supers.Application;
 import supers.Model;
 import view.LevelEdit;
 import view.LevelEditSelectView;
+import view.NewLevelTypeSelectView;
 
 public class NewLevelController implements ActionListener {
 
@@ -20,9 +21,17 @@ public class NewLevelController implements ActionListener {
 		this.app = a;
 	}
 
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		app.setCurrScreen(new LevelEdit(new Level("", "")));
 	}
+	
+	
+	/*@Override
+	public void actionPerformed(ActionEvent e){
+		app.setCurrScreen(new NewLevelTypeSelectView());
+	}
+	*/
 
 }
