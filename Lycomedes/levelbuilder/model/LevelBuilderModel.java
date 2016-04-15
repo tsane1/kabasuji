@@ -9,15 +9,12 @@ public class LevelBuilderModel extends Model{
 	Level currentLevel;
 	Stack<Move> undoStack = new Stack<Move>();
 	Stack<Move> redoStack = new Stack<Move>();
+	LevelBuilderFactory levelFactory;
 	
 	Piece selectedPiece;
 	
-	public LevelBuilderModel(Level L) {
-		this.currentLevel = L;
-	}
-	
 	public LevelBuilderModel(){
-		this(new Level("",""));
+	 	//default constructor
 	}
 	
 	public Level getLevel(){

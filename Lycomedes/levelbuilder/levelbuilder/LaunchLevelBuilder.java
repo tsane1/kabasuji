@@ -7,16 +7,15 @@ import supers.Model;
 import view.BuilderSplashScreen;
 import view.LevelEditSelectView;
 
-// testing change
-public class LevelBuilder {
-	
+public class LaunchLevelBuilder {
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
+
 		Model m = new Model();
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -36,3 +35,4 @@ public class LevelBuilder {
 	}
 
 }
+
