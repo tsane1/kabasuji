@@ -133,4 +133,9 @@ public class LightningLevelEditView extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 
+	/*
+	public int getNumSeconds(){
+		return timerSlider.getValue();
+	}
+	*/
 }

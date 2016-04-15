@@ -144,4 +144,10 @@ public class PuzzleLevelEditView extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+	/*
+	public int getNumMoves(){
+		return numMovesSlider.getValue();
+	}
+	*/
 }
