@@ -1,8 +1,12 @@
 package model;
 
 public abstract class Tile {
-	private int row, col;
-	private static final int sideLength = 32;
+	
+	int row, col;
+	
+	public static final int width = 32;
+	public static final int length = 32;
+	
 	private boolean covered;
 	
 	public Tile(int row, int col) {
