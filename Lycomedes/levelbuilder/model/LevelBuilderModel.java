@@ -130,41 +130,46 @@ public class LevelBuilderModel extends Model{
 		pt35 = new PieceTile(5,4);
 		pt36 = new PieceTile(5,5);
 		
-		p1 = new Piece(1,new PieceTile[] {});
-		p2 = new Piece(2,new PieceTile[] {});
-		p3 = new Piece(3,new PieceTile[] {});
-		p4 = new Piece(4,new PieceTile[] {});
-		p5 = new Piece(5,new PieceTile[] {});
-		p6 = new Piece(6,new PieceTile[] {});
-		p7 = new Piece(7,new PieceTile[] {});
-		p8 = new Piece(8,new PieceTile[] {});
-		p9 = new Piece(9,new PieceTile[] {});
-		p10 = new Piece(10,new PieceTile[] {});
-		p11 = new Piece(11,new PieceTile[] {});
-		p12 = new Piece(12,new PieceTile[] {});
-		p13 = new Piece(13,new PieceTile[] {});
-		p14 = new Piece(14,new PieceTile[] {});
-		p15 = new Piece(15,new PieceTile[] {});
-		p16 = new Piece(16,new PieceTile[] {});
-		p17 = new Piece(17,new PieceTile[] {});
-		p18 = new Piece(18,new PieceTile[] {});
-		p19 = new Piece(19,new PieceTile[] {});
-		p20 = new Piece(20,new PieceTile[] {});
-		p21 = new Piece(21,new PieceTile[] {});
-		p22 = new Piece(22,new PieceTile[] {});
-		p23 = new Piece(23,new PieceTile[] {});
-		p24 = new Piece(24,new PieceTile[] {});
-		p25 = new Piece(25,new PieceTile[] {});
-		p26 = new Piece(26,new PieceTile[] {});
-		p27 = new Piece(27,new PieceTile[] {});
-		p28 = new Piece(28,new PieceTile[] {});
-		p29 = new Piece(29,new PieceTile[] {});
-		p30 = new Piece(30,new PieceTile[] {});
-		p31 = new Piece(31,new PieceTile[] {});
-		p32 = new Piece(32,new PieceTile[] {});
-		p33 = new Piece(33,new PieceTile[] {});
-		p34 = new Piece(34,new PieceTile[] {});
-		p35 = new Piece(35,new PieceTile[] {});
+		/**
+		 * To know which pieces are which.
+		 * Look at the Wikipedia picture of hexominoes,
+		 * the pieces are numbered horizontally 1-7, 8-14, 15-21, 22-28,29-35
+		 */
+		p1 = new Piece(1,new PieceTile[] {pt1, pt7, pt13, pt19, pt25, pt31});
+		p2 = new Piece(2,new PieceTile[] {pt1, pt2, pt7, pt13, pt19, pt25});
+		p3 = new Piece(3,new PieceTile[] {pt1, pt7, pt8, pt13, pt19, pt25});
+		p4 = new Piece(4,new PieceTile[] {pt1, pt7, pt13, pt14, pt19, pt25});
+		p5 = new Piece(5,new PieceTile[] {pt2, pt7, pt8, pt13, pt19, pt25});
+		p6 = new Piece(6,new PieceTile[] {pt1, pt2, pt7, pt8, pt13, pt19});
+		p7 = new Piece(7,new PieceTile[] {pt1, pt2, pt7, pt13, pt14, pt19});
+		p8 = new Piece(8,new PieceTile[] {pt1, pt2, pt7, pt13, pt19, pt20});
+		p9 = new Piece(9,new PieceTile[] {pt1, pt7, pt8, pt13, pt14, pt19});
+		p10 = new Piece(10,new PieceTile[] {pt1, pt2, pt3, pt7, pt13, pt19});
+		p11 = new Piece(11,new PieceTile[] {pt1, pt7, pt8, pt9, pt13, pt19});
+		p12 = new Piece(12,new PieceTile[] {pt1, pt2, pt3, pt8, pt14, pt20});
+		p13 = new Piece(13,new PieceTile[] {pt2, pt3, pt7, pt8, pt14, pt20});
+		p14 = new Piece(14,new PieceTile[] {pt2, pt3, pt8, pt13, pt14, pt20});
+		p15 = new Piece(15,new PieceTile[] {pt2, pt3, pt8, pt14, pt19, pt20});
+		p16 = new Piece(16,new PieceTile[] {pt2, pt8, pt9, pt13, pt14, pt20});
+		p17 = new Piece(17,new PieceTile[] {pt2, pt7, pt8, pt9, pt14, pt20});
+		p18 = new Piece(18,new PieceTile[] {pt2, pt7, pt8, pt9, pt13, pt19});
+		p19 = new Piece(19,new PieceTile[] {pt2, pt7, pt8, pt13, pt19, pt20});
+		p20 = new Piece(20,new PieceTile[] {pt2, pt8, pt13, pt14, pt19, pt25});
+		p21 = new Piece(21,new PieceTile[] {pt2, pt7, pt8, pt13, pt14, pt19});
+		p22 = new Piece(22,new PieceTile[] {pt1, pt2, pt7, pt8, pt13, pt14});
+		p23 = new Piece(23,new PieceTile[] {pt3, pt7, pt8, pt9, pt14, pt20});
+		p24 = new Piece(24,new PieceTile[] {pt1, pt2, pt3, pt8, pt9, pt14});
+		p25 = new Piece(25,new PieceTile[] {pt3, pt8, pt9, pt13, pt14, pt20});
+		p26 = new Piece(26,new PieceTile[] {pt3, pt7, pt8, pt9, pt13, pt19});
+		p27 = new Piece(27,new PieceTile[] {pt2, pt3, pt7, pt8, pt13, pt19});
+		p28 = new Piece(28,new PieceTile[] {pt1, pt2, pt3, pt7, pt9, pt13});
+		p29 = new Piece(29,new PieceTile[] {pt1, pt3, pt7, pt8, pt9, pt13});
+		p30 = new Piece(30,new PieceTile[] {pt1, pt3, pt7, pt8, pt9, pt14});
+		p31 = new Piece(31,new PieceTile[] {pt2, pt3, pt8, pt13, pt14, pt19});
+		p32 = new Piece(32,new PieceTile[] {pt1, pt7, pt8, pt13, pt14, pt15});
+		p33 = new Piece(33,new PieceTile[] {pt2, pt7, pt8, pt9, pt13, pt14});
+		p34 = new Piece(34,new PieceTile[] {pt3, pt7, pt8, pt9, pt13, pt14});
+		p35 = new Piece(35,new PieceTile[] {pt3, pt8, pt9, pt13, pt14, pt19});
 	}
 
 }
