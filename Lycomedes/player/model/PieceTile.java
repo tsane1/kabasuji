@@ -5,8 +5,8 @@ package model;
  */
 public class PieceTile extends Tile{
 
-	int row;
-	int col;
+	public final int row;
+	public final int col;
 	
 	public PieceTile(int row, int column) {
 		super(row, column);

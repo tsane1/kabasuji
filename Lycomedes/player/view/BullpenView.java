@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import model.Piece;
+import model.PieceTile;
 import supers.Model;
 
 import javax.swing.JLabel;
@@ -91,6 +92,20 @@ public class BullpenView extends JPanel {
 		g.drawImage(offScreenImage, 0, 0, this);
 	}
 	
+	Polygon changePieceToPolygon(int x, int y, Piece p) {
+		int[] xCoordinates = new int[p.numTilesInPiece()];
+		int[] yCoordinates = new int[p.numTilesInPiece()];
+		
+		int idx = 0;
+		for(PieceTile pt : p) {
+			xCoordinates[idx] = (int) (x + containerSize*(pt.col));
+			yCoordinates[idx] = (int) (y + containerSize*(pt.row));
+			idx++;
+		}
+		
+		return new Polygon(xCoordinates, yCoordinates, p.numTilesInPiece());
+	}
+	
 	public void redraw(){
 		int x = pieceBuffer;
 		int y = pieceBuffer;
@@ -99,26 +114,37 @@ public class BullpenView extends JPanel {
 		
 		for(Piece currPiece : pieces){
 			
-//			//Polygon shape  =
+			Polygon shape  = changePieceToPolygon(x, y, currPiece);
+			
 //			if(currPiece == model.getSelected()) {
 //				offScreenGraphics.setColor(Color.yellow);
 //			}
 //			else {
 //				boolean played = false;
-//				/*
-//				 * 
-//				 * 
-//				 * 
-//				 * 
-//				 * 
-//				 * stuff
-//				 * 
-//				 * 
-//				 * 
-//				 * 
-//				 */
+//				for(PlacedPiece placed : model.getPlacedPieces()){
+//					if(placed.getPiece() == currPiece) {
+//						played = true;
+//						break;
+//					}
+//				}
+//				if(played){
+//					offScreenGraphics.setColor(Color.green);
+//				}
+//				else {
+//					offScreenGraphics.setColor(Color.blue);
+//				}
 //			}
+			
+			offScreenGraphics.fillPolygon(shape);
+			redrawPieces.add(shape);
+			
+			x+= containerSize + pieceBuffer;
 		}
+	}
+	
+	public void refresh(){
+		redraw();
+		repaint();
 	}
 	
 }

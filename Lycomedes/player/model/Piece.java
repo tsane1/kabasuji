@@ -28,4 +28,8 @@ public class Piece implements Iterable<PieceTile>{
 	public String getPieceName(){
 		return this.pieceID;
 	}
+	
+	public int numTilesInPiece() {
+		return tiles.length;
+	}
 }
