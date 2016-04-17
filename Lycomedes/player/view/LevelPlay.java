@@ -21,6 +21,7 @@ import supers.Model;
 import supers.Screen;
 
 public class LevelPlay extends Screen {
+	
 	private Level level;
 	private BoardView board;
 	private BullpenView bullpen;
@@ -32,10 +33,10 @@ public class LevelPlay extends Screen {
 	
 	@Override
 	public void populate() {
-		board = new BoardView(level.getBoard());
-		bullpen = new BullpenView(level.getBullpen());
-		this.add(board);
-		this.add(bullpen);
+//		board = new BoardView(level.getBoard());
+//		bullpen = new BullpenView(level.getBullpen());
+//		this.add(board);
+//		this.add(bullpen);
 	}
 	
 	@Override

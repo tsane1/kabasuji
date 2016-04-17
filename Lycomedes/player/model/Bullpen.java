@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * should set max capacity?
  */
 public class Bullpen {
+	
 	private ArrayList<Piece> pieces;
 	
 	/**
@@ -41,6 +42,10 @@ public class Bullpen {
 	 */
 	public boolean removePiece(Piece piece){
 		return this.pieces.remove(piece);
+	}
+	
+	public ArrayList<Piece> getPieces(){
+		return this.pieces;
 	}
 }
 

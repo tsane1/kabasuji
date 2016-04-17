@@ -170,6 +170,45 @@ public class LevelBuilderModel extends Model{
 		p33 = new Piece(33,new PieceTile[] {pt2, pt7, pt8, pt9, pt13, pt14});
 		p34 = new Piece(34,new PieceTile[] {pt3, pt7, pt8, pt9, pt13, pt14});
 		p35 = new Piece(35,new PieceTile[] {pt3, pt8, pt9, pt13, pt14, pt19});
+		
+		/*
+		 * add them to the array list
+		 */
+		allPieces.add(p1);
+		allPieces.add(p2);
+		allPieces.add(p3);
+		allPieces.add(p4);
+		allPieces.add(p5);
+		allPieces.add(p6);
+		allPieces.add(p7);
+		allPieces.add(p8);
+		allPieces.add(p9);
+		allPieces.add(p10);
+		allPieces.add(p11);
+		allPieces.add(p12);
+		allPieces.add(p13);
+		allPieces.add(p14);
+		allPieces.add(p15);
+		allPieces.add(p16);
+		allPieces.add(p17);
+		allPieces.add(p18);
+		allPieces.add(p19);
+		allPieces.add(p20);
+		allPieces.add(p21);
+		allPieces.add(p22);
+		allPieces.add(p23);
+		allPieces.add(p24);
+		allPieces.add(p25);
+		allPieces.add(p26);
+		allPieces.add(p27);
+		allPieces.add(p28);
+		allPieces.add(p29);
+		allPieces.add(p30);
+		allPieces.add(p31);
+		allPieces.add(p32);
+		allPieces.add(p33);
+		allPieces.add(p34);
+		allPieces.add(p35);	
 	}
 
 }

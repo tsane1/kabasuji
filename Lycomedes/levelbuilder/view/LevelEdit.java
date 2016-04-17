@@ -46,10 +46,10 @@ public class LevelEdit extends Screen {
 	
 	@Override
 	public void populate() {
-		board = new BoardView(level.getBoard());
-		bullpen = new BullpenView(level.getBullpen());
-		this.add(board);
-		this.add(bullpen);
+//		board = new BoardView(level.getBoard());
+//		bullpen = new BullpenView(level.getBullpen());
+//		this.add(board);
+//		this.add(bullpen);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setFont(new Font("Kristen ITC", Font.PLAIN, 12));
