@@ -18,4 +18,7 @@ public abstract class Tile {
 	public void cover() {
 		covered = true;
 	}
+	public boolean getCovered(){
+		return this.covered;
+	}
 }
