@@ -3,7 +3,6 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.entities.LevelBuilderModel;
 import kabasuji.supers.Model;
 import kabasuji.views.LevelEdit;
 
