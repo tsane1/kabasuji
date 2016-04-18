@@ -20,4 +20,11 @@ public class UnplayableTile extends Tile{
 	public boolean isCovered() {
 		return true;
 	}
+	public void cover() {
+		covered = true;
+	}
+	
+	public void uncover(){
+		covered = true;
+	}
 }

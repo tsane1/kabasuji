@@ -7,6 +7,7 @@ package model;
 public abstract class Tile {
 	
 	int row, col;
+	private boolean covered;
 	
 	public static final int width = 32;
 	public static final int length = 32;
@@ -16,4 +17,15 @@ public abstract class Tile {
 		this.col = col;
 	}
 
+	public void cover() {
+		covered = true;
+	}
+	
+	public void uncover(){
+		covered = false;
+	}
+	
+	public boolean isCovered() {
+		return covered;
+	}
 }
