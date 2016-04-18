@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Board {
 	private int rows[], cols[];
-	private Tile boardArray[][];
+	private Tile boardArray[][]; //needs to be initialized
 	private ArrayList<Piece> placedPieces;
 	
 	public Board() {
@@ -16,11 +16,11 @@ public class Board {
 	//creates a tile that can be played on at the given grid location in the 12x12
 	public void createBoardTile(int row, int col, String type){
 		if(type.equals("puzzle")){
-			boardArray[row][col] = new PuzzleTile(row, col);
+			boardArray[row][col] = new PuzzleBoardTile(row, col);
 		}else if(type.equals("lightning")){
-			boardArray[row][col] = new LightningTile(row, col);
+			boardArray[row][col] = new LightningBoardTile(row, col);
 		}else{
-			boardArray[row][col] = new ReleaseTile(row, col);
+			boardArray[row][col] = new ReleaseBoardTile(row, col);
 		}
 	}
 	//places piece at the specified grid location

@@ -15,6 +15,6 @@ public class LightningBoardTile extends Tile{
 		this.col = column;
 		
 	}
-
+	//need to override both isCovered and cover
 
 }
