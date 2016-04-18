@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Abstract super class for tiles.  Will be subclassed to iclude types of tiles in all 3 different kinds of boards
+ * as well as the tiles that make up pieces and unplayable tiles for the builder. 
+ */
 public abstract class Tile {
 	
 	int row, col;
@@ -7,18 +11,9 @@ public abstract class Tile {
 	public static final int width = 32;
 	public static final int length = 32;
 	
-	private boolean covered;
-	
 	public Tile(int row, int col) {
 		this.row = row;
 		this.col = col;
-		covered = false;
 	}
-	
-	public void cover() {
-		covered = true;
-	}
-	public boolean getCovered(){
-		return this.covered;
-	}
+
 }

@@ -11,11 +11,13 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import model.Piece;
 import model.PieceTile;
+import model.PlayedPiece;
 import supers.Model;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.Bullpen;
+import model.GamePlayModel;
 import model.LevelBuilderModel;
 
 public class BullpenView extends JPanel {
@@ -48,12 +50,12 @@ public class BullpenView extends JPanel {
 	/*
 	 * overloaded constructor to be used with a player model 
 	 */
-//	public BullpenView(PlayerModel model, Bullpen bullpen) {
-//		super();
-//		this.bullpen = bullpen;
-//		pieces = bullpen.getPieces();
-//		this.model = model;
-//	}
+	public BullpenView(GamePlayModel model, Bullpen bullpen) {
+		super();
+		this.bullpen = bullpen;
+		pieces = bullpen.getPieces();
+		this.model = model;
+	}
 	
 	@Override
 	public Dimension getMinimumSize(){
@@ -70,7 +72,6 @@ public class BullpenView extends JPanel {
 
 		return new Dimension (width, height);
 	}
-	
 	/*
 	 * Override method to paint the pieces
 	 */
@@ -116,24 +117,24 @@ public class BullpenView extends JPanel {
 			
 			Polygon shape  = changePieceToPolygon(x, y, currPiece);
 			
-//			if(currPiece == model.getSelected()) {
-//				offScreenGraphics.setColor(Color.yellow);
-//			}
-//			else {
-//				boolean played = false;
-//				for(PlacedPiece placed : model.getPlacedPieces()){
-//					if(placed.getPiece() == currPiece) {
-//						played = true;
-//						break;
-//					}
-//				}
-//				if(played){
-//					offScreenGraphics.setColor(Color.green);
-//				}
-//				else {
-//					offScreenGraphics.setColor(Color.blue);
-//				}
-//			}
+			if(currPiece == model.getSelected()) {
+				offScreenGraphics.setColor(Color.yellow);
+			}
+			else {
+				boolean played = false;
+				for(PlayedPiece placed : model.getPlayedPieces()){
+					if(placed.getPiece() == currPiece) {
+						played = true;
+						break;
+					}
+				}
+				if(played){
+					offScreenGraphics.setColor(Color.green);
+				}
+				else {
+					offScreenGraphics.setColor(Color.blue);
+				}
+			}
 			
 			offScreenGraphics.fillPolygon(shape);
 			redrawPieces.add(shape);
