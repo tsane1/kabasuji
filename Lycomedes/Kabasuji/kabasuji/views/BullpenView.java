@@ -46,15 +46,10 @@ public class BullpenView extends JPanel {
 		this.model = model;
 	}
 
-//	/**
-//	 * overloaded constructor to be used with a player model 
-//	 */
-//	public BullpenView(GamePlayModel model, Bullpen bullpen) {
-//		super();
-//		this.bullpen = bullpen;
-//		pieces = bullpen.getPieces();
-//		this.model = model;
-//	}
+
+	public List<Polygon> getPolygonPieces(){
+		return redrawPieces;
+	}
 	
 	@Override
 	public Dimension getMinimumSize(){
@@ -116,24 +111,24 @@ public class BullpenView extends JPanel {
 			
 			Polygon shape  = changePieceToPolygon(x, y, currPiece);
 			
-//			if(currPiece == model.getSelected()) {
-//				offScreenGraphics.setColor(Color.yellow);
-//			}
-//			else {
-//				boolean played = false;
-//				for(PlayedPiece placed : model.getPlayedPieces()){
-//					if(placed.getPiece() == currPiece) {
-//						played = true;
-//						break;
-//					}
-//				}
-//				if(played){
-//					offScreenGraphics.setColor(Color.green);
-//				}
-//				else {
-//					offScreenGraphics.setColor(Color.blue);
-//				}
-//			}
+			if(currPiece == model.getSelected()) {
+				offScreenGraphics.setColor(Color.yellow);
+			}
+			else {
+				boolean played = false;
+				for(PlayedPiece placed : model.getPlayedPieces()){
+					if(placed.getPiece() == currPiece) {
+						played = true;
+						break;
+					}
+				}
+				if(played){
+					offScreenGraphics.setColor(Color.green);
+				}
+				else {
+					offScreenGraphics.setColor(Color.blue);
+				}
+			}
 			
 			offScreenGraphics.fillPolygon(shape);
 			redrawPieces.add(shape);
