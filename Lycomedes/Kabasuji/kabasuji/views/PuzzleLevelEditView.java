@@ -16,10 +16,12 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 
 public class PuzzleLevelEditView extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 	
 
 	/**
@@ -76,23 +78,14 @@ public class PuzzleLevelEditView extends JFrame {
 		redoBtn.setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/Redo.png")));
 		getContentPane().add(redoBtn);
 		
-		JLabel numMovesLabel = new JLabel("Select a number of allowed moves : ");
+		JLabel numMovesLabel = new JLabel("Enter a number of allowed moves : ");
 		numMovesLabel.setForeground(new Color(30, 144, 255));
 		numMovesLabel.setFont(new Font("Kristen ITC", Font.BOLD, 16));
 		numMovesLabel.setBackground(Color.WHITE);
 		numMovesLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JSlider numMovesSlider = new JSlider();
-		numMovesSlider.setValue(0);
-		numMovesSlider.setMinorTickSpacing(1);
-		numMovesSlider.setMajorTickSpacing(10);
-		numMovesSlider.setPaintLabels(true);
-		numMovesSlider.setSnapToTicks(true);
-		numMovesSlider.setPaintTicks(true);
-		numMovesSlider.setForeground(new Color(30, 144, 255));
-		numMovesSlider.setBackground(Color.WHITE);
-		numMovesSlider.setMinimum(0);
-		numMovesSlider.setMaximum(50);
+		textField = new JTextField();
+		textField.setColumns(10);
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -101,26 +94,28 @@ public class PuzzleLevelEditView extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(undoBtn, 0, 0, Short.MAX_VALUE)
-								.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(redoBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(111)
-									.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-									.addContainerGap(340, Short.MAX_VALUE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(numMovesSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(numMovesLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addContainerGap())))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addComponent(undoBtn, 0, 0, Short.MAX_VALUE)
+									.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(redoBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addGap(111)
+										.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
+										.addContainerGap(340, Short.MAX_VALUE))
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(numMovesLabel)
+										.addContainerGap())))
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(saveBtn)
+								.addContainerGap()))
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(saveBtn)
-							.addContainerGap())))
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(109))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -140,8 +135,8 @@ public class PuzzleLevelEditView extends JFrame {
 							.addGap(92)
 							.addComponent(numMovesLabel)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(numMovesSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 507, Short.MAX_VALUE)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 525, Short.MAX_VALUE)
 					.addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);

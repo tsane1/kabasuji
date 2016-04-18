@@ -16,10 +16,12 @@ import javax.swing.SwingConstants;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 
 public class LightningLevelEditView extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField secondsInput;
 
 	/**
 	 * Launch the application.
@@ -73,21 +75,14 @@ public class LightningLevelEditView extends JFrame {
 		redoBtn.setIcon(new ImageIcon(LightningLevelEditView.class.getResource("/imgs/Redo.png")));
 		getContentPane().add(redoBtn);
 		
-		JLabel timerLabel = new JLabel("Select a number of allowed seconds : ");
+		JLabel timerLabel = new JLabel("Enter a number of allowed seconds : ");
 		timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		timerLabel.setForeground(new Color(30, 144, 255));
 		timerLabel.setFont(new Font("Kristen ITC", Font.BOLD, 16));
 		timerLabel.setBackground(Color.WHITE);
 		
-		JSlider timerSlider = new JSlider();
-		timerSlider.setValue(0);
-		timerSlider.setSnapToTicks(true);
-		timerSlider.setPaintTicks(true);
-		timerSlider.setPaintLabels(true);
-		timerSlider.setMinorTickSpacing(5);
-		timerSlider.setMajorTickSpacing(30);
-		timerSlider.setMaximum(180);
-		timerSlider.setBackground(Color.WHITE);
+		secondsInput = new JTextField();
+		secondsInput.setColumns(10);
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -96,23 +91,23 @@ public class LightningLevelEditView extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(undoBtn, 0, 0, Short.MAX_VALUE)
-								.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(redoBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
-							.addGap(111)
-							.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(timerSlider, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-									.addContainerGap())
-								.addComponent(timerLabel, Alignment.TRAILING)))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(saveBtn)
+								.addContainerGap())
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addComponent(undoBtn, 0, 0, Short.MAX_VALUE)
+									.addComponent(backBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(redoBtn, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+								.addGap(111)
+								.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(timerLabel)))
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(saveBtn)
-							.addContainerGap())))
+							.addComponent(secondsInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(121))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -128,17 +123,11 @@ public class LightningLevelEditView extends JFrame {
 								.addComponent(undoBtn, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 								.addComponent(timerLabel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(timerSlider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 523, Short.MAX_VALUE)
+					.addComponent(secondsInput, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 542, Short.MAX_VALUE)
 					.addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
-	/*
-	public int getNumSeconds(){
-		return timerSlider.getValue();
-	}
-	*/
 }
