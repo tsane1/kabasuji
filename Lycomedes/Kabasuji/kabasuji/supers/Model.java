@@ -1,5 +1,6 @@
 package kabasuji.supers;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -129,6 +130,7 @@ public class Model {
 	/*
 	 * add them to the array list
 	 */
+	
 //	allPieces.add(p1);
 //	allPieces.add(p2);
 //	allPieces.add(p3);
