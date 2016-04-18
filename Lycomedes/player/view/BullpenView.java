@@ -47,7 +47,7 @@ public class BullpenView extends JPanel {
 		this.model = model;
 	}
 
-	/*
+	/**
 	 * overloaded constructor to be used with a player model 
 	 */
 	public BullpenView(GamePlayModel model, Bullpen bullpen) {
@@ -72,7 +72,7 @@ public class BullpenView extends JPanel {
 
 		return new Dimension (width, height);
 	}
-	/*
+	/**
 	 * Override method to paint the pieces
 	 */
 	public void paintComponent(Graphics g){
