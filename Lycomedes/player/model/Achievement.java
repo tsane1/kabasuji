@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 public class Achievement {
-	Progress progress;
+	Progress progress; // Change progress to ProgressBar java class?
 
 	public Achievement(Progress progress){
 		super();
