@@ -13,6 +13,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSlider;
@@ -21,8 +24,8 @@ import javax.swing.JTextField;
 public class PuzzleLevelEditView extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	
+	private JTextField numMovesTextField;
+	int numMoves;
 
 	/**
 	 * Launch the application.
@@ -84,8 +87,9 @@ public class PuzzleLevelEditView extends JFrame {
 		numMovesLabel.setBackground(Color.WHITE);
 		numMovesLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		numMovesTextField = new JTextField();
+		numMovesTextField.setColumns(10);
+		numMovesTextField.addFocusListener((FocusListener) this);
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -114,7 +118,7 @@ public class PuzzleLevelEditView extends JFrame {
 								.addComponent(saveBtn)
 								.addContainerGap()))
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(numMovesTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(109))))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -135,7 +139,7 @@ public class PuzzleLevelEditView extends JFrame {
 							.addGap(92)
 							.addComponent(numMovesLabel)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addComponent(numMovesTextField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 525, Short.MAX_VALUE)
 					.addComponent(saveBtn, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
@@ -143,9 +147,12 @@ public class PuzzleLevelEditView extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-	/*
-	public int getNumMoves(){
-		return numMovesSlider.getValue();
+	public void focusGained(FocusEvent e){
+		;; //do nothing
 	}
-	*/
+	
+	public void focusLost(FocusEvent e) {
+		String temp = numMovesTextField.getText();
+		numMoves = Integer.parseInt(temp);
+	}
 }

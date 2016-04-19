@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -22,6 +24,8 @@ public class LightningLevelEditView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField secondsInput;
+	
+	String inputSeconds;
 
 	/**
 	 * Launch the application.
@@ -83,7 +87,7 @@ public class LightningLevelEditView extends JFrame {
 		
 		secondsInput = new JTextField();
 		secondsInput.setColumns(10);
-		
+		secondsInput.addFocusListener((FocusListener) this);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -129,5 +133,12 @@ public class LightningLevelEditView extends JFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	
+	public void focusGained(FocusEvent e) {
+		; //do nothing
+	}
+	public void focusLost(FocusEvent e) {
+		inputSeconds = secondsInput.getText();
 	}
 }
