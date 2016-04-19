@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import kabasuji.entities.Level;
+import kabasuji.supers.Model;
 import kabasuji.supers.Screen;
 
 public class LevelEdit extends Screen {
@@ -25,6 +26,7 @@ public class LevelEdit extends Screen {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	Model m;
 	private Screen prevScreen;
 	private Level level;
 	private BoardView board;
@@ -37,10 +39,10 @@ public class LevelEdit extends Screen {
 	
 	@Override
 	public void populate() {
-//		board = new BoardView(level.getBoard());
-//		bullpen = new BullpenView(level.getBullpen());
-//		this.add(board);
-//		this.add(bullpen);
+		board = new BoardView(level.getBoard());
+		bullpen = new BullpenView(m,level.getBullpen());
+		this.add(board);
+		this.add(bullpen);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setFont(new Font("Kristen ITC", Font.PLAIN, 12));

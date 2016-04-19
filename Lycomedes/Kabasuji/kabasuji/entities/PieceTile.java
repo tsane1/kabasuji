@@ -5,8 +5,8 @@ package kabasuji.entities;
  */
 public class PieceTile extends Tile{
 
-	public final int row;
-	public final int col;
+	int row;
+	int col;
 	
 	public PieceTile(int row, int column) {
 		super(row, column);
@@ -15,4 +15,17 @@ public class PieceTile extends Tile{
 		this.col = column;
 	}
 
+	public void setRow(int row) {
+		this.row = row;
+	}
+	public int getRow(){
+		return row;
+	}
+	
+	public void setColumn(int col){
+		this.col = col;
+	}
+	public int getColumn(){
+		return col;
+	}
 }

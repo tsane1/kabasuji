@@ -93,8 +93,8 @@ public class BullpenView extends JPanel {
 		
 		int idx = 0;
 		for(PieceTile pt : p) {
-			xCoordinates[idx] = (int) (x + containerSize*(pt.col));
-			yCoordinates[idx] = (int) (y + containerSize*(pt.row));
+			xCoordinates[idx] = (int) (x + containerSize*(pt.getColumn()));
+			yCoordinates[idx] = (int) (y + containerSize*(pt.getRow()));
 			idx++;
 		}
 		
