@@ -22,10 +22,9 @@ import kabasuji.supers.Model;
 public class BullpenView extends JPanel {
 	
 	/**
-	 * You're welcome Eclipse
+	 * serial version id from eclipse.
 	 */
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -4329058249074751161L;
 	Bullpen bullpen;
 	Model model;
 	
@@ -92,6 +91,5 @@ public class BullpenView extends JPanel {
 		//redraw();
 		repaint();
 	}
-	//test for commit
 	
 }
