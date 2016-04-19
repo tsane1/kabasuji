@@ -17,7 +17,7 @@ public class LightningBoardTile extends Tile{
 	}
 	//need to override both isCovered and cover
 	public void cover() {
-		covered = true;
+		covered = false;
 	}
 	
 	public void uncover(){

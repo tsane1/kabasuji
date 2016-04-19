@@ -28,11 +28,11 @@ public class Board {
 		//need to check if place is covered both the release points and where pieces tiles move to after that
 		//probably piece.tiles[0].row + row and piece.tiles[0].col + col.... where .row and .col have been updated to reflect the release point
 		//if extension of the piece is ever out of bounds return widget and throw exception, but if lightning just mark tiles in bounds
-		if(!boardArray[row][col].isCovered()){
+		if(!pieceCovering(row,col,piece)){
 			//add piece to list of placed pieces
 			placedPieces.add(piece);
 			//covers the place 
-			boardArray[row][col].cover();
+			coverPieceArea(row, col, piece);
 			//use row and col to tell piece where it is located on the board
 			
 			
@@ -42,6 +42,25 @@ public class Board {
 			return false;
 		}
 		
+	}
+	public boolean pieceCovering(int row, int col, Piece piece){
+		for(int i = 0; i<=piece.numTilesInPiece(); i++){
+			int rowCord = row + piece.tiles[i].row;
+			int colCord = col + piece.tiles[i].col;
+			
+			if(boardArray[rowCord][colCord].isCovered()){
+				return true;
+			}
+		}
+		return false;
+	}
+	public void coverPieceArea(int row, int col, Piece piece){
+		for(int i = 0; i<=piece.numTilesInPiece(); i++){
+			int rowCord = row + piece.tiles[i].row;
+			int colCord = col + piece.tiles[i].col;
+			
+			boardArray[rowCord][colCord].cover();
+		}
 	}
 	
 }
