@@ -18,15 +18,12 @@ public class FlipXController implements ActionListener {
 	}
 	
 	public boolean doFlipX(){
-		Move m = model.getLastMove();
 		
-		if(m == null){
+		if(model.getSelected() == null){
 			return false;
 		}
 		
-		if(m.execute()) {
-			model.addMoveToUndo(m);
-		}
+		model.getSelected().flipX();
 		
 		//screen.redraw();
 		//screen.repaint();

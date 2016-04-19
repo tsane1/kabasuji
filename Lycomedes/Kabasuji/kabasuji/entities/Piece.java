@@ -63,10 +63,10 @@ public class Piece implements Iterable<PieceTile>{
 	/**
 	 * Flip piece with respect to the X axis
 	 */
-	public void flipX(Piece p){
+	public void flipX(){
 		int i = 0;
 		while (i < 6){
-			p.tiles[i].setRow(5-p.tiles[i].getRow());
+			this.tiles[i].setRow(5-this.tiles[i].getRow());
 			i++;
 		}
 	}
@@ -74,10 +74,10 @@ public class Piece implements Iterable<PieceTile>{
 	/**
 	 * Flip piece with respect to the Y axis
 	 */
-	public void flipY(Piece p){
+	public void flipY(){
 		int i = 0;
 		while (i < 6){
-			p.tiles[i].setColumn(5-p.tiles[i].getColumn());
+			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
 			i++;
 		}
 	}

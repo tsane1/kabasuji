@@ -18,15 +18,11 @@ public class FlipYController implements ActionListener {
 	}
 	
 	public boolean doFlipY(){
-		Move m = model.getLastMove();
-		
-		if(m == null){
+		if(model.getSelected() == null){
 			return false;
 		}
 		
-		if(m.execute()) {
-			model.addMoveToUndo(m);
-		}
+		model.getSelected().flipY();
 		
 		//screen.redraw();
 		//screen.repaint();
