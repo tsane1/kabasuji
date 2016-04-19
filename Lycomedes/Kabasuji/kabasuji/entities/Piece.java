@@ -62,11 +62,35 @@ public class Piece implements java.io.Serializable {
 	}
 	
 	/**
-	 * Flip piece with respect to the Y axis
+	 * Flipping piece with respect to the Y axis
 	 */
 	public void flipY(){
 		int i = 0;
 		while (i < 6){
+			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
+			i++;
+		}
+	}
+	
+	/**
+	 * Rotate piece 90 left
+	 */
+	public void rotateLeft(){
+		int i = 0;
+		while (i < 6){
+			this.tiles[i].setRow(5-this.tiles[i].getColumn());
+			this.tiles[i].setColumn(5-this.tiles[i].getRow());
+			i++;
+		}
+	}	
+	
+	/**
+	 * Rotate piece 90 right 
+	 */
+	public void rotateRight(){
+		int i = 0;
+		while (i < 6){
+			this.tiles[i].setRow(5-this.tiles[i].getRow());
 			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
 			i++;
 		}

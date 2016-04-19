@@ -33,7 +33,7 @@ public class RotateLeftController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS THE "doUndo" should prolly go here
 		try{
-			doRot90Left();
+			doRotateLeft();
 		}
 		catch(Exception ex){
 			System.err.println("EXCEPTION CAUGHT : RotateLeftController");
