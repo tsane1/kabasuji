@@ -1,18 +1,26 @@
 package kabasuji.entities;
 
-
+/**
+ * Entity class for the hexomino piece object. 
+ * 
+ * @author Derek McMaster
+ * @author Ian Jacoway
+ *
+ */
 public class Piece implements java.io.Serializable {
-	
-	private String pieceID;
-	private int pieceIDnum;
+	/** Name of the piece. Structured Piece X where 1<= X <= 35. */
+	String pieceID;
+	/** Number Id for the piece. Corresponds with the piece's name.*/
+	int pieceIDnum;
+	/** Array of 6 locations for the piece tiles.*/
 	PieceTile[] tiles;
-	
+
 	/**
 	 * Constructor for a piece. Pass a number and 6 tile locations.
 	 * Name given to the piece with its ID num.  If given less than 6 tiles
-	 * the constructor will throw an exception
-	 * @param idNum
-	 * @param arr
+	 * the constructor will throw an exception.
+	 * @param int idNum
+	 * @param piecetile[] arr
 	 */
 	public Piece(int idNum, PieceTile[] arr){
 		this.pieceIDnum = idNum;
@@ -28,52 +36,58 @@ public class Piece implements java.io.Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Gets the piece's "name"
+	 * getter for the name of the piece.
+	 * @return String name
 	 */
 	public String getPieceName(){
 		return this.pieceID;
 	}
-	
+
 	/**
-	 * Gets the piece's ID number
+	 * getter for the piece id number.
+	 * @return integer Id number
 	 */
 	public int getPieceID() {
 		return this.pieceIDnum;
 	}
-	
+
 	/**
-	 * Quick helper method used in computations. Should return 6.
+	 * helper method used for painting and iteration.
+	 * @return int number of piecetiles in piece
 	 */
 	public int numTilesInPiece() {
 		return tiles.length;
 	}
-	
+
 	/**
-	 * Flip piece with respect to the X axis
+	 * method for flipping a piece across the x-axis.
+	 * @return void
 	 */
 	public void flipX(){
 		int i = 0;
-		while (i < 6){
+		while (i < this.numTilesInPiece()){
 			this.tiles[i].setRow(5-this.tiles[i].getRow());
 			i++;
 		}
 	}
-	
+
 	/**
-	 * Flipping piece with respect to the Y axis
+	 * method for flipping a piece across the y-axis.
+	 * @return void
 	 */
 	public void flipY(){
 		int i = 0;
-		while (i < 6){
+		while (i < this.numTilesInPiece()){
 			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
 			i++;
 		}
 	}
-	
+
 	/**
-	 * Rotate piece 90 left
+	 * method for rotating a piece 90 degrees clockwise.
+	 * @return void
 	 */
 	public void rotateLeft(){
 		int i = 0;
@@ -83,9 +97,10 @@ public class Piece implements java.io.Serializable {
 			i++;
 		}
 	}	
-	
+
 	/**
-	 * Rotate piece 90 right 
+	 * method for rotating a piece 90 degrees counter-clockwise.
+	 * @return void
 	 */
 	public void rotateRight(){
 		int i = 0;
@@ -96,6 +111,10 @@ public class Piece implements java.io.Serializable {
 		}
 	}
 
+	/**
+	 * method for returning the locations of the tiles in the piece.
+	 * @return piecetile[] of 6 locations
+	 */
 	public PieceTile[] getTileLocations() {
 		return tiles;
 	}
