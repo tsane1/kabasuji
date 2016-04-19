@@ -95,4 +95,8 @@ public class Piece implements java.io.Serializable {
 			i++;
 		}
 	}
+
+	public PieceTile[] getTileLocations() {
+		return tiles;
+	}
 }

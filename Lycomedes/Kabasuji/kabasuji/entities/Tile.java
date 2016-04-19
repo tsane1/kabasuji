@@ -10,7 +10,7 @@ public abstract class Tile {
 	private boolean covered;
 	
 	public static final int width = 32;
-	public static final int length = 32;
+	public static final int height = 32;
 	
 	public Tile(int row, int col) {
 		this.row = row;
