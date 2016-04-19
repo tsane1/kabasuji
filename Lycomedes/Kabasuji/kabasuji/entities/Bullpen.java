@@ -1,6 +1,7 @@
 package kabasuji.entities;
 
 import java.awt.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * should allow duplicates?
  * should set max capacity?
  */
-public class Bullpen {
+public class Bullpen implements Serializable{
 	
 	private ArrayList<Piece> pieces;
 	

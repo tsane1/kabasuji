@@ -1,8 +1,9 @@
 package kabasuji.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Board {
+public class Board implements Serializable{
 	private int rows[], cols[];
 	private Tile boardArray[][]; //needs to be initialized
 	private ArrayList<Piece> placedPieces;

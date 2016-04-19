@@ -6,12 +6,14 @@ import javax.swing.JWindow;
 import java.awt.Container;
 import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
-public class Achievement {
+public class Achievement implements Serializable {
 	Progress progress; // Change progress to ProgressBar java class?
 
 	public Achievement(Progress progress) {

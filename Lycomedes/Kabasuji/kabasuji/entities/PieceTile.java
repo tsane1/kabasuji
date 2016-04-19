@@ -1,9 +1,11 @@
 package kabasuji.entities;
 
+import java.io.Serializable;
+
 /**
  * Tile Subclass which will make up the pieces.
  */
-public class PieceTile extends Tile{
+public class PieceTile extends Tile implements Serializable{
 
 	int row;
 	int col;
