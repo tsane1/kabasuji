@@ -6,26 +6,22 @@ import java.awt.event.ActionListener;
 import kabasuji.supers.Model;
 import kabasuji.views.LevelEdit;
 
-public class Rot90LeftController implements ActionListener {
+public class RotateRightController implements ActionListener {
 
 	Model model;
 	LevelEdit screen;
 	
-	public Rot90LeftController(LevelEdit bs, Model lbm) {
+	public RotateRightController(LevelEdit bs, Model lbm) {
 		this.screen = bs;
 		this.model = lbm;
 	}
 	
-	public boolean doRot90Left(){
-		Move m = model.getLastMove();
-		
-		if(m == null){
+	public boolean doRotateRight(){
+		if(model.getSelected() == null){
 			return false;
 		}
 		
-		if(m.execute()) {
-			model.addMoveToUndo(m);
-		}
+		model.getSelected().rotateRight();
 		
 		//screen.redraw();
 		//screen.repaint();
@@ -37,10 +33,10 @@ public class Rot90LeftController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS THE "doUndo" should prolly go here
 		try{
-			doRot90Left();
+			doRotateRight();
 		}
 		catch(Exception ex){
-			System.err.println("EXCEPTION CAUGHT : Rot90LeftController");
+			System.err.println("EXCEPTION CAUGHT : RotateRightController");
 			ex.printStackTrace();
 		}
 	}
