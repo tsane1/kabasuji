@@ -18,7 +18,6 @@ public class FlipXController implements ActionListener {
 	}
 	
 	public boolean doFlipX(){
-		
 		if(model.getSelected() == null){
 			return false;
 		}
