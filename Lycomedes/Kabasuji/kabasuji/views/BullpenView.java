@@ -92,5 +92,6 @@ public class BullpenView extends JPanel {
 		//redraw();
 		repaint();
 	}
+	//test for commit
 	
 }
