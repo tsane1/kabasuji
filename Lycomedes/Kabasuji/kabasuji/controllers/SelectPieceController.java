@@ -21,27 +21,27 @@ public class SelectPieceController extends MouseAdapter{
 	}
 	
 	public void mousePressed(MouseEvent me) {
-		int idx = 0;
-		for(Polygon p : view.getPolygonPieces()) {
-			if(p.contains(me.getPoint())) {
-				if(model.getSelected() == model.getAllPieces().get(idx)){
-					model.setSelectedPiece(null);
-				}
-				else { 
-					Piece selected = model.getAllPieces().get(idx);
-					
-					for(PlayedPiece pp : model.getPlayedPieces()) {
-						if(pp.getPiece() == selected) {
-							model.setSelectedPiece(null);
-						}
-					}
-					model.setSelectedPiece(selected);
-				}
-				view.refresh();
-				return;
-			}
-			idx++;
-		}
+//		int idx = 0;
+//		for(Polygon p : view.getPolygonPieces()) {
+//			if(p.contains(me.getPoint())) {
+//				if(model.getSelected() == model.getAllPieces().get(idx)){
+//					model.setSelectedPiece(null);
+//				}
+//				else { 
+//					Piece selected = model.getAllPieces().get(idx);
+//					
+//					for(PlayedPiece pp : model.getPlayedPieces()) {
+//						if(pp.getPiece() == selected) {
+//							model.setSelectedPiece(null);
+//						}
+//					}
+//					model.setSelectedPiece(selected);
+//				}
+//				view.refresh();
+//				return;
+//			}
+//			idx++;
+//		}
 	}
 	
 	

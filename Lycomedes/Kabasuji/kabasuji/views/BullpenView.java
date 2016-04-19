@@ -28,10 +28,7 @@ public class BullpenView extends JPanel {
 	Bullpen bullpen;
 	Model model;
 	
-	List<Piece> pieces;
-	//list for redrawing
-	List<Polygon> redrawPieces;
-	
+		
 	public final int containerSize = 192; //tilesize*6
 	public final int pieceBuffer = 8;
 	
@@ -41,14 +38,9 @@ public class BullpenView extends JPanel {
 	public BullpenView(Model model, Bullpen bullpen) {
 		super();
 		this.bullpen = bullpen;
-		pieces = bullpen.getPieces();
 		this.model = model;
 	}
 
-
-	public List<Polygon> getPolygonPieces(){
-		return redrawPieces;
-	}
 	
 	@Override
 	public Dimension getMinimumSize(){
@@ -72,23 +64,43 @@ public class BullpenView extends JPanel {
 		super.paintComponent(g);
 		
 		if(offScreenImage == null) {
-			Dimension dim = getPreferredSize();
-			offScreenImage = this.createImage(dim.width, dim.height);
-			offScreenGraphics = offScreenImage.getGraphics();
 			
-			//redraw();
+			redraw();
 		}
 		
 		if(offScreenImage == null) {
 			System.err.println("Paint component method: bullpenview class");
 		}
 		
+		
 		g.drawImage(offScreenImage, 0, 0, this);
 	}
 	
+	public void redraw() {
+		Dimension dim = getPreferredSize();
+		if (offScreenImage != null) {
+			offScreenImage.flush();
+		}
+		if (offScreenGraphics != null) {
+			offScreenGraphics.dispose();
+		}
+		offScreenImage = this.createImage(dim.width, dim.height);
+		if (offScreenImage == null) { return; }
+		
+		offScreenGraphics = offScreenImage.getGraphics();
+		
+		// HERE
+		
+		// 1. draw each piece at proper location
+		// 2. offset after each one is drawn
+		for (Piece p : bullpen.getPieces()) {
+			
+		}
+		
+	}
 	
 	public void refresh(){
-		//redraw();
+		redraw();
 		repaint();
 	}
 	
