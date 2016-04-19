@@ -1,9 +1,7 @@
 package kabasuji.entities;
 
-import java.util.Arrays;
-import java.util.Iterator;
 
-public class Piece implements Iterable<PieceTile>{
+public class Piece implements java.io.Serializable {
 	
 	private String pieceID;
 	private int pieceIDnum;
@@ -29,14 +27,6 @@ public class Piece implements Iterable<PieceTile>{
 			System.err.println("PIECE CONSTRUCTOR: PIECE NEEDS SIX TILES");
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Overrides the iterator method.  Gives back the tiles array as a list
-	 */
-	@Override
-	public Iterator<PieceTile> iterator() {
-		return Arrays.asList(tiles).iterator();
 	}
 	
 	/**

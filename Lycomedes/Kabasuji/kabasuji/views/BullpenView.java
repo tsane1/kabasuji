@@ -77,7 +77,7 @@ public class BullpenView extends JPanel {
 			offScreenImage = this.createImage(dim.width, dim.height);
 			offScreenGraphics = offScreenImage.getGraphics();
 			
-			redraw();
+			//redraw();
 		}
 		
 		if(offScreenImage == null) {
@@ -87,58 +87,9 @@ public class BullpenView extends JPanel {
 		g.drawImage(offScreenImage, 0, 0, this);
 	}
 	
-	Polygon changePieceToPolygon(int x, int y, Piece p) {
-		int[] xCoordinates = new int[p.numTilesInPiece()];
-		int[] yCoordinates = new int[p.numTilesInPiece()];
-		
-		int idx = 0;
-		for(PieceTile pt : p) {
-			xCoordinates[idx] = (int) (x + containerSize*(pt.getColumn()));
-			yCoordinates[idx] = (int) (y + containerSize*(pt.getRow()));
-			idx++;
-		}
-		
-		return new Polygon(xCoordinates, yCoordinates, p.numTilesInPiece());
-	}
-	
-	public void redraw(){
-		int x = pieceBuffer;
-		int y = pieceBuffer;
-		
-		redrawPieces = new ArrayList<Polygon>();
-		
-		for(Piece currPiece : pieces){
-			
-			Polygon shape  = changePieceToPolygon(x, y, currPiece);
-			
-			if(currPiece == model.getSelected()) {
-				offScreenGraphics.setColor(Color.yellow);
-			}
-			else {
-				boolean played = false;
-				for(PlayedPiece placed : model.getPlayedPieces()){
-					if(placed.getPiece() == currPiece) {
-						played = true;
-						break;
-					}
-				}
-				if(played){
-					offScreenGraphics.setColor(Color.green);
-				}
-				else {
-					offScreenGraphics.setColor(Color.blue);
-				}
-			}
-			
-			offScreenGraphics.fillPolygon(shape);
-			redrawPieces.add(shape);
-			
-			x+= containerSize + pieceBuffer;
-		}
-	}
 	
 	public void refresh(){
-		redraw();
+		//redraw();
 		repaint();
 	}
 	
