@@ -13,7 +13,7 @@ public class Progress {
 		int value = 0;
 
 		// TODO: Puzzle -> Progress = (numberTilesCovered/numberTotalTiles)*100
-		value = board.getPuzzleProgress();
+		//value = board.getPuzzleProgress();
 		
 
 		return value;
@@ -23,7 +23,7 @@ public class Progress {
 		int value = 0;
 
 		// TODO: Lightning -> Progress = numberTilesCovered/numberTotalTile)*100
-		value = board.getLightningProgress();
+		//value = board.getLightningProgress();
 		
 		return value;
 	}
@@ -33,7 +33,7 @@ public class Progress {
 
 		// TODO: Release -> Progress =
 		// numberReleaseTilesCovered/numberTotalReleaseTiles)*100
-		value = board.getReleaseProgress();
+		//value = board.getReleaseProgress();
 		
 		
 		return value;
