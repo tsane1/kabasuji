@@ -56,25 +56,27 @@ public class BuilderSplashScreen extends JWindow {
 				progressBar.setValue(count);
 				System.out.println(count);
 				if (count == 65) {
-					createFrame();
+					//createFrame();// OG uncom
 					execute.setVisible(false);//swapped this around with timer1.stop()
 					timer1.stop();
 				}
 			}
 
-			private void createFrame() throws HeadlessException {
-				try {
-					Application frame = new Application(new LevelEditSelectView(new SuperModel()));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+// OG Code
+//			private void createFrame() throws HeadlessException {
+//				try {
+//					Application frame = new Application(new LevelEditSelectView(new Model()));
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
 		};
 		timer1 = new Timer(50, al);
 		timer1.start();
 	}
-	public static void main(String[] args) {
-		execute = new BuilderSplashScreen();
-	}
+// OG Code
+//	public static void main(String[] args) {
+//		execute = new BuilderSplashScreen();
+//	}
 }
