@@ -14,8 +14,6 @@ import kabasuji.entities.Piece;
 import kabasuji.supers.SuperModel;
 import kabasuji.entities.PieceDrawer;
 import kabasuji.entities.PieceTile;
-import kabasuji.entities.PlayedPiece;
-
 
 /**
  * View class for the bullpen which displays the pieces.

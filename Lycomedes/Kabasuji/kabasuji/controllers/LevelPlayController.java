@@ -18,7 +18,7 @@ public class LevelPlayController implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String levelName = "Level " + e.getActionCommand();
+		String levelName = e.getActionCommand();
 		System.out.println(levelName);
 	}
 	

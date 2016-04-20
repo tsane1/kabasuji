@@ -1,17 +1,6 @@
 package kabasuji.views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
@@ -50,12 +39,12 @@ public class LevelPlay extends Screen {
 			
 	@Override
 	public void populate() {
-		board = new BoardView(level.getBoard());
-		bullpen = new BullpenView(model, level.getBullpen());
+		boardView = new BoardView(level.getBoard());
+		bullpenView = new BullpenView(level.getBullpen());
 		//progress = new ProgressView();
 		//achievement = new AchievementView();
-		this.add(board);
-		this.add(bullpen);
+		this.add(boardView);
+		this.add(bullpenView);
 
 	}
 	
