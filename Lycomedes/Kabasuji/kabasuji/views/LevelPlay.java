@@ -20,6 +20,8 @@ public class LevelPlay extends Screen {
 	private Level level;
 	private BoardView board;
 	private BullpenView bullpen;
+	private ProgressView progress;
+	private AchievementView achievement;
 
 	public LevelPlay(Level l) {
 		super(l.getLevelName(), l);
@@ -28,10 +30,12 @@ public class LevelPlay extends Screen {
 	
 	@Override
 	public void populate() {
-//		board = new BoardView(level.getBoard());
-//		bullpen = new BullpenView(level.getBullpen());
-//		this.add(board);
-//		this.add(bullpen);
+		board = new BoardView(level.getBoard());
+		bullpen = new BullpenView(model, level.getBullpen());
+		//progress = new ProgressView();
+		//achievement = new AchievementView();
+		this.add(board);
+		this.add(bullpen);
 	}
 	
 	@Override

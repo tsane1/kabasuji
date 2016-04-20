@@ -1,5 +1,11 @@
 package kabasuji.views;
 
+/** 
+ * 
+ * @author Chase
+ * 
+ */
+
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import java.awt.HeadlessException;

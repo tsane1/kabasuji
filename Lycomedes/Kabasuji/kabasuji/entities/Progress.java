@@ -1,5 +1,11 @@
 package kabasuji.entities;
 
+/**
+ * 
+ * @author Chase
+ *
+ */
+
 public class Progress {
 	Board board;
 	Tile boardArray[][];
