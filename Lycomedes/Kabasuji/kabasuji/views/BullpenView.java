@@ -127,16 +127,16 @@ public class BullpenView extends JPanel {
 		// 1. draw each piece at proper location
 		// 2. offset after each one is drawn
 		for (Piece p : bullpen.getPieces()) {
-			if(p == model.getSelected()){
+			if(p == bullpen.getSelected()){
 				offScreenGraphics.setColor(Color.MAGENTA);
 			}
 			else{
 				boolean played = false;
-				for(PlayedPiece p2 : model.getPlayedPieces()){
+				for(Piece p2 : bullpen.getPlayedPieces()){
 					if(p2.getPiece() == p){
 						played = true;
 						break;
-					}
+					}			
 				}
 				if(played) {
 					offScreenGraphics.setColor(Color.GRAY);

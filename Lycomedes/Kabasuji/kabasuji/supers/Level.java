@@ -66,19 +66,6 @@ public abstract class Level implements Serializable {
 		// TODO: Put actual quit logic here
 		System.out.println("Saving state and exiting.");		
 	}
-	
-
-	public Piece getSelected() {
-		return selectedPiece;
-	}
-
-	public void setSelectedPiece(Piece p) {
-		this.selectedPiece = p;
-	}
-
-	public ArrayList<Piece> getPlayedPieces(){
-		return piecesOnBoard;
-	}
 
 	public void setActivePiece(Piece p) {
 		activePiece = p;

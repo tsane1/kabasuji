@@ -12,12 +12,15 @@ import java.util.ArrayList;
 public class Bullpen implements Serializable{
 	
 	private ArrayList<Piece> pieces;
+	private ArrayList<Piece> playedPieces;
+	Piece selectedPiece;
 	
 	/**
 	 * generic constructor which creates a new, empty piece list
 	 */
 	public Bullpen() {
 		pieces = new ArrayList<Piece>();
+		playedPieces = new ArrayList<Piece>();		
 	}
 	
 	/**
@@ -47,6 +50,18 @@ public class Bullpen implements Serializable{
 	
 	public ArrayList<Piece> getPieces(){
 		return this.pieces;
+	}
+	
+	public Piece getSelected() {
+		return selectedPiece;
+	}
+
+	public void setSelectedPiece(Piece p) {
+		this.selectedPiece = p;
+	}
+	
+	public ArrayList<Piece> getPlayedPieces(){
+		return playedPieces;
 	}
 }
 
