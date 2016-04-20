@@ -215,7 +215,7 @@ public class SuperModel {
 		File file = new File(level.getLevelName() + ".lev");
 		try{
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
-			output.writeObject(this);
+			output.writeObject(level);
 			output.close();
 		}
 		catch(IOException e){
