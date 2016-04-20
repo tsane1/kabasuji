@@ -184,8 +184,12 @@ public class SuperModel {
 		else return null;
 	}
 	
-	public int numLevels() {
+	public int totalLevels() {
 		return defaultLevels.size() + userLevels.size();
+	}
+	
+	public int numUserLevels() {
+		return userLevels.size();
 	}
 
 	private Level loadLevel(String filename) {		

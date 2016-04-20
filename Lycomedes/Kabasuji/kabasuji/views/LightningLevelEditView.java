@@ -27,7 +27,11 @@ public class LightningLevelEditView extends Screen {
 		super(levelName, m);
 		this.level = this.model.getLevel(levelName);
 		
-		if(this.level == null || !this.level.getLevelType().equals("Lightning")) { // create new level
+		if(this.level == null) { // create new level
+			this.level = new PuzzleLevel("Level " + this.model.totalLevels());
+			this.setTitle("New Lightning Level: " + "Level " + (this.model.totalLevels() + 1));
+		}
+		else if(!this.level.getLevelType().equals("Lightning")) {
 			this.level = new PuzzleLevel(levelName);
 			this.setTitle("New Lightning Level: " + levelName);
 		}
@@ -82,7 +86,7 @@ public class LightningLevelEditView extends Screen {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Application frame = new Application(new LightningLevelEditView("Test Level", new SuperModel()));
+					Application frame = new Application(new LightningLevelEditView("Level 1", new SuperModel()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

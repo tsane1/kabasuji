@@ -27,7 +27,11 @@ public class PuzzleLevelEditView extends Screen {
 		super(levelName, m);
 		this.level = this.model.getLevel(levelName);
 		
-		if(this.level == null || !this.level.getLevelType().equals("Puzzle")) { // create new level
+		if(this.level == null) { // create new level
+			this.level = new PuzzleLevel("Level " + this.model.totalLevels());
+			this.setTitle("New Puzzle Level: " + "Level " + (this.model.totalLevels() + 1));
+		}
+		else if(!this.level.getLevelType().equals("Puzzle")) {
 			this.level = new PuzzleLevel(levelName);
 			this.setTitle("New Puzzle Level: " + levelName);
 		}

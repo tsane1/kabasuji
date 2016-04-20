@@ -27,7 +27,11 @@ public class ReleaseLevelEditView extends Screen {
 		super(levelName, m);
 		this.level = this.model.getLevel(levelName);
 		
-		if(this.level == null || !this.level.getLevelType().equals("Release")) { // create new level
+		if(this.level == null) { // create new level
+			this.level = new PuzzleLevel("Level " + this.model.totalLevels());
+			this.setTitle("New Release Level: " + "Level " + (this.model.totalLevels() + 1));
+		}
+		else if(!this.level.getLevelType().equals("Release")) {
 			this.level = new PuzzleLevel(levelName);
 			this.setTitle("New Release Level: " + levelName);
 		}

@@ -38,7 +38,7 @@ public class LevelEditSelectView extends Screen {
 		this.add(btnDeleteLevel);
 		
 		int idx; String name;
-		for(idx = 0; idx < 15; idx++) {
+		for(idx = 0; idx < this.model.numUserLevels(); idx++) {
 			name = Integer.toString(idx+1);
 			userLevelButtons.add(new JButton(name));
 			userLevelButtons.get(idx).setName(name);
@@ -56,7 +56,7 @@ public class LevelEditSelectView extends Screen {
 	@Override
 	public void installControllers() {
 		int idx;
-		for(idx = 0; idx < 15; idx++) {
+		for(idx = 0; idx < this.model.numUserLevels(); idx++) {
 			userLevelButtons.get(idx).addActionListener(new LevelEditController(this.app, this.model));
 		}
 		btnNewLevel.addActionListener(new NewLevelController(this.app, this.model));
