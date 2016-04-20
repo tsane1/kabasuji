@@ -34,16 +34,15 @@ public class LevelPlaySelectView extends Screen {
 		
 		int idx; String name;
 		for(idx = 0; idx < 15; idx++) {
-			name = Integer.toString(idx+1);
-			defaultLevelButtons.add(new JButton(name));
-			defaultLevelButtons.get(idx).setName(name);
-			defaultLevelButtons.get(idx).setActionCommand(name);
+			name = "Level " + (idx + 1);
+			defaultLevelButtons.add(new JButton(this.model.getLevel(name).getLevelName()));
+			defaultLevelButtons.get(idx).setActionCommand(this.model.getLevel(name).getLevelName());
 			defaultLevelButtons.get(idx).setBackground(SystemColor.text);
 			defaultLevelButtons.get(idx).setForeground(SystemColor.textHighlight);
 			defaultLevelButtons.get(idx).setFont(new Font("Kristen ITC", Font.BOLD, 20));
-			if(idx < 5) defaultLevelButtons.get(idx).setBounds(217+(105*(idx)), 200, 95, 80);
-			else if(idx < 10) defaultLevelButtons.get(idx).setBounds(217+(105*(idx-5)), 350, 95, 80);
-			else if(idx < 15) defaultLevelButtons.get(idx).setBounds(217+(105*(idx-10)), 500, 95, 80);
+			if(idx < 5) defaultLevelButtons.get(idx).setBounds(217+(105*(idx)), 180, 80, 95);
+			else if(idx < 10) defaultLevelButtons.get(idx).setBounds(217+(105*(idx-5)), 330, 80, 95);
+			else if(idx < 15) defaultLevelButtons.get(idx).setBounds(217+(105*(idx-10)), 480, 80, 95);
 			this.add(defaultLevelButtons.get(idx));
 		}
 	}

@@ -1,25 +1,13 @@
 package kabasuji.views;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
-
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.UndoController;
-import kabasuji.entities.LightningLevel;
+import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
@@ -31,18 +19,17 @@ public class ReleaseLevelEditView extends Screen {
 	private BoardView boardView;
 	private BullpenView bullpenView;
 	
-	//private JButton btnSave = new JButton("");
 	private JButton btnUndo = new JButton("Undo");
 	private JButton btnRedo = new JButton("Redo");
 	private JButton btnSave = new JButton("Save");
 	
 	public ReleaseLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
-		this.level = m.getLevel(levelName);
+		this.level = this.model.getLevel(levelName);
 		
-		if(this.level == null) { // create new level
-			this.level = new ReleaseLevel(levelName);
-			this.setTitle("New " + this.level.getLevelType() + " Level");
+		if(this.level == null || !this.level.getLevelType().equals("Release")) { // create new level
+			this.level = new PuzzleLevel(levelName);
+			this.setTitle("New Release Level: " + levelName);
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");
 		
@@ -95,7 +82,7 @@ public class ReleaseLevelEditView extends Screen {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Application frame = new Application(new ReleaseLevelEditView("hi", new SuperModel()));
+					Application frame = new Application(new ReleaseLevelEditView("Test Level", new SuperModel()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

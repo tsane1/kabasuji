@@ -1,63 +1,77 @@
 package kabasuji.views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import kabasuji.controllers.NewLevelController;
 import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+
 import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class NewLevelTypeSelectView extends Screen {
-	private SuperModel model;
 	private JButton btnLightning = new JButton("Lightning");
 	private JButton btnPuzzle = new JButton("Puzzle");
 	private JButton btnRelease = new JButton("Release");
 	
-	public NewLevelTypeSelectView(SuperModel model) {
-		super("Select Level Type", model);
+	public NewLevelTypeSelectView(SuperModel m) {
+		super("Select Level Type", m);
 	}
 
 	@Override
 	public void populate() {
+		JLabel lblLightning = new JLabel("Lightning");
+		lblLightning.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLightning.setForeground(SystemColor.textHighlight);
+		lblLightning.setFont(new Font("Kristen ITC", Font.BOLD, 18));
+		lblLightning.setBounds(71,175,256,50);
+		this.add(lblLightning);
+		
 		btnLightning.setName("Lightning");
-		btnLightning.setBackground(SystemColor.text);
-		btnLightning.setForeground(SystemColor.textHighlight);
-		btnLightning.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnLightning.setBounds(386, 284, 155, 57);
+		btnLightning.setActionCommand("Lightning");
+		btnLightning.setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/lightning_icon.png")));
+		btnLightning.setBounds(71, 215, 256, 256);
 		this.add(btnLightning);
 		
+		JLabel lblPuzzle = new JLabel("Puzzle");
+		lblPuzzle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPuzzle.setForeground(SystemColor.textHighlight);
+		lblPuzzle.setFont(new Font("Kristen ITC", Font.BOLD, 18));
+		lblPuzzle.setBounds(337,175,256,50);
+		this.add(lblPuzzle);
+		
 		btnPuzzle.setName("Puzzle");
-		btnPuzzle.setBackground(SystemColor.text);
-		btnPuzzle.setForeground(SystemColor.textHighlight);
-		btnPuzzle.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnPuzzle.setBounds(386, 354, 155, 57);
+		btnPuzzle.setActionCommand("Puzzle");
+		btnPuzzle.setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/puzzle_icon.png")));
+		btnPuzzle.setBounds(337, 215, 256, 256);
 		this.add(btnPuzzle);
 		
+		JLabel lblRelease = new JLabel("Release");
+		lblRelease.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRelease.setForeground(SystemColor.textHighlight);
+		lblRelease.setFont(new Font("Kristen ITC", Font.BOLD, 18));
+		lblRelease.setBounds(603,175,256,50);
+		this.add(lblRelease);
+		
 		btnRelease.setName("Release");
-		btnRelease.setBackground(SystemColor.text);
-		btnRelease.setForeground(SystemColor.textHighlight);
-		btnRelease.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnRelease.setBounds(386, 421, 155, 57);
+		btnRelease.setActionCommand("Release");
+		btnRelease.setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/release_icon.png")));
+		btnRelease.setBounds(603, 215, 256, 256);
 		this.add(btnRelease);
 	}
 
 	@Override
 	public void installControllers() {
-		
+		btnLightning.addActionListener(new NewLevelController(this.app, this.model));
+		btnRelease.addActionListener(new NewLevelController(this.app, this.model));
+		btnPuzzle.addActionListener(new NewLevelController(this.app, this.model));
 	}
 
 	@Override

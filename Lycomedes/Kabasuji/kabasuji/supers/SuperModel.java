@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
 
+import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
+import kabasuji.entities.PuzzleLevel;
 
 /** 
  * Model class containing all necessary game entities.
@@ -169,12 +171,14 @@ public class SuperModel {
 
 	public void setupDefaultLevels() {
 		for(int i = 0; i < 15; i++) {
-			String filename = "Level " + (i+1) + ".lev";
+			String filename = "Level " + (i+1);// + ".lev";
 			//defaultLevels.put(filename, loadLevel(filename));
+			defaultLevels.put(filename, new LightningLevel(filename));
 		}
 	}
 	
 	public Level getLevel(String name) {
+		if(name == null) return null;
 		if(defaultLevels.containsKey(name)) return defaultLevels.get(name);
 		else if(userLevels.containsKey(name)) return userLevels.get(name);
 		else return null;

@@ -1,15 +1,14 @@
 package kabasuji.views;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.UndoController;
 import kabasuji.entities.LightningLevel;
+import kabasuji.entities.PuzzleLevel;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
@@ -20,18 +19,17 @@ public class LightningLevelEditView extends Screen {
 	private BoardView boardView;
 	private BullpenView bullpenView;
 	
-	//private JButton btnSave = new JButton("");
 	private JButton btnUndo = new JButton("Undo");
 	private JButton btnRedo = new JButton("Redo");
 	private JButton btnSave = new JButton("Save");
 	
 	public LightningLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
-		this.level = m.getLevel(levelName);
+		this.level = this.model.getLevel(levelName);
 		
-		if(this.level == null) { // create new level
-			this.level = new LightningLevel(levelName);
-			this.setTitle("New " + this.level.getLevelType() + " Level");
+		if(this.level == null || !this.level.getLevelType().equals("Lightning")) { // create new level
+			this.level = new PuzzleLevel(levelName);
+			this.setTitle("New Lightning Level: " + levelName);
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");
 		
@@ -84,7 +82,7 @@ public class LightningLevelEditView extends Screen {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Application frame = new Application(new LightningLevelEditView("hi", new SuperModel()));
+					Application frame = new Application(new LightningLevelEditView("Test Level", new SuperModel()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -19,6 +19,6 @@ public class LevelEditController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String levelName = "Level " + e.getActionCommand();
-		app.setCurrScreen(new LevelEdit(new Level(levelName, "Puzzle")));
+		System.out.println(levelName);
 	}	
 }

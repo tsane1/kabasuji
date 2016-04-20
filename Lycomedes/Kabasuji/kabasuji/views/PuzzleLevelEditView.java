@@ -1,54 +1,35 @@
 package kabasuji.views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.UndoController;
-import kabasuji.entities.LightningLevel;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 import kabasuji.supers.Screen;
 
-import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
 
 public class PuzzleLevelEditView extends Screen {
 	private Level level;
 	private BoardView boardView;
 	private BullpenView bullpenView;
 	
-	//private JButton btnSave = new JButton("");
 	private JButton btnUndo = new JButton("Undo");
 	private JButton btnRedo = new JButton("Redo");
 	private JButton btnSave = new JButton("Save");
 	
 	public PuzzleLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
-		this.level = m.getLevel(levelName);
+		this.level = this.model.getLevel(levelName);
 		
-		if(this.level == null) { // create new level
+		if(this.level == null || !this.level.getLevelType().equals("Puzzle")) { // create new level
 			this.level = new PuzzleLevel(levelName);
-			this.setTitle("New " + this.level.getLevelType() + " Level");
+			this.setTitle("New Puzzle Level: " + levelName);
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");
 		
@@ -101,7 +82,7 @@ public class PuzzleLevelEditView extends Screen {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Application frame = new Application(new PuzzleLevelEditView("hi", new SuperModel()));
+					Application frame = new Application(new PuzzleLevelEditView("Test Level", new SuperModel()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
