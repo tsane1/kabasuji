@@ -3,15 +3,15 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
 import kabasuji.views.LevelEdit;
 
 public class RotateRightController implements ActionListener {
 
-	Model model;
+	SuperModel model;
 	LevelEdit screen;
 	
-	public RotateRightController(LevelEdit bs, Model lbm) {
+	public RotateRightController(LevelEdit bs, SuperModel lbm) {
 		this.screen = bs;
 		this.model = lbm;
 	}

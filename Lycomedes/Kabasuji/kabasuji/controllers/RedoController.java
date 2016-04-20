@@ -3,46 +3,44 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.supers.Model;
-import kabasuji.views.LevelEdit;
+import kabasuji.supers.Application;
+import kabasuji.supers.Move;
+import kabasuji.supers.SuperModel;
 
-
+/**
+ * Redo controller
+ * 
+ * @author SOMEBODY ELSE PUT THAT IN
+ * @author Tanuj Sane
+ */
 public class RedoController implements ActionListener {
-
-	Model model;
-	LevelEdit screen;
+	SuperModel model;
+	Application app;
 	
-	public RedoController(LevelEdit bs, Model lbm) {
-		this.screen = bs;
-		this.model = lbm;
+	public RedoController(Application app, SuperModel model) {
+		this.app = app;
+		this.model = model;
 	}
-
-	public boolean doRedo(){
-		Move m = model.getredoMove();
-		
-		if(m == null) {
-			return false;
-		}
-		
-		if(m.execute()) {
-			model.addMoveToUndo(m);
-		}
-		
-		//screen.redraw();
-		//screen.repaint();
-		return true;
-	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// "doRedo" should prolly be implemented here
-		try{
+		try {
 			doRedo();
 		}
-		catch(Exception ex){
+		catch(Exception ex) {
 			System.err.println("EXCEPTION CAUGHT : RedoController");
 			ex.printStackTrace();
 		}
-		
+	}
+	
+	public boolean doRedo() {
+		Move m = model.getRedoMove();
+		if(m == null) {
+			return false;
+		}		
+		if(m.execute()) {
+			model.addMoveToUndo(m);
+		}
+		return true;
 	}
 }

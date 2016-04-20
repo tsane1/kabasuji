@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import kabasuji.supers.Application;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
 
 import javax.swing.*;
 import java.awt.Container;
@@ -64,7 +64,7 @@ public class BuilderSplashScreen extends JWindow {
 
 			private void createFrame() throws HeadlessException {
 				try {
-					Application frame = new Application(new LevelEditSelectView(new Model()));
+					Application frame = new Application(new LevelEditSelectView(new SuperModel()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

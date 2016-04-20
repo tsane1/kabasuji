@@ -18,7 +18,8 @@ import javax.swing.border.EmptyBorder;
 
 import kabasuji.controllers.LevelEditController;
 import kabasuji.controllers.NewLevelController;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
+import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 
 import javax.swing.ScrollPaneConstants;
@@ -28,13 +29,12 @@ public class LevelEditSelectView extends Screen {
 	private JButton btnNewLevel = new JButton("New Level");
 	private JButton btnDeleteLevel = new JButton("Delete Level");
 	
-	public LevelEditSelectView(Model m) {
+	public LevelEditSelectView(SuperModel m) {
 		super("Edit a Level", m);
 	}
 	
 	@Override
 	public void populate() {
-		
 		// ditch this get a scroll thing implemented
 		btnNewLevel.setName("New Level");
 		btnNewLevel.setBackground(SystemColor.text);
@@ -66,7 +66,6 @@ public class LevelEditSelectView extends Screen {
 		}
 	}
 
-
 	@Override
 	public void installControllers() {
 		int idx;
@@ -75,14 +74,28 @@ public class LevelEditSelectView extends Screen {
 		}
 		btnNewLevel.addActionListener(new NewLevelController(this.app, this.model));
 	}
-
-	@Override
-	public void initModel() {
-	
-	}	
 	
 	@Override
 	public String getName() {
 		return "LevelEditSelect";
+	}
+
+	@Override
+	public void refresh() {
+		
+	}
+	
+	public static void main(String[] args) {
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Application frame = new Application(new LevelEditSelectView(new SuperModel()));
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

@@ -6,16 +6,16 @@ import java.awt.event.MouseEvent;
 
 import kabasuji.entities.Piece;
 import kabasuji.entities.PlayedPiece;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
 import kabasuji.views.BullpenView;
 
 
 public class SelectPieceController extends MouseAdapter{
 	
-	Model model;
+	SuperModel model;
 	BullpenView view;
 	
-	public SelectPieceController(Model model, BullpenView view){
+	public SelectPieceController(SuperModel model, BullpenView view){
 		this.model = model;
 		this.view = view;
 	}

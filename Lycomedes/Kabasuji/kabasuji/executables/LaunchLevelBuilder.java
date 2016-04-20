@@ -2,9 +2,10 @@ package kabasuji.executables;
 
 import java.awt.EventQueue;
 
-import kabasuji.supers.Model;
+import kabasuji.supers.Application;
+import kabasuji.supers.SuperModel;
 import kabasuji.views.BuilderSplashScreen;
-import kabasuji.views.LevelEditSelectView;
+import kabasuji.views.LevelPlay;
 
 public class LaunchLevelBuilder {
 
@@ -13,7 +14,7 @@ public class LaunchLevelBuilder {
 	 */
 	public static void main(String[] args) {
 
-		Model m = new Model();
+		SuperModel m = new SuperModel();
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -23,7 +24,7 @@ public class LaunchLevelBuilder {
 					//Sleep
 					//Thread.sleep(500);
 					//Launch into the main builder
-					LevelEditSelectView frame = new LevelEditSelectView(m);
+					//Application frame = new Application(new LevelPlay("YO", new Model()));
 					//Thread.sleep(500);
 					//frame.setVisible(true);
 				} catch (Exception e) {

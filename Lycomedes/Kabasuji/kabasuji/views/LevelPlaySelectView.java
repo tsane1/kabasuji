@@ -10,14 +10,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import kabasuji.controllers.LevelPlayController;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
+import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 
 public class LevelPlaySelectView extends Screen {
 	private ArrayList<JButton> defaultLevelButtons = new ArrayList<JButton>(15);
 	private JButton btnUserLevels = new JButton("User Levels");
 
-	public LevelPlaySelectView(Model m) {
+	public LevelPlaySelectView(SuperModel m) {
 		super("Select a Level", m);
 	}		
 	@Override
@@ -55,14 +56,28 @@ public class LevelPlaySelectView extends Screen {
 			defaultLevelButtons.get(idx).addActionListener(new LevelPlayController(this.app, this.model));
 		}
 	}
-
-	@Override
-	public void initModel() {
 	
+	@Override
+	public void refresh() {
+		
 	}
 	
 	@Override
 	public String getName() {
 		return "LevelPlaySelect";
+	}
+	
+	public static void main(String[] args) {
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Application frame = new Application(new LevelPlaySelectView(new SuperModel()));
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

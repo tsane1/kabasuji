@@ -3,16 +3,16 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.entities.Level;
 import kabasuji.supers.Application;
-import kabasuji.supers.Model;
+import kabasuji.supers.Level;
+import kabasuji.supers.SuperModel;
 import kabasuji.views.LevelPlay;
 
 public class LevelPlayController implements ActionListener {
-	private Model model;
+	private SuperModel model;
 	private Application app;
 		
-	public LevelPlayController(Application a, Model m) {
+	public LevelPlayController(Application a, SuperModel m) {
 		this.app = a;
 		this.model = m;
 	}
