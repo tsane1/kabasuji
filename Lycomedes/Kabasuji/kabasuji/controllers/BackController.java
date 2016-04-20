@@ -4,20 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import kabasuji.supers.Application;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
 import kabasuji.supers.Screen;
 import kabasuji.views.LevelEditSelectView;
 import kabasuji.views.LevelPlaySelectView;
 
 
 public class BackController implements ActionListener {
-	private Screen screen;
-	private Model model;
+	private SuperModel model;
 	private Application app;
 		
-	public BackController(Application a, Screen s, Model m) {
+	public BackController(Application a, SuperModel m) {
 		this.app = a;
-		this.screen = s;
 		this.model = m;
 	}
 	
@@ -25,14 +23,17 @@ public class BackController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(app.getCurrScreen().getName()) {
 		case "LevelPlaySelect": case "LevelEditSelect": 
+			app.setVisible(false);
 			app.dispose();
 			break;
 		case "LevelPlay":
-			app.setCurrScreen(new LevelPlaySelectView(new Model()));
+			app.setCurrScreen(new LevelPlaySelectView(model));
 			break;
-		case "LevelEdit":
-			app.setCurrScreen(new LevelEditSelectView(new Model()));
+		case "LightningLevelEditView": case "PuzzleLevelEditView": case "ReleaseLevelEditView": case "NewLevelTypeSelectView":
+			app.setCurrScreen(new LevelEditSelectView(model));
 			break;
+		default:
+				System.out.println("Error 404: Screen not found.");
 		}
 	}
 }

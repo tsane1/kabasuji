@@ -46,6 +46,4 @@ public class PlayedPiece {
 	public int getCol(){
 		return col;
 	}
-	
-
 }

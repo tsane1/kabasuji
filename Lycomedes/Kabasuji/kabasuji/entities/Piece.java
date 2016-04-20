@@ -27,7 +27,6 @@ public class Piece implements java.io.Serializable {
 		this.pieceID = "Piece " + idNum;;
 		try {
 			if(arr.length == 6) {
-
 				this.tiles = arr;
 			}
 		}

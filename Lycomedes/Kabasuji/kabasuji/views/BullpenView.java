@@ -1,22 +1,13 @@
 package kabasuji.views;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Polygon;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.Piece;
-import kabasuji.entities.PieceTile;
-import kabasuji.entities.PlayedPiece;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
 
 /**
  * View class for the bullpen which displays the pieces.
@@ -33,20 +24,16 @@ public class BullpenView extends JPanel {
 	
 	/** specific bullpen instance associated with the view. */
 	Bullpen bullpen;
-	/** overall model to keep track of state. */
-	Model model;
 	
-		
-	public final int containerSize = 192; //tilesize*6
-	public final int pieceBuffer = 8;
+	private final int containerSize = 192; //tilesize*6
+	private final int pieceBuffer = 8;
 	
 	Image offScreenImage = null;
 	Graphics offScreenGraphics = null;
 	
-	public BullpenView(Model model, Bullpen bullpen) {
+	public BullpenView(Bullpen bullpen) {
 		super();
 		this.bullpen = bullpen;
-		this.model = model;
 	}
 
 	
@@ -70,17 +57,12 @@ public class BullpenView extends JPanel {
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		
 		if(offScreenImage == null) {
-			
 			redraw();
 		}
-		
 		if(offScreenImage == null) {
 			System.err.println("Paint component method: bullpenview class");
 		}
-		
-		
 		g.drawImage(offScreenImage, 0, 0, this);
 	}
 	
@@ -111,5 +93,4 @@ public class BullpenView extends JPanel {
 		redraw();
 		repaint();
 	}
-	
 }
