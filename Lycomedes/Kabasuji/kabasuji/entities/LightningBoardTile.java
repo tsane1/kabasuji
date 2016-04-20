@@ -34,7 +34,7 @@ public class LightningBoardTile extends Tile{
 	 * @return void
 	 */
 	public void cover() {
-		covered = true;
+		covered = false;
 	}
 	
 	/**

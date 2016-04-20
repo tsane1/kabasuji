@@ -9,6 +9,11 @@ import kabasuji.entities.Bullpen;
 import kabasuji.entities.Piece;
 import kabasuji.supers.SuperModel;
 
+/**
+ * View class for the bullpen which displays the pieces.
+ * 
+ * @author Derek McMaster
+ */
 
 public class BullpenView extends JPanel {
 	
@@ -16,8 +21,10 @@ public class BullpenView extends JPanel {
 	 * serial version id from eclipse.
 	 */
 	private static final long serialVersionUID = -4329058249074751161L;
+	
+	/** specific bullpen instance associated with the view. */
 	Bullpen bullpen;
-			
+	
 	private final int containerSize = 192; //tilesize*6
 	private final int pieceBuffer = 8;
 	

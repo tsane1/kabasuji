@@ -29,7 +29,7 @@ public class Board implements Serializable{
 		//need to check if place is covered both the release points and where pieces tiles move to after that
 		//probably piece.tiles[0].row + row and piece.tiles[0].col + col.... where .row and .col have been updated to reflect the release point
 		//if extension of the piece is ever out of bounds return widget and throw exception, but if lightning just mark tiles in bounds
-		if(!boardArray[row][col].isCovered()){
+		if(!boardArray(row,col,piece)){
 			//add piece to list of placed pieces
 			placedPieces.add(piece);
 			//covers the place 
