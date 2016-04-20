@@ -7,6 +7,7 @@ import kabasuji.supers.Application;
 import kabasuji.supers.Application;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BuilderSplashScreen;
+import kabasuji.views.LevelEditSelectView;
 import kabasuji.views.LevelPlay;
 
 public class LaunchLevelBuilder {
@@ -44,7 +45,7 @@ public class LaunchLevelBuilder {
 		     public void run() {
 		          // code goes here.
 		 		try {
-					Application frame = new Application(new LevelEditSelectView(new Model()));
+					Application frame = new Application(new LevelEditSelectView(m));
 					frame.setVisible(false);
 					notify();
 					frame.setVisible(true);

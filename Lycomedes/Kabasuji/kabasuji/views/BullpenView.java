@@ -133,7 +133,7 @@ public class BullpenView extends JPanel {
 			else{
 				boolean played = false;
 				for(Piece p2 : bullpen.getPlayedPieces()){
-					if(p2.getPiece() == p){
+					if(p2 == p){
 						played = true;
 						break;
 					}			

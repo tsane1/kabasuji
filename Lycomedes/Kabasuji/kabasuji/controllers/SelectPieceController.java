@@ -1,11 +1,9 @@
 package kabasuji.controllers;
 
-import java.awt.Polygon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import kabasuji.entities.Piece;
-import kabasuji.entities.PlayedPiece;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BullpenView;
 
