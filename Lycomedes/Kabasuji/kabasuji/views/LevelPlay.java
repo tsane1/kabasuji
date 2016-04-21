@@ -12,6 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import kabasuji.entities.Achievement;
+import kabasuji.entities.Board;
+import kabasuji.entities.Bullpen;
+import kabasuji.entities.Progress;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
@@ -50,12 +54,14 @@ public class LevelPlay extends Screen {
 			
 	@Override
 	public void populate() {
-		board = new BoardView(level.getBoard());
-		bullpen = new BullpenView(model, level.getBullpen());
-		//progress = new ProgressView();
-		//achievement = new AchievementView();
+		BoardView board = new BoardView(level.getBoard());
+		BullpenView bullpen = new BullpenView(level.getBullpen());
+		ProgressView progress = new ProgressView(null);
+		AchievementView achievement = new AchievementView(null);
 		this.add(board);
 		this.add(bullpen);
+		this.add(progress);
+		this.add(achievement);
 
 	}
 	
