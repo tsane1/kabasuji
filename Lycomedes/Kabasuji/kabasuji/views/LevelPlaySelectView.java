@@ -16,21 +16,28 @@ import kabasuji.supers.Screen;
 
 public class LevelPlaySelectView extends Screen {
 	private ArrayList<JButton> defaultLevelButtons = new ArrayList<JButton>(15);
-	private JButton btnUserLevels = new JButton("User Levels");
+	private ArrayList<JButton> userLevelButtons = new ArrayList<JButton>();
+	private JButton btnNext = new JButton("Next");
+	private JButton btnPrev = new JButton("Previous");
 
 	public LevelPlaySelectView(SuperModel m) {
 		super("Select a Level", m);
 	}		
 	@Override
 	public void populate() {
+		btnNext.setActionCommand("Next");
+		btnNext.setBackground(SystemColor.text);
+		btnNext.setForeground(SystemColor.textHighlight);
+		btnNext.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		btnNext.setBounds(765, 683, 155, 57);
+		this.add(btnNext);
 		
-		// ditch this get a scroll thing implemented
-		btnUserLevels.setName("User Levels");
-		btnUserLevels.setBackground(SystemColor.text);
-		btnUserLevels.setForeground(SystemColor.textHighlight);
-		btnUserLevels.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnUserLevels.setBounds(765, 683, 155, 57);
-		this.add(btnUserLevels);
+		btnPrev.setActionCommand("Previous");
+		btnPrev.setBackground(SystemColor.text);
+		btnPrev.setForeground(SystemColor.textHighlight);
+		btnPrev.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		btnPrev.setBounds(13, 683, 155, 57);
+		this.add(btnPrev);
 		
 		int idx; String name;
 		for(idx = 0; idx < 15; idx++) {
@@ -58,7 +65,7 @@ public class LevelPlaySelectView extends Screen {
 	
 	@Override
 	public void refresh() {
-		
+		populate();
 	}
 	
 	@Override

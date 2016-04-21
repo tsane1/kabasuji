@@ -31,12 +31,13 @@ import kabasuji.entities.PuzzleLevel;
  */
 
 public class SuperModel {
-	private HashMap<String, Level> defaultLevels = new HashMap<String, Level>(15);
-	private HashMap<String, Level> userLevels = new HashMap<String, Level>();
-	private HashMap<Integer, Piece> allPieces = new HashMap<Integer, Piece>(35);
+	HashMap<String, Level> defaultLevels = new HashMap<String, Level>(15);
+	HashMap<String, Level> userLevels = new HashMap<String, Level>();
+	HashMap<Integer, Piece> allPieces = new HashMap<Integer, Piece>(35);
 	ArrayList<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	Stack<Move> undoStack = new Stack<Move>();
 	Stack<Move> redoStack = new Stack<Move>();
+	int whereIs = 0;
 	
 
 	public SuperModel() {
@@ -45,6 +46,10 @@ public class SuperModel {
 			pieceGrid.add(new PieceTile(i/6, i%6));
 		}
 		setupPieces();
+	}
+	
+	public void updateWhereIs(int delta) {
+		this.whereIs += delta;
 	}
 
 	public void setupPieces(){
