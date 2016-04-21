@@ -1,16 +1,17 @@
-package kabasuji.entities;
+package tests.entities;
 
 import junit.framework.TestCase;
 import kabasuji.supers.*;
+import kabasuji.entities.*;
 
 public class testPlacePiece extends TestCase {
 	
-	Model model;
+	SuperModel model;
 	Bullpen bullpen;
 	Board board;
 	protected void setUp() {
 		
-		model = new Model();
+		model = new SuperModel();
 		bullpen = new Bullpen();
 		board = new Board();
 		

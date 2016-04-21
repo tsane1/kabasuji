@@ -2,6 +2,12 @@ package kabasuji.supers;
 
 import javax.swing.JPanel;
 
+/** 
+ * Screen interface, for use as contentPane of Application.
+ *  
+ * @author Tanuj Sane
+ * @deprecated Required methods forced as abstract in Screen superclass.
+ */
 public interface IScreen {
 	public void populate(); // initialize view
 	public void installControllers(); // initialize controllers

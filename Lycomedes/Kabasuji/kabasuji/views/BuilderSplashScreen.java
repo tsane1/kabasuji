@@ -1,5 +1,11 @@
 package kabasuji.views;
 
+/**
+ * 
+ * @author Chase St. Laurent
+ * 
+ */
+
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import java.awt.HeadlessException;
@@ -10,7 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import kabasuji.supers.Application;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
 
 import javax.swing.*;
 import java.awt.Container;
@@ -56,25 +62,27 @@ public class BuilderSplashScreen extends JWindow {
 				progressBar.setValue(count);
 				System.out.println(count);
 				if (count == 65) {
-					createFrame();
+					//createFrame();// OG uncom
 					execute.setVisible(false);//swapped this around with timer1.stop()
 					timer1.stop();
 				}
 			}
 
-			private void createFrame() throws HeadlessException {
-				try {
-					Application frame = new Application(new LevelEditSelectView(new Model()));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+// OG Code
+//			private void createFrame() throws HeadlessException {
+//				try {
+//					Application frame = new Application(new LevelEditSelectView(new Model()));
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
 		};
 		timer1 = new Timer(50, al);
 		timer1.start();
 	}
-	public static void main(String[] args) {
-		execute = new BuilderSplashScreen();
-	}
+// OG Code
+//	public static void main(String[] args) {
+//		execute = new BuilderSplashScreen();
+//	}
 }

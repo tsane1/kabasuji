@@ -1,4 +1,4 @@
-package kabasuji.controllers;
+package kabasuji.supers;
 
 public abstract class Move {
 

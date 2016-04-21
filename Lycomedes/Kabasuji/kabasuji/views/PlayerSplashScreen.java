@@ -1,5 +1,11 @@
 package kabasuji.views;
 
+/** 
+ * 
+ * @author Chase St. Laurent
+ * 
+ */
+
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import java.awt.HeadlessException;
@@ -10,7 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import kabasuji.supers.Application;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
 
 import javax.swing.*;
 import java.awt.Container;
@@ -64,7 +70,7 @@ public class PlayerSplashScreen extends JWindow {
 
 			private void createFrame() throws HeadlessException {
 				try {
-					Application frame = new Application(new LevelPlaySelectView(new Model()));
+					Application frame = new Application(new LevelPlaySelectView(new SuperModel()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

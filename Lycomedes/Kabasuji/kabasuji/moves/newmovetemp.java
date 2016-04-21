@@ -1,6 +1,6 @@
 package kabasuji.moves;
 
-import kabasuji.controllers.Move;
+import kabasuji.supers.Move;
 
 public class newmovetemp extends Move{
 

@@ -3,18 +3,20 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.supers.Model;
+import kabasuji.supers.Application;
+import kabasuji.supers.Level;
+import kabasuji.supers.SuperModel;
 import kabasuji.views.LevelEdit;
 
 
 public class FlipXController implements ActionListener {
-
-	Model model;
-	LevelEdit screen;
+	SuperModel model;
+	Application app;
+	Level level;
 	
-	public FlipXController(LevelEdit bs, Model lbm) {
-		this.screen = bs;
-		this.model = lbm;
+	public FlipXController(Application a, SuperModel m) {
+		this.app = a;
+		this.model = m;
 	}
 	
 	public boolean doFlipX(){

@@ -1,5 +1,11 @@
 package kabasuji.views;
 
+/**
+ * 
+ * @author Chase St. Laurent
+ * 
+ */
+
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 

@@ -1,5 +1,11 @@
 package kabasuji.views;
 
+/**
+ * 
+ * @author Chase St. Laurent
+ * 
+ */
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
