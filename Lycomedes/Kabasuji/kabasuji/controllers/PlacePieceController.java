@@ -6,16 +6,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import kabasuji.entities.Piece;
-import kabasuji.entities.PlayedPiece;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
 import kabasuji.views.BoardView;
 
 
 public class PlacePieceController  extends MouseAdapter{
-	Model model;
+	SuperModel model;
 	BoardView view;
 	
-	PlacePieceController(Model model, BoardView view) {
+	PlacePieceController(SuperModel model, BoardView view) {
 		this.model = model;
 		this.view = view;
 	}
@@ -26,8 +25,9 @@ public class PlacePieceController  extends MouseAdapter{
 	}
 	@Override
 	public void mouseMoved(MouseEvent me){
-		Piece selected = model.getSelected();
-		if (selected == null) { return; }
+		//need getSelected()
+//		Piece selected = model.getSelected();
+//		if (selected == null) { return; }
 
 		//Polygon p = computeActivePolygon(me.getPoint(), model.getSelected());
 		//PlacedPiece pp = new PlacedPiece(model.getSelected(), p);

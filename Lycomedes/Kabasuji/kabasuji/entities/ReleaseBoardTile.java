@@ -1,13 +1,26 @@
 package kabasuji.entities;
 
 /**
- * Tile Subclass which will make up the Release Level Boards
+ * Tile Subclass which will make up the Release Level Boards.
+ * 
+ * @author Derek McMaster
  */
 public class ReleaseBoardTile extends Tile{
 
+	/**
+	 * serial Id for releaseboardtile.
+	 */
+	private static final long serialVersionUID = -2218330060081200831L;
+	/** row and column attributes for a tile object. */
 	int row, col;
+	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
 	
+	/**
+	 * Constructor for the releaseboardtile object.
+	 * @param int row
+	 * @param int col
+	 */
 	public ReleaseBoardTile(int row, int column) {
 		super(row, column);
 		
@@ -17,14 +30,26 @@ public class ReleaseBoardTile extends Tile{
 		
 	}
 
+	/**
+	 * Method to change a tile to covered state.
+	 * @return void
+	 */
 	public void cover() {
 		covered = true;
 	}
 	
+	/**
+	 * Method to change a tile to uncovered state.
+	 * @return void
+	 */
 	public void uncover(){
 		covered = false;
 	}
 	
+	/**
+	 * Method to determine a tile's covered state.
+	 * @return boolean
+	 */
 	public boolean isCovered() {
 		return covered;
 	}

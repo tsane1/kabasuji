@@ -1,12 +1,16 @@
 package kabasuji.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
 /** 
  * Main board object that represents a board of maximum size 12x12 and all the tiles and pieces it contains.
  * @author Michael
  *
  */
-public class Board {
+
+public class Board implements Serializable{
+
 	private int rows[], cols[];
 	private Tile boardArray[][]; //needs to be initialized
 	private ArrayList<Piece> placedPieces;
@@ -16,19 +20,19 @@ public class Board {
 		this.cols = new int[12];
 		this.placedPieces = new ArrayList<Piece>();
 		this.boardArray = new Tile[12][12];
-		initializeBoardArray();
+		//initializeBoardArray();
 		
 	}
-	
-	void initializeBoardArray(){
-		int i,j = 0;
-		for(i = 0;i<12;i++){
-			for(j = 0;j<12;j++){
-				UnplayableTile tile = new UnplayableTile(i, j);
-				boardArray[i][j] = tile;
-			}
-		}
-	}
+	//no unplayable tiles anymore??
+//	void initializeBoardArray(){
+//		int i,j = 0;
+//		for(i = 0;i<12;i++){
+//			for(j = 0;j<12;j++){
+//				UnplayableTile tile = new UnplayableTile(i, j);
+//				boardArray[i][j] = tile;
+//			}
+//		}
+//	}
 	/**
 	 * createBoardTile at the given row and col of the specified type.
 	 * 
@@ -85,6 +89,7 @@ public class Board {
 		}
 		
 	}
+
 	/**
 	 * Checks whether the piece is covering an already covered area.
 	 * 
@@ -135,9 +140,13 @@ public class Board {
 		//iterate over board array
 		for(i = 0;i<12;i++){
 			for(j = 0;j<12;j++){
-				UnplayableTile tile = new UnplayableTile(i, j);
+				LightningBoardTile tile = new LightningBoardTile(i, j);
+				ReleaseBoardTile tile2 = new ReleaseBoardTile(i, j);
+				PuzzleBoardTile tile3 = new PuzzleBoardTile(i, j);
 				//if this doesn't work use instancOf
-				if(!(boardArray[i][j].getClass() == tile.getClass())){
+				//if its a board tile
+				//old code was to check is spot was not an unplayable tile then count
+				if(boardArray[i][j].getClass() == tile.getClass() || boardArray[i][j].getClass() == tile2.getClass() || boardArray[i][j].getClass() == tile3.getClass()){
 					count++;
 				}
 			}
@@ -145,5 +154,12 @@ public class Board {
 		int value = ((placedPieces.size() * 6)/count) * 100;
 		return value;
 	}
+	public int getLightningProgress(){
+		return 0;
+	}
+	public int getReleaseProgress(){
+		return 0;
+	}
+
 	
 }

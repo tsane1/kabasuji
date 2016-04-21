@@ -1,15 +1,10 @@
 package kabasuji.entities;
 
-import javax.swing.JProgressBar;
-import javax.swing.JWindow;
-
-import java.awt.Container;
-import java.awt.HeadlessException;
-import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
+/**
+ * 
+ * @author Chase St. Laurent
+ * 
+ */
 
 public class Achievement {
 	Progress progress; // Change progress to ProgressBar java class?

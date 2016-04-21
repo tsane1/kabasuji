@@ -3,46 +3,44 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.supers.Model;
-import kabasuji.views.LevelEdit;
+import kabasuji.supers.Application;
+import kabasuji.supers.Move;
+import kabasuji.supers.SuperModel;
 
+/**
+ * Undo controller
+ * 
+ * @author SOMEBODY ELSE PUT THAT IN
+ * @author Tanuj Sane
+ */
 public class UndoController implements ActionListener {
-
-	Model model;
-	LevelEdit screen;
+	SuperModel model;
+	Application app;
 	
-	public UndoController(LevelEdit bs, Model lbm) {
-		this.screen = bs;
-		this.model = lbm;
+	public UndoController(Application app, SuperModel model) {
+		this.app = app;
+		this.model = model;
 	}
 	
-	public boolean doUndo(){
-		Move m = model.getLastMove();
-		
-		if(m == null){
-			return false;
-		}
-		
-		if(m.undo()){
-			model.addRedoableMove(m);
-		}
-		
-		//screen.redraw();
-		//screen.repaint();
-		
-		return true;
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS THE "doUndo" should prolly go here
-		try{
+		try {
 			doUndo();
 		}
-		catch(Exception ex){
+		catch(Exception x) {
 			System.err.println("EXCEPTION CAUGHT : UndoController");
-			ex.printStackTrace();
+			x.printStackTrace();
 		}
+	}
+	public boolean doUndo() throws Exception {
+		Move m = model.getLastMove();
+		if(m == null){
+			return false;
+		}		
+		if(m.undo()){
+			model.addRedoableMove(m);
+		}		
+		return true;
 	}
 }
 
