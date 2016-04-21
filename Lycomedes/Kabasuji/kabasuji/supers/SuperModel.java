@@ -1,5 +1,6 @@
 package kabasuji.supers;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Stack;
 
 import kabasuji.entities.LightningLevel;
@@ -33,8 +35,11 @@ import kabasuji.entities.PuzzleLevel;
 public class SuperModel {
 	private HashMap<String, Level> defaultLevels = new HashMap<String, Level>(15);
 	private HashMap<String, Level> userLevels = new HashMap<String, Level>();
+	
 	private HashMap<Integer, Piece> allPieces = new HashMap<Integer, Piece>(35);
 	ArrayList<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
+	HashMap<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
+	
 	Stack<Move> undoStack = new Stack<Move>();
 	Stack<Move> redoStack = new Stack<Move>();
 	
@@ -167,6 +172,12 @@ public class SuperModel {
 		allPieces.put(p33.getPieceID(), p33);
 		allPieces.put(p34.getPieceID(), p34);
 		allPieces.put(p35.getPieceID(), p35);	
+		
+		Random r = new Random();
+		for(Piece p: allPieces.values()){
+			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
+			colorMap.put(p, random);
+		}
 	}
 
 	public void setupDefaultLevels() {

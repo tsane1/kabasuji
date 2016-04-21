@@ -63,7 +63,7 @@ public abstract class Level implements Serializable {
 	}
 	
 	public void quit() {
-		// TODO: Put actual quit logic here
+		// TODO: Put actual quit logic here...windowlistener?
 		System.out.println("Saving state and exiting.");		
 	}
 
@@ -85,6 +85,22 @@ public abstract class Level implements Serializable {
 
 	public void addPiece(Piece p) {
 		piecesOnBoard.add(p);
+	}
+	
+	/**
+	 * Returns the currently selected piece.
+	 * @return a piece
+	 */
+	public Piece getSelected() {
+		return selectedPiece;
+	}
+
+	/**
+	 * Sets the selected piece to the passed piece.
+	 * @param Piece p
+	 */
+	public void setSelectedPiece(Piece p) {
+		this.selectedPiece = p;
 	}
 
 }
