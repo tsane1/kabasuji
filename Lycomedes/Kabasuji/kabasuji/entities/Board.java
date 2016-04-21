@@ -20,19 +20,19 @@ public class Board implements Serializable{
 		this.cols = new int[12];
 		this.placedPieces = new ArrayList<Piece>();
 		this.boardArray = new Tile[12][12];
-		//initializeBoardArray();
+		initializeBoardArray();
 		
 	}
-	//no unplayable tiles anymore??
-//	void initializeBoardArray(){
-//		int i,j = 0;
-//		for(i = 0;i<12;i++){
-//			for(j = 0;j<12;j++){
-//				UnplayableTile tile = new UnplayableTile(i, j);
-//				boardArray[i][j] = tile;
-//			}
-//		}
-//	}
+	
+	void initializeBoardArray(){
+		int i,j = 0;
+		for(i = 0;i<12;i++){
+			for(j = 0;j<12;j++){
+				UnplayableTile tile = new UnplayableTile(i, j);
+				boardArray[i][j] = tile;
+			}
+		}
+	}
 	/**
 	 * createBoardTile at the given row and col of the specified type.
 	 * 
@@ -140,13 +140,12 @@ public class Board implements Serializable{
 		//iterate over board array
 		for(i = 0;i<12;i++){
 			for(j = 0;j<12;j++){
-				LightningBoardTile tile = new LightningBoardTile(i, j);
-				ReleaseBoardTile tile2 = new ReleaseBoardTile(i, j);
-				PuzzleBoardTile tile3 = new PuzzleBoardTile(i, j);
+				UnplayableTile tile = new UnplayableTile(i, j);
+				
 				//if this doesn't work use instancOf
 				//if its a board tile
 				//old code was to check is spot was not an unplayable tile then count
-				if(boardArray[i][j].getClass() == tile.getClass() || boardArray[i][j].getClass() == tile2.getClass() || boardArray[i][j].getClass() == tile3.getClass()){
+				if(!(boardArray[i][j].getClass() == tile.getClass()) ){
 					count++;
 				}
 			}
