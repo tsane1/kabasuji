@@ -77,6 +77,6 @@ public class LevelPlaySelectView extends Screen {
 					e.printStackTrace();
 				}
 			}
-		});
+		});  
 	}
 }

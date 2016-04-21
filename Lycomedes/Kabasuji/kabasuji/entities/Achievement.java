@@ -2,7 +2,7 @@ package kabasuji.entities;
 
 /**
  * 
- * @author Chase
+ * @author Chase St. Laurent
  * 
  */
 
