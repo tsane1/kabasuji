@@ -9,7 +9,6 @@ import kabasuji.supers.Level;
  */
 public class Timer {
 	Level level;
-	
 
 	public Timer(){
 		super();
