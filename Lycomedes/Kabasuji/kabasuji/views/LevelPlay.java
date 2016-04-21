@@ -28,10 +28,7 @@ public class LevelPlay extends Screen {
 	
 	@Override
 	public void populate() {
-//		board = new BoardView(level.getBoard());
-//		bullpen = new BullpenView(level.getBullpen());
-//		this.add(board);
-//		this.add(bullpen);
+		
 	}
 	
 	@Override
