@@ -1,5 +1,11 @@
 package kabasuji.entities;
 
+/**
+ * 
+ * @author Chase
+ *
+ */
+
 public class Progress {
 	Board board;
 	Tile boardArray[][];
@@ -13,6 +19,8 @@ public class Progress {
 		int value = 0;
 
 		// TODO: Puzzle -> Progress = (numberTilesCovered/numberTotalTiles)*100
+		//value = board.getPuzzleProgress();
+		
 
 		return value;
 	}
@@ -21,7 +29,8 @@ public class Progress {
 		int value = 0;
 
 		// TODO: Lightning -> Progress = numberTilesCovered/numberTotalTile)*100
-
+		//value = board.getLightningProgress();
+		
 		return value;
 	}
 
@@ -30,7 +39,9 @@ public class Progress {
 
 		// TODO: Release -> Progress =
 		// numberReleaseTilesCovered/numberTotalReleaseTiles)*100
-
+		//value = board.getReleaseProgress();
+		
+		
 		return value;
 	}
 }

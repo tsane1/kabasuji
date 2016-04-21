@@ -1,18 +1,10 @@
 package kabasuji.supers;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.Piece;
-import kabasuji.entities.PlayedPiece;
 
 /**
  * Level superclass containing all elements common to the different level types.
@@ -29,10 +21,11 @@ public abstract class Level implements Serializable {
 	Board theBoard;
 	Bullpen theBullpen;
 	
-	Piece[] placedPieces;
+	ArrayList<Piece> piecesOnBoard = new ArrayList<Piece>();
+	ArrayList<Piece> piecesInBullpen = new ArrayList<Piece>();
+	
 	Piece selectedPiece = null;
-	PlayedPiece activePiece, draggingPiece;
-	ArrayList<PlayedPiece> playedPieces = new ArrayList<PlayedPiece>();
+	Piece activePiece, draggingPiece;
 	
 	public Level(String name, String type) {
 		this.name = name;
@@ -73,40 +66,25 @@ public abstract class Level implements Serializable {
 		// TODO: Put actual quit logic here
 		System.out.println("Saving state and exiting.");		
 	}
-	
 
-	public Piece getSelected() {
-		return selectedPiece;
-	}
-
-	public void setSelectedPiece(Piece p) {
-		this.selectedPiece = p;
-	}
-
-	public ArrayList<PlayedPiece> getPlayedPieces(){
-		return playedPieces;
-	}
-
-	public void setActivePiece(PlayedPiece p) {
+	public void setActivePiece(Piece p) {
 		activePiece = p;
 	}
 
-	public PlayedPiece getActivePiece(){
+	public Piece getActivePiece(){
 		return activePiece;
 	}
 
-	public PlayedPiece getDraggingPiece() {
+	public Piece getDraggingPiece() {
 		return activePiece;
 	}
 
-
-	public void setDraggingPiece(PlayedPiece p) {
+	public void setDraggingPiece(Piece p) {
 		activePiece = p;
 	}
 
-
-	public void addPiece(PlayedPiece p) {
-		playedPieces.add(p);
+	public void addPiece(Piece p) {
+		piecesOnBoard.add(p);
 	}
 
 }

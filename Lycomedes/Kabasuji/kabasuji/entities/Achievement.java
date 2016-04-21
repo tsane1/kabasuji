@@ -1,5 +1,11 @@
 package kabasuji.entities;
 
+/**
+ * 
+ * @author Chase
+ * 
+ */
+
 import javax.swing.JProgressBar;
 import javax.swing.JWindow;
 
