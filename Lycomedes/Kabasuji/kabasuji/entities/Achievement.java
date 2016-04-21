@@ -13,12 +13,13 @@ public class Achievement {
 		super();
 		this.progress = progress;
 	}
-	// TODO: Determine 3Star, 2Star, and 1Star criteria
-
-	public void updateAchievement() {
+	public boolean earnedAchievement() {
+		boolean isEarned = false;
 		
-		//TODO: what should i do here?
-		return;
+		if(isEarnedOneStar(progress)|| isEarnedTwoStar(progress)||isEarnedThreeStar(progress)){
+			isEarned = true;
+		}
+		return isEarned;
 	}
 
 	public boolean isEarnedOneStar(Progress progress) {

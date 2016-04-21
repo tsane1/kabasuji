@@ -12,9 +12,9 @@ public class MoveCounter {
 	Piece pieces;
 	Level level;
 	
-	public MoveCounter() {
+	public MoveCounter(Level level) {
 		super();
-		//this.pieces = pieces;
+		this.level = level;
 	}
 	
 	public int moveCount(){

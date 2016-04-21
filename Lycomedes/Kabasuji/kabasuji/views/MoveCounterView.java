@@ -1,6 +1,7 @@
 package kabasuji.views;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,9 +24,9 @@ public class MoveCounterView extends JPanel {
 
 		if (!moveCount.isLightning(level)) {
 			// TODO: Make this receive an integer
-			// JLabel timeCount = new JLabel(timer.timerCount());
-			// timeCount.setBounds(0, 0, 75, 25);// x,y,w,h
-			// add(timeCount);
+//			 JButton moveCount = new JButton(moveCount.moveCount());
+//			 timeCount.setBounds(0, 0, 75, 25);// x,y,w,h
+//			 add(timeCount);
 			this.setBounds(100, 300, 75, 25);
 		}
 		if (moveCount.isLightning(level)) {
@@ -37,4 +38,10 @@ public class MoveCounterView extends JPanel {
 		}
 
 	}
+	
+	//public String getMoveCount(){
+		//String count = moveCount.moveCount();
+		
+		//return count;
+	//}
 }
