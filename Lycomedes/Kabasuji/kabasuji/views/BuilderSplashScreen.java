@@ -57,7 +57,7 @@ public class BuilderSplashScreen extends JWindow {
 				System.out.println(count);
 				if (count == 65) {
 					//createFrame();// OG uncom
-					execute.setVisible(false);//swapped this around with timer1.stop()
+					//execute.setVisible(false);//swapped this around with timer1.stop()
 					timer1.stop();
 				}
 			}
