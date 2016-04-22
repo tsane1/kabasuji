@@ -44,6 +44,7 @@ public class SuperModel {
 
 	public SuperModel() {
 		setupDefaultLevels();
+		setupUserLevels();
 	}
 
 	public void setupDefaultLevels() {
@@ -51,6 +52,14 @@ public class SuperModel {
 			String filename = "Level " + (i+1);// + ".lev";
 			//defaultLevels.put(filename, loadLevel(filename));
 			defaultLevels.put(filename, new LightningLevel(filename));
+		}
+	}
+	
+	public void setupUserLevels() {
+		for(int i = 0; i < userLevels.size(); i++) {
+			String filename = "Level " + (i+1);// + ".lev";
+			//defaultLevels.put(filename, loadLevel(filename));
+			userLevels.put(filename, new LightningLevel(filename));
 		}
 	}
 	
