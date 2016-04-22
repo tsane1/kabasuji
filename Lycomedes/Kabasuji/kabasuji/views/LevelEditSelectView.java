@@ -4,15 +4,23 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.LevelEditController;
+import kabasuji.controllers.NavigateLevelSelectController;
 import kabasuji.controllers.NewLevelController;
 import kabasuji.supers.SuperModel;
 import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 
 public class LevelEditSelectView extends Screen {
-	private ArrayList<JButton> userLevelButtons = new ArrayList<JButton>(15);
+	private ArrayList<JButton> levelButtons = new ArrayList<JButton>();
+	private ArrayList<JLabel> levelNames = new ArrayList<JLabel>();
 	private JButton btnNewLevel = new JButton("New Level");
 	private JButton btnDeleteLevel = new JButton("Delete Level");
 	private JButton btnNext = new JButton("Next");
@@ -38,47 +46,52 @@ public class LevelEditSelectView extends Screen {
 		btnPrev.setBounds(13, 683, 155, 57);
 		this.add(btnPrev);
 		
+		for(int idx = 0; idx < this.model.numUserLevels(); idx++) {
+			levelNames.add(new JLabel());
+			levelNames.get(idx).setText(model.getUserLevelByIndex(idx).getLevelName());
+			levelNames.get(idx).setHorizontalAlignment(SwingConstants.CENTER);
+			levelNames.get(idx).setForeground(SystemColor.textHighlight);
+			levelNames.get(idx).setFont(new Font("Kristen ITC", Font.BOLD, 18));
+			levelNames.get(idx).setSize(128,50);
+			
+			levelButtons.add(new JButton());
+			levelButtons.get(idx).setActionCommand(model.getUserLevelByIndex(idx).getLevelName());
+			switch(model.getUserLevelByIndex(idx).getLevelType()) {
+			case "Puzzle":
+				levelButtons.get(idx).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/puzzle_icon_smol.png")));
+				break;
+			case "Lightning":
+				levelButtons.get(idx).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/lightning_icon_smol.png")));
+				break;
+			case "Release":
+				levelButtons.get(idx).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/release_icon_smol.png")));
+				break;
+			}
+			levelButtons.get(idx).setBackground(SystemColor.text);
+			levelButtons.get(idx).setSize(128, 128);
+		}		
 		
-		// ditch this get a scroll thing implemented
 		btnNewLevel.setActionCommand("New Level");
 		btnNewLevel.setBackground(SystemColor.text);
 		btnNewLevel.setForeground(SystemColor.textHighlight);
-		btnNewLevel.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnNewLevel.setBounds(13, 683, 155, 57);
-		this.add(btnNewLevel);
+		btnNewLevel.setFont(new Font("Kristen ITC", Font.BOLD, 72));
+		btnNewLevel.setText("+");
+		btnNewLevel.setSize(128, 128);
+		levelButtons.add(btnNewLevel);
+		levelNames.add(new JLabel()); // add a dummy label to keep indexing happy
 		
-		btnDeleteLevel.setActionCommand("Delete Level");
-		btnDeleteLevel.setBackground(SystemColor.text);
-		btnDeleteLevel.setForeground(SystemColor.textHighlight);
-		btnDeleteLevel.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnDeleteLevel.setBounds(765, 683, 155, 57);
-		this.add(btnDeleteLevel);
-		
-		int idx; String name;
-		for(idx = 0; idx < this.model.numUserLevels(); idx++) {
-			name = Integer.toString(idx+1);
-			userLevelButtons.add(new JButton(name));
-			userLevelButtons.get(idx).setName(name);
-			userLevelButtons.get(idx).setActionCommand(name);
-			userLevelButtons.get(idx).setBackground(SystemColor.text);
-			userLevelButtons.get(idx).setForeground(SystemColor.textHighlight);
-			userLevelButtons.get(idx).setFont(new Font("Kristen ITC", Font.BOLD, 20));
-			
-		}
-		
-		if(idx < 5) userLevelButtons.get(idx).setBounds(217+(105*(idx)), 180, 95, 80);
-		else if(idx < 10) userLevelButtons.get(idx).setBounds(217+(105*(idx-5)), 330, 95, 80);
-		else if(idx < 15) userLevelButtons.get(idx).setBounds(217+(105*(idx-10)), 480, 95, 80);
-		this.add(userLevelButtons.get(idx));
+		refresh();
 	}
 
 	@Override
 	public void installControllers() {
-		int idx;
-		for(idx = 0; idx < this.model.numUserLevels(); idx++) {
-			userLevelButtons.get(idx).addActionListener(new LevelEditController(this.app, this.model));
+		for(int idx = 0; idx < this.model.numUserLevels(); idx++) {
+			levelButtons.get(idx).addActionListener(new LevelEditController(this.app, this.model));
 		}
 		btnNewLevel.addActionListener(new NewLevelController(this.app, this.model));
+		btnDeleteLevel.addActionListener(new DeleteLevelController(this.app, this.model));
+		btnNext.addActionListener(new NavigateLevelSelectController(this.app, this.model));
+		btnPrev.addActionListener(new NavigateLevelSelectController(this.app, this.model));
 	}
 	
 	@Override
@@ -88,7 +101,36 @@ public class LevelEditSelectView extends Screen {
 
 	@Override
 	public void refresh() {
-		populate();
+		for(int idx = 0; idx < this.model.numUserLevels() + 1; idx++) {
+			this.remove(levelButtons.get(idx));
+			this.remove(levelNames.get(idx));
+		}		
+		this.validate();
+		this.repaint();
+		
+		btnNext.setEnabled(model.getPage() < (model.numUserLevels() - 1) / 10);
+		btnPrev.setEnabled(model.getPage() > 0);
+		btnNext.validate();
+		btnNext.repaint();
+		btnPrev.validate();
+		btnPrev.repaint();		
+		
+		for(int idx = 0; idx < 10; idx++) {
+			int btnIndex = (10*model.getPage()) + idx;
+			if(btnIndex > model.numUserLevels());
+			else {
+				System.out.println(btnIndex);
+				levelNames.get(btnIndex).setLocation(125+(138*(idx%5)), 150+(188*(idx/5)));
+				this.add(levelNames.get(btnIndex));
+				levelNames.get(btnIndex).validate();
+				levelNames.get(btnIndex).repaint();
+				
+				levelButtons.get(btnIndex).setLocation(125+(138*(idx%5)), 200+(188*(idx/5)));
+				this.add(levelButtons.get(btnIndex));
+				levelButtons.get(btnIndex).validate();
+				levelButtons.get(btnIndex).repaint();
+			}
+		}
 	}
 	
 	public static void main(String[] args) {

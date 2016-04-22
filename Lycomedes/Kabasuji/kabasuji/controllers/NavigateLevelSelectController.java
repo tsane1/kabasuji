@@ -19,13 +19,13 @@ public class NavigateLevelSelectController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 		case "Next": 
-			this.model.updateWhereIs(1);
+			this.model.nextPage();
 			break;
 		case "Previous": 
-			this.model.updateWhereIs(-1);
+			this.model.prevPage();
 			break;
 		default: 
-			System.err.println("NavigateLevelSelectController installed on wrong button!"); 
+			System.err.println("Error 64169198: NavigateLevelSelectController installed on wrong button!"); 
 			break;
 		}
 		this.app.getCurrScreen().refresh();

@@ -16,6 +16,7 @@ import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
 import kabasuji.entities.PuzzleLevel;
+import kabasuji.entities.ReleaseLevel;
 
 /** 
  * Model class containing all necessary game entities.
@@ -33,15 +34,15 @@ import kabasuji.entities.PuzzleLevel;
  */
 
 public class SuperModel {
-	HashMap<String, Level> defaultLevels = new HashMap<String, Level>(15);
-	HashMap<String, Level> userLevels = new HashMap<String, Level>();
+	ArrayList<Level> defaultLevels = new ArrayList<Level>(15);
+	ArrayList<Level> userLevels = new ArrayList<Level>();
 	HashMap<Integer, Piece> allPieces = new HashMap<Integer, Piece>(35);
 	ArrayList<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	HashMap<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
-	
 	Stack<Move> undoStack = new Stack<Move>();
 	Stack<Move> redoStack = new Stack<Move>();
-	int whereIs = 0;
+	Level activeLevel;
+	int page;
 	
 
 	public SuperModel() {
@@ -49,11 +50,29 @@ public class SuperModel {
 		for(int i = 0; i < 36; i++) {
 			pieceGrid.add(new PieceTile(i/6, i%6));
 		}
+		activeLevel = null;
+		page = 0;
 		setupPieces();
 	}
 	
-	public void updateWhereIs(int delta) {
-		this.whereIs += delta;
+	public void nextPage() {
+		this.page += 1;
+	}
+	
+	public void prevPage() {
+		this.page -= 1;
+	}
+	
+	public int getPage() {
+		return this.page;
+	}
+	
+	public void setActiveLevel(Level level) {
+		this.activeLevel = level;
+	}
+	
+	public Level getActiveLevel() {
+		return this.activeLevel;
 	}
 
 	public void setupPieces(){
@@ -188,19 +207,39 @@ public class SuperModel {
 		for(int i = 0; i < 15; i++) {
 			String filename = "Level " + (i+1);// + ".lev";
 			//defaultLevels.put(filename, loadLevel(filename));
-			defaultLevels.put(filename, new LightningLevel(filename));
+			defaultLevels.add(new LightningLevel(filename));
 		}
+		userLevels.add(new PuzzleLevel("Test"));
+		userLevels.add(new ReleaseLevel("Test2"));
+		userLevels.add(new LightningLevel("Test3"));
+		userLevels.add(new PuzzleLevel("Test4"));
+		userLevels.add(new ReleaseLevel("Test5"));		
+		userLevels.add(new PuzzleLevel("Test6"));
+		userLevels.add(new PuzzleLevel("Test7"));
+		userLevels.add(new LightningLevel("Test8"));
+		userLevels.add(new LightningLevel("Test9"));
+		userLevels.add(new ReleaseLevel("Test10"));		
+		userLevels.add(new PuzzleLevel("Test11"));
+		userLevels.add(new PuzzleLevel("Test12"));
 	}
 	
 	public Level getLevel(String name) {
 		if(name == null) return null;
-		if(defaultLevels.containsKey(name)) return defaultLevels.get(name);
-		else if(userLevels.containsKey(name)) return userLevels.get(name);
-		else return null;
+		for(Level level : defaultLevels) {
+			if(name.equals(level.getLevelName())) return level;
+		}
+		for(Level level : userLevels) {
+			if(name.equals(level.getLevelName())) return level;
+		}		
+		return null;
 	}
 	
-	public int totalLevels() {
-		return defaultLevels.size() + userLevels.size();
+	public Level getUserLevelByIndex(int idx) {
+		return userLevels.get(idx);
+	}
+	
+	public Level getDefaultLevelByIndex(int idx) {
+		return defaultLevels.get(idx);
 	}
 	
 	public int numUserLevels() {
@@ -236,7 +275,7 @@ public class SuperModel {
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		userLevels.put(level.getLevelName(), level);
+		userLevels.add(level);
 	}
 	
 	public void trackMove(Move m){
