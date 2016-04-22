@@ -3,30 +3,28 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
-import kabasuji.views.LevelEdit;
 
 public class RotateLeftController implements ActionListener {
 
 	SuperModel model;
-	LevelEdit screen;
+	Level level;
 	
-	public RotateLeftController(LevelEdit bs, SuperModel lbm) {
-		this.screen = bs;
-		this.model = lbm;
+	public RotateLeftController(Level l, SuperModel sm) {
+		this.level = l;
+		this.model = sm;
 	}
 	
-	public boolean doRotateLeft(){
-		if(model.getSelected() == null){
-			return false;
+	public void doRotateLeft(){
+		if(level.getSelected() == null){
+			return;
 		}
 		
-		model.getSelected().rotateLeft();
+		level.getSelected().rotateLeft();
 		
 		//screen.redraw();
 		//screen.repaint();
-		
-		return true;
 	}
 
 	@Override

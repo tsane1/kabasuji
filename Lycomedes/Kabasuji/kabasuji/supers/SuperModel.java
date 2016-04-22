@@ -55,6 +55,7 @@ public class SuperModel {
 		activeLevel = null;
 		page = 0;
 		setupPieces();
+		setupUserLevels();
 	}
 	
 	public void nextPage() {
@@ -223,6 +224,14 @@ public class SuperModel {
 		userLevels.add(new ReleaseLevel("Test10"));		
 		userLevels.add(new PuzzleLevel("Test11"));
 		userLevels.add(new PuzzleLevel("Test12"));
+	}
+	
+	public void setupUserLevels() {
+		for(int i = 0; i < userLevels.size(); i++) {
+			String filename = "Level " + (i+1);// + ".lev";
+			//defaultLevels.put(filename, loadLevel(filename));
+			userLevels.add(new LightningLevel(filename));
+		}
 	}
 	
 	public Level getLevel(String name) {

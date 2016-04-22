@@ -26,6 +26,7 @@ public abstract class Level implements Serializable {
 	HashMap<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
 
 	String name, type;
+	boolean locked;
 	
 	Board theBoard;
 	Bullpen theBullpen;
@@ -39,6 +40,7 @@ public abstract class Level implements Serializable {
 	public Level(String name, String type) {
 		this.name = name;
 		this.type = type;
+		locked = false;
 		this.theBoard = new Board();
 		this.theBullpen = new Bullpen();
 		
@@ -246,6 +248,14 @@ public abstract class Level implements Serializable {
 	
 	public HashMap<Integer,Piece> getAllPieces(){
 		return allPieces;
+	}
+	
+	public void lock() {
+		this.locked = true;
+	}
+	
+	public void unlock() {
+		this.locked = false;
 	}
 
 }

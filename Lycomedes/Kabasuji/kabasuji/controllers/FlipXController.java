@@ -6,30 +6,26 @@ import java.awt.event.ActionListener;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
-import kabasuji.views.LevelEdit;
 
 
 public class FlipXController implements ActionListener {
 	SuperModel model;
-	Application app;
 	Level level;
 	
-	public FlipXController(Application a, SuperModel m) {
-		this.app = a;
+	public FlipXController(Level l, SuperModel m) {
+		this.level = l;
 		this.model = m;
 	}
 	
-	public boolean doFlipX(){
-		if(model.getSelected() == null){
-			return false;
+	public void doFlipX(){
+		if(level.getSelected() == null){
+			return;
 		}
 		
-		model.getSelected().flipX();
+		level.getSelected().flipX();
 		
 		//screen.redraw();
 		//screen.repaint();
-		
-		return true;
 	}
 
 	@Override

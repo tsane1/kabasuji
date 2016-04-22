@@ -3,31 +3,29 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
-import kabasuji.views.LevelEdit;
 
 
 public class FlipYController implements ActionListener {
 
 	SuperModel model;
-	LevelEdit screen;
+	Level level;
 	
-	public FlipYController(LevelEdit bs, SuperModel lbm) {
-		this.screen = bs;
-		this.model = lbm;
+	public FlipYController(Level l, SuperModel sm) {
+		this.level = l;;
+		this.model = sm;
 	}
 	
-	public boolean doFlipY(){
-		if(model.getSelected() == null){
-			return false;
+	public void doFlipY(){
+		if(level.getSelected() == null){
+			return;
 		}
 		
-		model.getSelected().flipY();
+		level.getSelected().flipY();
 		
 		//screen.redraw();
 		//screen.repaint();
-		
-		return true;
 	}
 
 	@Override
