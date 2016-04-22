@@ -6,17 +6,17 @@ import kabasuji.entities.*;
 
 public class testPlacePiece extends TestCase {
 	
-	SuperModel model;
+	Level level;
 	Bullpen bullpen;
 	Board board;
 	protected void setUp() {
 		
-		model = new SuperModel();
+		level = new PuzzleLevel("Test");
 		bullpen = new Bullpen();
 		board = new Board();
 		
 		for(int idx = 0; idx<= 5; idx++){
-			bullpen.addPiece(model.getAllPieces().get(idx));
+			bullpen.addPiece(level.getAllPieces().get(idx));
 		}
 		//creates a square of size x size
 		int size = 12;

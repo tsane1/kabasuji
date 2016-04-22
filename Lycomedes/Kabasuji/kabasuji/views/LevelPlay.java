@@ -33,7 +33,7 @@ public class LevelPlay extends Screen {
 		this.level = m.getLevel(levelName);
 		this.setTitle(level.getLevelName() + ": " + level.getLevelType());
 		this.boardView = new BoardView(level.getBoard());
-		this.bullpenView = new BullpenView(level.getBullpen());
+		this.bullpenView = new BullpenView(level);
 	}
 	
 	public Level getLevel() {
@@ -43,7 +43,7 @@ public class LevelPlay extends Screen {
 	@Override
 	public void populate() {
 		BoardView boardView = new BoardView(level.getBoard());
-		BullpenView bullpenView = new BullpenView(level.getBullpen());
+		BullpenView bullpenView = new BullpenView(level);
 		ProgressView progress = new ProgressView(null);
 		AchievementView achievement = new AchievementView(null);
 		
