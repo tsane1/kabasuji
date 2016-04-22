@@ -3,30 +3,50 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.supers.Model;
-import kabasuji.views.LevelEdit;
+import org.w3c.dom.events.MouseEvent;
+
+import kabasuji.entities.Board;
+import kabasuji.supers.Level;
+import kabasuji.supers.Screen;
+import kabasuji.supers.SuperModel;
+
+/**
+ * 
+ * @author irjacoway
+ *
+ */
 
 
-public class TileSelectController implements MouseAdapter {
+public class TileSelectController extends Board{
 
-	Model model;
-	LevelEdit screen;
+	SuperModel supermodel;
+	Screen screen;
+	Level level;
 	
-	public TileSelectController(LevelEdit bs, Model lbm) {
-		this.screen = bs;
-		this.model = lbm;
+	public TileSelectController(Level level, Screen s, SuperModel sm) {
+		this.level = level;
+		this.screen = s;
+		this.supermodel = sm;
 	}
-	@Override
-	public void mousePressed(){
-		
-	}
+//	@Override
+//	public void mousePressed(){
+//		
+//	}
 	
-	public boolean doFlipX(){
-		if(model.getSelected() == null){
+// This is mostly psuedo code as of now
+	public boolean selectTile(){
+		if(level.getSelected() == null){
 			return false;
 		}
+		if (leftClick.getX() == board.getX()) && ()
+			//turn tile on & if release 
+			if(level.getLevelType() == "Release"){
+				//do increment number on tile
+			}
 		
-		model.getSelected().flipX();
+		level.get();
+		if (rightClick.getX() == board.getX())
+			//increment color of number 
 		
 		//screen.redraw();
 		//screen.repaint();
