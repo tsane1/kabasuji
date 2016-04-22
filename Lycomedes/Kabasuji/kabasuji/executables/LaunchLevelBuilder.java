@@ -4,9 +4,11 @@ import kabasuji.supers.Application;
 
 import java.awt.EventQueue;
 
-import kabasuji.supers.Model;
+import kabasuji.supers.Application;
+import kabasuji.supers.SuperModel;
 import kabasuji.views.BuilderSplashScreen;
 import kabasuji.views.LevelEditSelectView;
+import kabasuji.views.LevelPlay;
 
 public class LaunchLevelBuilder {
 
@@ -16,7 +18,7 @@ public class LaunchLevelBuilder {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 
-		Model m = new Model();
+		SuperModel m = new SuperModel();
 		//edit s
 		Thread t1;
 		Thread t2;
@@ -30,6 +32,7 @@ public class LaunchLevelBuilder {
 					//Sleep
 					//Thread.sleep(500);
 					//Launch into the main builder
+
 					//Thread.sleep(500);
 					//frame.setVisible(true);
 					//wait(50);
@@ -48,7 +51,7 @@ public class LaunchLevelBuilder {
 		     public void run() {
 		          // code goes here.
 		 		try {
-					Application frame = new Application(new LevelEditSelectView(new Model()));
+					Application frame = new Application(new LevelEditSelectView(m));
 					frame.setVisible(false);
 					
 					

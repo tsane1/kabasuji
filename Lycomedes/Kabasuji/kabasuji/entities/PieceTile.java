@@ -7,7 +7,7 @@ import java.io.Serializable;
  * 
  * @author Derek McMaster
  */
-public class PieceTile extends Tile implements Serializable{
+public class PieceTile extends Tile implements Serializable {
 
 	/**
 	 * serial number.

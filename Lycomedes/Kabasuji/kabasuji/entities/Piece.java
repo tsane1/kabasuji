@@ -27,7 +27,6 @@ public class Piece implements java.io.Serializable {
 		this.pieceID = "Piece " + idNum;;
 		try {
 			if(arr.length == 6) {
-
 				this.tiles = arr;
 			}
 		}
@@ -117,5 +116,29 @@ public class Piece implements java.io.Serializable {
 	 */
 	public PieceTile[] getTileLocations() {
 		return tiles;
+	}
+	
+	/**
+	 * Overridden equality method for pieces.
+	 * @param Piece p
+	 * @return boolean
+	 */
+	@Override
+	public boolean equals(Object obj){
+		if(obj == null) { return false; }
+		if(obj instanceof Piece) {
+			Piece p = (Piece) obj;
+			return this.pieceIDnum == p.pieceIDnum;
+		}
+		return false;
+	}
+	
+	/**
+	 * Overridden hascode method to add piece to a hashmap.
+	 * @return int
+	 */
+	@Override
+	public int hashCode() {
+		return this.pieceIDnum;
 	}
 }

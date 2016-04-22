@@ -1,5 +1,11 @@
 package kabasuji.views;
 
+/**
+ * 
+ * @author Chase St. Laurent
+ * 
+ */
+
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import java.awt.HeadlessException;
@@ -10,7 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import kabasuji.supers.Application;
-import kabasuji.supers.Model;
+import kabasuji.supers.SuperModel;
 
 import javax.swing.*;
 import java.awt.Container;
@@ -61,6 +67,7 @@ public class BuilderSplashScreen extends JWindow {
 					timer1.stop();
 				}
 			}
+
 // OG Code
 //			private void createFrame() throws HeadlessException {
 //				try {

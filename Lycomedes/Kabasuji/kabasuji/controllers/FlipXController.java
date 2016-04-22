@@ -3,31 +3,29 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.supers.Model;
-import kabasuji.views.LevelEdit;
+import kabasuji.supers.Application;
+import kabasuji.supers.Level;
+import kabasuji.supers.SuperModel;
 
 
 public class FlipXController implements ActionListener {
-
-	Model model;
-	LevelEdit screen;
+	SuperModel model;
+	Level level;
 	
-	public FlipXController(LevelEdit bs, Model lbm) {
-		this.screen = bs;
-		this.model = lbm;
+	public FlipXController(Level l, SuperModel m) {
+		this.level = l;
+		this.model = m;
 	}
 	
-	public boolean doFlipX(){
-		if(model.getSelected() == null){
-			return false;
+	public void doFlipX(){
+		if(level.getSelected() == null){
+			return;
 		}
 		
-		model.getSelected().flipX();
+		level.getSelected().flipX();
 		
 		//screen.redraw();
 		//screen.repaint();
-		
-		return true;
 	}
 
 	@Override
