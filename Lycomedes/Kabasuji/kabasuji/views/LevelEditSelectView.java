@@ -91,8 +91,14 @@ public class LevelEditSelectView extends Screen {
 		btnNewLevel.setText("+");
 		btnNewLevel.setSize(128, 128);
 		levelButtons.add(btnNewLevel);
-		levelNames.add(new JLabel()); // add a dummy label to keep indexing happy
 		
+		JLabel newLevel = new JLabel("New Level");
+		newLevel.setHorizontalAlignment(SwingConstants.CENTER);
+		newLevel.setForeground(SystemColor.textHighlight);
+		newLevel.setFont(new Font("Kristen ITC", Font.BOLD, 18));
+		newLevel.setSize(128,50);
+		levelNames.add(newLevel); // add a dummy label to keep indexing happy
+				
 		refresh();
 	}
 

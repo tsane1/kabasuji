@@ -212,6 +212,14 @@ public class SuperModel {
 			//defaultLevels.put(filename, loadLevel(filename));
 			defaultLevels.add(new LightningLevel(filename));
 		}
+	}
+	
+	public void setupUserLevels() {
+//		for(int i = 0; i < userLevels.size(); i++) {
+//			String filename = "Level " + (i+1);// + ".lev";
+//			//defaultLevels.put(filename, loadLevel(filename));
+//			userLevels.add(new LightningLevel(filename));
+//		}
 		userLevels.add(new PuzzleLevel("Test"));
 		userLevels.add(new ReleaseLevel("Test2"));
 		userLevels.add(new LightningLevel("Test3"));
@@ -224,14 +232,6 @@ public class SuperModel {
 		userLevels.add(new ReleaseLevel("Test10"));		
 		userLevels.add(new PuzzleLevel("Test11"));
 		userLevels.add(new PuzzleLevel("Test12"));
-	}
-	
-	public void setupUserLevels() {
-		for(int i = 0; i < userLevels.size(); i++) {
-			String filename = "Level " + (i+1);// + ".lev";
-			//defaultLevels.put(filename, loadLevel(filename));
-			userLevels.add(new LightningLevel(filename));
-		}
 	}
 	
 	public Level getLevel(String name) {
