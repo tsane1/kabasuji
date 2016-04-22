@@ -3,6 +3,7 @@ package kabasuji.supers;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -29,6 +30,7 @@ import kabasuji.entities.ReleaseLevel;
  * </p>
  * 
  * @author Tanuj Sane
+ * @author Derek McMaster
  * @since 4/19/2016
  *
  */
@@ -277,7 +279,20 @@ public class SuperModel {
 		}
 		userLevels.add(level);
 	}
-	
+
+	public boolean deleteLevel(Level lev){
+		try{
+			String filepath = "/levels/"+lev.getLevelName()+".lev";
+			File level = new File(filepath);
+			return level.delete();
+		}
+		catch(Exception e){
+			System.err.println("Error deleting level: " + lev.getLevelName());
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	public void trackMove(Move m){
 		undoStack.add(m);
 		redoStack.clear();
@@ -303,9 +318,6 @@ public class SuperModel {
 			return null;
 		}
 		return redoStack.pop();
-	}
-	public HashMap<Integer,Piece> getAllPieces(){
-		return allPieces;
 	}
 	
 	public static void main(String[] args) {
