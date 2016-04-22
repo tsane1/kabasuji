@@ -323,8 +323,4 @@ public class SuperModel {
 		}
 		return redoStack.pop();
 	}
-	
-	public static void main(String[] args) {
-		SuperModel sm = new SuperModel();
-	}
 }

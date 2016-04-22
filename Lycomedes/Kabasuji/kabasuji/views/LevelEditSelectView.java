@@ -19,7 +19,7 @@ import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 
 /**
- * <b>VIEW</b> class that provides interface for choosing levels to play.
+ * <b>VIEW</b> class that provides interface for choosing levels to edit.
  * <p>
  * LevelEditSelectView (extends {@code Screen}) displays buttons for selection
  * of which level to edit, as well as the names of the levels. Navigation is done
@@ -29,7 +29,6 @@ import kabasuji.supers.Screen;
  * </p>
  * @author Tanuj Sane
  * @since 4/21/2016
- *
  */
 
 public class LevelEditSelectView extends Screen {
