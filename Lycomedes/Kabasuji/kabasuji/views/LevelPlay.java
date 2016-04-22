@@ -15,18 +15,21 @@ import kabasuji.supers.Screen;
  * </p>
  * 
  * @author Tanuj Sane
+ * @author Chase St. Laurent
  *
  */
 public class LevelPlay extends Screen {
+	
 	private Level level;
-
 	private BoardView boardView;
 	private BullpenView bullpenView;
 	private ProgressView progress;
 	private AchievementView achievement;
 
+
 	public LevelPlay(String levelName, SuperModel m) {
 		super(levelName, m);
+		
 		this.level = m.getLevel(levelName);
 		this.setTitle(level.getLevelName() + ": " + level.getLevelType());
 		this.boardView = new BoardView(level.getBoard());
@@ -39,12 +42,16 @@ public class LevelPlay extends Screen {
 			
 	@Override
 	public void populate() {
-		boardView = new BoardView(level.getBoard());
-		bullpenView = new BullpenView(level.getBullpen());
-		//progress = new ProgressView();
-		//achievement = new AchievementView();
+		BoardView boardView = new BoardView(level.getBoard());
+		BullpenView bullpenView = new BullpenView(level.getBullpen());
+		ProgressView progress = new ProgressView(null);
+		AchievementView achievement = new AchievementView(null);
+		
+		//populate by adding the views
 		this.add(boardView);
 		this.add(bullpenView);
+		this.add(progress);
+		this.add(achievement);
 
 	}
 	

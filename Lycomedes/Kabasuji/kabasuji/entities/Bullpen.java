@@ -12,17 +12,19 @@ import java.util.ArrayList;
 public class Bullpen implements Serializable{
 	
 	/** arraylist of pieces in the bullpen for the level. */
-	private ArrayList<Piece> pieces;
+	ArrayList<Piece> pieces;
 	/** arraylist of pieces that were previously in the bullpen and are now on the board. */
-	private ArrayList<Piece> playedPieces;
-	/** selected piece */
-	Piece selectedPiece = null;
+	ArrayList<Piece> playedPieces;
+	/** ArrayList of original pieces in the bullpen to use in the view */
+	ArrayList<Piece> originalSet;
+
 	
 	/**
 	 * generic constructor which creates a new, empty piece list.
 	 */
 	public Bullpen() {
 		pieces = new ArrayList<Piece>();
+		originalSet = pieces;
 		playedPieces = new ArrayList<Piece>();		
 	}
 	
@@ -33,6 +35,7 @@ public class Bullpen implements Serializable{
 	 */
 	public Bullpen(ArrayList<Piece> pieces) {
 		this.pieces = pieces;
+		originalSet = pieces;
 		playedPieces = new ArrayList<Piece>();
 	}
 	
@@ -41,7 +44,7 @@ public class Bullpen implements Serializable{
 	 * @param piece
 	 */
 	public boolean addPiece(Piece piece) {
-		 return this.pieces.add(piece);
+		 return this.pieces.add(piece) && this.originalSet.add(piece);
 	}
 	
 	/**
@@ -49,7 +52,7 @@ public class Bullpen implements Serializable{
 	 * @param piece
 	 */
 	public boolean removePiece(Piece piece){
-		return this.pieces.remove(piece);
+		return this.pieces.remove(piece) && this.originalSet.remove(piece);
 	}
 	
 	/**
@@ -58,22 +61,6 @@ public class Bullpen implements Serializable{
 	 */
 	public ArrayList<Piece> getPieces(){
 		return this.pieces;
-	}
-	
-	/**
-	 * Returns the currently selected piece.
-	 * @return a piece
-	 */
-	public Piece getSelected() {
-		return selectedPiece;
-	}
-
-	/**
-	 * Sets the selected piece to the passed piece.
-	 * @param Piece p
-	 */
-	public void setSelectedPiece(Piece p) {
-		this.selectedPiece = p;
 	}
 	
 	/**
@@ -100,6 +87,10 @@ public class Bullpen implements Serializable{
 	 */
 	public boolean addPieceBackToBullpen(Piece p) {
 		return pieces.add(p) && playedPieces.remove(p);
+	}
+	
+	public ArrayList<Piece> getOriginalSet(){
+		return originalSet;
 	}
 }
 

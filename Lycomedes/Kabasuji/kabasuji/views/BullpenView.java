@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.Piece;
+import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 import kabasuji.entities.PieceDrawer;
 import kabasuji.entities.PieceTile;
@@ -31,9 +32,10 @@ public class BullpenView extends JPanel {
 	/** drawing object that knows how to draw pieces. */
 	PieceDrawer drawer = new PieceDrawer();
 	
-	/** specific bullpen instance associated with the view. */
-	Bullpen bullpen;
-	/** containersize global, equal to 6xtilesize or 6x32. */	
+
+	Level currLevel;
+	
+/** containersize global, equal to 6xtilesize or 6x32. */	
 	public final int containerSize = 192;
 	/** buffer to separate pieces when drawing. */
 	public final int pieceBuffer = 8;
@@ -48,12 +50,22 @@ public class BullpenView extends JPanel {
 	 * @param Model model
 	 * @param Bullpen bullpen
 	 */
-	public BullpenView(Bullpen bullpen) {
-
+	public BullpenView(Level currLevel) {
 		super();
-		this.bullpen = bullpen;
+		this.currLevel = currLevel;
 	}
 
+	public ArrayList<Piece> getPlayedPieces(){
+		return currLevel.getBullpen().getPlayedPieces();
+	}
+	
+	public ArrayList<Piece> getPiecesInBullpen() {
+		return currLevel.getBullpen().getPieces();
+	}
+	
+	public ArrayList<Piece> getAllPieces() {
+		return currLevel.getBullpen().getOriginalSet();
+	}
 	/**
 	 * Overridden painting function for getting the minimum size.
 	 * Minimum size is one piece tall and wide with a buffer on all sides.
@@ -125,14 +137,14 @@ public class BullpenView extends JPanel {
 
 		// 1. draw each piece at proper location
 		// 2. offset after each one is drawn
-		for (Piece p : bullpen.getPieces()) {
-			if(p == bullpen.getSelected()){
+		for (Piece p : currLevel.getBullpen().getOriginalSet()) {
+			if(p == currLevel.getSelected()){
 				offScreenGraphics.setColor(Color.MAGENTA);
 			}
 			else{
 				boolean played = false;
-				for(Piece p2 : bullpen.getPlayedPieces()){
-					if(p2 == p){
+				for(Piece p2 : currLevel.getBullpen().getPlayedPieces()){
+					if(p2.equals(p)){
 						played = true;
 						break;
 					}			

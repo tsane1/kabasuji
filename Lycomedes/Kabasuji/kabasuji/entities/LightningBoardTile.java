@@ -4,6 +4,7 @@ package kabasuji.entities;
  * Tile Subclass which will make up the Lightning Level Boards.
  * 
  * @author Derek McMaster
+ * @author Michael
  */
 public class LightningBoardTile extends Tile{
 
