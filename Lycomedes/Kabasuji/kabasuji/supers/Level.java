@@ -27,9 +27,9 @@ public abstract class Level implements Serializable {
 
 	String name, type;
 	boolean locked;
-	
 	Board theBoard;
 	Bullpen theBullpen;
+	int numStars;
 	
 	ArrayList<Piece> piecesOnBoard = new ArrayList<Piece>();
 	ArrayList<Piece> piecesInBullpen = new ArrayList<Piece>();
@@ -37,16 +37,38 @@ public abstract class Level implements Serializable {
 	Piece selectedPiece = null;
 	Piece activePiece, draggingPiece;
 	
+	/**
+	 * Constructor for creating a new level. Achievement set to new, Board is 12x12 unplayable tiles, and bullpen contains all 35.
+	 * @param String name
+	 * @param String type
+	 */
 	public Level(String name, String type) {
 		this.name = name;
 		this.type = type;
 		locked = false;
 		this.theBoard = new Board();
 		this.theBullpen = new Bullpen();
+		this.numStars = 0;
 		
 		for(int i = 0; i < 36; i++) {
 			pieceGrid.add(new PieceTile(i/6, i%6));
 		}
+	}
+	
+	/**
+	 * Constructor for loading a level.
+	 * @param String name
+	 * @param String type
+	 * @param Board b
+	 * @param Bullpen bp
+	 * @param int numStars
+	 */
+	public Level(String name, String type, Board b, Bullpen bp, int numStars){
+		this.name = name;
+		this.type = type;
+		this.theBoard = b;
+		this.theBullpen = bp;
+		this.numStars = numStars;
 	}
 	
 	public Level(){
@@ -179,6 +201,10 @@ public abstract class Level implements Serializable {
 			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
 			colorMap.put(p, random);
 		}
+	}
+	
+	public void updateAchievement(){
+		
 	}
 	
 	public String getLevelName() {
