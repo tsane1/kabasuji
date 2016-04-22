@@ -19,6 +19,18 @@ import kabasuji.supers.SuperModel;
 import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 
+/**
+ * <b>VIEW</b> class that provides interface for choosing levels to play.
+ * <p>
+ * LevelPlaySelectView (extends {@code Screen}) displays buttons for selection
+ * of which level to play, as well as the names of the levels. Navigation is done
+ * via "Next" and "Previous" controllers attached to buttons. This class displays
+ * both default and user-created levels.
+ * </p>
+ * @author Tanuj Sane
+ * @since 4/21/2016
+ *
+ */
 public class LevelPlaySelectView extends Screen {
 	private ArrayList<JButton> levelButtons = new ArrayList<JButton>();
 	private ArrayList<JLabel> levelNames = new ArrayList<JLabel>();
@@ -130,7 +142,7 @@ public class LevelPlaySelectView extends Screen {
 		
 		for(int idx = 0; idx < 10; idx++) {
 			int btnIndex = (10*model.getPage()) + idx;
-			if(btnIndex > model.totalLevels());
+			if(btnIndex >= model.totalLevels());
 			else {
 				System.out.println(btnIndex);
 				levelNames.get(btnIndex).setLocation(125+(138*(idx%5)), 150+(188*(idx/5)));

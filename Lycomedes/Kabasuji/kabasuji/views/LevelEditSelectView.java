@@ -18,6 +18,20 @@ import kabasuji.supers.SuperModel;
 import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 
+/**
+ * <b>VIEW</b> class that provides interface for choosing levels to play.
+ * <p>
+ * LevelEditSelectView (extends {@code Screen}) displays buttons for selection
+ * of which level to edit, as well as the names of the levels. Navigation is done
+ * via "Next" and "Previous" controllers attached to buttons. This class ignores
+ * the default levels and only displays editable user levels. Buttons are also 
+ * provided to create new levels and delete existing levels.
+ * </p>
+ * @author Tanuj Sane
+ * @since 4/21/2016
+ *
+ */
+
 public class LevelEditSelectView extends Screen {
 	private ArrayList<JButton> levelButtons = new ArrayList<JButton>();
 	private ArrayList<JLabel> levelNames = new ArrayList<JLabel>();
