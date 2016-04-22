@@ -1,9 +1,9 @@
 package kabasuji.supers;
 
 /**
- * <b>SUPER</b>
+ * <b>SUPER - Controllers</b> Superclass built to handle move events
  * <p>
- * 
+ * Move class that controller
  * </p>
  * @author Tanuj Sane
  *
