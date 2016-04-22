@@ -244,6 +244,10 @@ public class SuperModel {
 		return defaultLevels.get(idx);
 	}
 	
+	public int totalLevels() {
+		return numUserLevels() + 15;
+	}
+	
 	public int numUserLevels() {
 		return userLevels.size();
 	}

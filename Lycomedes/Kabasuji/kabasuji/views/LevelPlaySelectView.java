@@ -130,7 +130,7 @@ public class LevelPlaySelectView extends Screen {
 		
 		for(int idx = 0; idx < 10; idx++) {
 			int btnIndex = (10*model.getPage()) + idx;
-			if(btnIndex > 15 + model.numUserLevels());
+			if(btnIndex > model.totalLevels());
 			else {
 				System.out.println(btnIndex);
 				levelNames.get(btnIndex).setLocation(125+(138*(idx%5)), 150+(188*(idx/5)));
