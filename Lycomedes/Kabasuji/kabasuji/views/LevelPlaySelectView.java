@@ -69,17 +69,19 @@ public class LevelPlaySelectView extends Screen {
 			levelButtons.get(idx).setActionCommand(model.getDefaultLevelByIndex(idx).getLevelName());
 			switch(model.getDefaultLevelByIndex(idx).getLevelType()) {
 			case "Puzzle":
-				levelButtons.get(idx).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/puzzle_icon_smol.png")));
+				levelButtons.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/puzzle_icon_smol.png")));
 				break;
 			case "Lightning":
-				levelButtons.get(idx).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/lightning_icon_smol.png")));
+				levelButtons.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/lightning_icon_smol.png")));
 				break;
 			case "Release":
-				levelButtons.get(idx).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/release_icon_smol.png")));
+				levelButtons.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/release_icon_smol.png")));
 				break;
 			}
+			levelButtons.get(idx).setDisabledIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/locked_icon.png")));
 			levelButtons.get(idx).setBackground(SystemColor.text);
 			levelButtons.get(idx).setSize(128, 128);
+			levelButtons.get(idx).setEnabled(!model.getDefaultLevelByIndex(idx).isLocked());
 		}	
 		
 		for(int idx = 0; idx < this.model.numUserLevels(); idx++) {
@@ -89,22 +91,25 @@ public class LevelPlaySelectView extends Screen {
 			levelNames.get(idx + 15).setForeground(SystemColor.textHighlight);
 			levelNames.get(idx + 15).setFont(new Font("Kristen ITC", Font.BOLD, 18));
 			levelNames.get(idx + 15).setSize(128,50);
-			
+
 			levelButtons.add(new JButton());
 			levelButtons.get(idx + 15).setActionCommand(model.getUserLevelByIndex(idx).getLevelName());
+
 			switch(model.getUserLevelByIndex(idx).getLevelType()) {
 			case "Puzzle":
-				levelButtons.get(idx + 15).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/puzzle_icon_smol.png")));
+				levelButtons.get(idx + 15).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/puzzle_icon_smol.png")));
 				break;
 			case "Lightning":
-				levelButtons.get(idx + 15).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/lightning_icon_smol.png")));
+				levelButtons.get(idx + 15).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/lightning_icon_smol.png")));
 				break;
 			case "Release":
-				levelButtons.get(idx + 15).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/release_icon_smol.png")));
+				levelButtons.get(idx + 15).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/release_icon_smol.png")));
 				break;
 			}
+			levelButtons.get(idx + 15).setDisabledIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/locked_icon.png")));
 			levelButtons.get(idx + 15).setBackground(SystemColor.text);
 			levelButtons.get(idx + 15).setSize(128, 128);
+			levelButtons.get(idx + 15).setEnabled(!model.getUserLevelByIndex(idx).isLocked());
 		}		
 			
 		refresh();
@@ -144,7 +149,6 @@ public class LevelPlaySelectView extends Screen {
 			int btnIndex = (10*model.getPage()) + idx;
 			if(btnIndex >= model.totalLevels());
 			else {
-				System.out.println(btnIndex);
 				levelNames.get(btnIndex).setLocation(125+(138*(idx%5)), 150+(188*(idx/5)));
 				this.add(levelNames.get(btnIndex));
 				levelNames.get(btnIndex).validate();
