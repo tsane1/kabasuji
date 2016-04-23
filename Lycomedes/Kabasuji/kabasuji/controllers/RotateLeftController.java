@@ -28,16 +28,8 @@ public class RotateLeftController implements ActionListener {
 		
 		level.getSelected().rotateLeft();
 		//casting is messed up cuz the screens are all in other packages
-//		switch (app.getCurrScreen().getName()){
-//			case "LevelPlay":
-//				(LevelPlay) app.getCurrScreen().getBullpenView().refresh();
-//			case "PuzzleLevelEditView":
-//				(PuzzleLevelEditView) app.getCurrScreen().getBullpenView().refresh();
-//			case "LightningLevelEditView":
-//				(LightningLevelEditView) app.getCurrScreen().getBullpenView().refresh();
-//			case "ReleaseLevelEditView":
-//				(ReleaseLevelEditView) app.getCurrScreen().getBullpenView().refresh();
-//		}
+		if(app.getCurrScreen().getName() != "LevelPlay")
+			; //should push onto undo stack
 		app.getCurrScreen().getBullpenView().refresh();
 	}
 
