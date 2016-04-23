@@ -22,7 +22,7 @@ public class LevelPlayController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		model.setActiveLevel(model.getLevel(e.getActionCommand()));
-		this.app.setCurrScreen(new LevelPlayView(this.model.getActiveLevel().getLevelName(), this.model));
+		if(!model.getActiveLevel().isLocked()) this.app.setCurrScreen(new LevelPlayView(this.model.getActiveLevel().getLevelName(), this.model));
 	}
 	
 }

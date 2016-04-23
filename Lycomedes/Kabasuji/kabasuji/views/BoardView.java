@@ -3,6 +3,7 @@ package kabasuji.views;
 import javax.swing.JPanel;
 
 import kabasuji.entities.Board;
+import kabasuji.supers.SuperModel;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -10,9 +11,9 @@ import javax.swing.ImageIcon;
 public class BoardView extends JPanel {
 	private Board board;
 	
-	public BoardView(Board board) {
+	public BoardView(SuperModel model) {
 		super();
-		this.board = board;
+		this.board = model.getActiveLevel().getBoard();
 		setLayout(null);
 		
 		JLabel label = new JLabel("");

@@ -211,6 +211,7 @@ public class SuperModel {
 			String filename = "Level " + (i+1);// + ".lev";
 			//defaultLevels.put(filename, loadLevel(filename));
 			defaultLevels.add(new LightningLevel(filename));
+			if(i < 1) defaultLevels.get(i).unlock();
 		}
 	}
 	
@@ -221,6 +222,7 @@ public class SuperModel {
 //			userLevels.add(new LightningLevel(filename));
 //		}
 		userLevels.add(new PuzzleLevel("Test"));
+		userLevels.get(0).unlock();
 		userLevels.add(new ReleaseLevel("Test2"));
 		userLevels.add(new LightningLevel("Test3"));
 		userLevels.add(new PuzzleLevel("Test4"));

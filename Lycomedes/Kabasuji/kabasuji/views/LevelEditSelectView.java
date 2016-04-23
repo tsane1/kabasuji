@@ -35,7 +35,6 @@ public class LevelEditSelectView extends Screen {
 	private ArrayList<JButton> levelButtons = new ArrayList<JButton>();
 	private ArrayList<JLabel> levelNames = new ArrayList<JLabel>();
 	private JButton btnNewLevel = new JButton("New Level");
-	private JButton btnDeleteLevel = new JButton("Delete Level");
 	private JButton btnNext = new JButton("Next");
 	private JButton btnPrev = new JButton("Previous");
 	
@@ -108,7 +107,6 @@ public class LevelEditSelectView extends Screen {
 			levelButtons.get(idx).addActionListener(new LevelEditController(this.app, this.model));
 		}
 		btnNewLevel.addActionListener(new NewLevelController(this.app, this.model));
-		btnDeleteLevel.addActionListener(new DeleteLevelController(this.app, this.model));
 		btnNext.addActionListener(new NavigateLevelSelectController(this.app, this.model));
 		btnPrev.addActionListener(new NavigateLevelSelectController(this.app, this.model));
 	}

@@ -20,6 +20,7 @@ import kabasuji.entities.PieceTile;
  * View class for the bullpen which displays the pieces.
  * 
  * @author Derek McMaster
+ * @author Tanuj Sane
  */
 
 public class BullpenView extends JPanel {
@@ -32,7 +33,6 @@ public class BullpenView extends JPanel {
 	/** drawing object that knows how to draw pieces. */
 	PieceDrawer drawer = new PieceDrawer();
 	
-
 	Level currLevel;
 	
 /** containersize global, equal to 6xtilesize or 6x32. */	
@@ -50,14 +50,11 @@ public class BullpenView extends JPanel {
 	 * @param Model model
 	 * @param Bullpen bullpen
 	 */
-	public BullpenView(Level currLevel) {
+	public BullpenView(SuperModel m) {
 		super();
-		this.currLevel = currLevel;
+		this.currLevel = m.getActiveLevel();
 	}
 	
-	public BullpenView(Bullpen b) {
-		
-	}
 
 	public ArrayList<Piece> getPlayedPieces(){
 		return currLevel.getBullpen().getPlayedPieces();
