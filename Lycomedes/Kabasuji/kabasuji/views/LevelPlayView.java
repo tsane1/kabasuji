@@ -16,6 +16,8 @@ import kabasuji.supers.Screen;
  * 
  * @author Tanuj Sane
  * @author Chase St. Laurent
+ * @author Ian Jacoway 
+ * @since 4/23/16
  *
  */
 public class LevelPlayView extends Screen {
@@ -66,6 +68,10 @@ public class LevelPlayView extends Screen {
 		return "LevelPlay";
 	}
 	
+	@Override
+	public BullpenView getBullpenView(){
+		return this.bullpenView;
+	}
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {

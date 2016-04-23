@@ -13,7 +13,12 @@ import kabasuji.supers.Screen;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JButton;
-
+/**
+ * 
+ * @author lots of someones
+ * @since 4/23/16
+ *
+ */
 public class PuzzleLevelEditView extends Screen {
 	private Level level;
 	private BoardView boardView;
@@ -81,6 +86,11 @@ public class PuzzleLevelEditView extends Screen {
 	@Override
 	public void refresh() {
 
+	}
+	
+	@Override
+	public BullpenView getBullpenView(){
+		return this.bullpenView;
 	}
 
 	@Override

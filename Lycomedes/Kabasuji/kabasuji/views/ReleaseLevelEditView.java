@@ -14,6 +14,13 @@ import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 import kabasuji.supers.Screen;
 
+/**
+ * 
+ * @author lots of someones
+ * @since 4/23/16
+ *
+ */
+
 public class ReleaseLevelEditView extends Screen {
 	private Level level;
 	private BoardView boardView;
@@ -86,6 +93,11 @@ public class ReleaseLevelEditView extends Screen {
 	@Override
 	public String getName() {
 		return this.level.getLevelType() + "LevelEditView";
+	}
+
+	@Override
+	public BullpenView getBullpenView(){
+		return this.bullpenView;
 	}
 	
 	public static void main(String[] args) {
