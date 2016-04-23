@@ -4,6 +4,7 @@ package kabasuji.entities;
  * Tile Subclass which will make up the Release Level Boards.
  * 
  * @author Derek McMaster
+ * @author Michael
  */
 public class ReleaseBoardTile extends Tile{
 
@@ -12,7 +13,7 @@ public class ReleaseBoardTile extends Tile{
 	 */
 	private static final long serialVersionUID = -2218330060081200831L;
 	/** row and column attributes for a tile object. */
-	int row, col;
+	int row, col, releaseNum;
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
 	
@@ -24,6 +25,7 @@ public class ReleaseBoardTile extends Tile{
 	public ReleaseBoardTile(int row, int column) {
 		super(row, column);
 		
+		this.releaseNum = 0;
 		this.row = row;
 		this.col = column;
 		covered = false;
@@ -53,5 +55,15 @@ public class ReleaseBoardTile extends Tile{
 	public boolean isCovered() {
 		return covered;
 	}
-	
+	/**
+	 * increments release number up to six
+	 */
+	public void updateReleaseNum(){
+		if(releaseNum<6){
+			releaseNum++;
+		}else{
+			releaseNum = 0;
+		}
+		
+	}
 }
