@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
+import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 
 /**
@@ -15,15 +16,21 @@ import kabasuji.supers.SuperModel;
 public class RotateRightController implements ActionListener {
 	Application app;
 	Level level;
+	SuperModel model;
 	
-	public RotateRightController(Application a, Level l) {
+	public RotateRightController(Application a, Level l, SuperModel mod) {
 		this.app = a;
 		this.level = l;
+		this.model = mod;
 	}
 	
-	public void doRotateRight(){
+	public boolean doRotateRight(){
+		Move m = model.getLastMove();
+		if(m == null){
+			return false;
+		}		
 		if(level.getSelected() == null){
-			return;
+			return false;
 		}
 		
 		level.getSelected().rotateRight();
@@ -31,6 +38,11 @@ public class RotateRightController implements ActionListener {
 		if(app.getCurrScreen().getName() != "LevelPlay")
 			; //should push onto undo stack
 		app.getCurrScreen().getBullpenView().refresh();
+
+		if(m.execute()) {
+			model.addMoveToUndo(m);
+		}
+		return true;
 	}
 
 	@Override

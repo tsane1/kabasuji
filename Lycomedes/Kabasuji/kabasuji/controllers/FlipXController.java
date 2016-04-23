@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
+import kabasuji.supers.Move;
 import kabasuji.supers.Screen;
+import kabasuji.supers.SuperModel;
 
 /**
  * A controller to Flip Pieces across the X axis.
@@ -15,15 +17,21 @@ import kabasuji.supers.Screen;
 public class FlipXController implements ActionListener {
 	Application app;
 	Level level;
+	SuperModel model;
 	
-	public FlipXController(Application a, Level l) {
+	public FlipXController(Application a, Level l, SuperModel mod) {
 		this.app= a;
 		this.level = l;
+		this.model = mod;
 	}
 	
-	public void doFlipX(){
+	public boolean doFlipX(){
+		Move m = model.getLastMove();
+		if(m == null){
+			return false;
+		}		
 		if(level.getSelected() == null){
-			return;
+			return false;
 		}
 	
 		level.getSelected().flipX();
@@ -31,6 +39,11 @@ public class FlipXController implements ActionListener {
 		if(app.getCurrScreen().getName() != "LevelPlay")
 			; //should push onto undo stack
 		app.getCurrScreen().getBullpenView().refresh();
+		
+		if(m.execute()) {
+			model.addMoveToUndo(m);
+		}
+		return true;
 	}
 
 	@Override
