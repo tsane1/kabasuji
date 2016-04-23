@@ -5,7 +5,10 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.JButton;
+
+import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.RedoController;
+import kabasuji.controllers.SaveLevelController;
 import kabasuji.controllers.UndoController;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
@@ -38,8 +41,8 @@ public class ReleaseLevelEditView extends Screen {
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");
 		
-		this.boardView = new BoardView(this.level.getBoard());
-		this.bullpenView = new BullpenView(level);
+		this.boardView = new BoardView(this.model);
+		this.bullpenView = new BullpenView(this.model);
 	}
 	
 	@Override
@@ -76,6 +79,8 @@ public class ReleaseLevelEditView extends Screen {
 	public void installControllers() {
 		btnUndo.addActionListener(new UndoController(this.app, this.model));
 		btnRedo.addActionListener(new RedoController(this.app, this.model));
+		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
+		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
 	}
 
 	@Override

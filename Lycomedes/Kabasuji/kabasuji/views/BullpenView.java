@@ -33,7 +33,7 @@ public class BullpenView extends JPanel {
 	/** drawing object that knows how to draw pieces. */
 	PieceDrawer drawer = new PieceDrawer();
 	
-	Level currLevel;
+	Level level;
 	
 /** containersize global, equal to 6xtilesize or 6x32. */	
 	public final int containerSize = 192;
@@ -52,20 +52,21 @@ public class BullpenView extends JPanel {
 	 */
 	public BullpenView(SuperModel m) {
 		super();
-		this.currLevel = m.getActiveLevel();
+		this.level = m.getActiveLevel();
+		this.setBounds(13, 522, 908, 218);
 	}
 	
 
 	public ArrayList<Piece> getPlayedPieces(){
-		return currLevel.getBullpen().getPlayedPieces();
+		return level.getBullpen().getPlayedPieces();
 	}
 	
 	public ArrayList<Piece> getPiecesInBullpen() {
-		return currLevel.getBullpen().getPieces();
+		return level.getBullpen().getPieces();
 	}
 	
 	public ArrayList<Piece> getAllPieces() {
-		return currLevel.getBullpen().getOriginalSet();
+		return level.getBullpen().getOriginalSet();
 	}
 	/**
 	 * Overridden painting function for getting the minimum size.
@@ -114,7 +115,6 @@ public class BullpenView extends JPanel {
 	 * @return void
 	 */
 	public void redraw() {
-		
 		int x = pieceBuffer;
 		int y = pieceBuffer;
 		
@@ -138,13 +138,13 @@ public class BullpenView extends JPanel {
 
 		// 1. draw each piece at proper location
 		// 2. offset after each one is drawn
-		for (Piece p : currLevel.getBullpen().getOriginalSet()) {
-			if(p == currLevel.getSelected()){
+		for (Piece p : level.getBullpen().getOriginalSet()) {
+			if(p == level.getSelected()){
 				offScreenGraphics.setColor(Color.MAGENTA);
 			}
 			else{
 				boolean played = false;
-				for(Piece p2 : currLevel.getBullpen().getPlayedPieces()){
+				for(Piece p2 : level.getBullpen().getPlayedPieces()){
 					if(p2.equals(p)){
 						played = true;
 						break;

@@ -216,11 +216,6 @@ public class SuperModel {
 	}
 	
 	public void setupUserLevels() {
-//		for(int i = 0; i < userLevels.size(); i++) {
-//			String filename = "Level " + (i+1);// + ".lev";
-//			//defaultLevels.put(filename, loadLevel(filename));
-//			userLevels.add(new LightningLevel(filename));
-//		}
 		userLevels.add(new PuzzleLevel("Test"));
 		userLevels.get(0).unlock();
 		userLevels.add(new ReleaseLevel("Test2"));
@@ -245,6 +240,20 @@ public class SuperModel {
 			if(name.equals(level.getLevelName())) return level;
 		}		
 		return null;
+	}
+	
+	public void removeLevel(String name) {
+		if(name == null) return;
+		int idx = 0;
+		for(idx = 0; idx < 15; idx++) {
+			if(name.equals(defaultLevels.get(idx).getLevelName())) {
+				defaultLevels.remove(idx);
+			}
+		}
+		for(idx = 0; idx < numUserLevels(); idx++) {
+			if(name.equals(userLevels.get(idx).getLevelName())) {
+				defaultLevels.remove(idx);
+			}}	
 	}
 	
 	public Level getUserLevelByIndex(int idx) {
@@ -295,14 +304,16 @@ public class SuperModel {
 		userLevels.add(level);
 	}
 
-	public boolean deleteLevel(Level lev){
+	public boolean deleteLevel(String levelName){
 		try{
-			String filepath = "/levels/"+lev.getLevelName()+".lev";
-			File level = new File(filepath);
-			return level.delete();
+			String filepath = "/levels/"+levelName+".lev";
+			File file = new File(filepath);
+			System.out.println("level deleting");
+			removeLevel(levelName);
+			return file.delete();
 		}
 		catch(Exception e){
-			System.err.println("Error deleting level: " + lev.getLevelName());
+			System.err.println("Error deleting level: " + levelName);
 			e.printStackTrace();
 		}
 		return false;

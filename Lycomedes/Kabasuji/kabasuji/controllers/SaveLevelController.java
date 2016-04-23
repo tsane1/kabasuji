@@ -7,11 +7,11 @@ import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 
-public class DeleteLevelController implements ActionListener {
+public class SaveLevelController implements ActionListener {
 	private Application app;
 	private SuperModel model;
 
-	public DeleteLevelController(Application app, SuperModel model) {
+	public SaveLevelController(Application app, SuperModel model) {
 		this.app = app;
 		this.model = model;
 	}
@@ -19,6 +19,10 @@ public class DeleteLevelController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
-		this.model.deleteLevel(e.getActionCommand());
+		Level hi = model.getLevel(e.getActionCommand());
+		if(hi == null);
+		else {
+			this.model.saveLevel(hi);
+		}
 	}
 }

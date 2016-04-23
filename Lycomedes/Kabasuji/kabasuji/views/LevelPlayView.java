@@ -45,10 +45,11 @@ public class LevelPlayView extends Screen {
 	
 		//populate by adding the views
 		this.add(boardView);
+		boardView.validate();
+		boardView.repaint();
 		this.add(bullpenView);
-		this.add(progress);
-		this.add(achievement);
-
+		bullpenView.validate();
+		bullpenView.repaint();
 	}
 	
 	@Override
