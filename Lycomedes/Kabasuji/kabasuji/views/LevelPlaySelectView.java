@@ -5,65 +5,161 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
+import kabasuji.controllers.DeleteLevelController;
+import kabasuji.controllers.LevelEditController;
 import kabasuji.controllers.LevelPlayController;
+import kabasuji.controllers.NavigateLevelSelectController;
+import kabasuji.controllers.NewLevelController;
 import kabasuji.supers.SuperModel;
 import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 
+/**
+ * <b>VIEW</b> class that provides interface for choosing levels to play.
+ * <p>
+ * LevelPlaySelectView (extends {@code Screen}) displays buttons for selection
+ * of which level to play, as well as the names of the levels. Navigation is done
+ * via "Next" and "Previous" controllers attached to buttons. This class displays
+ * both default and user-created levels.
+ * </p>
+ * @author Tanuj Sane
+ * @since 4/21/2016
+ *
+ */
 public class LevelPlaySelectView extends Screen {
-	private ArrayList<JButton> defaultLevelButtons = new ArrayList<JButton>(15);
-	private JButton btnUserLevels = new JButton("User Levels");
-
+	private ArrayList<JButton> levelButtons = new ArrayList<JButton>();
+	private ArrayList<JLabel> levelNames = new ArrayList<JLabel>();
+	private JButton btnNext = new JButton("Next");
+	private JButton btnPrev = new JButton("Previous");
+	
 	public LevelPlaySelectView(SuperModel m) {
-		super("Select a Level", m);
-	}		
-	@Override
-	public void populate() {
-		
-		// ditch this get a scroll thing implemented
-		btnUserLevels.setName("User Levels");
-		btnUserLevels.setBackground(SystemColor.text);
-		btnUserLevels.setForeground(SystemColor.textHighlight);
-		btnUserLevels.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnUserLevels.setBounds(765, 683, 155, 57);
-		this.add(btnUserLevels);
-		
-		int idx; String name;
-		for(idx = 0; idx < 15; idx++) {
-			name = "Level " + (idx + 1);
-			defaultLevelButtons.add(new JButton(this.model.getLevel(name).getLevelName()));
-			defaultLevelButtons.get(idx).setActionCommand(this.model.getLevel(name).getLevelName());
-			defaultLevelButtons.get(idx).setBackground(SystemColor.text);
-			defaultLevelButtons.get(idx).setForeground(SystemColor.textHighlight);
-			defaultLevelButtons.get(idx).setFont(new Font("Kristen ITC", Font.BOLD, 20));
-			if(idx < 5) defaultLevelButtons.get(idx).setBounds(217+(105*(idx)), 180, 80, 95);
-			else if(idx < 10) defaultLevelButtons.get(idx).setBounds(217+(105*(idx-5)), 330, 80, 95);
-			else if(idx < 15) defaultLevelButtons.get(idx).setBounds(217+(105*(idx-10)), 480, 80, 95);
-			this.add(defaultLevelButtons.get(idx));
-		}
-	}
-
-
-	@Override
-	public void installControllers() {
-		int idx;
-		for(idx = 0; idx < 15; idx++) {
-			defaultLevelButtons.get(idx).addActionListener(new LevelPlayController(this.app, this.model));
-		}
+		super("Play a Level", m);
 	}
 	
 	@Override
-	public void refresh() {
+	public void populate() {
+		btnNext.setActionCommand("Next");
+		btnNext.setBackground(SystemColor.text);
+		btnNext.setForeground(SystemColor.textHighlight);
+		btnNext.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		btnNext.setBounds(765, 683, 155, 57);
+		this.add(btnNext);
 		
+		btnPrev.setActionCommand("Previous");
+		btnPrev.setBackground(SystemColor.text);
+		btnPrev.setForeground(SystemColor.textHighlight);
+		btnPrev.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		btnPrev.setBounds(13, 683, 155, 57);
+		this.add(btnPrev);
+		
+		for(int idx = 0; idx < 15; idx++) {
+			levelNames.add(new JLabel());
+			levelNames.get(idx).setText(model.getDefaultLevelByIndex(idx).getLevelName());
+			levelNames.get(idx).setHorizontalAlignment(SwingConstants.CENTER);
+			levelNames.get(idx).setForeground(SystemColor.textHighlight);
+			levelNames.get(idx).setFont(new Font("Kristen ITC", Font.BOLD, 18));
+			levelNames.get(idx).setSize(128,50);
+			
+			levelButtons.add(new JButton());
+			levelButtons.get(idx).setActionCommand(model.getDefaultLevelByIndex(idx).getLevelName());
+			switch(model.getDefaultLevelByIndex(idx).getLevelType()) {
+			case "Puzzle":
+				levelButtons.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/puzzle_icon_smol.png")));
+				break;
+			case "Lightning":
+				levelButtons.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/lightning_icon_smol.png")));
+				break;
+			case "Release":
+				levelButtons.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/release_icon_smol.png")));
+				break;
+			}
+			levelButtons.get(idx).setDisabledIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/locked_icon.png")));
+			levelButtons.get(idx).setBackground(SystemColor.text);
+			levelButtons.get(idx).setSize(128, 128);
+			levelButtons.get(idx).setEnabled(!model.getDefaultLevelByIndex(idx).isLocked());
+		}	
+		
+		for(int idx = 0; idx < this.model.numUserLevels(); idx++) {
+			levelNames.add(new JLabel());
+			levelNames.get(idx + 15).setText(model.getUserLevelByIndex(idx).getLevelName());
+			levelNames.get(idx + 15).setHorizontalAlignment(SwingConstants.CENTER);
+			levelNames.get(idx + 15).setForeground(SystemColor.textHighlight);
+			levelNames.get(idx + 15).setFont(new Font("Kristen ITC", Font.BOLD, 18));
+			levelNames.get(idx + 15).setSize(128,50);
+
+			levelButtons.add(new JButton());
+			levelButtons.get(idx + 15).setActionCommand(model.getUserLevelByIndex(idx).getLevelName());
+
+			switch(model.getUserLevelByIndex(idx).getLevelType()) {
+			case "Puzzle":
+				levelButtons.get(idx + 15).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/puzzle_icon_smol.png")));
+				break;
+			case "Lightning":
+				levelButtons.get(idx + 15).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/lightning_icon_smol.png")));
+				break;
+			case "Release":
+				levelButtons.get(idx + 15).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/release_icon_smol.png")));
+				break;
+			}
+			levelButtons.get(idx + 15).setDisabledIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/locked_icon.png")));
+			levelButtons.get(idx + 15).setBackground(SystemColor.text);
+			levelButtons.get(idx + 15).setSize(128, 128);
+			levelButtons.get(idx + 15).setEnabled(!model.getUserLevelByIndex(idx).isLocked());
+		}		
+			
+		refresh();
+	}
+
+	@Override
+	public void installControllers() {
+		for(int idx = 0; idx < 15 + this.model.numUserLevels(); idx++) {
+			levelButtons.get(idx).addActionListener(new LevelPlayController(this.app, this.model));
+		}
+		btnNext.addActionListener(new NavigateLevelSelectController(this.app, this.model));
+		btnPrev.addActionListener(new NavigateLevelSelectController(this.app, this.model));
 	}
 	
 	@Override
 	public String getName() {
-		return "LevelPlaySelect";
+		return "LevelEditSelect";
+	}
+
+	@Override
+	public void refresh() {
+		for(int idx = 0; idx < 15 + this.model.numUserLevels(); idx++) {
+			this.remove(levelButtons.get(idx));
+			this.remove(levelNames.get(idx));
+		}		
+		this.validate();
+		this.repaint();
+		
+		btnNext.setEnabled(model.getPage() < (model.numUserLevels() + 14) / 10);
+		btnPrev.setEnabled(model.getPage() > 0);
+		btnNext.validate();
+		btnNext.repaint();
+		btnPrev.validate();
+		btnPrev.repaint();		
+		
+		for(int idx = 0; idx < 10; idx++) {
+			int btnIndex = (10*model.getPage()) + idx;
+			if(btnIndex >= model.totalLevels());
+			else {
+				levelNames.get(btnIndex).setLocation(125+(138*(idx%5)), 150+(188*(idx/5)));
+				this.add(levelNames.get(btnIndex));
+				levelNames.get(btnIndex).validate();
+				levelNames.get(btnIndex).repaint();
+				
+				levelButtons.get(btnIndex).setLocation(125+(138*(idx%5)), 200+(188*(idx/5)));
+				this.add(levelButtons.get(btnIndex));
+				levelButtons.get(btnIndex).validate();
+				levelButtons.get(btnIndex).repaint();
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -77,6 +173,6 @@ public class LevelPlaySelectView extends Screen {
 					e.printStackTrace();
 				}
 			}
-		});  
+		});
 	}
 }

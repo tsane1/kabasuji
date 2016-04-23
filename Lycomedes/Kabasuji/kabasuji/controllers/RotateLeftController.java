@@ -3,17 +3,22 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 
-public class RotateLeftController implements ActionListener {
+/**
+ * A controller to Pieces 90 degrees to the left.
+ * @author Ian Jacoway
+ */
 
-	SuperModel model;
+public class RotateLeftController implements ActionListener {
+	Application app;
 	Level level;
 	
-	public RotateLeftController(Level l, SuperModel sm) {
+	public RotateLeftController(Application a, Level l) {
+		this.app = a;
 		this.level = l;
-		this.model = sm;
 	}
 	
 	public void doRotateLeft(){
@@ -22,9 +27,18 @@ public class RotateLeftController implements ActionListener {
 		}
 		
 		level.getSelected().rotateLeft();
-		
-		//screen.redraw();
-		//screen.repaint();
+		//casting is messed up cuz the screens are all in other packages
+//		switch (app.getCurrScreen().getName()){
+//			case "LevelPlay":
+//				(LevelPlay) app.getCurrScreen().getBullpenView().refresh();
+//			case "PuzzleLevelEditView":
+//				(PuzzleLevelEditView) app.getCurrScreen().getBullpenView().refresh();
+//			case "LightningLevelEditView":
+//				(LightningLevelEditView) app.getCurrScreen().getBullpenView().refresh();
+//			case "ReleaseLevelEditView":
+//				(ReleaseLevelEditView) app.getCurrScreen().getBullpenView().refresh();
+//		}
+		app.getCurrScreen().getBullpenView().refresh();
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import kabasuji.supers.Application;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BuilderSplashScreen;
 import kabasuji.views.LevelEditSelectView;
-import kabasuji.views.LevelPlay;
+import kabasuji.views.LevelPlayView;
 
 public class LaunchLevelBuilder {
 

@@ -13,7 +13,12 @@ import kabasuji.supers.Screen;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JButton;
-
+/**
+ * 
+ * @author lots of someones
+ * @since 4/23/16
+ *
+ */
 public class PuzzleLevelEditView extends Screen {
 	private Level level;
 	private BoardView boardView;
@@ -22,6 +27,7 @@ public class PuzzleLevelEditView extends Screen {
 	private JButton btnUndo = new JButton("Undo");
 	private JButton btnRedo = new JButton("Redo");
 	private JButton btnSave = new JButton("Save");
+	private JButton btnDelete = new JButton("Delete");
 	
 	public PuzzleLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
@@ -46,8 +52,14 @@ public class PuzzleLevelEditView extends Screen {
 		btnSave.setBackground(SystemColor.text);
 		btnSave.setForeground(SystemColor.textHighlight);
 		btnSave.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnSave.setBounds(726, 437, 155, 57);
+		btnSave.setBounds(726, 370, 155, 57);
 		this.add(btnSave);
+		
+		btnDelete.setBackground(SystemColor.text);
+		btnDelete.setForeground(SystemColor.textHighlight);
+		btnDelete.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		btnDelete.setBounds(726, 437, 155, 57);
+		this.add(btnDelete);
 		
 		btnUndo.setBackground(SystemColor.text);
 		btnUndo.setForeground(SystemColor.textHighlight);
@@ -74,6 +86,11 @@ public class PuzzleLevelEditView extends Screen {
 	@Override
 	public void refresh() {
 
+	}
+	
+	@Override
+	public BullpenView getBullpenView(){
+		return this.bullpenView;
 	}
 
 	@Override

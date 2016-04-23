@@ -6,27 +6,23 @@ import java.awt.event.ActionListener;
 import org.w3c.dom.events.MouseEvent;
 
 import kabasuji.entities.Board;
+import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
 
 /**
- * 
- * @author irjacoway
- *
+ * A controller to select tiles as active on a Board.
+ * @author Ian Jacoway
  */
 
-
 public class TileSelectController extends Board{
-
-	SuperModel supermodel;
-	Screen screen;
+	Application app;
 	Level level;
 	
-	public TileSelectController(Level level, Screen s, SuperModel sm) {
-		this.level = level;
-		this.screen = s;
-		this.supermodel = sm;
+	public TileSelectController(Application a, Level l){
+		this.level = l;
+		this.app = a;
 	}
 //	@Override
 //	public void mousePressed(){
@@ -45,11 +41,11 @@ public class TileSelectController extends Board{
 			}
 		
 		level.get();
-		if (rightClick.getX() == board.getX())
+		if (rightClick.getX() == board.getX()){
 			//increment color of number 
+		}
 		
-		//screen.redraw();
-		//screen.repaint();
+		app.getCurrScreen().getBoardView().refresh();
 		
 		return true;
 	}
