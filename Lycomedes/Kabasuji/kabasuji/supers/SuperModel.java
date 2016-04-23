@@ -41,8 +41,6 @@ public class SuperModel {
 	HashMap<Integer, Piece> allPieces = new HashMap<Integer, Piece>(35);
 	ArrayList<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	HashMap<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
-	Stack<Move> undoStack = new Stack<Move>();
-	Stack<Move> redoStack = new Stack<Move>();
 	Level activeLevel;
 	int page;
 	
@@ -332,33 +330,6 @@ public class SuperModel {
 			e.printStackTrace();
 		}
 		return false;
-	}
-
-	public void trackMove(Move m){
-		undoStack.add(m);
-		redoStack.clear();
-	}
-
-	public Move getLastMove(){
-		if(undoStack.isEmpty()) {
-			return null;
-		}
-		return undoStack.pop();
-	}
-
-	public void addMoveToUndo(Move m){
-		undoStack.push(m);
-	}
-
-	public void addRedoableMove(Move m){
-		redoStack.push(m);
-	}
-
-	public Move getRedoMove(){
-		if(redoStack.isEmpty()){
-			return null;
-		}
-		return redoStack.pop();
 	}
 	
 	public String getLevelTypeFromLevelNameDefault(String name){

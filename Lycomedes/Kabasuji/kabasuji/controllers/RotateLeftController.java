@@ -3,8 +3,10 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import kabasuji.moves.RotateLeftMove;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
+import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 
 /**
@@ -26,16 +28,17 @@ public class RotateLeftController implements ActionListener {
 			return;
 		}
 		
-		level.getSelected().rotateLeft();
-		//casting is messed up cuz the screens are all in other packages
-		if(app.getCurrScreen().getName() != "LevelPlay")
-			; //should push onto undo stack
-		app.getCurrScreen().getBullpenView().refresh();
+		Move m = new RotateLeftMove(level);
+		if(m.execute()){
+			if(app.getCurrScreen().getName() != "LevelPlay")
+				level.trackMove(m);
+			app.getCurrScreen().getBullpenView().refresh();
+		}
+		else return;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS THE "doUndo" should prolly go here
 		try{
 			doRotateLeft();
 		}
