@@ -62,7 +62,7 @@ public abstract class Level implements Serializable {
 	public Level(String name, String type) {
 		this.name = name;
 		this.type = type;
-		locked = false;
+		locked = true;
 		this.theBoard = new Board();
 		this.theBullpen = new Bullpen();
 		this.numStars = 0;
@@ -302,4 +302,7 @@ public abstract class Level implements Serializable {
 		this.locked = false;
 	}
 
+	public boolean isLocked() {
+		return this.locked;
+	}
 }
