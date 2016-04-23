@@ -18,7 +18,7 @@ import kabasuji.supers.Screen;
  * @author Chase St. Laurent
  *
  */
-public class LevelPlay extends Screen {
+public class LevelPlayView extends Screen {
 	
 	private Level level;
 	private BoardView boardView;
@@ -27,13 +27,13 @@ public class LevelPlay extends Screen {
 	private AchievementView achievement;
 
 
-	public LevelPlay(String levelName, SuperModel m) {
+	public LevelPlayView(String levelName, SuperModel m) {
 		super(levelName, m);
 		
-		this.level = m.getLevel(levelName);
+		this.level = m.getActiveLevel();
 		this.setTitle(level.getLevelName() + ": " + level.getLevelType());
-		this.boardView = new BoardView(level.getBoard());
-		this.bullpenView = new BullpenView(level);
+		this.boardView = new BoardView(m);
+		this.bullpenView = new BullpenView(m);
 	}
 	
 	public Level getLevel() {
@@ -42,11 +42,7 @@ public class LevelPlay extends Screen {
 			
 	@Override
 	public void populate() {
-		BoardView boardView = new BoardView(level.getBoard());
-		BullpenView bullpenView = new BullpenView(level);
-		ProgressView progress = new ProgressView(null);
-		AchievementView achievement = new AchievementView(null);
-		
+	
 		//populate by adding the views
 		this.add(boardView);
 		this.add(bullpenView);
@@ -75,7 +71,7 @@ public class LevelPlay extends Screen {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Application frame = new Application(new LevelPlay("hi", new SuperModel()));
+					Application frame = new Application(new LevelPlayView("hi", new SuperModel()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

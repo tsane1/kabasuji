@@ -87,7 +87,6 @@ public class Board implements Serializable{
 			//throw? or boolean like now that says place failed
 			return false;
 		}
-		
 	}
 
 	/**
@@ -159,6 +158,4 @@ public class Board implements Serializable{
 	public int getReleaseProgress(){
 		return 0;
 	}
-
-	
 }
