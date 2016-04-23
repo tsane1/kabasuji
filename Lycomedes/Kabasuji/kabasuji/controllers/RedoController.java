@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import kabasuji.supers.Application;
+import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 
@@ -14,12 +15,11 @@ import kabasuji.supers.SuperModel;
  * @author Tanuj Sane
  */
 public class RedoController implements ActionListener {
-	SuperModel model;
-	Application app;
 	
-	public RedoController(Application app, SuperModel model) {
-		this.app = app;
-		this.model = model;
+	Level level;
+	
+	public RedoController(Level l) {
+		this.level = l;
 	}
 	
 	@Override
@@ -34,12 +34,12 @@ public class RedoController implements ActionListener {
 	}
 	
 	public boolean doRedo() {
-		Move m = model.getRedoMove();
+		Move m = level.getRedoMove();
 		if(m == null) {
 			return false;
 		}		
 		if(m.execute()) {
-			model.addMoveToUndo(m);
+			level.addMoveToUndo(m);
 		}
 		return true;
 	}

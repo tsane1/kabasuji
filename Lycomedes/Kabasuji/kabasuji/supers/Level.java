@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Stack;
 
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
@@ -30,6 +31,9 @@ public abstract class Level implements Serializable {
 	List<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	/** A map of piece colors used for drawing the pieces. */
 	Map<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
+	
+	Stack<Move> undoStack = new Stack<Move>();
+	Stack<Move> redoStack = new Stack<Move>();
 
 	/** The name of the level and the type of the level. Type includes puzzle, lightning, or release. */
 	String name, type;
@@ -304,5 +308,32 @@ public abstract class Level implements Serializable {
 
 	public boolean isLocked() {
 		return this.locked;
+	}
+	
+	public void trackMove(Move m){
+		undoStack.add(m);
+		redoStack.clear();
+	}
+
+	public Move getLastMove(){
+		if(undoStack.isEmpty()) {
+			return null;
+		}
+		return undoStack.pop();
+	}
+
+	public void addMoveToUndo(Move m){
+		undoStack.push(m);
+	}
+
+	public void addRedoableMove(Move m){
+		redoStack.push(m);
+	}
+
+	public Move getRedoMove(){
+		if(redoStack.isEmpty()){
+			return null;
+		}
+		return redoStack.pop();
 	}
 }
