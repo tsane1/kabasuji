@@ -17,6 +17,7 @@ import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
 import kabasuji.entities.PuzzleLevel;
+import kabasuji.entities.ReleaseLevel;
 
 /** 
  * Model class containing all necessary game entities.
@@ -51,7 +52,17 @@ public class SuperModel {
 		for(int i = 0; i < 15; i++) {
 			String filename = "Level " + (i+1);// + ".lev";
 			//defaultLevels.put(filename, loadLevel(filename));
-			defaultLevels.put(filename, new LightningLevel(filename));
+			String type = getLevelTypeFromLevelNameDefault("Level "+(i+1));
+			switch(type){
+			case "puzzle":
+				defaultLevels.put(filename, new PuzzleLevel(filename)); break;
+			case "lightning":
+				defaultLevels.put(filename, new LightningLevel(filename)); break;
+			case "release":
+				defaultLevels.put(filename, new ReleaseLevel(filename)); break;
+			default:
+				throw new IllegalArgumentException("Invalid level type");
+			}
 		}
 	}
 	
@@ -59,7 +70,17 @@ public class SuperModel {
 		for(int i = 0; i < userLevels.size(); i++) {
 			String filename = "Level " + (i+1);// + ".lev";
 			//defaultLevels.put(filename, loadLevel(filename));
-			userLevels.put(filename, new LightningLevel(filename));
+			String type = getLevelTypeFromLevelNameUser("Level "+(i+1));
+			switch(type){
+			case "puzzle":
+				userLevels.put(filename, new PuzzleLevel(filename)); break;
+			case "lightning":
+				userLevels.put(filename, new LightningLevel(filename)); break;
+			case "release":
+				userLevels.put(filename, new ReleaseLevel(filename)); break;
+			default:
+				throw new IllegalArgumentException("Invalid level type");
+			}
 		}
 	}
 	
@@ -148,6 +169,14 @@ public class SuperModel {
 			return null;
 		}
 		return redoStack.pop();
+	}
+	
+	public String getLevelTypeFromLevelNameDefault(String name){
+		return defaultLevels.get(name).type;
+	}
+	
+	public String getLevelTypeFromLevelNameUser(String name){
+		return userLevels.get(name).type;
 	}
 	
 	public static void main(String[] args) {

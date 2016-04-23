@@ -1,5 +1,7 @@
 package kabasuji.entities;
 
+import java.io.Serializable;
+
 /**
  * Entity class for the hexomino piece object. 
  * 
@@ -7,7 +9,11 @@ package kabasuji.entities;
  * @author Ian Jacoway
  *
  */
-public class Piece implements java.io.Serializable {
+public class Piece implements Serializable {
+	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = 1256113328790056873L;
 	/** Name of the piece. Structured Piece X where 1<= X <= 35. */
 	String pieceID;
 	/** Number Id for the piece. Corresponds with the piece's name.*/

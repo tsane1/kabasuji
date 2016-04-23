@@ -54,15 +54,15 @@ public class BullpenView extends JPanel {
 		this.currLevel = currLevel;
 	}
 
-	public ArrayList<Piece> getPlayedPieces(){
+	public List<Piece> getPlayedPieces(){
 		return currLevel.getBullpen().getPlayedPieces();
 	}
 	
-	public ArrayList<Piece> getPiecesInBullpen() {
+	public List<Piece> getPiecesInBullpen() {
 		return currLevel.getBullpen().getPieces();
 	}
 	
-	public ArrayList<Piece> getAllPieces() {
+	public List<Piece> getAllPieces() {
 		return currLevel.getBullpen().getOriginalSet();
 	}
 	/**
