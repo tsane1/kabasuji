@@ -3,9 +3,11 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import kabasuji.moves.RotateLeftMove;
+import kabasuji.moves.RotateRightMove;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
-import kabasuji.supers.SuperModel;
+import kabasuji.supers.Move;
 
 /**
  * A controller to rotate Pieces 90 degrees to the right.
@@ -21,16 +23,26 @@ public class RotateRightController implements ActionListener {
 		this.level = l;
 	}
 	
-	public void doRotateRight(){
-		if(level.getSelected() == null){
-			return;
+	public boolean doRotateRight(){
+		Move m = new RotateRightMove(level);
+	
+		if(m.execute()){
+			// If appropriate screen then update view
+			switch (app.getCurrScreen().getName()){
+				case "LevelPlay":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "PuzzleLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "LightningLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "ReleaseLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				default:
+					level.trackMove(m);
+					;//do nothing/push to undo stack?
+			}
 		}
-		
-		level.getSelected().rotateRight();
-		//casting is messed up cuz the screens are all in other packages
-		if(app.getCurrScreen().getName() != "LevelPlay")
-			; //should push onto undo stack
-		app.getCurrScreen().getBullpenView().refresh();
+		return true;
 	}
 
 	@Override

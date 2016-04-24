@@ -4,7 +4,6 @@ import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 
 public class RotateLeftMove extends Move {
-
 	Level currLevel;
 	
 	public RotateLeftMove(Level l) {
@@ -30,5 +29,4 @@ public class RotateLeftMove extends Move {
 			return false;
 		return true;
 	}
-
 }

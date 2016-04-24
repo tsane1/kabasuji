@@ -3,9 +3,12 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import kabasuji.moves.FlipXMove;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
+import kabasuji.supers.Move;
 import kabasuji.supers.Screen;
+import kabasuji.supers.SuperModel;
 
 /**
  * A controller to Flip Pieces across the X axis.
@@ -21,16 +24,27 @@ public class FlipXController implements ActionListener {
 		this.level = l;
 	}
 	
-	public void doFlipX(){
-		if(level.getSelected() == null){
-			return;
+	public boolean doFlipX(){
+		Move m = new FlipXMove(level);
+		
+		if(m.execute()){
+			// If appropriate screen then update view
+			switch (app.getCurrScreen().getName()){
+				case "LevelPlay":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "PuzzleLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "LightningLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "ReleaseLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				default:
+					level.trackMove(m);
+					;//do nothing/push to undo stack?
+			}
 		}
-	
-		level.getSelected().flipX();
-		//casting is messed up cuz the screens are all in other packages
-		if(app.getCurrScreen().getName() != "LevelPlay")
-			; //should push onto undo stack
-		app.getCurrScreen().getBullpenView().refresh();
+		
+		return true;
 	}
 
 	@Override
