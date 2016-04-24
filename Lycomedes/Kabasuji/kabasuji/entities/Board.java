@@ -158,4 +158,14 @@ public class Board implements Serializable{
 	public int getReleaseProgress(){
 		return 0;
 	}
+	
+	public void selectTile() {
+		// TODO write select tile
+		
+	}
+	
+	public void deselectTile() {
+		// TODO write deselect tile
+		
+	}
 }

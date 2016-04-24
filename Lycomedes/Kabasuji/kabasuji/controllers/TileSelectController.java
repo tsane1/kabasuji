@@ -31,7 +31,7 @@ public class TileSelectController implements ActionListener{
 	public boolean selectTile(){
 		Move m = new SelectTileMove(level);
 		
-		if(m.execute()){
+		if(m.execute()){ // WAITING ON REFRESH() THEN FUNCTIONAL
 			// If appropriate screen then update view
 			switch (app.getCurrScreen().getName()){
 				case "LevelPlay":
