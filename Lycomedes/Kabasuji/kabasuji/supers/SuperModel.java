@@ -208,14 +208,14 @@ public class SuperModel {
 		for(int i = 0; i < 15; i++) {
 			String filename = "Level " + (i+1);// + ".lev";
 			//defaultLevels.put(filename, loadLevel(filename));
-			String type = getLevelTypeFromLevelNameDefault("Level "+(i+1));
+			String type = getLevelType("Level "+(i+1));
 			switch(type){
 			case "puzzle":
-				defaultLevels.put(filename, new PuzzleLevel(filename)); break;
+				defaultLevels.add(new PuzzleLevel(filename)); break;
 			case "lightning":
-				defaultLevels.put(filename, new LightningLevel(filename)); break;
+				defaultLevels.add(new LightningLevel(filename)); break;
 			case "release":
-				defaultLevels.put(filename, new ReleaseLevel(filename)); break;
+				defaultLevels.add(new ReleaseLevel(filename)); break;
 			default:
 				throw new IllegalArgumentException("Invalid level type");
 			}
@@ -228,14 +228,14 @@ public class SuperModel {
 		for(int i = 0; i < userLevels.size(); i++) {
 			String filename = "Level " + (i+1);// + ".lev";
 			//defaultLevels.put(filename, loadLevel(filename));
-			String type = getLevelTypeFromLevelNameUser("Level "+(i+1));
+			String type = getLevelType("Level "+(i+1));
 			switch(type){
 			case "puzzle":
-				userLevels.put(filename, new PuzzleLevel(filename)); break;
+				userLevels.add(new PuzzleLevel(filename)); break;
 			case "lightning":
-				userLevels.put(filename, new LightningLevel(filename)); break;
+				userLevels.add(new LightningLevel(filename)); break;
 			case "release":
-				userLevels.put(filename, new ReleaseLevel(filename)); break;
+				userLevels.add(new ReleaseLevel(filename)); break;
 			default:
 				throw new IllegalArgumentException("Invalid level type");
 			}
@@ -269,6 +269,20 @@ public class SuperModel {
 			if(name.equals(level.getLevelName())) return level;
 		}		
 		return null;
+	}
+	
+	public void removeLevel(String name) {
+		if(name == null) return;
+		int idx = 0;
+		for(idx = 0; idx < 15; idx++) {
+			if(name.equals(defaultLevels.get(idx).getLevelName())) {
+				defaultLevels.remove(idx);
+			}
+		}
+		for(idx = 0; idx < numUserLevels(); idx++) {
+			if(name.equals(userLevels.get(idx).getLevelName())) {
+				defaultLevels.remove(idx);
+			}}	
 	}
 	
 	public Level getUserLevelByIndex(int idx) {
@@ -319,25 +333,23 @@ public class SuperModel {
 		userLevels.add(level);
 	}
 
-	public boolean deleteLevel(Level lev){
+	public boolean deleteLevel(String levelName){
 		try{
-			String filepath = "/levels/"+lev.getLevelName()+".lev";
-			File level = new File(filepath);
-			return level.delete();
+			String filepath = "/levels/"+levelName+".lev";
+			File file = new File(filepath);
+			System.out.println("level deleting");
+			removeLevel(levelName);
+			return file.delete();
 		}
 		catch(Exception e){
-			System.err.println("Error deleting level: " + lev.getLevelName());
+			System.err.println("Error deleting level: " + levelName);
 			e.printStackTrace();
 		}
 		return false;
 	}
 	
-	public String getLevelTypeFromLevelNameDefault(String name){
-		return defaultLevels.get(name).type;
-	}
-	
-	public String getLevelTypeFromLevelNameUser(String name){
-		return userLevels.get(name).type;
+	public String getLevelType(String name){
+		return this.getLevel(name).getLevelType();
 	}
 	
 	public static void main(String[] args) {
