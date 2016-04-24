@@ -94,6 +94,11 @@ public class PuzzleLevelEditView extends Screen {
 	}
 
 	@Override
+	public BoardView getBoardView(){
+		return this.boardView;
+	}
+	
+	@Override
 	public String getName() {
 		return this.level.getLevelType() + "LevelEditView";
 	}

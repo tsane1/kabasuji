@@ -100,6 +100,11 @@ public class ReleaseLevelEditView extends Screen {
 		return this.bullpenView;
 	}
 	
+	@Override
+	public BoardView getBoardView(){
+		return this.boardView;
+	}
+	
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
