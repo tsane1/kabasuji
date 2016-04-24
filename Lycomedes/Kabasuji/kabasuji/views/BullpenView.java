@@ -57,17 +57,18 @@ public class BullpenView extends JPanel {
 	}
 	
 
-	public ArrayList<Piece> getPlayedPieces(){
+	public List<Piece> getPlayedPieces(){
 		return level.getBullpen().getPlayedPieces();
 	}
 	
-	public ArrayList<Piece> getPiecesInBullpen() {
+	public List<Piece> getPiecesInBullpen() {
 		return level.getBullpen().getPieces();
 	}
 	
-	public ArrayList<Piece> getAllPieces() {
+	public List<Piece> getAllPieces() {
 		return level.getBullpen().getOriginalSet();
 	}
+	
 	/**
 	 * Overridden painting function for getting the minimum size.
 	 * Minimum size is one piece tall and wide with a buffer on all sides.

@@ -41,8 +41,6 @@ public class SuperModel {
 	HashMap<Integer, Piece> allPieces = new HashMap<Integer, Piece>(35);
 	ArrayList<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	HashMap<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
-	Stack<Move> undoStack = new Stack<Move>();
-	Stack<Move> redoStack = new Stack<Move>();
 	Level activeLevel;
 	int page;
 	
@@ -210,12 +208,43 @@ public class SuperModel {
 		for(int i = 0; i < 15; i++) {
 			String filename = "Level " + (i+1);// + ".lev";
 			//defaultLevels.put(filename, loadLevel(filename));
+			String type = getLevelType("Level "+(i+1));
+			switch(type){
+			case "puzzle":
+				defaultLevels.add(new PuzzleLevel(filename)); break;
+			case "lightning":
+				defaultLevels.add(new LightningLevel(filename)); break;
+			case "release":
+				defaultLevels.add(new ReleaseLevel(filename)); break;
+			default:
+				throw new IllegalArgumentException("Invalid level type");
+			}
 			defaultLevels.add(new LightningLevel(filename));
 			if(i < 1) defaultLevels.get(i).unlock();
 		}
 	}
 	
 	public void setupUserLevels() {
+		for(int i = 0; i < userLevels.size(); i++) {
+			String filename = "Level " + (i+1);// + ".lev";
+			//defaultLevels.put(filename, loadLevel(filename));
+			String type = getLevelType("Level "+(i+1));
+			switch(type){
+			case "puzzle":
+				userLevels.add(new PuzzleLevel(filename)); break;
+			case "lightning":
+				userLevels.add(new LightningLevel(filename)); break;
+			case "release":
+				userLevels.add(new ReleaseLevel(filename)); break;
+			default:
+				throw new IllegalArgumentException("Invalid level type");
+			}
+		}
+//		for(int i = 0; i < userLevels.size(); i++) {
+//			String filename = "Level " + (i+1);// + ".lev";
+//			//defaultLevels.put(filename, loadLevel(filename));
+//			userLevels.add(new LightningLevel(filename));
+//		}
 		userLevels.add(new PuzzleLevel("Test"));
 		userLevels.get(0).unlock();
 		userLevels.add(new ReleaseLevel("Test2"));
@@ -318,31 +347,12 @@ public class SuperModel {
 		}
 		return false;
 	}
-
-	public void trackMove(Move m){
-		undoStack.add(m);
-		redoStack.clear();
+	
+	public String getLevelType(String name){
+		return this.getLevel(name).getLevelType();
 	}
-
-	public Move getLastMove(){
-		if(undoStack.isEmpty()) {
-			return null;
-		}
-		return undoStack.pop();
-	}
-
-	public void addMoveToUndo(Move m){
-		undoStack.push(m);
-	}
-
-	public void addRedoableMove(Move m){
-		redoStack.push(m);
-	}
-
-	public Move getRedoMove(){
-		if(redoStack.isEmpty()){
-			return null;
-		}
-		return redoStack.pop();
+	
+	public static void main(String[] args) {
+		SuperModel sm = new SuperModel();
 	}
 }

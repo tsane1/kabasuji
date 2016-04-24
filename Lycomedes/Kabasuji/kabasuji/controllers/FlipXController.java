@@ -3,34 +3,53 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import kabasuji.moves.FlipXMove;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
+import kabasuji.supers.Move;
+import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
 
+/**
+ * A controller to Flip Pieces across the X axis.
+ * @author Ian Jacoway
+ */
 
 public class FlipXController implements ActionListener {
-	SuperModel model;
+	Application app;
 	Level level;
 	
-	public FlipXController(Level l, SuperModel m) {
+	public FlipXController(Application a, Level l) {
+		this.app= a;
 		this.level = l;
-		this.model = m;
 	}
 	
-	public void doFlipX(){
-		if(level.getSelected() == null){
-			return;
+	public boolean doFlipX(){
+		Move m = new FlipXMove(level);
+		
+		if(m.execute()){
+			// If appropriate screen then update view
+			switch (app.getCurrScreen().getName()){
+				case "LevelPlay":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "PuzzleLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "LightningLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "ReleaseLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				default:
+					level.trackMove(m);
+					;//do nothing/push to undo stack?
+			}
 		}
 		
-		level.getSelected().flipX();
-		
-		//screen.redraw();
-		//screen.repaint();
+		return true;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS THE "doUndo" should prolly go here
+	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS 
 		try{
 			doFlipX();
 		}
@@ -40,5 +59,4 @@ public class FlipXController implements ActionListener {
 		}
 	}
 }
-
 

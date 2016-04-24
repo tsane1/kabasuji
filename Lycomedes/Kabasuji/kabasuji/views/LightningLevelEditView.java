@@ -17,6 +17,13 @@ import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 import kabasuji.supers.Screen;
 
+/**
+ * 
+ * @author Lots on someones
+ * @since 4/23/16
+ *
+ */
+
 public class LightningLevelEditView extends Screen {
 	private Level level;
 	private BoardView boardView;
@@ -90,6 +97,11 @@ public class LightningLevelEditView extends Screen {
 	@Override
 	public String getName() {
 		return this.level.getLevelType() + "LevelEditView";
+	}
+	
+	@Override
+	public BullpenView getBullpenView(){
+		return this.bullpenView;
 	}
 	
 	public static void main(String[] args) {

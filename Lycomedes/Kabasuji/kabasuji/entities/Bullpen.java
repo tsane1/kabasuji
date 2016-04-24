@@ -1,8 +1,8 @@
 package kabasuji.entities;
 
-import java.awt.List;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * IMPORTANT QUESTIONS
@@ -12,11 +12,11 @@ import java.util.ArrayList;
 public class Bullpen implements Serializable{
 	
 	/** arraylist of pieces in the bullpen for the level. */
-	ArrayList<Piece> pieces;
+	List<Piece> pieces;
 	/** arraylist of pieces that were previously in the bullpen and are now on the board. */
-	ArrayList<Piece> playedPieces;
+	List<Piece> playedPieces;
 	/** ArrayList of original pieces in the bullpen to use in the view */
-	ArrayList<Piece> originalSet;
+	List<Piece> originalSet;
 
 	
 	/**
@@ -33,7 +33,7 @@ public class Bullpen implements Serializable{
 	 * made lists of pieces into.
 	 * @param pieces
 	 */
-	public Bullpen(ArrayList<Piece> pieces) {
+	public Bullpen(List<Piece> pieces) {
 		this.pieces = pieces;
 		originalSet = pieces;
 		playedPieces = new ArrayList<Piece>();
@@ -48,6 +48,19 @@ public class Bullpen implements Serializable{
 	}
 	
 	/**
+	 * Add method to add a list of pieces to the Bullpen. Used for setting up new levels.
+	 * @param List of pieces
+	 * @boolean
+	 */
+	public boolean addPieces(List<Piece> allPieces){
+		for(Piece p : allPieces){
+			this.pieces.add(p);
+			this.originalSet.add(p);
+		}
+		return this.pieces.size() == allPieces.size();
+	}
+	
+	/**
 	 * Remove method for bullpen object's piece list.
 	 * @param piece
 	 */
@@ -59,7 +72,7 @@ public class Bullpen implements Serializable{
 	 * getter method to get all of the pieces in the bullpen.
 	 * @return Arraylist of pieces
 	 */
-	public ArrayList<Piece> getPieces(){
+	public List<Piece> getPieces(){
 		return this.pieces;
 	}
 	
@@ -67,7 +80,7 @@ public class Bullpen implements Serializable{
 	 * Gets the list of played pieces that are on the board.
 	 * @return Arraylist of pieces that were previously in the bullpen and are now on the board.
 	 */
-	public ArrayList<Piece> getPlayedPieces(){
+	public List<Piece> getPlayedPieces(){
 		return playedPieces;
 	}
 	
@@ -89,7 +102,7 @@ public class Bullpen implements Serializable{
 		return pieces.add(p) && playedPieces.remove(p);
 	}
 	
-	public ArrayList<Piece> getOriginalSet(){
+	public List<Piece> getOriginalSet(){
 		return originalSet;
 	}
 }
