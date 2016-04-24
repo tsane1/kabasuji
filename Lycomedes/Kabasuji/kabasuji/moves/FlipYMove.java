@@ -3,6 +3,12 @@ package kabasuji.moves;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 
+/**
+ * A Move done on a Piece, that will mirror the Piece over the Y-Axis.
+ * @author Ian Jacoway
+ *
+ */
+
 public class FlipYMove extends Move {
 	Level currLevel;
 	
