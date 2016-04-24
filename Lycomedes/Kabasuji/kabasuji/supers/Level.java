@@ -94,7 +94,7 @@ public abstract class Level implements Serializable {
 	}
 	
 	public Level(){
-		this("test", "level");
+		this("level", "test");
 	}
 	
 	public void setupPieces(){

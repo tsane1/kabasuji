@@ -17,13 +17,14 @@ import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
 
 /** 
- * Model class containing all necessary game entities.
+ * Model class containing and storing all necessary game entities.
  * 
  * <p>
  * This class contains entities related to the player and the builder.
- * Entities that contain entities ({@code Level} contains {@code Board}, etc.) are not double-included.
+ * For entities that contain entities ({@code Level} contains {@code Board}, etc.) the sub-entities
+ * can be accessed through the super-entity that contains them ({@code Board} is accessed through {@code Level}).
  * This class also handles undo and redo events during builder use. This functionality
- * is disqualified in player by forcing a typecheck on the current view.
+ * is disqualified in player by forcing a typecheck on the current view in undo and redo controllers.
  * </p>
  * 
  * @author Tanuj Sane
@@ -203,20 +204,11 @@ public class SuperModel {
 
 	public void setupDefaultLevels() {
 		for(int i = 0; i < 15; i++) {
-			String filename = "Level " + (i+1);// + ".lev";
-			//defaultLevels.add(loadLevel(filename));
-//			String type = getLevelType("Level "+(i+1));
-//			switch(type){
-//			case "puzzle":
-//				defaultLevels.add(new PuzzleLevel(filename)); break;
-//			case "lightning":
-//				defaultLevels.add(new LightningLevel(filename)); break;
-//			case "release":
-//				defaultLevels.add(new ReleaseLevel(filename)); break;
-//			default:
-//				throw new IllegalArgumentException("Invalid level type");
-//			}
-			defaultLevels.add(new LightningLevel(filename));
+			String levelName = "Level " + (i+1);
+			if(loadLevel(levelName) == null) {
+				
+			}
+			else defaultLevels.add(loadLevel(levelName));
 			if(i < 1) defaultLevels.get(i).unlock();
 		}
 	}
@@ -254,16 +246,16 @@ public class SuperModel {
 	
 	public void removeLevel(String name) {
 		if(name == null) return;
-		int idx = 0;
-		for(idx = 0; idx < 15; idx++) {
+		for(int idx = 0; idx < 15; idx++) {
 			if(name.equals(defaultLevels.get(idx).getLevelName())) {
 				defaultLevels.remove(idx);
 			}
 		}
-		for(idx = 0; idx < numUserLevels(); idx++) {
+		for(int idx = 0; idx < numUserLevels(); idx++) {
 			if(name.equals(userLevels.get(idx).getLevelName())) {
 				defaultLevels.remove(idx);
-			}}	
+			}
+		}	
 	}
 	
 	public Level getUserLevelByIndex(int idx) {
@@ -282,23 +274,12 @@ public class SuperModel {
 		return userLevels.size();
 	}
 
-	private Level loadLevel(String filename) {		
-		if(!filename.contains(".lev")) return null;
-		
-		File file = new File(filename);
+	private Level loadLevel(String levelName) {		
+		String filepath = System.getProperty("user.home") + "/Desktop/" + levelName + ".lev";
 		Level loadedLevel = null;
 		try {
-			ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
-			switch(((Level)input.readObject()).getLevelType()){
-			case "Puzzle":
-				userLevels.add(new PuzzleLevel(filename)); break;
-			case "Lightning":
-				userLevels.add(new LightningLevel(filename)); break;
-			case "Release":
-				userLevels.add(new ReleaseLevel(filename)); break;
-			default:
-				throw new IllegalArgumentException("Invalid level type");
-			}
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File(filepath)));
+			loadedLevel = (Level)input.readObject();
 			input.close();
 		}
 		catch (ClassNotFoundException e) {
@@ -311,7 +292,8 @@ public class SuperModel {
 	}
 
 	public void saveLevel(Level level) {
-		File file = new File(level.getLevelName() + ".lev");
+		String filepath = System.getProperty("user.home") + "/Desktop/"+level.getLevelName()+".lev";
+		File file = new File(filepath);
 		try{
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
 			output.writeObject(level);
@@ -325,7 +307,7 @@ public class SuperModel {
 
 	public boolean deleteLevel(String levelName){
 		try{
-			String filepath = "/levels/"+levelName+".lev";
+			String filepath = System.getProperty("user.home") + "/Desktop/"+levelName+".lev";
 			File file = new File(filepath);
 			System.out.println("level deleting");
 			removeLevel(levelName);
@@ -344,5 +326,7 @@ public class SuperModel {
 	
 	public static void main(String[] args) {
 		SuperModel sm = new SuperModel();
+		sm.saveLevel(new PuzzleLevel("Testing Save"));
+		System.out.println(sm.loadLevel("Testing Save").getLevelType());
 	}
 }
