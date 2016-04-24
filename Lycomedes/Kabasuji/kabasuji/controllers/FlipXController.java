@@ -28,17 +28,12 @@ public class FlipXController implements ActionListener {
 		Move m = new FlipXMove(level);
 		
 		if(m.execute()){
-			// If appropriate screen then update view
-			switch (app.getCurrScreen().getName()){
-				case "LevelPlay": case "PuzzleLevelEditView": case "LightningLevelEditView": case "ReleaseLevelEditView":
-					app.getCurrScreen().getBullpenView().refresh();
-				default:
-					level.trackMove(m);
-					;//do nothing/push to undo stack?
-			}
+			if(app.getCurrScreen().getName() != "LevelPlay")
+				level.trackMove(m);
+			app.getCurrScreen().getBullpenView().refresh();
+			return true;
 		}
-		
-		return true;
+		return false;
 	}
 
 	@Override

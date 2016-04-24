@@ -21,7 +21,7 @@ public class SelectTileMove extends Move {
 	@Override
 	public boolean execute(Point p) {
 		if(!valid()) { return false; }
-		currLevel.getBoard().selectTile(p);
+		currLevel.getBoard().selectTile(p, currLevel.getLevelType());
 		return true;
 	}
 

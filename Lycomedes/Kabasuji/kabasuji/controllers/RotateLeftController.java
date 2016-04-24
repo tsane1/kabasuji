@@ -23,37 +23,15 @@ public class RotateLeftController implements ActionListener {
 	}
 	
 	public boolean doRotateLeft(){
-//		Move m = level.getLastMove();
-		Move m = new RotateLeftMove(level);
-//		if(m == null){
-//			return false;
-//		}		
-//		if(level.getSelected() == null){
-//			return false;
-//		}
 		
-//		level.getSelected().rotateLeft();
+		Move m = new RotateLeftMove(level);
 		if(m.execute()){
-			// If appropriate screen then update view
-			switch (app.getCurrScreen().getName()){
-				case "LevelPlay": case "PuzzleLevelEditView": case "LightningLevelEditView": case "ReleaseLevelEditView":
-					app.getCurrScreen().getBullpenView().refresh();
-				default:
-					level.trackMove(m);
-					;//do nothing/push to undo stack?
-			}
+			if(app.getCurrScreen().getName() != "LevelPlay")
+				level.trackMove(m);
+			app.getCurrScreen().getBullpenView().refresh();
+			return true;
 		}
-//		if(m.execute()) {
-//			level.addMoveToUndo(m);
-//		}
-//		
-//		Move m = new RotateLeftMove(level);
-//		if(m.execute()){
-//			if(app.getCurrScreen().getName() != "LevelPlay")
-//				level.trackMove(m);
-//			app.getCurrScreen().getBullpenView().refresh();
-//		}
-		return true;
+		return false;
 	}
 
 	@Override
