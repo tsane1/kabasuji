@@ -77,12 +77,14 @@ public abstract class Screen extends JPanel {
 	public abstract String getName(); // get screen name
 
 	public BullpenView getBullpenView() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public BoardView getBoardView() {
-		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public Level getLevel() {
 		return null;
 	}
 }

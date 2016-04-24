@@ -41,17 +41,18 @@ public class SuperModel {
 	HashMap<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
 	Level activeLevel;
 	int page;
-	
+	private String lvlDir;	
 
 	public SuperModel() {
-		setupDefaultLevels();
+		lvlDir = System.getProperty("user.dir") + System.getProperty("file.separator") + "levels" + System.getProperty("file.separator");
+		//setupDefaultLevels();
+		setupUserLevels();
 		for(int i = 0; i < 36; i++) {
 			pieceGrid.add(new PieceTile(i/6, i%6));
 		}
 		activeLevel = null;
 		page = 0;
 		setupPieces();
-		setupUserLevels();
 	}
 	
 	public void nextPage() {
@@ -204,20 +205,29 @@ public class SuperModel {
 
 	public void setupDefaultLevels() {
 		for(int i = 0; i < 15; i++) {
-			String levelName = "Level " + (i+1);
-			if(loadLevel(levelName) == null) {
-				
+			Level level = loadLevel("Level " + (i+1));
+			if(level == null) System.err.println("Level " + (i+1) + " not found.");
+			else {
+				switch(level.getLevelType()) {
+				case "Puzzle": 				
+					PuzzleLevel pl = (PuzzleLevel)level;
+					defaultLevels.add(pl);
+					break;
+				case "Lightning":
+					LightningLevel ll = (LightningLevel)level;
+					defaultLevels.add(ll);
+					break;
+				case "Release":
+					ReleaseLevel rl = (ReleaseLevel)level;
+					defaultLevels.add(rl);
+					break;
+				}
 			}
-			else defaultLevels.add(loadLevel(levelName));
 			if(i < 1) defaultLevels.get(i).unlock();
 		}
 	}
 	
 	public void setupUserLevels() {
-		for(int i = 0; i < userLevels.size(); i++) {
-			String filename = "Level " + (i+1);// + ".lev";
-			//userLevels.add(loadLevel(filename));
-		}
 		userLevels.add(new PuzzleLevel("Test"));
 		userLevels.get(0).unlock();
 		userLevels.add(new ReleaseLevel("Test2"));
@@ -275,7 +285,7 @@ public class SuperModel {
 	}
 
 	private Level loadLevel(String levelName) {		
-		String filepath = System.getProperty("user.home") + "/Desktop/" + levelName + ".lev";
+		String filepath = lvlDir + levelName + ".lev";
 		Level loadedLevel = null;
 		try {
 			ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File(filepath)));
@@ -292,7 +302,7 @@ public class SuperModel {
 	}
 
 	public void saveLevel(Level level) {
-		String filepath = System.getProperty("user.home") + "/Desktop/"+level.getLevelName()+".lev";
+		String filepath = lvlDir + level.getLevelName() + ".lev";
 		File file = new File(filepath);
 		try{
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
@@ -307,7 +317,7 @@ public class SuperModel {
 
 	public boolean deleteLevel(String levelName){
 		try{
-			String filepath = System.getProperty("user.home") + "/Desktop/"+levelName+".lev";
+			String filepath = lvlDir + levelName + ".lev";
 			File file = new File(filepath);
 			System.out.println("level deleting");
 			removeLevel(levelName);
@@ -326,7 +336,8 @@ public class SuperModel {
 	
 	public static void main(String[] args) {
 		SuperModel sm = new SuperModel();
-		sm.saveLevel(new PuzzleLevel("Testing Save"));
-		System.out.println(sm.loadLevel("Testing Save").getLevelType());
+		for(int i = 0; i < 15; i++) {
+			sm.deleteLevel("Level " + (i+1));
+		}
 	}
 }

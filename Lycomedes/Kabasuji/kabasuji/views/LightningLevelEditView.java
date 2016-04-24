@@ -53,12 +53,14 @@ public class LightningLevelEditView extends Screen {
 	
 	@Override
 	public void populate() {
+		btnSave.setActionCommand(level.getLevelName());
 		btnSave.setBackground(SystemColor.text);
 		btnSave.setForeground(SystemColor.textHighlight);
 		btnSave.setFont(new Font("Kristen ITC", Font.BOLD, 12));
 		btnSave.setBounds(726, 370, 155, 57);
 		this.add(btnSave);
 		
+		btnDelete.setActionCommand(level.getLevelName());
 		btnDelete.setBackground(SystemColor.text);
 		btnDelete.setForeground(SystemColor.textHighlight);
 		btnDelete.setFont(new Font("Kristen ITC", Font.BOLD, 12));
@@ -109,6 +111,10 @@ public class LightningLevelEditView extends Screen {
 		return this.boardView;
 	}
 	
+	@Override
+	public Level getLevel() {
+		return this.level;
+	}
 	
 	public static void main(String[] args) {
 
@@ -123,6 +129,4 @@ public class LightningLevelEditView extends Screen {
 			}
 		});
 	}
-	
-
 }
