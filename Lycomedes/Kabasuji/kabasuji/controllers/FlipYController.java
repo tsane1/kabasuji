@@ -27,10 +27,13 @@ public class FlipYController implements ActionListener {
 	public boolean doFlipY(){
 		Move m = new FlipYMove(level);
 		
-		if(m.execute()) {
+		if(m.execute()){
+			if(app.getCurrScreen().getName() != "LevelPlay")
+				level.trackMove(m);
 			app.getCurrScreen().getBullpenView().refresh();
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	@Override

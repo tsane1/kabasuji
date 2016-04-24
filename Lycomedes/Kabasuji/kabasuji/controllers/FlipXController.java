@@ -28,10 +28,12 @@ public class FlipXController implements ActionListener {
 		Move m = new FlipXMove(level);
 		
 		if(m.execute()){
+			if(app.getCurrScreen().getName() != "LevelPlay")
+				level.trackMove(m);
 			app.getCurrScreen().getBullpenView().refresh();
+			return true;
 		}
-		
-		return true;
+		return false;
 	}
 
 	@Override
