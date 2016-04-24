@@ -76,12 +76,12 @@ public class BoardView extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-		if(offScreenImage == null){
-			//create on demand
-			Dimension dim = getPreferredSize();
-			offScreenImage = this.createImage(dim.width,dim.height);
+		if (offScreenImage == null) {
+			// create on demand
+			Dimension s = getPreferredSize();
+			offScreenImage = this.createImage(s.width, s.height);
 			offScreenGraphics = offScreenImage.getGraphics();
-			
+
 			redraw();
 		}
 		// if no offscreenImage, then Swing hasn't fully initialized; leave now
@@ -119,6 +119,7 @@ public class BoardView extends JPanel {
 		LightningBoardTile lTile = new LightningBoardTile(0, 0);
 		ReleaseBoardTile rTile = new ReleaseBoardTile(0, 0);
 		//draws out the board
+		//MIGHT NEED TO CHANGE IF WE PLACE TRANSPARENT ON TOP?? or not
 		int i,j = 0;
 		for(i = 0;i<12;i++){
 			for(j = 0;j<12;j++){
@@ -145,5 +146,14 @@ public class BoardView extends JPanel {
 		
 		
 		
+	}
+	public void refresh(){
+		redraw();
+		repaint();
+	}
+	//returns the graphics for this view???
+	
+	public Graphics getGraphics(){
+		return offScreenGraphics;
 	}
 }
