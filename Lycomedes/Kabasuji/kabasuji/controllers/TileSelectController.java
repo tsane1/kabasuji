@@ -2,6 +2,7 @@ package kabasuji.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 import org.w3c.dom.events.MouseEvent;
 
@@ -18,7 +19,7 @@ import kabasuji.supers.SuperModel;
  * @author Ian Jacoway
  */
 
-public class TileSelectController implements ActionListener{
+public class TileSelectController implements MouseListener{
 	Application app;
 	Level level;
 	
@@ -27,7 +28,6 @@ public class TileSelectController implements ActionListener{
 		this.level = l;
 	}
 	
-// This is mostly psuedo code as of now
 	public boolean selectTile(){
 		Move m = new SelectTileMove(level);
 		
@@ -67,15 +67,39 @@ public class TileSelectController implements ActionListener{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS
+	public void mouseClicked(java.awt.event.MouseEvent e) {
 		try{
-			selectTile();
+			// increment a counter in selectTile for every tile being selected that is already selected
+			selectTile(); 
 		}
 		catch(Exception ex){
 			System.err.println("EXCEPTION CAUGHT : TileSelectController");
 			ex.printStackTrace();
 		}
+		
+	}
+// What's the difference between a click and a press??
+	@Override
+	public void mousePressed(java.awt.event.MouseEvent e) {
+		// TODO Figure out how this is different..
+	}
+
+	@Override
+	public void mouseReleased(java.awt.event.MouseEvent e) {
+		// Do nothing
+		
+	}
+
+	@Override
+	public void mouseEntered(java.awt.event.MouseEvent e) {
+		// Do nothing
+		
+	}
+
+	@Override
+	public void mouseExited(java.awt.event.MouseEvent e) {
+		// Do nothing
+		
 	}
 }
 
