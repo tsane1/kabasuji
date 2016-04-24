@@ -1,5 +1,7 @@
 package kabasuji.supers;
 
+import java.awt.Point;
+
 /**
  * <b>SUPER - Controllers</b> Superclass built to handle move events
  * <p>
@@ -18,4 +20,14 @@ public abstract class Move {
 	public abstract boolean undo();
 	
 	public abstract boolean valid();
+
+	public boolean execute(Point p) {
+		// Used to de/select Tiles
+		return false;
+	}
+
+	public boolean undo(Point p) {
+		// Used to de/select Tiles
+		return false;
+	}
 }
