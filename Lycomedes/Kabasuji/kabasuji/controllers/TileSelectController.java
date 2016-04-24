@@ -23,9 +23,9 @@ public class TileSelectController implements MouseListener{
 	Application app;
 	Level level;
 	
-	public TileSelectController(Application a, Level l){
+	public TileSelectController(Application a, SuperModel model){
 		this.app = a;
-		this.level = l;
+		this.level = model.getActiveLevel();
 	}
 	
 	public boolean selectTile(){
@@ -34,14 +34,8 @@ public class TileSelectController implements MouseListener{
 		if(m.execute()){ // WAITING ON REFRESH() THEN FUNCTIONAL
 			// If appropriate screen then update view
 			switch (app.getCurrScreen().getName()){
-				case "LevelPlay":
-					app.getCurrScreen().getBoardView().refresh();
-				case "PuzzleLevelEditView":
-					app.getCurrScreen().getBoardView().refresh();
-				case "LightningLevelEditView":
-					app.getCurrScreen().getBoardView().refresh();
-				case "ReleaseLevelEditView":
-					app.getCurrScreen().getBoardView().refresh();
+				case "LevelPlay": case "PuzzleLevelEditView": case "LightningLevelEditView": case "ReleaseLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
 				default:
 					level.trackMove(m);
 					;//do nothing/push to undo stack?
