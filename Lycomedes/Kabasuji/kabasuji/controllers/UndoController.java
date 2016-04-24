@@ -18,9 +18,9 @@ public class UndoController implements ActionListener {
 	Level level;
 	Application app;
 	
-	public UndoController(Application app, Level l) {
+	public UndoController(Application app, SuperModel model) {
 		this.app = app;
-		this.level = l;
+		this.level = model.getActiveLevel();
 	}
 	
 	@Override

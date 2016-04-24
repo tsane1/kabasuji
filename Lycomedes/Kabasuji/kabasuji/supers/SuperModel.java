@@ -3,7 +3,6 @@ package kabasuji.supers;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,8 +10,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Stack;
-
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
@@ -207,18 +204,18 @@ public class SuperModel {
 	public void setupDefaultLevels() {
 		for(int i = 0; i < 15; i++) {
 			String filename = "Level " + (i+1);// + ".lev";
-			//defaultLevels.put(filename, loadLevel(filename));
-			String type = getLevelType("Level "+(i+1));
-			switch(type){
-			case "puzzle":
-				defaultLevels.add(new PuzzleLevel(filename)); break;
-			case "lightning":
-				defaultLevels.add(new LightningLevel(filename)); break;
-			case "release":
-				defaultLevels.add(new ReleaseLevel(filename)); break;
-			default:
-				throw new IllegalArgumentException("Invalid level type");
-			}
+			//defaultLevels.add(loadLevel(filename));
+//			String type = getLevelType("Level "+(i+1));
+//			switch(type){
+//			case "puzzle":
+//				defaultLevels.add(new PuzzleLevel(filename)); break;
+//			case "lightning":
+//				defaultLevels.add(new LightningLevel(filename)); break;
+//			case "release":
+//				defaultLevels.add(new ReleaseLevel(filename)); break;
+//			default:
+//				throw new IllegalArgumentException("Invalid level type");
+//			}
 			defaultLevels.add(new LightningLevel(filename));
 			if(i < 1) defaultLevels.get(i).unlock();
 		}
@@ -227,24 +224,8 @@ public class SuperModel {
 	public void setupUserLevels() {
 		for(int i = 0; i < userLevels.size(); i++) {
 			String filename = "Level " + (i+1);// + ".lev";
-			//defaultLevels.put(filename, loadLevel(filename));
-			String type = getLevelType("Level "+(i+1));
-			switch(type){
-			case "puzzle":
-				userLevels.add(new PuzzleLevel(filename)); break;
-			case "lightning":
-				userLevels.add(new LightningLevel(filename)); break;
-			case "release":
-				userLevels.add(new ReleaseLevel(filename)); break;
-			default:
-				throw new IllegalArgumentException("Invalid level type");
-			}
+			//userLevels.add(loadLevel(filename));
 		}
-//		for(int i = 0; i < userLevels.size(); i++) {
-//			String filename = "Level " + (i+1);// + ".lev";
-//			//defaultLevels.put(filename, loadLevel(filename));
-//			userLevels.add(new LightningLevel(filename));
-//		}
 		userLevels.add(new PuzzleLevel("Test"));
 		userLevels.get(0).unlock();
 		userLevels.add(new ReleaseLevel("Test2"));
@@ -308,7 +289,16 @@ public class SuperModel {
 		Level loadedLevel = null;
 		try {
 			ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
-			loadedLevel = (Level)input.readObject();
+			switch(((Level)input.readObject()).getLevelType()){
+			case "Puzzle":
+				userLevels.add(new PuzzleLevel(filename)); break;
+			case "Lightning":
+				userLevels.add(new LightningLevel(filename)); break;
+			case "Release":
+				userLevels.add(new ReleaseLevel(filename)); break;
+			default:
+				throw new IllegalArgumentException("Invalid level type");
+			}
 			input.close();
 		}
 		catch (ClassNotFoundException e) {

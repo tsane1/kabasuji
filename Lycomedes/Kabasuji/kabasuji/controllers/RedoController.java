@@ -15,11 +15,12 @@ import kabasuji.supers.SuperModel;
  * @author Tanuj Sane
  */
 public class RedoController implements ActionListener {
-	
+	Application app;
 	Level level;
 	
-	public RedoController(Level l) {
-		this.level = l;
+	public RedoController(Application app, SuperModel model) {
+		this.app = app;
+		this.level = model.getActiveLevel();
 	}
 	
 	@Override
