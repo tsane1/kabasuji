@@ -3,6 +3,7 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import kabasuji.moves.FlipXMove;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
@@ -17,32 +18,32 @@ import kabasuji.supers.SuperModel;
 public class FlipXController implements ActionListener {
 	Application app;
 	Level level;
-	SuperModel model;
 	
-	public FlipXController(Application a, Level l, SuperModel mod) {
+	public FlipXController(Application a, Level l) {
 		this.app= a;
 		this.level = l;
-		this.model = mod;
 	}
 	
 	public boolean doFlipX(){
-		Move m = model.getLastMove();
-		if(m == null){
-			return false;
-		}		
-		if(level.getSelected() == null){
-			return false;
-		}
-	
-		level.getSelected().flipX();
-		//casting is messed up cuz the screens are all in other packages
-		if(app.getCurrScreen().getName() != "LevelPlay")
-			; //should push onto undo stack
-		app.getCurrScreen().getBullpenView().refresh();
+		Move m = new FlipXMove(level);
 		
-		if(m.execute()) {
-			model.addMoveToUndo(m);
+		if(m.execute()){
+			// If appropriate screen then update view
+			switch (app.getCurrScreen().getName()){
+				case "LevelPlay":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "PuzzleLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "LightningLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				case "ReleaseLevelEditView":
+					app.getCurrScreen().getBullpenView().refresh();
+				default:
+					level.trackMove(m);
+					;//do nothing/push to undo stack?
+			}
 		}
+		
 		return true;
 	}
 
