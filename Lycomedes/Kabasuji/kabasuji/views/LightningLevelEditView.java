@@ -19,7 +19,7 @@ import kabasuji.supers.Screen;
 
 /**
  * 
- * @author Lots on someones
+ * @author Tanuj Sane
  * @since 4/23/16
  *
  */

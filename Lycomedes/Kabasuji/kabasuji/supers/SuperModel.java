@@ -228,19 +228,9 @@ public class SuperModel {
 	}
 	
 	public void setupUserLevels() {
-		userLevels.add(new PuzzleLevel("Test"));
-		userLevels.get(0).unlock();
-		userLevels.add(new ReleaseLevel("Test2"));
-		userLevels.add(new LightningLevel("Test3"));
-		userLevels.add(new PuzzleLevel("Test4"));
-		userLevels.add(new ReleaseLevel("Test5"));		
-		userLevels.add(new PuzzleLevel("Test6"));
-		userLevels.add(new PuzzleLevel("Test7"));
-		userLevels.add(new LightningLevel("Test8"));
-		userLevels.add(new LightningLevel("Test9"));
-		userLevels.add(new ReleaseLevel("Test10"));		
-		userLevels.add(new PuzzleLevel("Test11"));
-		userLevels.add(new PuzzleLevel("Test12"));
+		for(int i = 0; i < this.numUserLevels(); i++) {
+			
+		}
 	}
 	
 	public Level getLevel(String name) {
@@ -256,11 +246,11 @@ public class SuperModel {
 	
 	public void removeLevel(String name) {
 		if(name == null) return;
-		for(int idx = 0; idx < 15; idx++) {
-			if(name.equals(defaultLevels.get(idx).getLevelName())) {
-				defaultLevels.remove(idx);
-			}
-		}
+//		for(int idx = 0; idx < 15; idx++) {
+//			if(name.equals(defaultLevels.get(idx).getLevelName())) {
+//				defaultLevels.remove(idx);
+//			}
+//		}
 		for(int idx = 0; idx < numUserLevels(); idx++) {
 			if(name.equals(userLevels.get(idx).getLevelName())) {
 				userLevels.remove(idx);
