@@ -7,6 +7,7 @@ import java.util.ArrayList;
 /** 
  * Main board object that represents a board of maximum size 12x12 and all the tiles and pieces it contains.
  * @author Michael
+ * @author Ian Jacoway as of @since 4/24/16
  *
  */
 
@@ -160,118 +161,24 @@ public class Board implements Serializable{
 		return 0;
 	}
 	
+	/**
+	 * Converts an UnplayableTile to a PieceTile given a Point on the Board.
+	 * @param Point p
+	 */
 	public void selectTile(Point p) {
-		int rowNum = (int) (p.getY()); // Casting from double WARNING!! :P
-		int colNum = (int) (p.getX());
-		int row, col;
-		// row translations.. booo ugly programing
-		if (rowNum < 33)
-			row = 1;
-		else if (rowNum < 65)
-			row = 2;
-		else if (rowNum < 97)
-			row = 3;
-		else if (rowNum < 129)
-			row = 4;
-		else if (rowNum < 161)
-			row = 5;
-		else if (rowNum < 193)
-			row = 6;
-		else if (rowNum < 225)
-			row = 7;
-		else if (rowNum < 257)
-			row = 8;
-		else if (rowNum < 289)
-			row = 9;
-		else if (rowNum < 321)
-			row = 10;
-		else if (rowNum < 353)
-			row = 11;
-		else if (rowNum < 385)
-			row = 12;
-		// do same for col
-		if (colNum < 33)
-			col = 1;
-		else if (colNum < 65)
-			col = 2;
-		else if (colNum < 97)
-			col = 3;
-		else if (colNum < 129)
-			col = 4;
-		else if (colNum < 161)
-			col = 5;
-		else if (colNum < 193)
-			col = 6;
-		else if (colNum < 225)
-			col = 7;
-		else if (colNum < 257)
-			col = 8;
-		else if (colNum < 289)
-			col = 9;
-		else if (colNum < 321)
-			col = 10;
-		else if (colNum < 353)
-			col = 11;
-		else if (colNum < 385)
-			col = 12;
+		int rowNum = (int) p.getY()/32%32; // Casting from double 
+		int colNum = (int) p.getX()/32%32; // @DAGF 32/32%32 = 1
 		PieceTile t = new PieceTile(rowNum, colNum);
 		boardArray[rowNum][colNum] = t;
 	}
 	
+	/**
+	 * Converts an PieceTile to a UnplayableTile given a Point on the Board.
+	 * @param Point p
+	 */
 	public void deselectTile(Point p) {
-		int rowNum = (int) (p.getY()); // Casting from double WARNING!! :P
-		int colNum = (int) (p.getX());
-		int row, col;
-		// row translations.. booo ugly programing
-		if (rowNum < 33)
-			row = 1;
-		else if (rowNum < 65)
-			row = 2;
-		else if (rowNum < 97)
-			row = 3;
-		else if (rowNum < 129)
-			row = 4;
-		else if (rowNum < 161)
-			row = 5;
-		else if (rowNum < 193)
-			row = 6;
-		else if (rowNum < 225)
-			row = 7;
-		else if (rowNum < 257)
-			row = 8;
-		else if (rowNum < 289)
-			row = 9;
-		else if (rowNum < 321)
-			row = 10;
-		else if (rowNum < 353)
-			row = 11;
-		else if (rowNum < 385)
-			row = 12;
-		// do same for col
-		if (colNum < 33)
-			col = 1;
-		else if (colNum < 65)
-			col = 2;
-		else if (colNum < 97)
-			col = 3;
-		else if (colNum < 129)
-			col = 4;
-		else if (colNum < 161)
-			col = 5;
-		else if (colNum < 193)
-			col = 6;
-		else if (colNum < 225)
-			col = 7;
-		else if (colNum < 257)
-			col = 8;
-		else if (colNum < 289)
-			col = 9;
-		else if (colNum < 321)
-			col = 10;
-		else if (colNum < 353)
-			col = 11;
-		else if (colNum < 385)
-			col = 12;
+		int rowNum = (int) p.getY()/32%32; // Casting from double 
+		int colNum = (int) p.getX()/32%32;
 		UnplayableTile t = new UnplayableTile(rowNum, colNum);
 		boardArray[rowNum][colNum] = t;
 		
