@@ -1,5 +1,6 @@
 package kabasuji.controllers;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -15,7 +16,8 @@ import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
 
 /**
- * A controller to select tiles as active on a Board.
+ * A controller to select tiles as active on a Board with one click, 
+ * up to the following 6 clicks it then increment a number to appear on the tile (for release).
  * @author Ian Jacoway
  */
 
@@ -28,14 +30,14 @@ public class TileSelectController implements MouseListener{
 		this.level = model.getActiveLevel();
 	}
 	
-	public boolean selectTile(){
+	public boolean selectTile(Point p){
 		Move m = new SelectTileMove(level);
 		
-		if(m.execute()){ // WAITING ON REFRESH() THEN FUNCTIONAL
+		if(m.execute()){ // WAITING ON =========REFRESH()======== THEN FUNCTIONAL
 			// If appropriate screen then update view
 			switch (app.getCurrScreen().getName()){
 				case "LevelPlay": case "PuzzleLevelEditView": case "LightningLevelEditView": case "ReleaseLevelEditView":
-					app.getCurrScreen().getBullpenView().refresh();
+					app.getCurrScreen().getBoardView();//.refresh();
 				default:
 					level.trackMove(m);
 					;//do nothing/push to undo stack?
@@ -64,7 +66,12 @@ public class TileSelectController implements MouseListener{
 	public void mouseClicked(java.awt.event.MouseEvent e) {
 		try{
 			// increment a counter in selectTile for every tile being selected that is already selected
-			selectTile(); 
+			if (e.getSource() == app.getCurrScreen().getBoardView()){
+				// get object clicked on, in this case the board
+				e.getPoint(); // returns the X and Y with respect to the source object (board) yeah!!
+				selectTile(e.getPoint()); //
+			}
+			//e.getClickCount(); // will be helpful for incrementing release
 		}
 		catch(Exception ex){
 			System.err.println("EXCEPTION CAUGHT : TileSelectController");

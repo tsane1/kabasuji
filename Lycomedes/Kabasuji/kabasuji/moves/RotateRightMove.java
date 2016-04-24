@@ -3,6 +3,12 @@ package kabasuji.moves;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 
+/**
+ * A Move done on a Piece, that will rotate the Piece 90 degrees to the right.
+ * @author Ian Jacoway
+ *
+ */
+
 public class RotateRightMove extends Move {
 	Level currLevel;
 	

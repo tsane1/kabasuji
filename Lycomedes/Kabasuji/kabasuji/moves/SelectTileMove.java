@@ -3,6 +3,12 @@ package kabasuji.moves;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 
+/**
+ * Set the selected Tile on the Board to active,
+ * if Tile in selected again increment a number to appear (release only).
+ * @author Ian Jacoway
+ *
+ */
 public class SelectTileMove extends Move {
 	Level currLevel;
 	

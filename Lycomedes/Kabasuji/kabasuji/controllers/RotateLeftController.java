@@ -36,13 +36,7 @@ public class RotateLeftController implements ActionListener {
 		if(m.execute()){
 			// If appropriate screen then update view
 			switch (app.getCurrScreen().getName()){
-				case "LevelPlay":
-					app.getCurrScreen().getBullpenView().refresh();
-				case "PuzzleLevelEditView":
-					app.getCurrScreen().getBullpenView().refresh();
-				case "LightningLevelEditView":
-					app.getCurrScreen().getBullpenView().refresh();
-				case "ReleaseLevelEditView":
+				case "LevelPlay": case "PuzzleLevelEditView": case "LightningLevelEditView": case "ReleaseLevelEditView":
 					app.getCurrScreen().getBullpenView().refresh();
 				default:
 					level.trackMove(m);
