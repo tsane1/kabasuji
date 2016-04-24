@@ -1,5 +1,7 @@
 package tests.entities;
 
+import java.util.Arrays;
+
 import junit.framework.TestCase;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
@@ -59,8 +61,9 @@ public class TestPiece extends TestCase {
 		arr[5] = pt6;
 		
 		Piece testPiece2 = new Piece(2, arr);
+		testPiece.flipX();
+		assertTrue(Arrays.deepEquals(testPiece.getTileLocations(), testPiece2.getTileLocations()));
 		
-		//assertEquals(testPiece2, testPiece.flipX());
 	}
 
 }
