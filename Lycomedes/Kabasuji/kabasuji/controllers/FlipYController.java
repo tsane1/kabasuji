@@ -28,14 +28,7 @@ public class FlipYController implements ActionListener {
 		Move m = new FlipYMove(level);
 		
 		if(m.execute()) {
-			// If appropriate screen then update view
-			switch (app.getCurrScreen().getName()){
-				case "LevelPlay": case "PuzzleLevelEditView": case "LightningLevelEditView": case "ReleaseLevelEditView":
-					app.getCurrScreen().getBullpenView().refresh();
-				default:
-					level.trackMove(m);
-					;//do nothing/push to undo stack?
-			}
+			app.getCurrScreen().getBullpenView().refresh();
 		}
 		return true;
 	}
