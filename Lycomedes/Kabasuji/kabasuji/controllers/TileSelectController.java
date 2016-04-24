@@ -33,16 +33,23 @@ public class TileSelectController implements MouseListener{
 	public boolean selectTile(Point p){
 		Move m = new SelectTileMove(level);
 		
-		if(m.execute(p)){ // WAITING ON =========REFRESH()======== THEN FUNCTIONAL
+		if(m.execute(p)){
+			if(app.getCurrScreen().getName() != "LevelPlay")
+				level.trackMove(m);
+			app.getCurrScreen().getBoardView();//.refresh();
+			return true;
+		}
+		return false;
+//		if(m.execute(p)){ // WAITING ON =========REFRESH()======== THEN FUNCTIONAL
 			// If appropriate screen then update view
 //			switch (app.getCurrScreen().getName()){
 //				case "LevelPlay": case "PuzzleLevelEditView": case "LightningLevelEditView": case "ReleaseLevelEditView":
-					app.getCurrScreen().getBoardView();//.refresh();
+//					app.getCurrScreen().getBoardView().refresh();
 //				default:
 //					level.trackMove(m);
 //					;//do nothing/push to undo stack?
 //			}
-		}
+//		}
 //		if(m.undo(p)){ // UNDO
 //			// If appropriate screen then update view
 //			switch (app.getCurrScreen().getName()){
@@ -53,7 +60,7 @@ public class TileSelectController implements MouseListener{
 //					;//do nothing/push to undo stack?
 //			}
 //		}
-		return true;
+//		return true;
 	}
 
 	@Override
