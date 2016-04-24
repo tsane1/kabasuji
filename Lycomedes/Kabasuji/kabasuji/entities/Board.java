@@ -165,11 +165,28 @@ public class Board implements Serializable{
 	 * Converts an UnplayableTile to a PieceTile given a Point on the Board.
 	 * @param Point p
 	 */
-	public void selectTile(Point p) {
-		int rowNum = (int) p.getY()/32%32; // Casting from double 
-		int colNum = (int) p.getX()/32%32; // @DAGF 32/32%32 = 1
-		PieceTile t = new PieceTile(rowNum, colNum);
-		boardArray[rowNum][colNum] = t;
+	public void selectTile(Point p, String levType) {
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32; 
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		switch(levType){
+		case "puzzle" :
+			boardArray[rowNum][colNum] = new PuzzleBoardTile(rowNum,colNum); break;
+		case "lightning" :
+			boardArray[rowNum][colNum] = new LightningBoardTile(rowNum,colNum); break;
+		case "release" :
+			boardArray[rowNum][colNum] = new ReleaseBoardTile(rowNum,colNum); break;
+		default:
+			System.err.println("Type not found.");
+		}
+		
 	}
 	
 	/**
@@ -177,10 +194,16 @@ public class Board implements Serializable{
 	 * @param Point p
 	 */
 	public void deselectTile(Point p) {
-		int rowNum = (int) p.getY()/32%32; // Casting from double 
-		int colNum = (int) p.getX()/32%32;
-		UnplayableTile t = new UnplayableTile(rowNum, colNum);
-		boardArray[rowNum][colNum] = t;
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
 		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		boardArray[rowNum][colNum] = new UnplayableTile(rowNum, colNum);
 	}
 }

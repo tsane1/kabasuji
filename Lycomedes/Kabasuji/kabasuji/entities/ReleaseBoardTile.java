@@ -16,6 +16,8 @@ public class ReleaseBoardTile extends Tile{
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
 	
+	int value;
+	
 	/**
 	 * Constructor for the releaseboardtile object.
 	 * @param int row
@@ -26,6 +28,7 @@ public class ReleaseBoardTile extends Tile{
 		
 		this.row = row;
 		this.col = column;
+		value = 0;
 		covered = false;
 		
 	}
@@ -52,6 +55,15 @@ public class ReleaseBoardTile extends Tile{
 	 */
 	public boolean isCovered() {
 		return covered;
+	}
+	
+	public int getValue(){
+		return value;
+	}
+	
+	public void incrementValue(){
+		if(this.value < 6)
+			this.value += 1;
 	}
 	
 }
