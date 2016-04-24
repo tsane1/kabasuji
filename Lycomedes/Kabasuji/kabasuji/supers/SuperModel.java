@@ -319,6 +319,8 @@ public class SuperModel {
 		}
 		return false;
 	}
+
+
 	
 	public String getLevelType(String name){
 		return this.getLevel(name).getLevelType();
