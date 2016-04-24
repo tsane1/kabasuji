@@ -33,7 +33,7 @@ public class TileSelectController implements MouseListener{
 	public boolean selectTile(Point p){
 		Move m = new SelectTileMove(level);
 		
-		if(m.execute()){ // WAITING ON =========REFRESH()======== THEN FUNCTIONAL
+		if(m.execute(p)){ // WAITING ON =========REFRESH()======== THEN FUNCTIONAL
 			// If appropriate screen then update view
 			switch (app.getCurrScreen().getName()){
 				case "LevelPlay": case "PuzzleLevelEditView": case "LightningLevelEditView": case "ReleaseLevelEditView":
@@ -43,22 +43,16 @@ public class TileSelectController implements MouseListener{
 					;//do nothing/push to undo stack?
 			}
 		}
-//		if(level.getSelected() == null){
-//			return false;
-//		}
-//		if (leftClick.getX() == board.getX()) && ()
-//			//turn tile on & if release 
-//			if(level.getLevelType() == "Release"){
-//				//do increment number on tile
+//		if(m.undo(p)){ // UNDO
+//			// If appropriate screen then update view
+//			switch (app.getCurrScreen().getName()){
+//				case "LevelPlay": case "PuzzleLevelEditView": case "LightningLevelEditView": case "ReleaseLevelEditView":
+//					app.getCurrScreen().getBoardView();//.refresh();
+//				default:
+//					level.trackMove(m);
+//					;//do nothing/push to undo stack?
 //			}
-//		
-//		level.get();
-//		if (rightClick.getX() == board.getX()){
-//			//increment color of number 
 //		}
-//		
-//		app.getCurrScreen().getBoardView().refresh();
-		
 		return true;
 	}
 
@@ -68,8 +62,8 @@ public class TileSelectController implements MouseListener{
 			// increment a counter in selectTile for every tile being selected that is already selected
 			if (e.getSource() == app.getCurrScreen().getBoardView()){
 				// get object clicked on, in this case the board
-				e.getPoint(); // returns the X and Y with respect to the source object (board) yeah!!
-				selectTile(e.getPoint()); //
+				Point p = e.getPoint(); // returns the X and Y with respect to the source object (board) yeah!!
+				selectTile(p); //
 			}
 			//e.getClickCount(); // will be helpful for incrementing release
 		}

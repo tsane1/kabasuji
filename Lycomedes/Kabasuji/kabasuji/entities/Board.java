@@ -1,5 +1,6 @@
 package kabasuji.entities;
 
+import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -159,13 +160,120 @@ public class Board implements Serializable{
 		return 0;
 	}
 	
-	public void selectTile() {
-		// TODO write select tile
-		
+	public void selectTile(Point p) {
+		int rowNum = (int) (p.getY()); // Casting from double WARNING!! :P
+		int colNum = (int) (p.getX());
+		int row, col;
+		// row translations.. booo ugly programing
+		if (rowNum < 33)
+			row = 1;
+		else if (rowNum < 65)
+			row = 2;
+		else if (rowNum < 97)
+			row = 3;
+		else if (rowNum < 129)
+			row = 4;
+		else if (rowNum < 161)
+			row = 5;
+		else if (rowNum < 193)
+			row = 6;
+		else if (rowNum < 225)
+			row = 7;
+		else if (rowNum < 257)
+			row = 8;
+		else if (rowNum < 289)
+			row = 9;
+		else if (rowNum < 321)
+			row = 10;
+		else if (rowNum < 353)
+			row = 11;
+		else if (rowNum < 385)
+			row = 12;
+		// do same for col
+		if (colNum < 33)
+			col = 1;
+		else if (colNum < 65)
+			col = 2;
+		else if (colNum < 97)
+			col = 3;
+		else if (colNum < 129)
+			col = 4;
+		else if (colNum < 161)
+			col = 5;
+		else if (colNum < 193)
+			col = 6;
+		else if (colNum < 225)
+			col = 7;
+		else if (colNum < 257)
+			col = 8;
+		else if (colNum < 289)
+			col = 9;
+		else if (colNum < 321)
+			col = 10;
+		else if (colNum < 353)
+			col = 11;
+		else if (colNum < 385)
+			col = 12;
+		PieceTile t = new PieceTile(rowNum, colNum);
+		boardArray[rowNum][colNum] = t;
 	}
 	
-	public void deselectTile() {
-		// TODO write deselect tile
+	public void deselectTile(Point p) {
+		int rowNum = (int) (p.getY()); // Casting from double WARNING!! :P
+		int colNum = (int) (p.getX());
+		int row, col;
+		// row translations.. booo ugly programing
+		if (rowNum < 33)
+			row = 1;
+		else if (rowNum < 65)
+			row = 2;
+		else if (rowNum < 97)
+			row = 3;
+		else if (rowNum < 129)
+			row = 4;
+		else if (rowNum < 161)
+			row = 5;
+		else if (rowNum < 193)
+			row = 6;
+		else if (rowNum < 225)
+			row = 7;
+		else if (rowNum < 257)
+			row = 8;
+		else if (rowNum < 289)
+			row = 9;
+		else if (rowNum < 321)
+			row = 10;
+		else if (rowNum < 353)
+			row = 11;
+		else if (rowNum < 385)
+			row = 12;
+		// do same for col
+		if (colNum < 33)
+			col = 1;
+		else if (colNum < 65)
+			col = 2;
+		else if (colNum < 97)
+			col = 3;
+		else if (colNum < 129)
+			col = 4;
+		else if (colNum < 161)
+			col = 5;
+		else if (colNum < 193)
+			col = 6;
+		else if (colNum < 225)
+			col = 7;
+		else if (colNum < 257)
+			col = 8;
+		else if (colNum < 289)
+			col = 9;
+		else if (colNum < 321)
+			col = 10;
+		else if (colNum < 353)
+			col = 11;
+		else if (colNum < 385)
+			col = 12;
+		UnplayableTile t = new UnplayableTile(rowNum, colNum);
+		boardArray[rowNum][colNum] = t;
 		
 	}
 }
