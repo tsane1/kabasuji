@@ -72,6 +72,12 @@ public class LevelPlayView extends Screen {
 	public BullpenView getBullpenView(){
 		return this.bullpenView;
 	}
+	
+	@Override
+	public BoardView getBoardView(){
+		return this.boardView;
+	}
+	
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {

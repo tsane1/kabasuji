@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import kabasuji.controllers.BackController;
+import kabasuji.views.BoardView;
 import kabasuji.views.BullpenView;
 
 import java.awt.Color;
@@ -76,6 +77,11 @@ public abstract class Screen extends JPanel {
 	public abstract String getName(); // get screen name
 
 	public BullpenView getBullpenView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public BoardView getBoardView() {
 		// TODO Auto-generated method stub
 		return null;
 	}
