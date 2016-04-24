@@ -47,6 +47,8 @@ public class LightningLevelEditView extends Screen {
 			this.setTitle("New Lightning Level: " + levelName);
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");
+		
+		model.setActiveLevel(level);
 		this.boardView = new BoardView(this.model);
 		this.bullpenView = new BullpenView(this.model);
 	}

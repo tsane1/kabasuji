@@ -263,7 +263,7 @@ public class SuperModel {
 		}
 		for(int idx = 0; idx < numUserLevels(); idx++) {
 			if(name.equals(userLevels.get(idx).getLevelName())) {
-				defaultLevels.remove(idx);
+				userLevels.remove(idx);
 			}
 		}	
 	}

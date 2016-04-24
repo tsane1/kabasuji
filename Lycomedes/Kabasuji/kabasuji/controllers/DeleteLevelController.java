@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
+import kabasuji.views.LevelEditSelectView;
 
 public class DeleteLevelController implements ActionListener {
 	private Application app;
@@ -20,5 +21,6 @@ public class DeleteLevelController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
 		this.model.deleteLevel(e.getActionCommand());
+		app.setCurrScreen(new LevelEditSelectView(model));
 	}
 }

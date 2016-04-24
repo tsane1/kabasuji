@@ -45,6 +45,7 @@ public class PuzzleLevelEditView extends Screen {
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");
 		
+		model.setActiveLevel(level);
 		this.boardView = new BoardView(this.model);
 		this.bullpenView = new BullpenView(this.model);
 	}
