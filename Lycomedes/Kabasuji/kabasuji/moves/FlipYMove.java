@@ -19,7 +19,7 @@ public class FlipYMove extends Move {
 
 	@Override
 	public boolean undo() {
-		currLevel.getSelected().flipX();
+		currLevel.getSelected().flipY();
 		return true;
 	}
 
