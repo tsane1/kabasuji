@@ -336,4 +336,8 @@ public abstract class Level implements Serializable {
 		}
 		return redoStack.pop();
 	}
+	
+	public Color getPieceColor(Piece p){
+		return colorMap.get(p);
+	}
 }
