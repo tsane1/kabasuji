@@ -68,8 +68,8 @@ public class LaunchLevelBuilder {
 		t1.start();
 		t2.start();
 		//t1.sleep(500);
-		t1.notify();
-		t2.notify();
+//		t1.notify();
+//		t2.notify();
 //		t1.notifyAll(); // fook-a-niggs
 //		t1.join();
 //		t2.join();
