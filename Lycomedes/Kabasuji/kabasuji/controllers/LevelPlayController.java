@@ -21,7 +21,11 @@ public class LevelPlayController implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		model.setActiveLevel(model.getLevel(e.getActionCommand()));
+		Level level;
+		if(model.loadLevel(model.getUserLevelDir(), e.getActionCommand()+".lev") == null) 
+			level = model.loadLevel(model.getDefaultLevelDir(), e.getActionCommand()+".lev");
+		else level = model.loadLevel(model.getUserLevelDir(), e.getActionCommand()+".lev");
+		model.setActiveLevel(level);
 		if(!model.getActiveLevel().isLocked()) 
 			this.app.setCurrScreen(new LevelPlayView(this.model.getActiveLevel().getLevelName(), this.model));
 	}

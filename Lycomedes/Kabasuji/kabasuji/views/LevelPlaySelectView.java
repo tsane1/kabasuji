@@ -59,15 +59,15 @@ public class LevelPlaySelectView extends Screen {
 		
 		for(int idx = 0; idx < 15; idx++) {
 			levelNames.add(new JLabel());
-			levelNames.get(idx).setText(model.getDefaultLevelByIndex(idx).getLevelName());
+			levelNames.get(idx).setText(model.getDefaultLevelNameByIndex(idx));
 			levelNames.get(idx).setHorizontalAlignment(SwingConstants.CENTER);
 			levelNames.get(idx).setForeground(SystemColor.textHighlight);
 			levelNames.get(idx).setFont(new Font("Kristen ITC", Font.BOLD, 18));
 			levelNames.get(idx).setSize(128,50);
 			
 			levelButtons.add(new JButton());
-			levelButtons.get(idx).setActionCommand(model.getDefaultLevelByIndex(idx).getLevelName());
-			switch(model.getDefaultLevelByIndex(idx).getLevelType()) {
+			levelButtons.get(idx).setActionCommand(model.getDefaultLevelNameByIndex(idx));
+			switch(model.loadLevel(model.getDefaultLevelDir(), model.getDefaultLevelNameByIndex(idx)+".lev").getLevelType()) {
 			case "Puzzle":
 				levelButtons.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/puzzle_icon_smol.png")));
 				break;
@@ -81,21 +81,21 @@ public class LevelPlaySelectView extends Screen {
 			levelButtons.get(idx).setDisabledIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/locked_icon.png")));
 			levelButtons.get(idx).setBackground(SystemColor.text);
 			levelButtons.get(idx).setSize(128, 128);
-			levelButtons.get(idx).setEnabled(!model.getDefaultLevelByIndex(idx).isLocked());
+			levelButtons.get(idx).setEnabled(!model.loadLevel(model.getDefaultLevelDir(), model.getDefaultLevelNameByIndex(idx)+".lev").isLocked());
 		}	
 		
-		for(int idx = 0; idx < this.model.numUserLevels(); idx++) {
+		for(int idx = 0; idx < this.model.getNumUserLevels(); idx++) {
 			levelNames.add(new JLabel());
-			levelNames.get(idx + 15).setText(model.getUserLevelByIndex(idx).getLevelName());
+			levelNames.get(idx + 15).setText(model.getUserLevelNameByIndex(idx));
 			levelNames.get(idx + 15).setHorizontalAlignment(SwingConstants.CENTER);
 			levelNames.get(idx + 15).setForeground(SystemColor.textHighlight);
 			levelNames.get(idx + 15).setFont(new Font("Kristen ITC", Font.BOLD, 18));
 			levelNames.get(idx + 15).setSize(128,50);
 
 			levelButtons.add(new JButton());
-			levelButtons.get(idx + 15).setActionCommand(model.getUserLevelByIndex(idx).getLevelName());
+			levelButtons.get(idx + 15).setActionCommand(model.getUserLevelNameByIndex(idx));
 
-			switch(model.getUserLevelByIndex(idx).getLevelType()) {
+			switch(model.loadLevel(model.getUserLevelDir(), model.getUserLevelNameByIndex(idx)+".lev").getLevelType()) {
 			case "Puzzle":
 				levelButtons.get(idx + 15).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/puzzle_icon_smol.png")));
 				break;
@@ -109,7 +109,7 @@ public class LevelPlaySelectView extends Screen {
 			levelButtons.get(idx + 15).setDisabledIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/locked_icon.png")));
 			levelButtons.get(idx + 15).setBackground(SystemColor.text);
 			levelButtons.get(idx + 15).setSize(128, 128);
-			levelButtons.get(idx + 15).setEnabled(!model.getUserLevelByIndex(idx).isLocked());
+			levelButtons.get(idx + 15).setEnabled(!model.loadLevel(model.getUserLevelDir(), model.getUserLevelNameByIndex(idx)+".lev").isLocked());
 		}		
 			
 		refresh();
@@ -117,7 +117,7 @@ public class LevelPlaySelectView extends Screen {
 
 	@Override
 	public void installControllers() {
-		for(int idx = 0; idx < 15 + this.model.numUserLevels(); idx++) {
+		for(int idx = 0; idx < 15 + this.model.getNumUserLevels(); idx++) {
 			levelButtons.get(idx).addActionListener(new LevelPlayController(this.app, this.model));
 		}
 		btnNext.addActionListener(new NavigateLevelSelectController(this.app, this.model));
@@ -131,14 +131,14 @@ public class LevelPlaySelectView extends Screen {
 
 	@Override
 	public void refresh() {
-		for(int idx = 0; idx < 15 + this.model.numUserLevels(); idx++) {
+		for(int idx = 0; idx < 15 + this.model.getNumUserLevels(); idx++) {
 			this.remove(levelButtons.get(idx));
 			this.remove(levelNames.get(idx));
 		}		
 		this.validate();
 		this.repaint();
 		
-		btnNext.setEnabled(model.getPage() < (model.numUserLevels() + 14) / 10);
+		btnNext.setEnabled(model.getPage() < (model.getNumUserLevels() + 14) / 10);
 		btnPrev.setEnabled(model.getPage() > 0);
 		btnNext.validate();
 		btnNext.repaint();
@@ -147,7 +147,7 @@ public class LevelPlaySelectView extends Screen {
 		
 		for(int idx = 0; idx < 10; idx++) {
 			int btnIndex = (10*model.getPage()) + idx;
-			if(btnIndex >= model.totalLevels());
+			if(btnIndex >= model.getTotalNumLevels());
 			else {
 				levelNames.get(btnIndex).setLocation(125+(138*(idx%5)), 150+(188*(idx/5)));
 				this.add(levelNames.get(btnIndex));

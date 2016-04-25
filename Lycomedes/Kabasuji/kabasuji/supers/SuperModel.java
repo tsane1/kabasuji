@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
 import kabasuji.entities.LightningLevel;
@@ -34,48 +36,66 @@ import kabasuji.entities.ReleaseLevel;
  */
 
 public class SuperModel {
-	ArrayList<Level> defaultLevels = new ArrayList<Level>(15);
-	ArrayList<Level> userLevels = new ArrayList<Level>();
+	ArrayList<String> defaultLevelNames = new ArrayList<String>(15);
+	ArrayList<String> userLevelNames = new ArrayList<String>();
 	HashMap<Integer, Piece> allPieces = new HashMap<Integer, Piece>(35);
 	ArrayList<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	HashMap<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
 	Level activeLevel;
 	int page;
-	private String lvlDir;	
-
+	private String userLevelsDirectory, defaultLevelsDirectory;	
+	
+	/**
+	 * Constructor for the SuperModel, sets up all necessary game elements in initial state.
+	 */
 	public SuperModel() {
-		lvlDir = System.getProperty("user.dir") + System.getProperty("file.separator") + "levels" + System.getProperty("file.separator");
-		//setupDefaultLevels();
-		setupUserLevels();
-		for(int i = 0; i < 36; i++) {
-			pieceGrid.add(new PieceTile(i/6, i%6));
-		}
+		userLevelsDirectory = System.getProperty("user.dir") + System.getProperty("file.separator") + "user_levels" + System.getProperty("file.separator");
+		defaultLevelsDirectory = System.getProperty("user.dir") + System.getProperty("file.separator") + "default_levels" + System.getProperty("file.separator");
 		activeLevel = null;
 		page = 0;
 		setupPieces();
+		setupDefaultLevelNames();
+		updateUserLevelNames();
 	}
 	
-	public void nextPage() {
-		this.page += 1;
-	}
-	
-	public void prevPage() {
-		this.page -= 1;
-	}
-	
-	public int getPage() {
-		return this.page;
-	}
-	
-	public void setActiveLevel(Level level) {
-		this.activeLevel = level;
-	}
-	
-	public Level getActiveLevel() {
-		return this.activeLevel;
-	}
+	private void setupDefaultLevelNames() {
+		System.out.println(defaultLevelsDirectory);
+		File[] files = new File(defaultLevelsDirectory).listFiles();
+		Arrays.sort(files, new Comparator<File>() {
+      @Override
+      public int compare(File o1, File o2) {
+          int n1 = extractNumber(o1.getName());
+          int n2 = extractNumber(o2.getName());
+          return n1 - n2;
+      }
 
-	public void setupPieces(){
+      private int extractNumber(String name) {
+          int i = 0;
+          try {
+              int s = name.indexOf('l')+1;
+              int e = name.lastIndexOf('.');
+              String number = name.substring(s, e);
+              i = Integer.parseInt(number);
+          } 
+          catch(Exception e) {
+              i = 0; // if filename does not match the format
+                     // then default to 0
+          }
+          return i;
+      }
+		});
+		for(File f : files) {
+			defaultLevelNames.add(loadLevel(defaultLevelsDirectory, f.getName()).getLevelName());
+		}
+	}
+	public void updateUserLevelNames() {
+		userLevelNames.removeAll(userLevelNames);
+		for(File f : new File(userLevelsDirectory).listFiles()) {
+			userLevelNames.add(loadLevel(userLevelsDirectory, f.getName()).getLevelName());
+		}
+	}
+	
+	private void setupPieces(){
 		/**
 		 * The 35 possible hexominoes
 		 */
@@ -114,7 +134,13 @@ public class SuperModel {
 		pt20 = new PieceTile(3,1);
 		pt25 = new PieceTile(4,0);
 		pt31 = new PieceTile(5,0);
-
+		
+		/**
+		 * Populate pieceGrid with all possible piece tiles
+		 */
+		for(int i = 0; i < 36; i++) {
+			pieceGrid.add(new PieceTile(i/6, i%6));
+		}
 
 		/**
 		 * To know which pieces are which.
@@ -202,132 +228,106 @@ public class SuperModel {
 			colorMap.put(p, random);
 		}
 	}
-
-	public void setupDefaultLevels() {
-		for(int i = 0; i < 15; i++) {
-			Level level = loadLevel("Level " + (i+1));
-			if(level == null) System.err.println("Level " + (i+1) + " not found.");
-			else {
-				switch(level.getLevelType()) {
-				case "Puzzle": 				
-					PuzzleLevel pl = (PuzzleLevel)level;
-					defaultLevels.add(pl);
-					break;
-				case "Lightning":
-					LightningLevel ll = (LightningLevel)level;
-					defaultLevels.add(ll);
-					break;
-				case "Release":
-					ReleaseLevel rl = (ReleaseLevel)level;
-					defaultLevels.add(rl);
-					break;
-				}
+	
+	/**
+	 * The following three methods track the pagination of the level play and edit
+	 * selection views. These methods are used to extract the necessary information
+	 * and set it properly via the proper controllers.
+	 */
+	
+	public int getPage() {
+		return this.page;
+	}
+		
+	public void nextPage() {
+		this.page += 1;
+	}
+	
+	public void prevPage() {
+		this.page -= 1;
+	}
+	
+	/**
+	 * These methods deal with the active level, which is used when levels are being
+	 * manipulated or played.
+	 */
+	
+	public void setActiveLevel(Level level) {
+		this.activeLevel = level;
+	}
+	
+	public Level getActiveLevel() {
+		return this.activeLevel;
+	}
+	
+	public String getDefaultLevelDir() {
+		return defaultLevelsDirectory;
+	}
+	public String getUserLevelDir() {
+		return userLevelsDirectory;
+	}
+	
+	/**
+	 * Method to access any level given its name.
+	 * @param fileName
+	 * @return Instance of requested level, or null if the file does not exist.
+	 */
+	public Level loadLevel(String dir, String fileName) {
+		String filepath = dir + fileName;
+			Level loadedLevel = null;
+			try {
+				ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File(filepath)));
+				loadedLevel = (Level)input.readObject();
+				input.close();
 			}
-			if(i < 1) defaultLevels.get(i).unlock();
-		}
-	}
-	
-	public void setupUserLevels() {
-		for(int i = 0; i < this.numUserLevels(); i++) {
-			
-		}
-	}
-	
-	public Level getLevel(String name) {
-		if(name == null) return null;
-		for(Level level : defaultLevels) {
-			if(name.equals(level.getLevelName())) return level;
-		}
-		for(Level level : userLevels) {
-			if(name.equals(level.getLevelName())) return level;
-		}		
-		return null;
-	}
-	
-	public void removeLevel(String name) {
-		if(name == null) return;
-//		for(int idx = 0; idx < 15; idx++) {
-//			if(name.equals(defaultLevels.get(idx).getLevelName())) {
-//				defaultLevels.remove(idx);
-//			}
-//		}
-		for(int idx = 0; idx < numUserLevels(); idx++) {
-			if(name.equals(userLevels.get(idx).getLevelName())) {
-				userLevels.remove(idx);
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} 
+			catch (IOException e) {
+				e.printStackTrace();
 			}
-		}	
+			return loadedLevel;
 	}
 	
-	public Level getUserLevelByIndex(int idx) {
-		return userLevels.get(idx);
-	}
-	
-	public Level getDefaultLevelByIndex(int idx) {
-		return defaultLevels.get(idx);
-	}
-	
-	public int totalLevels() {
-		return numUserLevels() + 15;
-	}
-	
-	public int numUserLevels() {
-		return userLevels.size();
-	}
-
-	private Level loadLevel(String levelName) {		
-		String filepath = lvlDir + levelName + ".lev";
-		Level loadedLevel = null;
-		try {
-			ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File(filepath)));
-			loadedLevel = (Level)input.readObject();
-			input.close();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} 
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		return loadedLevel;
-	}
-
-	public void saveLevel(Level level) {
-		String filepath = lvlDir + level.getLevelName() + ".lev";
+	/**
+	 * Method to remove any level given its name
+	 * @param fileName
+	 */
+	public void deleteLevel(String dir, String fileName) {
+		String filepath = dir + fileName;
 		File file = new File(filepath);
-		try{
-			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
-			output.writeObject(level);
-			output.close();
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
-		userLevels.add(level);
-	}
-
-	public boolean deleteLevel(String levelName){
-		try{
-			String filepath = lvlDir + levelName + ".lev";
-			File file = new File(filepath);
-			System.out.println("level deleting");
-			removeLevel(levelName);
-			return file.delete();
-		}
-		catch(Exception e){
-			System.err.println("Error deleting level: " + levelName);
-			e.printStackTrace();
-		}
-		return false;
+		if(file.delete());
+		else System.out.println("Error 38762u386w: Could not delete level, check SuperModel::removeLevel.");
+		updateUserLevelNames();
 	}
 	
-	public String getLevelType(String name){
-		return this.getLevel(name).getLevelType();
+	/**
+	 * Getters for number of levels
+	 */
+	public int getTotalNumLevels() {
+		return defaultLevelNames.size() + getNumUserLevels();
 	}
 	
+	public int getNumUserLevels() {
+		return userLevelNames.size();
+	}
+	
+	/**
+	 * Level name getters
+	 */
+	public String getDefaultLevelNameByIndex(int idx) {
+		return defaultLevelNames.get(idx);
+	}
+	
+	public String getUserLevelNameByIndex(int idx) {
+		return userLevelNames.get(idx);
+	}
+	
+	/**
+	 * Dummy main for testing purposes
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SuperModel sm = new SuperModel();
-		for(int i = 0; i < 15; i++) {
-			sm.deleteLevel("Level " + (i+1));
-		}
 	}
 }
