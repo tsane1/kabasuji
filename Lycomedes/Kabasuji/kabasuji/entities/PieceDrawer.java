@@ -30,8 +30,8 @@ public class PieceDrawer {
 	 */
 	public void drawPiece(Graphics g, Piece p, int x, int y, Color c) {
 		for(PieceTile pt : p.getTileLocations()){
-			g.fillRect(x+(Tile.width*pt.getColumn()), y+(Tile.height*pt.getRow()), Tile.width, Tile.height);
 			g.setColor(c);
+			g.fillRect(x+(Tile.width*pt.getColumn()), y+(Tile.height*pt.getRow()), Tile.width, Tile.height);
 		}
 	}
 

@@ -1,6 +1,9 @@
 package kabasuji.views;
 
 import java.awt.EventQueue;
+
+import javax.swing.JScrollPane;
+
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
@@ -27,6 +30,7 @@ public class LevelPlayView extends Screen {
 	private BullpenView bullpenView;
 	private ProgressView progress;
 	private AchievementView achievement;
+	private JScrollPane pieceScroll = new JScrollPane();
 
 
 	public LevelPlayView(String levelName, SuperModel m) {
@@ -49,9 +53,13 @@ public class LevelPlayView extends Screen {
 		this.add(boardView);
 		boardView.validate();
 		boardView.repaint();
-		this.add(bullpenView);
-		bullpenView.validate();
-		bullpenView.repaint();
+
+		pieceScroll = new JScrollPane();
+		pieceScroll.setBounds(13, 512, 904, 228);
+		pieceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		pieceScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		pieceScroll.setViewportView(bullpenView);
+		this.add(pieceScroll);
 	}
 	
 	@Override

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 
 import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.RedoController;
@@ -33,6 +34,8 @@ public class ReleaseLevelEditView extends Screen {
 	private JButton btnRedo = new JButton("Redo");
 	private JButton btnSave = new JButton("Save");
 	private JButton btnDelete = new JButton("Delete");
+	
+	JScrollPane pieceScroll = new JScrollPane();
 	
 	public ReleaseLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
@@ -82,7 +85,13 @@ public class ReleaseLevelEditView extends Screen {
 		this.add(btnRedo);
 		
 		this.add(boardView);
-		this.add(bullpenView);
+
+		pieceScroll = new JScrollPane();
+		pieceScroll.setBounds(13, 512, 904, 228);
+		pieceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		pieceScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		pieceScroll.setViewportView(bullpenView);
+		this.add(pieceScroll);
 	}
 	
 	@Override
