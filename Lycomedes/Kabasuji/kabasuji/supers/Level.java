@@ -23,7 +23,7 @@ import kabasuji.entities.PieceTile;
 public abstract class Level implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	HashMap<Integer, Piece> allPieces = new HashMap<Integer, Piece>(35);
+	ArrayList<Piece> allPieces = new ArrayList<Piece>(35);
 	ArrayList<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	HashMap<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
 	Stack<Move> undoStack = new Stack<Move>();
@@ -179,44 +179,44 @@ public abstract class Level implements Serializable {
 		/*
 		 * add them to the array list
 		 */
-		allPieces.put(p1.getPieceID(), p1);
-		allPieces.put(p2.getPieceID(), p2);
-		allPieces.put(p3.getPieceID(), p3);
-		allPieces.put(p4.getPieceID(), p4);
-		allPieces.put(p5.getPieceID(), p5);
-		allPieces.put(p6.getPieceID(), p6);
-		allPieces.put(p7.getPieceID(), p7);
-		allPieces.put(p8.getPieceID(), p8);
-		allPieces.put(p9.getPieceID(), p9);
-		allPieces.put(p10.getPieceID(), p10);
-		allPieces.put(p11.getPieceID(), p11);
-		allPieces.put(p12.getPieceID(), p12);
-		allPieces.put(p13.getPieceID(), p13);
-		allPieces.put(p14.getPieceID(), p14);
-		allPieces.put(p15.getPieceID(), p15);
-		allPieces.put(p16.getPieceID(), p16);
-		allPieces.put(p17.getPieceID(), p17);
-		allPieces.put(p18.getPieceID(), p18);
-		allPieces.put(p19.getPieceID(), p19);
-		allPieces.put(p20.getPieceID(), p20);
-		allPieces.put(p21.getPieceID(), p21);
-		allPieces.put(p22.getPieceID(), p22);
-		allPieces.put(p23.getPieceID(), p23);
-		allPieces.put(p24.getPieceID(), p24);
-		allPieces.put(p25.getPieceID(), p25);
-		allPieces.put(p26.getPieceID(), p26);
-		allPieces.put(p27.getPieceID(), p27);
-		allPieces.put(p28.getPieceID(), p28);
-		allPieces.put(p29.getPieceID(), p29);
-		allPieces.put(p30.getPieceID(), p30);
-		allPieces.put(p31.getPieceID(), p31);
-		allPieces.put(p32.getPieceID(), p32);
-		allPieces.put(p33.getPieceID(), p33);
-		allPieces.put(p34.getPieceID(), p34);
-		allPieces.put(p35.getPieceID(), p35);	
+		allPieces.add(p1);
+		allPieces.add(p2);
+		allPieces.add(p3);
+		allPieces.add(p4);
+		allPieces.add(p5);
+		allPieces.add(p6);
+		allPieces.add(p7);
+		allPieces.add(p8);
+		allPieces.add(p9);
+		allPieces.add(p10);
+		allPieces.add(p11);
+		allPieces.add(p12);
+		allPieces.add(p13);
+		allPieces.add(p14);
+		allPieces.add(p15);
+		allPieces.add(p16);
+		allPieces.add(p17);
+		allPieces.add(p18);
+		allPieces.add(p19);
+		allPieces.add(p20);
+		allPieces.add(p21);
+		allPieces.add(p22);
+		allPieces.add(p23);
+		allPieces.add(p24);
+		allPieces.add(p25);
+		allPieces.add(p26);
+		allPieces.add(p27);
+		allPieces.add(p28);
+		allPieces.add(p29);
+		allPieces.add(p30);
+		allPieces.add(p31);
+		allPieces.add(p32);
+		allPieces.add(p33);
+		allPieces.add(p34);
+		allPieces.add(p35);	
 		
 		Random r = new Random();
-		for(Piece p: allPieces.values()){
+		for(Piece p: allPieces){
 			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
 			colorMap.put(p, random);
 		}
