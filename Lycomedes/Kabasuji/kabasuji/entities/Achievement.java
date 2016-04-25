@@ -13,10 +13,11 @@ public class Achievement {
 		super();
 		this.progress = progress;
 	}
+
 	public boolean earnedAchievement() {
 		boolean isEarned = false;
-		
-		if(isEarnedOneStar(progress)|| isEarnedTwoStar(progress)||isEarnedThreeStar(progress)){
+
+		if (isEarnedOneStar(progress) || isEarnedTwoStar(progress) || isEarnedThreeStar(progress)) {
 			isEarned = true;
 		}
 		return isEarned;
@@ -25,21 +26,25 @@ public class Achievement {
 	public boolean isEarnedOneStar(Progress progress) {
 		boolean isEarned = false;
 
-		if ((progress.updateProgressPuzzle() == 50) || progress.updateProgressLightning() == 50
-				|| progress.updateProgressRelease() == 32) {
+		if ((progress.updateProgressPuzzle() >= 50 && progress.updateProgressPuzzle() < 75)
+				|| (progress.updateProgressLightning() >= 50 && progress.updateProgressLightning() < 75)
+				|| (progress.updateProgressRelease() >= 32 && progress.updateProgressRelease() < 66)) {
 			isEarned = true;
 		}
 		return isEarned;
 	}
+
 	public boolean isEarnedTwoStar(Progress progress) {
 		boolean isEarned = false;
 
-		if ((progress.updateProgressPuzzle() == 75) || progress.updateProgressLightning() == 75
-				|| progress.updateProgressRelease() == 66) {
+		if ((progress.updateProgressPuzzle() >= 75 && progress.updateProgressPuzzle() < 100)
+				|| (progress.updateProgressLightning() >= 75 && progress.updateProgressLightning() < 100)
+				|| progress.updateProgressRelease() >= 66 && progress.updateProgressRelease() < 100) {
 			isEarned = true;
 		}
 		return isEarned;
 	}
+
 	public boolean isEarnedThreeStar(Progress progress) {
 		boolean isEarned = false;
 
@@ -49,5 +54,5 @@ public class Achievement {
 		}
 		return isEarned;
 	}
-	
+
 }

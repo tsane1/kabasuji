@@ -3,38 +3,42 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import kabasuji.moves.FlipXMove;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
+import kabasuji.supers.Move;
+import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
-import kabasuji.views.LevelEdit;
 
+/**
+ * A controller to Flip Pieces across the X axis.
+ * @author Ian Jacoway
+ */
 
 public class FlipXController implements ActionListener {
-	SuperModel model;
 	Application app;
 	Level level;
 	
-	public FlipXController(Application a, SuperModel m) {
-		this.app = a;
-		this.model = m;
+	public FlipXController(Application a, Level l) {
+		this.app= a;
+		this.level = l;
 	}
 	
 	public boolean doFlipX(){
-		if(model.getSelected() == null){
-			return false;
+		Move m = new FlipXMove(level);
+		
+		if(m.execute()){
+			if(app.getCurrScreen().getName() != "LevelPlay")
+				level.trackMove(m);
+			app.getCurrScreen().getBullpenView().refresh();
+			return true;
 		}
-		
-		model.getSelected().flipX();
-		
-		//screen.redraw();
-		//screen.repaint();
-		
-		return true;
+		return false;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS THE "doUndo" should prolly go here
+	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS 
 		try{
 			doFlipX();
 		}
@@ -44,5 +48,4 @@ public class FlipXController implements ActionListener {
 		}
 	}
 }
-
 

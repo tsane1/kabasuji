@@ -7,16 +7,18 @@ import com.sun.glass.ui.View;
 import junit.framework.TestCase;
 import kabasuji.entities.*;
 import kabasuji.supers.Level;
+import kabasuji.supers.SuperModel;
 import kabasuji.views.BoardView;
 
 //ATTEMPTS TO TEST BOARD VIEW BUT I DONT THINK ITS POSSIBLE CURRENTLY
 public class testBoardView extends TestCase {
 
-	Level lvl;
+	SuperModel model;
 	BoardView view;
 	protected void setUp() throws Exception {
-		lvl = new PuzzleLevel("test");
-		view = new BoardView(lvl);
+		model = new SuperModel();
+		model.setActiveLevel(new PuzzleLevel("test"));
+		view = new BoardView(model);
 		view.refresh();
 		view.setVisible(true);
 	}
@@ -26,7 +28,7 @@ public class testBoardView extends TestCase {
 	}
 	
 	public void testView(){
-		Board board = lvl.getBoard();
+		Board board = model.getActiveLevel().getBoard();
 		Tile[][] boardArray = board.getBoardArray();
 		UnplayableTile tile = new UnplayableTile(0, 0);
 		int i,j,count = 0;

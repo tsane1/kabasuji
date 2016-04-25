@@ -13,9 +13,11 @@ public class ReleaseBoardTile extends Tile{
 	 */
 	private static final long serialVersionUID = -2218330060081200831L;
 	/** row and column attributes for a tile object. */
-	int row, col, releaseNum;
+	int row, col;
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
+	
+	int value;
 	
 	/**
 	 * Constructor for the releaseboardtile object.
@@ -25,9 +27,10 @@ public class ReleaseBoardTile extends Tile{
 	public ReleaseBoardTile(int row, int column) {
 		super(row, column);
 		
-		this.releaseNum = 0;
+		
 		this.row = row;
 		this.col = column;
+		value = 0;
 		covered = false;
 		
 	}
@@ -59,11 +62,17 @@ public class ReleaseBoardTile extends Tile{
 	 * increments release number up to six
 	 */
 	public void updateReleaseNum(){
-		if(releaseNum<6){
-			releaseNum++;
+		if(value<6){
+			value++;
 		}else{
-			releaseNum = 0;
+			value = 0;
 		}
 		
 	}
+
+	public int getValue(){
+		return value;
+	}
+	
+	
 }

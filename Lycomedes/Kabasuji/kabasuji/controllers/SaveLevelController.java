@@ -6,13 +6,12 @@ import java.awt.event.ActionListener;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
-import kabasuji.views.LevelEditSelectView;
 
-public class DeleteLevelController implements ActionListener {
+public class SaveLevelController implements ActionListener {
 	private Application app;
 	private SuperModel model;
 
-	public DeleteLevelController(Application app, SuperModel model) {
+	public SaveLevelController(Application app, SuperModel model) {
 		this.app = app;
 		this.model = model;
 	}
@@ -20,7 +19,11 @@ public class DeleteLevelController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
-		this.model.deleteLevel(e.getActionCommand());
-		app.setCurrScreen(new LevelEditSelectView(model));
+		Level hi = app.getCurrScreen().getLevel();
+		if(hi == null);
+		else {
+			System.out.println("saving level...");
+			this.model.saveLevel(hi);
+		}
 	}
 }

@@ -3,35 +3,39 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.supers.SuperModel;
-import kabasuji.views.LevelEdit;
+import kabasuji.moves.RotateLeftMove;
+import kabasuji.supers.Application;
+import kabasuji.supers.Level;
+import kabasuji.supers.Move;
+
+/**
+ * A controller to Pieces 90 degrees to the left.
+ * @author Ian Jacoway
+ */
 
 public class RotateLeftController implements ActionListener {
-
-	SuperModel model;
-	LevelEdit screen;
+	Application app;
+	Level level;
 	
-	public RotateLeftController(LevelEdit bs, SuperModel lbm) {
-		this.screen = bs;
-		this.model = lbm;
+	public RotateLeftController(Application a, Level l) {
+		this.app = a;
+		this.level = l;
 	}
 	
 	public boolean doRotateLeft(){
-		if(model.getSelected() == null){
-			return false;
+		
+		Move m = new RotateLeftMove(level);
+		if(m.execute()){
+			if(app.getCurrScreen().getName() != "LevelPlay")
+				level.trackMove(m);
+			app.getCurrScreen().getBullpenView().refresh();
+			return true;
 		}
-		
-		model.getSelected().rotateLeft();
-		
-		//screen.redraw();
-		//screen.repaint();
-		
-		return true;
+		return false;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS THE "doUndo" should prolly go here
 		try{
 			doRotateLeft();
 		}
@@ -43,3 +47,40 @@ public class RotateLeftController implements ActionListener {
 }
 
 
+
+//public class RotateLeftController implements ActionListener {
+//	Application app;
+//	Level level;
+//	
+//	public RotateLeftController(Application a, Level l) {
+//		this.app = a;
+//		this.level = l;
+//	}
+//	
+//	public void doRotateLeft(){
+//		if(level.getSelected() == null){
+//			return;
+//		}
+//		
+//		Move m = new RotateLeftMove(level);
+//		if(m.execute()){
+//			if(app.getCurrScreen().getName() != "LevelPlay")
+//				level.trackMove(m);
+//			app.getCurrScreen().getBullpenView().refresh();
+//		}
+//		else return;
+//	}
+//
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		try{
+//			doRotateLeft();
+//		}
+//		catch(Exception ex){
+//			System.err.println("EXCEPTION CAUGHT : RotateLeftController");
+//			ex.printStackTrace();
+//		}
+//	}
+//}
+//
+//

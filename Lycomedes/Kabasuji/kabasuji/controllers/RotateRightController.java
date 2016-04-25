@@ -3,30 +3,35 @@ package kabasuji.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kabasuji.supers.SuperModel;
-import kabasuji.views.LevelEdit;
+import kabasuji.moves.RotateLeftMove;
+import kabasuji.moves.RotateRightMove;
+import kabasuji.supers.Application;
+import kabasuji.supers.Level;
+import kabasuji.supers.Move;
+
+/**
+ * A controller to rotate Pieces 90 degrees to the right.
+ * @author Ian Jacoway
+ */
 
 public class RotateRightController implements ActionListener {
-
-	SuperModel model;
-	LevelEdit screen;
+	Application app;
+	Level level;
 	
-	public RotateRightController(LevelEdit bs, SuperModel lbm) {
-		this.screen = bs;
-		this.model = lbm;
+	public RotateRightController(Application a, Level l) {
+		this.app = a;
+		this.level = l;
 	}
 	
 	public boolean doRotateRight(){
-		if(model.getSelected() == null){
-			return false;
+		Move m = new RotateRightMove(level);
+		if(m.execute()){
+			if(app.getCurrScreen().getName() != "LevelPlay")
+				level.trackMove(m);
+			app.getCurrScreen().getBullpenView().refresh();
+			return true;
 		}
-		
-		model.getSelected().rotateRight();
-		
-		//screen.redraw();
-		//screen.repaint();
-		
-		return true;
+		return false;
 	}
 
 	@Override

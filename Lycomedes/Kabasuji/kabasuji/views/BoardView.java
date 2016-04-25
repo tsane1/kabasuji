@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 
 import kabasuji.entities.*;
 import kabasuji.supers.Level;
+import kabasuji.supers.SuperModel;
+
 
 import javax.swing.JLabel;
 
@@ -22,6 +24,7 @@ import javax.swing.ImageIcon;
  */
 public class BoardView extends JPanel {
 	
+
 	/**
 	 *  serial id for BoardView
 	 */
@@ -41,20 +44,15 @@ public class BoardView extends JPanel {
 	BoardView(){
 		
 	}
-	
-	public BoardView(Level currLevel) {
+
+	public BoardView(SuperModel model) {
 		super();
-		this.currLevel = currLevel;
+		this.currLevel = model.getActiveLevel();
+		setLayout(null);
+
 		
-		
-//		setLayout(null);
-//		
-//		JLabel label = new JLabel("");
-//		label.setIcon(new ImageIcon(BoardView.class.getResource("/imgs/12x12gridedit.jpg")));
-//		label.setBounds(0, 0, 384, 384);
-//		add(label);
-//		this.setBounds(283, 110, 384, 384);
 	}
+	
 	
 	@Override
 	public Dimension getMinimumSize() {

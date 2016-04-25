@@ -4,22 +4,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import kabasuji.supers.Application;
+import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 
 /**
  * Undo controller
  * 
- * @author SOMEBODY ELSE PUT THAT IN
+ * @author Derek McMaster
  * @author Tanuj Sane
  */
 public class UndoController implements ActionListener {
-	SuperModel model;
+	Level level;
 	Application app;
 	
 	public UndoController(Application app, SuperModel model) {
 		this.app = app;
-		this.model = model;
+		this.level = model.getActiveLevel();
 	}
 	
 	@Override
@@ -33,13 +34,18 @@ public class UndoController implements ActionListener {
 		}
 	}
 	public boolean doUndo() throws Exception {
-		Move m = model.getLastMove();
+		Move m = level.getLastMove();
 		if(m == null){
 			return false;
 		}		
 		if(m.undo()){
-			model.addRedoableMove(m);
-		}		
+			level.addRedoableMove(m);
+		}
+		
+		/*
+		 * Need to add a redraw method
+		 */
+		app.repaint();
 		return true;
 	}
 }

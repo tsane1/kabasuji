@@ -16,9 +16,11 @@ import kabasuji.supers.Screen;
  * 
  * @author Tanuj Sane
  * @author Chase St. Laurent
+ * @author Ian Jacoway 
+ * @since 4/23/16
  *
  */
-public class LevelPlay extends Screen {
+public class LevelPlayView extends Screen {
 	
 	private Level level;
 	private BoardView boardView;
@@ -27,13 +29,13 @@ public class LevelPlay extends Screen {
 	private AchievementView achievement;
 
 
-	public LevelPlay(String levelName, SuperModel m) {
+	public LevelPlayView(String levelName, SuperModel m) {
 		super(levelName, m);
 		
-		this.level = m.getLevel(levelName);
+		this.level = m.getActiveLevel();
 		this.setTitle(level.getLevelName() + ": " + level.getLevelType());
-		this.boardView = new BoardView(level.getBoard());
-		this.bullpenView = new BullpenView(level.getBullpen());
+		this.boardView = new BoardView(m);
+		this.bullpenView = new BullpenView(m);
 	}
 	
 	public Level getLevel() {
@@ -42,17 +44,14 @@ public class LevelPlay extends Screen {
 			
 	@Override
 	public void populate() {
-		BoardView boardView = new BoardView(level.getBoard());
-		BullpenView bullpenView = new BullpenView(level.getBullpen());
-		ProgressView progress = new ProgressView(null);
-		AchievementView achievement = new AchievementView(null);
-		
+	
 		//populate by adding the views
 		this.add(boardView);
+		boardView.validate();
+		boardView.repaint();
 		this.add(bullpenView);
-		this.add(progress);
-		this.add(achievement);
-
+		bullpenView.validate();
+		bullpenView.repaint();
 	}
 	
 	@Override
@@ -70,12 +69,22 @@ public class LevelPlay extends Screen {
 		return "LevelPlay";
 	}
 	
+	@Override
+	public BullpenView getBullpenView(){
+		return this.bullpenView;
+	}
+	
+	@Override
+	public BoardView getBoardView(){
+		return this.boardView;
+	}
+	
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Application frame = new Application(new LevelPlay("hi", new SuperModel()));
+					Application frame = new Application(new LevelPlayView("hi", new SuperModel()));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

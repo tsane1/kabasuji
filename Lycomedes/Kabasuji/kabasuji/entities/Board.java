@@ -1,11 +1,13 @@
 package kabasuji.entities;
 
+import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /** 
  * Main board object that represents a board of maximum size 12x12 and all the tiles and pieces it contains.
  * @author Michael
+ * @author Ian Jacoway as of @since 4/24/16
  *
  */
 
@@ -87,7 +89,6 @@ public class Board implements Serializable{
 			//throw? or boolean like now that says place failed
 			return false;
 		}
-		
 	}
 	
 
@@ -184,6 +185,50 @@ public class Board implements Serializable{
 	public int getReleaseProgress(){
 		return 0;
 	}
-
 	
+	/**
+	 * Converts an UnplayableTile to a PieceTile given a Point on the Board.
+	 * @param Point p
+	 */
+	public void selectTile(Point p, String levType) {
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32; 
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		switch(levType){
+		case "puzzle" :
+			boardArray[rowNum][colNum] = new PuzzleBoardTile(rowNum,colNum); break;
+		case "lightning" :
+			boardArray[rowNum][colNum] = new LightningBoardTile(rowNum,colNum); break;
+		case "release" :
+			boardArray[rowNum][colNum] = new ReleaseBoardTile(rowNum,colNum); break;
+		default:
+			System.err.println("Type not found.");
+		}
+		
+	}
+	
+	/**
+	 * Converts an PieceTile to a UnplayableTile given a Point on the Board.
+	 * @param Point p
+	 */
+	public void deselectTile(Point p) {
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		boardArray[rowNum][colNum] = new UnplayableTile(rowNum, colNum);
+	}
 }

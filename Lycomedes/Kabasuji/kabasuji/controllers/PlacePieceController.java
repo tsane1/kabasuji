@@ -7,21 +7,22 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import kabasuji.entities.*;
-import kabasuji.moves.newmovetemp;
 import kabasuji.supers.*;
 import kabasuji.views.BoardView;
 
 
 public class PlacePieceController  extends MouseAdapter{
-	Level model;
+	SuperModel model;
 	BoardView view;
+	Level lvl;
 	PieceDrawer drawer = new PieceDrawer();
 	int xDragging;
 	int yDragging;
 	
-	PlacePieceController(Level model, BoardView view) {
+	PlacePieceController(SuperModel model, BoardView view) {
 		this.model = model;
 		this.view = view;
+		lvl = model.getActiveLevel();
 	}
 	
 	@Override
@@ -31,7 +32,7 @@ public class PlacePieceController  extends MouseAdapter{
 	@Override
 	public void mouseMoved(MouseEvent me){
 		//need getSelected()
-		Piece selected = model.getSelected();
+		Piece selected = lvl.getSelected();
 		if (selected == null) { return; }
 
 		int x = me.getPoint().x;
@@ -40,7 +41,7 @@ public class PlacePieceController  extends MouseAdapter{
 		drawer.drawPiece(g, selected, x, y);
 		xDragging = x;
 		yDragging = y;
-		model.setActivePiece(selected);
+		lvl.setActivePiece(selected);
 		view.repaint();
 		//Polygon p = computeActivePolygon(me.getPoint(), model.getSelected());
 		//PlacedPiece pp = new PlacedPiece(model.getSelected(), p);
@@ -53,7 +54,7 @@ public class PlacePieceController  extends MouseAdapter{
 	}
 	@Override
 	public void mouseDragged(MouseEvent me){
-		Piece draggingPiece = model.getActivePiece();
+		Piece draggingPiece = lvl.getActivePiece();
 		if(draggingPiece == null){
 			System.out.println("Not Dragging Anything");
 			return;

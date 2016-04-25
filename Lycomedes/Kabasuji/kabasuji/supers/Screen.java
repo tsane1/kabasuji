@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import kabasuji.controllers.BackController;
+import kabasuji.views.BoardView;
+import kabasuji.views.BullpenView;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,6 +24,7 @@ import javax.swing.JButton;
  * </p>
  * 
  * @author Tanuj Sane
+ * @author Ian Jacoway 4/23/2016
  * @since 4/12/2016
  * @see Application
  */
@@ -72,4 +75,16 @@ public abstract class Screen extends JPanel {
 	public abstract void installControllers(); // initialize controllers
 	public abstract void refresh(); // refresh view to show updated state
 	public abstract String getName(); // get screen name
+
+	public BullpenView getBullpenView() {
+		return null;
+	}
+
+	public BoardView getBoardView() {
+		return null;
+	}
+	
+	public Level getLevel() {
+		return null;
+	}
 }
