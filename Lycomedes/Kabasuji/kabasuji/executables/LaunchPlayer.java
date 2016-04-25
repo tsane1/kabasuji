@@ -8,9 +8,11 @@ import kabasuji.supers.Application;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BuilderSplashScreen;
 import kabasuji.views.LevelEditSelectView;
+import kabasuji.views.LevelPlaySelectView;
 import kabasuji.views.LevelPlayView;
+import kabasuji.views.PlayerSplashScreen;
 
-public class LaunchLevelBuilder {
+public class LaunchPlayer {
 
 	/**
 	 * Launch the application.
@@ -23,7 +25,7 @@ public class LaunchLevelBuilder {
 		Thread t1;
 		Thread t2;
 
-		final BuilderSplashScreen sc = new BuilderSplashScreen();
+		final PlayerSplashScreen sc = new PlayerSplashScreen();
 
 		t1 = new Thread(new Runnable() {
 			public void run() {
@@ -39,7 +41,7 @@ public class LaunchLevelBuilder {
 		Thread.sleep(3200);
 		sc.setVisible(false);
 		sc.dispose();
-		Application frame = new Application(new LevelEditSelectView(m));
+		Application frame = new Application(new LevelPlaySelectView(m));
 		frame.setVisible(true);
 	}
 }
