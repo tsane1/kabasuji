@@ -122,13 +122,11 @@ public class BullpenView extends JPanel {
 	public void redraw() {
 		int x = pieceBuffer;
 		int y = pieceBuffer;
-		
 		Dimension dim = getPreferredSize();
 		
 		if (offScreenImage != null) {
 			offScreenImage.flush();
 		}
-		
 		if (offScreenGraphics != null) {
 			offScreenGraphics.dispose();
 		}
@@ -139,10 +137,6 @@ public class BullpenView extends JPanel {
 
 		offScreenGraphics = offScreenImage.getGraphics();
 
-		// HERE
-
-		// 1. draw each piece at proper location
-		// 2. offset after each one is drawn
 		for (Piece p : level.getBullpen().getOriginalSet()) {
 			if(p == level.getSelected()){
 				offScreenGraphics.setColor(Color.MAGENTA);
@@ -162,11 +156,8 @@ public class BullpenView extends JPanel {
 					offScreenGraphics.setColor(Color.GREEN);
 				}
 			}
-			
 			drawer.drawPiece(offScreenGraphics, p, x, y);
-			
-			x+= containerSize+pieceBuffer;
-			
+			x+= containerSize+pieceBuffer;	
 		}
 	}
 	
