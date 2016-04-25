@@ -66,7 +66,7 @@ public abstract class Level implements Serializable {
 	public Level(String name, String type) {
 		this.name = name;
 		this.type = type;
-		locked = true;
+		locked = false;
 		this.theBoard = new Board();
 		this.theBullpen = new Bullpen();
 		this.numStars = 0;
