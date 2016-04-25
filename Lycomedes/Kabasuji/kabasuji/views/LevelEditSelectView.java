@@ -58,25 +58,25 @@ public class LevelEditSelectView extends Screen {
 		btnPrev.setBounds(13, 683, 155, 57);
 		this.add(btnPrev);
 		
-		for(int idx = 0; idx < this.model.numUserLevels(); idx++) {
+		for(int idx = 0; idx < this.model.getNumUserLevels(); idx++) {
 			levelNames.add(new JLabel());
-			levelNames.get(idx).setText(model.getUserLevelByIndex(idx).getLevelName());
+			levelNames.get(idx).setText(model.getUserLevelNameByIndex(idx));
 			levelNames.get(idx).setHorizontalAlignment(SwingConstants.CENTER);
 			levelNames.get(idx).setForeground(SystemColor.textHighlight);
 			levelNames.get(idx).setFont(new Font("Kristen ITC", Font.BOLD, 18));
 			levelNames.get(idx).setSize(128,50);
 			
 			levelButtons.add(new JButton());
-			levelButtons.get(idx).setActionCommand(model.getUserLevelByIndex(idx).getLevelName());
-			switch(model.getUserLevelByIndex(idx).getLevelType()) {
+			levelButtons.get(idx).setActionCommand(model.getUserLevelNameByIndex(idx));
+			switch(model.loadLevel(model.getUserLevelDir(), model.getUserLevelNameByIndex(idx)+".lev").getLevelType()) {
 			case "Puzzle":
-				levelButtons.get(idx).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/puzzle_icon_smol.png")));
+				levelButtons.get(idx).setIcon(new ImageIcon(LevelEditSelectView.class.getResource("/imgs/puzzle_icon_smol.png")));
 				break;
 			case "Lightning":
-				levelButtons.get(idx).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/lightning_icon_smol.png")));
+				levelButtons.get(idx).setIcon(new ImageIcon(LevelEditSelectView.class.getResource("/imgs/lightning_icon_smol.png")));
 				break;
 			case "Release":
-				levelButtons.get(idx).setIcon(new ImageIcon(PuzzleLevelEditView.class.getResource("/imgs/release_icon_smol.png")));
+				levelButtons.get(idx).setIcon(new ImageIcon(LevelEditSelectView.class.getResource("/imgs/release_icon_smol.png")));
 				break;
 			}
 			levelButtons.get(idx).setBackground(SystemColor.text);
@@ -96,14 +96,14 @@ public class LevelEditSelectView extends Screen {
 		newLevel.setForeground(SystemColor.textHighlight);
 		newLevel.setFont(new Font("Kristen ITC", Font.BOLD, 18));
 		newLevel.setSize(128,50);
-		levelNames.add(newLevel); // add a dummy label to keep indexing happy
+		levelNames.add(newLevel);
 				
 		refresh();
 	}
 
 	@Override
 	public void installControllers() {
-		for(int idx = 0; idx < this.model.numUserLevels(); idx++) {
+		for(int idx = 0; idx < this.model.getNumUserLevels(); idx++) {
 			levelButtons.get(idx).addActionListener(new LevelEditController(this.app, this.model));
 		}
 		btnNewLevel.addActionListener(new NewLevelController(this.app, this.model));
@@ -118,14 +118,14 @@ public class LevelEditSelectView extends Screen {
 
 	@Override
 	public void refresh() {
-		for(int idx = 0; idx < this.model.numUserLevels() + 1; idx++) {
+		for(int idx = 0; idx < this.levelButtons.size(); idx++) {
 			this.remove(levelButtons.get(idx));
 			this.remove(levelNames.get(idx));
 		}		
 		this.validate();
 		this.repaint();
 		
-		btnNext.setEnabled(model.getPage() < (model.numUserLevels() - 1) / 10);
+		btnNext.setEnabled(model.getPage() < (model.getNumUserLevels() - 1) / 10);
 		btnPrev.setEnabled(model.getPage() > 0);
 		btnNext.validate();
 		btnNext.repaint();
@@ -134,7 +134,7 @@ public class LevelEditSelectView extends Screen {
 		
 		for(int idx = 0; idx < 10; idx++) {
 			int btnIndex = (10*model.getPage()) + idx;
-			if(btnIndex > model.numUserLevels());
+			if(btnIndex >= levelButtons.size());
 			else {
 				System.out.println(btnIndex);
 				levelNames.get(btnIndex).setLocation(125+(138*(idx%5)), 150+(188*(idx/5)));
