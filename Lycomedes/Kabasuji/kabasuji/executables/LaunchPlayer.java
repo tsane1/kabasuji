@@ -21,10 +21,8 @@ public class LaunchPlayer {
 	public static void main(String[] args) throws InterruptedException {
 
 		SuperModel m = new SuperModel();
-		//edit s
 		Thread t1;
-		Thread t2;
-
+		
 		final PlayerSplashScreen sc = new PlayerSplashScreen();
 
 		t1 = new Thread(new Runnable() {

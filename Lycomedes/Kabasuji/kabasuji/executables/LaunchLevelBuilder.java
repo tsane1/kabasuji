@@ -19,10 +19,8 @@ public class LaunchLevelBuilder {
 	public static void main(String[] args) throws InterruptedException {
 
 		SuperModel m = new SuperModel();
-		//edit s
 		Thread t1;
-		Thread t2;
-
+		
 		final BuilderSplashScreen sc = new BuilderSplashScreen();
 
 		t1 = new Thread(new Runnable() {
