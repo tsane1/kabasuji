@@ -18,7 +18,7 @@ public class PlacePieceController  extends MouseAdapter{
 	int xDragging;
 	int yDragging;
 	
-	PlacePieceController(SuperModel model, BoardView view) {
+	public PlacePieceController(SuperModel model, BoardView view) {
 		this.model = model;
 		this.view = view;
 		lvl = model.getActiveLevel();
