@@ -66,7 +66,7 @@ public class Bullpen implements Serializable{
 	}
 	
 	/**
-	 * getter method to get all of the pieces in the bullpen.
+	 * getter method to get all of the pieces left in the bullpen.
 	 * @return Arraylist of pieces
 	 */
 	public List<Piece> getPieces(){

@@ -1,6 +1,5 @@
 package kabasuji.controllers;
 
-import java.awt.Polygon;
 import java.awt.dnd.MouseDragGestureRecognizer;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
