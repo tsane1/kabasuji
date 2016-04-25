@@ -24,7 +24,7 @@ import kabasuji.supers.Screen;
  *
  */
 
-public class LightningLevelEditView extends Screen {
+public class LightningLevelEditView extends Screen { 
 	private LightningLevel level;
 	private BoardView boardView;
 	private BullpenView bullpenView;
@@ -32,7 +32,7 @@ public class LightningLevelEditView extends Screen {
 	private JButton btnUndo = new JButton("Undo");
 	private JButton btnRedo = new JButton("Redo");
 	private JButton btnSave = new JButton("Save");
-	private JButton btnDelete = new JButton("Delete");
+	private JButton btnDelete = new JButton("Delete"); 
 	
 	public LightningLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);

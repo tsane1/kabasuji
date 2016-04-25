@@ -14,26 +14,24 @@ public class MoveCounter {
 	
 	public MoveCounter(Level level) {
 		super();
-		this.level = level;
+		this.level = level; 
 	}
 	
 	public int moveCount(){
 		int count = 0;
-		if(isLightning(level)){
-			count = 0;//OR infinity?
-		}
-		while(!isLightning(level)){
-			//TODO: Need to determine how we determine allowable # of moves	
+		if(isPuzzle(level)){
+			//waiting on this function
+			//count = getMoveCount();//OR infinity?
 		}
 		return count;
 	}
 	
-	public boolean isLightning(Level level){
-		boolean isLightning = false;
-		//TODO: Makes sure game mode is not lightning
-		if(level.getLevelName() == "Lightning"){
-			isLightning = true;
+	public boolean isPuzzle(Level level){
+		boolean isPuzzle = false;
+		//TODO: Makes sure game mode is Puzzle
+		if(level.getLevelName() == "Puzzle"){
+			isPuzzle = true;
 		}
-		return isLightning;
+		return isPuzzle;
 	}
 }
