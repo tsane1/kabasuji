@@ -36,9 +36,9 @@ public class BullpenView extends JPanel {
 	Level level;
 	
 /** containersize global, equal to 6xtilesize or 6x32. */	
-	public final int containerSize = 192;
+	public static final int containerSize = 192;
 	/** buffer to separate pieces when drawing. */
-	public final int pieceBuffer = 8;
+	public static final int pieceBuffer = 8;
 	
 	/** Image object to create the piece images with. */
 	Image offScreenImage = null;
