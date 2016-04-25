@@ -16,12 +16,15 @@ public class MoveCounter {
 		super();
 		this.level = level; 
 	}
-	
+	 
 	public int moveCount(){
-		int count = 0;
-		if(isPuzzle(level)){
-			//waiting on this function
-			//count = getMoveCount();//OR infinity?
+		int count = 0;//Temporary
+//		int count = getMoveCount();
+		//look at undo stack - need it to say a move has been done.
+		while(count > 0){
+			if(isPuzzle(level)){
+				count--;
+			}
 		}
 		return count;
 	}

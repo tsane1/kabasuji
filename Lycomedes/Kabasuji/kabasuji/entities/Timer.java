@@ -21,7 +21,7 @@ public class Timer {
 			//need this functon for getting time
 			//count = getTime();
 			count--;
-		}
+		} 
 		return count;
 	}
 
