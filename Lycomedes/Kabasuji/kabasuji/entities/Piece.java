@@ -2,6 +2,8 @@ package kabasuji.entities;
 
 import java.io.Serializable;
 
+import kabasuji.views.BullpenView;
+
 /**
  * Entity class for the hexomino piece object. 
  * 
@@ -146,5 +148,16 @@ public class Piece implements Serializable {
 	@Override
 	public int hashCode() {
 		return this.pieceIDnum;
+	}
+
+	public boolean contains(int x, int index) {
+		
+		int xpos = x;
+		System.out.println("X Coordinate Clicked: " + xpos);
+		
+		int pieceIndex = xpos/(BullpenView.containerSize+BullpenView.pieceBuffer);
+		System.out.println("Piece index from point: " + pieceIndex);
+		
+		return pieceIndex == index;
 	}
 }

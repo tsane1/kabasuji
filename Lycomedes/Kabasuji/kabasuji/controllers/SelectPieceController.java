@@ -23,10 +23,26 @@ public class SelectPieceController extends MouseAdapter{
 		int idx = 0;
 		for(Piece p : view.getPiecesInBullpen())
 		{
-			int xpos = me.getX();
-			int pieceIndex = xpos/(view.containerSize+view.pieceBuffer);
-			
-			Piece temp = currLevel.getBullpen().getPieces().get(idx);
+			if(p.contains(me.getX(), idx))
+			{
+				if (currLevel.getSelected() == currLevel.getBullpen().getPieces().get(idx)) {
+					currLevel.setSelected(null);
+				}
+				else {
+					Piece temp = currLevel.getBullpen().getPieces().get(idx);
+					if(currLevel.getBullpen().getPlayedPieces().contains(temp)){
+						currLevel.setSelected(null);
+						System.out.println("Selected Piece: " + temp.getPieceName());
+						return;
+					}
+					currLevel.setSelected(temp);
+					System.out.println("Selected Piece: " + temp.getPieceName());
+				}
+				
+				view.refresh();
+				return;
+			}
+			idx++;
 		}
 	}
 	

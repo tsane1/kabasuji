@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kabasuji.controllers.SelectPieceController;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.supers.Level;
@@ -79,5 +80,8 @@ public class Test_Heineman extends JFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		SelectPieceController psc = new SelectPieceController(sm.getActiveLevel(), bpView);
+		bpView.addMouseListener(psc);
 	}
 }
