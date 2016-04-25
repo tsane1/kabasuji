@@ -25,7 +25,7 @@ import kabasuji.supers.Screen;
  */
 
 public class LightningLevelEditView extends Screen {
-	private Level level;
+	private LightningLevel level;
 	private BoardView boardView;
 	private BullpenView bullpenView;
 	
@@ -36,14 +36,14 @@ public class LightningLevelEditView extends Screen {
 	
 	public LightningLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
-		this.level = this.model.getLevel(levelName);
+		this.level = (LightningLevel)this.model.loadLevel(m.getUserLevelDir(), levelName+".lev");
 		
 		if(this.level == null) { // create new level
-			this.level = new PuzzleLevel("Level " + this.model.totalLevels());
-			this.setTitle("New Lightning Level: " + "Level " + (this.model.totalLevels() + 1));
+			this.level = new LightningLevel("Level " + (this.model.getTotalNumLevels()+1));
+			this.setTitle("New Lightning Level: " + "Level " + (this.model.getTotalNumLevels() + 1));
 		}
 		else if(!this.level.getLevelType().equals("Lightning")) {
-			this.level = new PuzzleLevel(levelName);
+			this.level = new LightningLevel(levelName);
 			this.setTitle("New Lightning Level: " + levelName);
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");

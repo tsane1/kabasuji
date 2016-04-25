@@ -16,7 +16,7 @@ public class testPlacePiece extends TestCase {
 		board = new Board();
 		
 		for(int idx = 0; idx<= 5; idx++){
-			bullpen.addPiece(level.getAllPieces().get(idx));
+			//bullpen.addPiece(level.getAllPieces().get(idx));
 		}
 		//creates a square of size x size
 		int size = 12;

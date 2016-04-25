@@ -22,7 +22,7 @@ import javax.swing.JButton;
  *
  */
 public class PuzzleLevelEditView extends Screen {
-	private Level level;
+	private PuzzleLevel level;
 	private BoardView boardView;
 	private BullpenView bullpenView;
 	
@@ -33,11 +33,11 @@ public class PuzzleLevelEditView extends Screen {
 	
 	public PuzzleLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
-		this.level = this.model.getLevel(levelName);
+		this.level = (PuzzleLevel)this.model.loadLevel(m.getUserLevelDir(), levelName+".lev");
 		
 		if(this.level == null) { // create new level
-			this.level = new PuzzleLevel("Level " + (this.model.totalLevels() + 1));
-			this.setTitle("New Puzzle Level: " + "Level " + (this.model.totalLevels() + 1));
+			this.level = new PuzzleLevel("Level " + (this.model.getTotalNumLevels() + 1));
+			this.setTitle("New Puzzle Level: " + "Level " + (this.model.getTotalNumLevels() + 1));
 		}
 		else if(!this.level.getLevelType().equals("Puzzle")) {
 			this.level = new PuzzleLevel(levelName);
