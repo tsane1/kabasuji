@@ -85,6 +85,8 @@ public class PuzzleLevelEditView extends Screen {
 		
 		pieceScroll = new JScrollPane();
 		pieceScroll.setBounds(50, 582, 850, BullpenView.containerSize+(2*BullpenView.pieceBuffer));
+		pieceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		pieceScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
 		//this.add(bullpenView);
