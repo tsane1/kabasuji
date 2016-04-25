@@ -68,7 +68,7 @@ public class SuperModel {
       private int extractNumber(String name) {
           int i = 0;
           try {
-              int s = name.indexOf('l')+1;
+              int s = name.indexOf(' ')+1; // TODO: Find a better way to get number out
               int e = name.lastIndexOf('.');
               String number = name.substring(s, e);
               i = Integer.parseInt(number);
@@ -144,10 +144,10 @@ public class SuperModel {
 				input.close();
 			}
 			catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				
 			} 
 			catch (IOException e) {
-				e.printStackTrace();
+				
 			}
 			return loadedLevel;
 	}
