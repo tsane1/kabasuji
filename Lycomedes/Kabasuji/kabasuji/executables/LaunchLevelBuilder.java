@@ -49,7 +49,7 @@ public class LaunchLevelBuilder {
 		});  
 		
 		t1.start();
-		Thread.sleep(500);
+		Thread.sleep(3200);
 		sc.setVisible(false);
 		sc.dispose();
 		Application frame = new Application(new LevelEditSelectView(m));
