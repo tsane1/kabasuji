@@ -25,7 +25,7 @@ import kabasuji.supers.Screen;
  * of which level to edit, as well as the names of the levels. Navigation is done
  * via "Next" and "Previous" controllers attached to buttons. This class ignores
  * the default levels and only displays editable user levels. Buttons are also 
- * provided to create new levels and delete existing levels.
+ * provided to create a new level and close the window.
  * </p>
  * @author Tanuj Sane
  * @since 4/21/2016

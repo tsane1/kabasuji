@@ -1,15 +1,19 @@
 package kabasuji.supers;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.Stack;
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.Piece;
+import kabasuji.entities.PieceTile;
 
 /**
  * Level superclass containing all elements common to the different level types.
@@ -22,6 +26,7 @@ public abstract class Level implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+<<<<<<< HEAD
 	/** List of all 35 possible hexominoes. */
 	List<Piece> allPieces = new ArrayList<Piece>(35);
 	/** Grid of all possible piecetiles that make up pieces. */
@@ -29,6 +34,11 @@ public abstract class Level implements Serializable {
 	/** A map of piece colors used for drawing the pieces. */
 	Map<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
 	
+=======
+	ArrayList<Piece> allPieces = new ArrayList<Piece>(35);
+	ArrayList<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
+	HashMap<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
+>>>>>>> 6ca0f4a1838292a39c6a30d0628a4ab141df3628
 	Stack<Move> undoStack = new Stack<Move>();
 	Stack<Move> redoStack = new Stack<Move>();
 
@@ -91,11 +101,15 @@ public abstract class Level implements Serializable {
 		this.numStars = numStars;
 	}
 	
+<<<<<<< HEAD
 	public Level(){
 		this("level", "test");
 	}
 	
 	public void setupPieces(){
+=======
+	private void setupPieces(){
+>>>>>>> 6ca0f4a1838292a39c6a30d0628a4ab141df3628
 		/**
 		 * The 35 possible hexominoes
 		 */
@@ -134,7 +148,17 @@ public abstract class Level implements Serializable {
 		pt20 = new PieceTile(3,1);
 		pt25 = new PieceTile(4,0);
 		pt31 = new PieceTile(5,0);
+<<<<<<< HEAD
 
+=======
+		
+		/**
+		 * Populate pieceGrid with all possible piece tiles
+		 */
+		for(int i = 0; i < 36; i++) {
+			pieceGrid.add(new PieceTile(i/6, i%6));
+		}
+>>>>>>> 6ca0f4a1838292a39c6a30d0628a4ab141df3628
 
 		/**
 		 * To know which pieces are which.
@@ -214,7 +238,22 @@ public abstract class Level implements Serializable {
 		allPieces.add(p32);
 		allPieces.add(p33);
 		allPieces.add(p34);
+<<<<<<< HEAD
 		allPieces.add(p35);
+=======
+		allPieces.add(p35);	
+		
+		Random r = new Random();
+		for(Piece p: allPieces){
+			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
+			colorMap.put(p, random);
+		}
+	}
+	/**
+	 * Achievement
+	 */
+	public void updateAchievement(){
+>>>>>>> 6ca0f4a1838292a39c6a30d0628a4ab141df3628
 		
 		Random r = new Random();
 		for(Piece p: allPieces){
