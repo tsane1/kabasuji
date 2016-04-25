@@ -143,24 +143,22 @@ public class BullpenView extends JPanel {
 
 		for (Piece p : level.getBullpen().getOriginalSet()) {
 			if(p == level.getSelected()){
-				offScreenGraphics.setColor(Color.MAGENTA);
+				drawer.drawPiece(offScreenGraphics, p, x, y, Color.orange.brighter());
 			}
 			else{
 				boolean played = false;
-				for(Piece p2 : level.getBullpen().getPlayedPieces()){
-					if(p2.equals(p)){
-						played = true;
-						break;
-					}			
-				}
-				if(played) {
-					offScreenGraphics.setColor(Color.GRAY);
-				}
-				else {
-					offScreenGraphics.setColor(Color.GREEN);
-				}
+				if(level.getBullpen().getPlayedPieces().contains(p)){
+					played = true;
+					break;
+				}			
+			if(played) {
+				drawer.drawPiece(offScreenGraphics, p, x, y, Color.black);
 			}
-			drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
+			else {
+				drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
+			}
+		}
+			//drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
 			x+= containerSize+pieceBuffer;	
 		}
 	}
