@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
+import kabasuji.views.LevelPlayView;
 import kabasuji.views.LightningLevelEditView;
 import kabasuji.views.PuzzleLevelEditView;
 import kabasuji.views.ReleaseLevelEditView;
@@ -21,7 +22,15 @@ public class LevelEditController implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		model.setActiveLevel(model.getLevel(e.getActionCommand()));
+		Level level;
+		if(model.loadLevel(model.getUserLevelDir(), e.getActionCommand()+".lev") == null) 
+			level = model.loadLevel(model.getDefaultLevelDir(), e.getActionCommand()+".lev");
+		else level = model.loadLevel(model.getUserLevelDir(), e.getActionCommand()+".lev");
+		model.setActiveLevel(level);
+		if(!model.getActiveLevel().isLocked()) 
+			this.app.setCurrScreen(new LevelPlayView(this.model.getActiveLevel().getLevelName(), this.model));
+		
+		model.setActiveLevel(model.loadLevel(model.getUserLevelDir(), e.getActionCommand()+".lev"));
 		switch(model.getActiveLevel().getLevelType()) {
 		case "Puzzle":
 			this.app.setCurrScreen(new PuzzleLevelEditView(model.getActiveLevel().getLevelName(), this.model));

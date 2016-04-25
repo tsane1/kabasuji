@@ -15,6 +15,7 @@ import kabasuji.supers.Screen;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 /**
  * 
  * @author Tanuj Sane
@@ -22,7 +23,7 @@ import javax.swing.JButton;
  *
  */
 public class PuzzleLevelEditView extends Screen {
-	private Level level;
+	private PuzzleLevel level;
 	private BoardView boardView;
 	private BullpenView bullpenView;
 	
@@ -31,13 +32,15 @@ public class PuzzleLevelEditView extends Screen {
 	private JButton btnSave = new JButton("Save");
 	private JButton btnDelete = new JButton("Delete");
 	
+	private JScrollPane pieceScroll;
+	
 	public PuzzleLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
-		this.level = this.model.getLevel(levelName);
+		this.level = (PuzzleLevel)this.model.loadLevel(m.getUserLevelDir(), levelName+".lev");
 		
 		if(this.level == null) { // create new level
-			this.level = new PuzzleLevel("Level " + (this.model.totalLevels() + 1));
-			this.setTitle("New Puzzle Level: " + "Level " + (this.model.totalLevels() + 1));
+			this.level = new PuzzleLevel("Level " + (this.model.getTotalNumLevels() + 1));
+			this.setTitle("New Puzzle Level: " + "Level " + (this.model.getTotalNumLevels() + 1));
 		}
 		else if(!this.level.getLevelType().equals("Puzzle")) {
 			this.level = new PuzzleLevel(levelName);
@@ -79,7 +82,14 @@ public class PuzzleLevelEditView extends Screen {
 		this.add(btnRedo);
 		
 		this.add(boardView);
-		this.add(bullpenView);
+		
+		pieceScroll = new JScrollPane();
+		pieceScroll.setBounds(50, 582, 850, BullpenView.containerSize+(2*BullpenView.pieceBuffer));
+		pieceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		pieceScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		pieceScroll.setViewportView(bullpenView);
+		this.add(pieceScroll);
+		//this.add(bullpenView);
 	}
 	
 	@Override

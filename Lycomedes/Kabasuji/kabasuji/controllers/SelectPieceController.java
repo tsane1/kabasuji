@@ -24,7 +24,7 @@ public class SelectPieceController extends MouseAdapter{
 		for(Piece p : view.getPiecesInBullpen())
 		{
 			int xpos = me.getX();
-			int pieceIndex = xpos%(view.containerSize+view.pieceBuffer);
+			int pieceIndex = xpos/(view.containerSize+view.pieceBuffer);
 			
 			Piece temp = currLevel.getBullpen().getPieces().get(idx);
 		}

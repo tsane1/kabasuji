@@ -20,7 +20,7 @@ public class DeleteLevelController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
-		this.model.deleteLevel(e.getActionCommand());
+		this.model.deleteLevel(model.getUserLevelDir(), e.getActionCommand()+".lev");
 		app.setCurrScreen(new LevelEditSelectView(model));
 	}
 }

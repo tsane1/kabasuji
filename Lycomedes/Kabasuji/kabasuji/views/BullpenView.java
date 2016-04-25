@@ -36,9 +36,9 @@ public class BullpenView extends JPanel {
 	Level level;
 	
 /** containersize global, equal to 6xtilesize or 6x32. */	
-	public final int containerSize = 192;
+	public static final int containerSize = 192;
 	/** buffer to separate pieces when drawing. */
-	public final int pieceBuffer = 8;
+	public static final int pieceBuffer = 8;
 	
 	/** Image object to create the piece images with. */
 	Image offScreenImage = null;
@@ -53,10 +53,14 @@ public class BullpenView extends JPanel {
 	public BullpenView(SuperModel m) {
 		super();
 		this.level = m.getActiveLevel();
-		this.setBounds(13, 522, 908, 218);
+		//this.setBounds(13, 522, 908, 218);
 	}
 	
 
+	/**
+	 * get played pieces method.
+	 * @return
+	 */
 	public List<Piece> getPlayedPieces(){
 		return level.getBullpen().getPlayedPieces();
 	}
@@ -90,7 +94,7 @@ public class BullpenView extends JPanel {
 	@Override
 	public Dimension getPreferredSize() {
 		int height = containerSize + (2*pieceBuffer);
-		int width = pieceBuffer + (3*(pieceBuffer+containerSize));
+		int width = pieceBuffer + (level.getBullpen().numPiecesInBullpen()*(pieceBuffer+containerSize));
 
 		return new Dimension (width, height);
 	}
@@ -116,15 +120,16 @@ public class BullpenView extends JPanel {
 	 * @return void
 	 */
 	public void redraw() {
+		if (level == null) { return; }
+		if (level.getBullpen() == null) { return; }
+		
 		int x = pieceBuffer;
 		int y = pieceBuffer;
-		
 		Dimension dim = getPreferredSize();
 		
 		if (offScreenImage != null) {
 			offScreenImage.flush();
 		}
-		
 		if (offScreenGraphics != null) {
 			offScreenGraphics.dispose();
 		}
@@ -135,10 +140,6 @@ public class BullpenView extends JPanel {
 
 		offScreenGraphics = offScreenImage.getGraphics();
 
-		// HERE
-
-		// 1. draw each piece at proper location
-		// 2. offset after each one is drawn
 		for (Piece p : level.getBullpen().getOriginalSet()) {
 			if(p == level.getSelected()){
 				offScreenGraphics.setColor(Color.MAGENTA);
@@ -158,11 +159,8 @@ public class BullpenView extends JPanel {
 					offScreenGraphics.setColor(Color.GREEN);
 				}
 			}
-			
-			drawer.drawPiece(offScreenGraphics, p, x, y);
-			
-			x+= containerSize+pieceBuffer;
-			
+			drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
+			x+= containerSize+pieceBuffer;	
 		}
 	}
 	

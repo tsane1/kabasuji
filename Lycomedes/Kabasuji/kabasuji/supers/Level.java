@@ -1,6 +1,10 @@
 package kabasuji.supers;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
-
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.Piece;
@@ -74,6 +77,7 @@ public abstract class Level implements Serializable {
 	Piece draggingPiece;
 
 	/**
+<<<<<<< HEAD
 	 * Constructor for creating a new level. Achievement set to new, Board is
 	 * 12x12 unplayable tiles, and bullpen contains all 35.
 	 * 
@@ -81,11 +85,16 @@ public abstract class Level implements Serializable {
 	 *            name
 	 * @param String
 	 *            type
+=======
+	 * Constructor for creating a new level.
+	 * @param String name 
+	 * @param String type
+>>>>>>> branch 'master' of https://github.com/tsane1/lycomedes.git
 	 */
 	public Level(String name, String type) {
 		this.name = name;
 		this.type = type;
-		locked = true;
+		locked = false;
 		this.theBoard = new Board();
 		this.theBullpen = new Bullpen();
 		this.numStars = 0;
@@ -139,19 +148,26 @@ public abstract class Level implements Serializable {
 		 * 5 6 1 | 7 8 9 10 11 12 2 | 13 14 15 16 17 18 3 | 19 20 21 22 23 24 4
 		 * | 25 26 27 28 29 30 5 | 31 32 33 34 35 36
 		 */
-		pt1 = new PieceTile(0, 0);
-		pt2 = new PieceTile(0, 1);
-		pt3 = new PieceTile(0, 2);
-		pt7 = new PieceTile(1, 0);
-		pt8 = new PieceTile(1, 1);
-		pt9 = new PieceTile(1, 2);
-		pt13 = new PieceTile(2, 0);
-		pt14 = new PieceTile(2, 1);
-		pt15 = new PieceTile(2, 2);
-		pt19 = new PieceTile(3, 0);
-		pt20 = new PieceTile(3, 1);
-		pt25 = new PieceTile(4, 0);
-		pt31 = new PieceTile(5, 0);
+		pt1 = new PieceTile(0,0);
+		pt2 = new PieceTile(0,1);
+		pt3 = new PieceTile(0,2);
+		pt7 = new PieceTile(1,0);
+		pt8 = new PieceTile(1,1);
+		pt9 = new PieceTile(1,2);
+		pt13 = new PieceTile(2,0);
+		pt14 = new PieceTile(2,1);
+		pt15 = new PieceTile(2,2);
+		pt19 = new PieceTile(3,0);
+		pt20 = new PieceTile(3,1);
+		pt25 = new PieceTile(4,0);
+		pt31 = new PieceTile(5,0);
+		
+		/**
+		 * Populate pieceGrid with all possible piece tiles
+		 */
+		for(int i = 0; i < 36; i++) {
+			pieceGrid.add(new PieceTile(i/6, i%6));
+		}
 
 		/**
 		 * To know which pieces are which. Look at the Wikipedia picture of
@@ -231,15 +247,25 @@ public abstract class Level implements Serializable {
 		allPieces.add(p32);
 		allPieces.add(p33);
 		allPieces.add(p34);
-		allPieces.add(p35);
-
+		allPieces.add(p35);	
+		
+		Random r = new Random();
+		for(Piece p: allPieces){
+			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
+			colorMap.put(p, random);
+		}
+	}
+	/**
+	 * Achievement
+	 */
+	public void updateAchievement(){
+		
 		Random r = new Random();
 		for (Piece p : allPieces) {
 			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
 			colorMap.put(p, random);
 		}
 	}
-
 	public void updateAchievement(Progress progress) {
 		int achievedStars = 0;
 		
@@ -266,16 +292,18 @@ public abstract class Level implements Serializable {
 		}
 	}
 
+
+	
 	public String getLevelName() {
 		return name;
 	}
 
+	public void setLevelName(String name){
+		this.name = name;
+	}
+	
 	public String getLevelType() {
 		return type;
-	}
-
-	public void setLevelName(String name) {
-		this.name = name;
 	}
 
 	public void setLevelType(String type) {
@@ -299,10 +327,6 @@ public abstract class Level implements Serializable {
 		activePiece = p;
 	}
 
-	public Piece getActivePiece() {
-		return activePiece;
-	}
-
 	public Piece getDraggingPiece() {
 		return activePiece;
 	}
@@ -324,6 +348,10 @@ public abstract class Level implements Serializable {
 		return selectedPiece;
 	}
 
+	public void setSelected(Piece p) {
+		this.selectedPiece = p;
+	}
+	
 	/**
 	 * Sets the selected piece to the passed piece.
 	 * 
@@ -349,8 +377,12 @@ public abstract class Level implements Serializable {
 	public boolean isLocked() {
 		return this.locked;
 	}
-
-	public void trackMove(Move m) {
+	
+	/**
+	 * Undo and redo handlers
+	 */
+	
+	public void trackMove(Move m){
 		undoStack.add(m);
 		redoStack.clear();
 	}
@@ -376,5 +408,28 @@ public abstract class Level implements Serializable {
 		}
 		return redoStack.pop();
 	}
+	
+	/**
+	 * Save level handling
+	 */
+	public void saveLevel(String lvlDir) {
+		String filepath = lvlDir + this.getLevelName() + ".lev";
+		File file = new File(filepath);
+		try{
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
+			output.writeObject(this);
+			output.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 
+	public Color getPieceColor(Piece p) {
+		return colorMap.get(p);
+	}
+
+	public Piece getActivePiece() {
+		return activePiece;
+	}
 }
