@@ -53,7 +53,7 @@ public class BullpenView extends JPanel {
 	public BullpenView(SuperModel m) {
 		super();
 		this.level = m.getActiveLevel();
-		this.setBounds(13, 522, 908, 218);
+		//this.setBounds(13, 522, 908, 218);
 	}
 	
 
@@ -94,7 +94,7 @@ public class BullpenView extends JPanel {
 	@Override
 	public Dimension getPreferredSize() {
 		int height = containerSize + (2*pieceBuffer);
-		int width = pieceBuffer + (3*(pieceBuffer+containerSize));
+		int width = pieceBuffer + (35*(pieceBuffer+containerSize));
 
 		return new Dimension (width, height);
 	}
@@ -120,6 +120,9 @@ public class BullpenView extends JPanel {
 	 * @return void
 	 */
 	public void redraw() {
+		if (level == null) { return; }
+		if (level.getBullpen() == null) { return; }
+		
 		int x = pieceBuffer;
 		int y = pieceBuffer;
 		Dimension dim = getPreferredSize();
@@ -156,7 +159,7 @@ public class BullpenView extends JPanel {
 					offScreenGraphics.setColor(Color.GREEN);
 				}
 			}
-			drawer.drawPiece(offScreenGraphics, p, x, y);
+			drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
 			x+= containerSize+pieceBuffer;	
 		}
 	}

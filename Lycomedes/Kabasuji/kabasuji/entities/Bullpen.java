@@ -54,7 +54,7 @@ public class Bullpen implements Serializable{
 	 * @boolean
 	 */
 	public boolean addPieces(List<Piece> allPieces){
-		return this.pieces.addAll(allPieces);
+		return this.pieces.addAll(allPieces) && this.originalSet.addAll(allPieces);
 	}
 	
 	/**
