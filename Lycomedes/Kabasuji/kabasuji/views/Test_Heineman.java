@@ -46,7 +46,7 @@ public class Test_Heineman extends JFrame {
 	 */
 	public Test_Heineman() {
 		
-		SuperModel sm = new SuperModel();
+		SuperModel sm = new SuperModel("test");
 		Level level = new PuzzleLevel("no name");
 		Bullpen bp = level.getBullpen();
 	

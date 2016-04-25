@@ -114,5 +114,9 @@ public class Bullpen implements Serializable{
 	public boolean isEmpty(){
 		return this.pieces.isEmpty();
 	}
+	
+	public int numPiecesInBullpen(){
+		return pieces.size();
+	}
 }
 

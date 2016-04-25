@@ -54,6 +54,12 @@ public class SuperModel {
 		updateUserLevelNames();
 	}
 	
+	public SuperModel(String testString){
+		//string passed should be test...used to test 
+		activeLevel = null;
+		page = 0;
+	}
+	
 	private void setupDefaultLevelNames() {
 		System.out.println(defaultLevelsDirectory);
 		File[] files = new File(defaultLevelsDirectory).listFiles();
