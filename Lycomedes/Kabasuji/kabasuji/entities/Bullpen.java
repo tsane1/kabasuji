@@ -24,7 +24,7 @@ public class Bullpen implements Serializable{
 	 */
 	public Bullpen() {
 		pieces = new ArrayList<Piece>();
-		originalSet = pieces;
+		originalSet = new ArrayList<Piece>();
 		playedPieces = new ArrayList<Piece>();		
 	}
 	
@@ -34,8 +34,9 @@ public class Bullpen implements Serializable{
 	 * @param pieces
 	 */
 	public Bullpen(List<Piece> pieces) {
-		this.pieces = pieces;
-		originalSet = pieces;
+		this.pieces = new ArrayList<Piece>();
+		this.pieces.addAll(pieces);
+		originalSet = new ArrayList<Piece>();
 		playedPieces = new ArrayList<Piece>();
 	}
 	
@@ -53,11 +54,7 @@ public class Bullpen implements Serializable{
 	 * @boolean
 	 */
 	public boolean addPieces(List<Piece> allPieces){
-		for(Piece p : allPieces){
-			this.pieces.add(p);
-			this.originalSet.add(p);
-		}
-		return this.pieces.size() == allPieces.size();
+		return this.pieces.addAll(allPieces);
 	}
 	
 	/**
@@ -69,7 +66,7 @@ public class Bullpen implements Serializable{
 	}
 	
 	/**
-	 * getter method to get all of the pieces in the bullpen.
+	 * getter method to get all of the pieces left in the bullpen.
 	 * @return Arraylist of pieces
 	 */
 	public List<Piece> getPieces(){
@@ -102,8 +99,20 @@ public class Bullpen implements Serializable{
 		return pieces.add(p) && playedPieces.remove(p);
 	}
 	
+	/**
+	 * Method to get overall collection of pieces that were in bullpen at start.
+	 * @return List of pieces
+	 */
 	public List<Piece> getOriginalSet(){
 		return originalSet;
+	}
+	
+	/**
+	 * helper method that returns whether or not a bullpen is empty.
+	 * @return boolean
+	 */
+	public boolean isEmpty(){
+		return this.pieces.isEmpty();
 	}
 }
 

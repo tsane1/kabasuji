@@ -19,7 +19,7 @@ import kabasuji.supers.Screen;
 
 /**
  * 
- * @author lots of someones
+ * @author Tanuj Sane
  * @since 4/23/16
  *
  */
@@ -48,6 +48,7 @@ public class ReleaseLevelEditView extends Screen {
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");
 		
+		model.setActiveLevel(level);
 		this.boardView = new BoardView(this.model);
 		this.bullpenView = new BullpenView(this.model);
 	}

@@ -16,7 +16,7 @@ public class LightningBoardTile extends Tile{
 	int row, col;
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
-	
+	private boolean marked;
 	/**
 	 * Constructor for the lightningboardtile object.
 	 * @param int row
@@ -28,6 +28,7 @@ public class LightningBoardTile extends Tile{
 		this.row = row;
 		this.col = column;
 		covered = false;
+		marked = false;
 	}
 	
 	/**
@@ -52,5 +53,18 @@ public class LightningBoardTile extends Tile{
 	 */
 	public boolean isCovered() {
 		return covered;
+	}
+	/**
+	 * Marks a lightning tile
+	 */
+	public void mark(){
+		marked = true;
+	}
+	/**
+	 * Gets the marked boolean
+	 * @return true is tile is marked
+	 */
+	public boolean isMarked(){
+		return marked;
 	}
 }

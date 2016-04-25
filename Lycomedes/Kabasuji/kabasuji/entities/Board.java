@@ -90,6 +90,7 @@ public class Board implements Serializable{
 			return false;
 		}
 	}
+	
 
 	/**
 	 * Checks whether the piece is covering an already covered area.
@@ -126,10 +127,34 @@ public class Board implements Serializable{
 			int colCord = col + (piece.tiles[i].col - colAdjust);
 			
 			boardArray[rowCord][colCord].cover();
+			//if its a lightningboard we should mark it
+			LightningBoardTile lTile = new LightningBoardTile(0, 0);
+			if(boardArray[rowCord][colCord].getClass() == lTile.getClass()){
+				((LightningBoardTile) boardArray[rowCord][colCord]).mark();
+			}
 		}
 	}
 	public ArrayList<Piece> getPlacedPieces(){
 		return this.placedPieces;
+	}
+	public Tile[][] getBoardArray(){
+		return boardArray;
+	}
+	/**
+	 * General progress percentage return.
+	 * 
+	 * @param x represents game type.
+	 * @return returns the percentage of completion for the given level.
+	 */
+	public int getProgress(String x){
+		if(x == "puzzle"){
+			return getPuzzleProgress();
+			
+		}else if(x == "lightning"){
+			return getLightningProgress();
+		}else{
+			return getReleaseProgress();
+		}
 	}
 	/**
 	 * Determine how much progress player has made on puzzle.

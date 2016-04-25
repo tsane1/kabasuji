@@ -17,7 +17,7 @@ import java.awt.SystemColor;
 import javax.swing.JButton;
 /**
  * 
- * @author lots of someones
+ * @author Tanuj Sane
  * @since 4/23/16
  *
  */
@@ -36,7 +36,7 @@ public class PuzzleLevelEditView extends Screen {
 		this.level = this.model.getLevel(levelName);
 		
 		if(this.level == null) { // create new level
-			this.level = new PuzzleLevel("Level " + this.model.totalLevels());
+			this.level = new PuzzleLevel("Level " + (this.model.totalLevels() + 1));
 			this.setTitle("New Puzzle Level: " + "Level " + (this.model.totalLevels() + 1));
 		}
 		else if(!this.level.getLevelType().equals("Puzzle")) {
@@ -45,6 +45,7 @@ public class PuzzleLevelEditView extends Screen {
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");
 		
+		model.setActiveLevel(level);
 		this.boardView = new BoardView(this.model);
 		this.bullpenView = new BullpenView(this.model);
 	}

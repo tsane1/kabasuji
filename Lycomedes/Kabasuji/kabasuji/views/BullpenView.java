@@ -57,6 +57,10 @@ public class BullpenView extends JPanel {
 	}
 	
 
+	/**
+	 * get played pieces method.
+	 * @return
+	 */
 	public List<Piece> getPlayedPieces(){
 		return level.getBullpen().getPlayedPieces();
 	}
