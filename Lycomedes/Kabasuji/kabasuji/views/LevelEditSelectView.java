@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.LevelEditController;
 import kabasuji.controllers.NavigateLevelSelectController;
 import kabasuji.controllers.NewLevelController;
