@@ -4,17 +4,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import kabasuji.entities.Piece;
+import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BullpenView;
 
 
 public class SelectPieceController extends MouseAdapter{
 	
-	SuperModel model;
+	Level currLevel;
 	BullpenView view;
 	
-	public SelectPieceController(SuperModel model, BullpenView view){
-		this.model = model;
+	public SelectPieceController(Level l, BullpenView view){
+		this.currLevel = l;
 		this.view = view;
 	}
 	
@@ -24,7 +25,8 @@ public class SelectPieceController extends MouseAdapter{
 		{
 			int xpos = me.getX();
 			int pieceIndex = xpos%(view.containerSize+view.pieceBuffer);
-			//if(model.)
+			
+			Piece temp = currLevel.getBullpen().getPieces().get(idx);
 		}
 	}
 	
