@@ -61,7 +61,7 @@ public class PlacePieceController  extends MouseAdapter{
 	public void mouseMoved(MouseEvent me){
 		//need getSelected()
 		Piece selected = lvl.getSelected();
-		if (selected == null) { System.err.println("null selected"); return; }
+//		if (selected == null) { System.err.println("null selected"); return; }
 
 		int x = me.getPoint().x;
 		int y = me.getPoint().y;
