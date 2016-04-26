@@ -1,11 +1,13 @@
 package kabasuji.views;
 
-import java.awt.EventQueue;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import kabasuji.supers.Application;
+import kabasuji.controllers.SelectPieceController;
+import kabasuji.entities.LightningLevel;
+import kabasuji.entities.PuzzleLevel;
+import kabasuji.entities.ReleaseLevel;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 import kabasuji.supers.Screen;
@@ -21,12 +23,17 @@ import kabasuji.supers.Screen;
  * @author Tanuj Sane
  * @author Chase St. Laurent
  * @author Ian Jacoway 
+ * @author Michael
  * @since 4/23/16
  *
  */
 public class LevelPlayView extends Screen {
 	
 	private Level level;
+	private PuzzleLevel pl;
+	private LightningLevel ll;
+	private ReleaseLevel rl;
+	
 	private BoardView boardView;
 	private BullpenView bullpenView;
 	private ProgressView progress;
@@ -39,9 +46,25 @@ public class LevelPlayView extends Screen {
 		super(levelName, m);
 		
 		this.level = m.getActiveLevel();
+		pl = null; rl = null; ll = null;
 		this.setTitle(level.getLevelName() + ": " + level.getLevelType());
 		this.boardView = new BoardView(m);
 		this.bullpenView = new BullpenView(m);
+		
+		switch(level.getLevelType()) { // add level-specific elements
+		case "Puzzle":
+			pl = (PuzzleLevel)level;
+			break;
+		case "Lightning":
+			ll = (LightningLevel)level;
+			break;
+		case "Release":
+			rl = (ReleaseLevel)level;
+			break;
+		default:
+			System.err.println("This level type is not yet supported.");
+			break;				
+		}
 	}
 	
 	public Level getLevel() {
@@ -51,31 +74,42 @@ public class LevelPlayView extends Screen {
 	@Override
 	public void populate() {
 	
-		//populate by adding the views
-		
-		boardPanel = new JPanel();
-		boardPanel.setBounds(13, 280, 384, 384);
-//		boardPanel.setLayout(null);
-		boardPanel.add(boardView);
-		boardView.refresh();
-		this.add(boardPanel);
+
+		this.add(boardView);
+		boardView.validate();
+		boardView.repaint();
+
 
 		pieceScroll = new JScrollPane();
 		pieceScroll.setBounds(13, 512, 904, 228);
-		pieceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		pieceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		pieceScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
+		
+		switch(level.getLevelType()) { // add level-specific elements
+		case "Puzzle":
+			
+			break;
+		case "Lightning":
+			break;
+		case "Release":
+			break;
+		default:
+			System.err.println("This level type is not yet supported.");
+			break;				
+		}
 	}
 	
 	@Override
 	public void installControllers() {
-		
+		SelectPieceController psc = new SelectPieceController(level, bullpenView);
+		bullpenView.addMouseListener(psc);
 	}	
 
 	@Override
 	public void refresh() {
-		this.app.setCurrScreen(this);
+		
 	}
 	
 	@Override
@@ -91,19 +125,5 @@ public class LevelPlayView extends Screen {
 	@Override
 	public BoardView getBoardView(){
 		return this.boardView;
-	}
-	
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Application frame = new Application(new LevelPlayView("hi", new SuperModel()));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 }

@@ -14,11 +14,6 @@ public class PieceTile extends Tile implements Serializable {
 	 */
 	private static final long serialVersionUID = 2772653943506364180L;
 	
-	/** Row location of the tile.*/
-	int row;
-	/** Column location of the tile. */
-	int col;
-	
 	/**
 	 * Constructor for the piecetile. 
 	 * @param int row 
@@ -26,11 +21,13 @@ public class PieceTile extends Tile implements Serializable {
 	 */
 	public PieceTile(int row, int column) {
 		super(row, column);
-		
-		this.row = row;
-		this.col = column;
 	}
 
+	public PieceTile(PieceTile other) {
+		super(other.row, other.col);
+	}
+	
+	
 	/**
 	 * setter for the row attribute of a piecetile.
 	 * @param int row

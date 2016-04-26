@@ -77,7 +77,6 @@ public abstract class Level implements Serializable {
 	Piece draggingPiece;
 
 	/**
-<<<<<<< HEAD
 	 * Constructor for creating a new level. Achievement set to new, Board is
 	 * 12x12 unplayable tiles, and bullpen contains all 35.
 	 * 
@@ -85,11 +84,6 @@ public abstract class Level implements Serializable {
 	 *            name
 	 * @param String
 	 *            type
-=======
-	 * Constructor for creating a new level.
-	 * @param String name 
-	 * @param String type
->>>>>>> branch 'master' of https://github.com/tsane1/lycomedes.git
 	 */
 	public Level(String name, String type) {
 		this.name = name;
@@ -431,5 +425,15 @@ public abstract class Level implements Serializable {
 
 	public Piece getActivePiece() {
 		return activePiece;
+	}
+	
+	/**
+	 * Method for generating a random piece for lightning levels.
+	 * @return Piece
+	 */
+	public Piece generateRandomPiece(){
+		Random r = new Random();
+		int idx = r.nextInt(35);
+		return this.allPieces.get(idx);
 	}
 }
