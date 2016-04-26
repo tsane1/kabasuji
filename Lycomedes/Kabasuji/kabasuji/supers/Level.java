@@ -59,15 +59,15 @@ public abstract class Level implements Serializable {
 	 * The number of "stars" or achievements the player has accrued for the
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
 	 */
-	int numStars;
+	protected int numStars;
 
 	/**
 	 * Arraylist of pieces previously in the bullpen and now played on the
 	 * board.
 	 */
-	ArrayList<Piece> piecesOnBoard = new ArrayList<Piece>();
+	protected ArrayList<Piece> piecesOnBoard = new ArrayList<Piece>();
 	/** Arraylist of pieces left in the bullpen. */
-	ArrayList<Piece> piecesInBullpen = new ArrayList<Piece>();
+	protected ArrayList<Piece> piecesInBullpen = new ArrayList<Piece>();
 
 	/** Keeps track of the current selected piece. */
 	Piece selectedPiece = null;
@@ -436,4 +436,6 @@ public abstract class Level implements Serializable {
 		int idx = r.nextInt(35);
 		return this.allPieces.get(idx);
 	}
+	
+	public abstract void setNumStars();
 }
