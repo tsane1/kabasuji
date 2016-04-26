@@ -27,10 +27,7 @@ public class LevelEditController implements ActionListener {
 			level = model.loadLevel(model.getDefaultLevelDir(), e.getActionCommand()+".lev");
 		else level = model.loadLevel(model.getUserLevelDir(), e.getActionCommand()+".lev");
 		model.setActiveLevel(level);
-		if(!model.getActiveLevel().isLocked()) 
-			this.app.setCurrScreen(new LevelPlayView(this.model.getActiveLevel().getLevelName(), this.model));
 		
-		model.setActiveLevel(model.loadLevel(model.getUserLevelDir(), e.getActionCommand()+".lev"));
 		switch(model.getActiveLevel().getLevelType()) {
 		case "Puzzle":
 			this.app.setCurrScreen(new PuzzleLevelEditView(model.getActiveLevel().getLevelName(), this.model));

@@ -438,4 +438,8 @@ public abstract class Level implements Serializable {
 	}
 	
 	public abstract void setNumStars();
+	
+	public int getNumStars() {
+		return this.numStars;
+	}
 }

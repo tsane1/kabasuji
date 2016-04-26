@@ -16,6 +16,7 @@ import kabasuji.supers.Screen;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 /**
  * 
@@ -56,6 +57,10 @@ public class PuzzleLevelEditView extends Screen {
 	
 	@Override
 	public void populate() {
+		JPanel board = new JPanel();
+		board.setBounds(273, 100, 384, 384);
+		this.add(board);
+		
 		btnSave.setActionCommand(level.getLevelName());
 		btnSave.setBackground(SystemColor.text);
 		btnSave.setForeground(SystemColor.textHighlight);

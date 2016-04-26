@@ -1,9 +1,12 @@
 package kabasuji.views;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
@@ -44,6 +47,7 @@ public class LevelPlayView extends Screen {
 	
 	private JLabel levelParamTitle = new JLabel();
 	private JLabel levelParamDisplay = new JLabel();
+	private JLabel starsDisplay = new JLabel();
 
 
 	public LevelPlayView(String levelName, SuperModel m) {
@@ -78,9 +82,13 @@ public class LevelPlayView extends Screen {
 	@Override
 	public void populate() {
 	
-		this.add(boardView);
-		boardView.validate();
-		boardView.repaint();
+		JPanel board = new JPanel();
+		board.setBounds(273, 100, 384, 384);
+		this.add(board);
+		
+//		this.add(boardView);
+//		boardView.validate();
+//		boardView.repaint();
 
 		pieceScroll = new JScrollPane();
 		pieceScroll.setBounds(13, 512, 904, 228);
@@ -92,13 +100,15 @@ public class LevelPlayView extends Screen {
 		
 		levelParamTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		levelParamTitle.setForeground(SystemColor.textHighlight);
-		levelParamTitle.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		levelParamTitle.setBounds(726, 150, 100, 25);
+		levelParamTitle.setFont(new Font("Kristen ITC", Font.BOLD, 16));
+		levelParamTitle.setBounds(0, 100, 273, 25);
 		
 		levelParamDisplay.setHorizontalAlignment(SwingConstants.CENTER);
 		levelParamDisplay.setForeground(SystemColor.textHighlight);
-		levelParamDisplay.setFont(new Font("Kristen ITC", Font.BOLD, 32));
-		levelParamDisplay.setBounds(726, 200, 100, 50);
+		levelParamDisplay.setFont(new Font("Kristen ITC", Font.BOLD, 72));
+		levelParamDisplay.setBounds(0, 125, 273, 200);
+		
+		starsDisplay.setBounds(697, 100, 192, 64);
 		
 		refresh();
 	}
@@ -111,26 +121,37 @@ public class LevelPlayView extends Screen {
 
 	@Override
 	public void refresh() {
+		this.remove(levelParamDisplay);
+		this.remove(starsDisplay);
+		
 		switch(level.getLevelType()) { // add level-specific elements
 		case "Puzzle":
 			levelParamTitle.setText("Moves Left:");
-			pl.setMovesLeft(10);
+			pl.setMovesLeft(9);
+			pl.setNumStars();
 			levelParamDisplay.setText("" + pl.getMovesLeft());
+			if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
+			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + pl.getNumStars() + ".png")));
 			break;
 		case "Lightning":
 			levelParamTitle.setText("Time Left:");
-			ll.setTimeLeft(10);
+			ll.setTimeLeft(9);
+			ll.setNumStars();
 			levelParamDisplay.setText("" + ll.getTimeLeft());
+			if(ll.getTimeLeft() < 10) levelParamDisplay.setForeground(Color.RED);
+			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + ll.getNumStars() + ".png")));
 			break;
 		case "Release":
 			levelParamTitle.setText("Number Left:");
+			rl.setNumStars();
+			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + rl.getNumStars() + ".png")));
 			break;
 		default:
 			System.err.println("This level type is not yet supported."); 
 			return;			
 		}
-		
 		this.add(levelParamTitle);
+		this.add(starsDisplay);
 		this.add(levelParamDisplay);
 	}
 	

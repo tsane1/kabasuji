@@ -19,6 +19,6 @@ public class LightningLevel extends Level {
 
 	@Override
 	public void setNumStars() {
-		
+		this.numStars = 3;
 	}
 }
