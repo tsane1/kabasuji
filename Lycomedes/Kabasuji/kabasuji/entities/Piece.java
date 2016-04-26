@@ -35,7 +35,10 @@ public class Piece implements Serializable {
 		this.pieceID = "Piece " + idNum;;
 		try {
 			if(arr.length == 6) {
-				this.tiles = arr;
+				this.tiles = new PieceTile[6];
+				for (int i = 0; i < 6; i++) {
+					tiles[i] = new PieceTile(arr[i]);
+				}
 			}
 		}
 		catch(Exception e) {
@@ -117,9 +120,11 @@ public class Piece implements Serializable {
 //			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
 //			i++;
 //		}
+		PieceTile temp;
 		for(PieceTile pt : this.getTileLocations()){
-			pt.setRow(5-pt.getRow());
-			pt.setColumn(5-pt.getColumn());
+			//temp = pt;
+			pt.setColumn(5-pt.getRow());
+			pt.setRow(5-pt.getColumn());
 		}
 	}
 
