@@ -45,6 +45,6 @@ public class ReleaseLevel extends Level {
 		byte y =(byte)((this.yellowsCollected.size() == 6)? 1:0);
 		byte g =(byte)((this.greensCollected.size() == 6)? 1:0);
 		
-		this.numStars = ((r&g | r&y | g&y) << 1) + (r^(g&y));
+		this.numStars = ((r&g | r&y | g&y) << 1) + (r^g^y);
 	}
 }
