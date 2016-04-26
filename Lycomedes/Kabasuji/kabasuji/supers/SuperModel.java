@@ -1,20 +1,13 @@
 package kabasuji.supers;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Random;
 import kabasuji.entities.LightningLevel;
-import kabasuji.entities.Piece;
-import kabasuji.entities.PieceTile;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
 
