@@ -150,10 +150,10 @@ public class SuperModel {
 				input.close();
 			}
 			catch (ClassNotFoundException e) {
-				
+				e.printStackTrace();
 			} 
 			catch (IOException e) {
-				
+				e.printStackTrace();
 			}
 			return loadedLevel;
 	}
