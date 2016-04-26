@@ -19,21 +19,21 @@ public class TimerView extends JPanel {
 
 	public TimerView(Timer timer) {
 		super();
-		this.timer = timer;
+		this.timer = timer; 
 		setLayout(null);
+//		if(timer.isLightning(level)){
+//			//TODO: Make this receive an integer
+//			//JLabel timeCount = new JLabel(timer.timerCount());
+////			timeCount.setBounds(0, 0, 75, 25);// x,y,w,h
+////			add(timeCount);
+//			this.setBounds(100, 100, 75, 25);
+//		}
 		if(timer.isLightning(level)){
-			//TODO: Make this receive an integer
-			//JLabel timeCount = new JLabel(timer.timerCount());
-//			timeCount.setBounds(0, 0, 75, 25);// x,y,w,h
-//			add(timeCount);
-			this.setBounds(100, 100, 75, 25);
-		}
-		if(!timer.isLightning(level)){
 			JLabel timeCount = new JLabel("");
 			timeCount.setIcon(new ImageIcon(""));
 			timeCount.setBounds(0, 0, 75, 25);// x,y,w,h
 			add(timeCount);
-			this.setBounds(100, 100, 75, 25);
+			this.setBounds(100, 300, 75, 25);
 		}
 		
 	}

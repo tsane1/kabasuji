@@ -18,18 +18,18 @@ public class MoveCounterView extends JPanel {
 	Level level;
 
 	public MoveCounterView(MoveCounter moveCount) {
-		super();
+		super(); 
 		this.moveCount = moveCount;
-		setLayout(null);
+		setLayout(null); 
 
-		if (!moveCount.isLightning(level)) {
-			// TODO: Make this receive an integer
-//			 JButton moveCount = new JButton(moveCount.moveCount());
-//			 timeCount.setBounds(0, 0, 75, 25);// x,y,w,h
-//			 add(timeCount);
-			this.setBounds(100, 300, 75, 25);
-		}
-		if (moveCount.isLightning(level)) {
+//		if (!moveCount.isPuzzle(level)) {
+//			// TODO: Make this receive an integer
+////			 JButton moveCount = new JButton(moveCount.moveCount());
+////			 timeCount.setBounds(0, 0, 75, 25);// x,y,w,h
+////			 add(timeCount);
+//			this.setBounds(100, 300, 75, 25);
+//		}
+		if (moveCount.isPuzzle(level)) {
 			JLabel timeCount = new JLabel("");
 			timeCount.setIcon(new ImageIcon(""));
 			timeCount.setBounds(0, 0, 75, 25);// x,y,w,h

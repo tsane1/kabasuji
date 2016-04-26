@@ -18,7 +18,7 @@ public class PlacePieceController  extends MouseAdapter{
 	int xDragging;
 	int yDragging;
 	
-	PlacePieceController(SuperModel model, BoardView view) {
+	public PlacePieceController(SuperModel model, BoardView view) {
 		this.model = model;
 		this.view = view;
 		lvl = model.getActiveLevel();
@@ -37,7 +37,7 @@ public class PlacePieceController  extends MouseAdapter{
 		int x = me.getPoint().x;
 		int y = me.getPoint().y;
 		Graphics g = view.getGraphics();
-		drawer.drawPiece(g, selected, x, y);
+		drawer.drawPiece(g, selected, x, y, lvl.getPieceColor(selected));
 		xDragging = x;
 		yDragging = y;
 		lvl.setActivePiece(selected);

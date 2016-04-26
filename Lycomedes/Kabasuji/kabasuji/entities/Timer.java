@@ -15,14 +15,13 @@ public class Timer {
 	}
 	
 	public int timerCount(){
-		int count = 0;
-		if(!isLightning(level)){
-			count = 0; //OR infinity?
-		}
-		while(isLightning(level)){
-			//count = setBuilderTime();
+		int count = 1;
+		
+		while(isLightning(level) && count > 0){
+			//need this functon for getting time
+			//count = getTime();
 			count--;
-		}
+		} 
 		return count;
 	}
 

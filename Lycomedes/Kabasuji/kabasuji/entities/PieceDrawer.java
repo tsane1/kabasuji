@@ -28,10 +28,12 @@ public class PieceDrawer {
 	 * @param Graphics g
 	 * @param Piece p
 	 */
-	public void drawPiece(Graphics g, Piece p, int x, int y) {
+	public void drawPiece(Graphics g, Piece p, int x, int y, Color c) {
 		for(PieceTile pt : p.getTileLocations()){
+			g.setColor(c);
 			g.fillRect(x+(Tile.width*pt.getColumn()), y+(Tile.height*pt.getRow()), Tile.width, Tile.height);
-			g.setColor(defaultColor);
+			g.setColor(Color.white);
+			g.drawRect(x+(Tile.width*pt.getColumn()), y+(Tile.height*pt.getRow()), Tile.width, Tile.height);
 		}
 	}
 

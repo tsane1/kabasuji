@@ -25,7 +25,7 @@ public class AchievementView extends JPanel {
 		threeStar.setIcon(new ImageIcon(""));
 		threeStar.setBounds(0, 0, 75, 25);// x,y,w,h
 		add(threeStar);
-		this.setBounds(625, 100, 75, 25);
+		this.setBounds(625, 100, 75, 25); 
 
 		// For two stars
 		JLabel twoStar = new JLabel("");

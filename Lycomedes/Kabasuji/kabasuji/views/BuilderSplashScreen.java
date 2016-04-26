@@ -29,7 +29,6 @@ public class BuilderSplashScreen extends JWindow {
 
 	static boolean isRegistered;
 	private static JProgressBar progressBar = new JProgressBar();
-	private static BuilderSplashScreen execute;
 	private static int count;
 	private static Timer timer1;
 
@@ -62,27 +61,11 @@ public class BuilderSplashScreen extends JWindow {
 				progressBar.setValue(count);
 				System.out.println(count);
 				if (count == 65) {
-					//createFrame();// OG uncom
-					//execute.setVisible(false);//swapped this around with timer1.stop()
 					timer1.stop();
 				}
 			}
-
-// OG Code
-//			private void createFrame() throws HeadlessException {
-//				try {
-//					Application frame = new Application(new LevelEditSelectView(new Model()));
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
 		};
 		timer1 = new Timer(50, al);
 		timer1.start();
 	}
-// OG Code
-//	public static void main(String[] args) {
-//		execute = new BuilderSplashScreen();
-//	}
 }
