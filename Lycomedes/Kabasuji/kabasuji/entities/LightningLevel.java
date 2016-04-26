@@ -16,7 +16,7 @@ public class LightningLevel extends Level {
 	public void setTimeLeft(int setTime) {
 		this.timeLeft = setTime;
 	}
-
+	
 	@Override
 	public void setNumStars() {
 		this.numStars = 3;

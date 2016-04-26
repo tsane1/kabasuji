@@ -116,6 +116,7 @@ public class PuzzleLevelEditView extends Screen {
 	public BullpenView getBullpenView(){
 		return this.bullpenView;
 	}
+	
 
 	@Override
 	public BoardView getBoardView(){

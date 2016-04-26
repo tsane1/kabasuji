@@ -73,7 +73,10 @@ public abstract class Screen extends JPanel {
 	
 	public abstract void populate(); // initialize view
 	public abstract void installControllers(); // initialize controllers
-	public abstract void refresh(); // refresh view to show updated state
+	
+	public abstract void refresh();// refresh view to show updated state
+	
+	
 	public abstract String getName(); // get screen name
 
 	public BullpenView getBullpenView() {

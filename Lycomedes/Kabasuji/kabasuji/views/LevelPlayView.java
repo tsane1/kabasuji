@@ -29,6 +29,7 @@ import kabasuji.supers.Screen;
  * @author Tanuj Sane
  * @author Chase St. Laurent
  * @author Ian Jacoway 
+ * @author Michael
  * @since 4/23/16
  *
  */
@@ -96,7 +97,6 @@ public class LevelPlayView extends Screen {
 		pieceScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
-		
 		
 		levelParamTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		levelParamTitle.setForeground(SystemColor.textHighlight);

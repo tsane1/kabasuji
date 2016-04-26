@@ -1,5 +1,6 @@
 package kabasuji.entities;
 
+
 import java.util.ArrayList;
 
 import kabasuji.supers.Level;

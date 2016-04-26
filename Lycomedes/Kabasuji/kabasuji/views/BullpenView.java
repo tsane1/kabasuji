@@ -99,10 +99,12 @@ public class BullpenView extends JPanel {
 
 		return new Dimension (width, height);
 	}
+	
 	/**
 	 * Override method to paint the pieces.
 	 * @param Graphics g
 	 */
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 
@@ -137,7 +139,10 @@ public class BullpenView extends JPanel {
 
 		offScreenImage = this.createImage(dim.width, dim.height);
 
-		if (offScreenImage == null) { return; }
+		if (offScreenImage == null) { 
+			System.err.println("Unable to create new Image.... HELP");
+			return; 
+		}
 
 		offScreenGraphics = offScreenImage.getGraphics();
 

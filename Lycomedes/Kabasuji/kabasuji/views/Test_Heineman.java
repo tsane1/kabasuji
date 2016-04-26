@@ -58,11 +58,13 @@ public class Test_Heineman extends JFrame {
 		SuperModel sm = new SuperModel("test");
 		Level level = new PuzzleLevel("no name");
 		Bullpen bp = level.getBullpen();
+
 		Board b = new Board();
 		Application a = new Application(new PuzzleLevelEditView("Title", sm));
-		
+
 		sm.setActiveLevel(level);
 		
+		BoardView bView = new BoardView(sm);
 		BullpenView bpView = new BullpenView(sm);
 		//BoardView bv = new BoardView();
 		

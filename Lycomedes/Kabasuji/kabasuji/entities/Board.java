@@ -3,6 +3,7 @@ package kabasuji.entities;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /** 
  * Main board object that represents a board of maximum size 12x12 and all the tiles and pieces it contains.
@@ -15,12 +16,12 @@ public class Board implements Serializable{
 
 	private int rows[], cols[];
 	private Tile boardArray[][]; //needs to be initialized
-	private ArrayList<Piece> placedPieces;
+	private HashMap<Point,Piece> placedPieces;
 	
 	public Board() {
 		this.rows = new int[12];
 		this.cols = new int[12];
-		this.placedPieces = new ArrayList<Piece>();
+		this.placedPieces = new HashMap<Point, Piece>();
 		this.boardArray = new Tile[12][12];
 		initializeBoardArray();
 		
@@ -77,8 +78,15 @@ public class Board implements Serializable{
 		}
 		
 		if(!pieceCovering){
+			//need to adjust for hashmap to know where point is for drawing
+			int rowAdjust = piece.tiles[0].row;
+			int colAdjust = piece.tiles[0].col;
+			
+			int rowCord = row - rowAdjust;
+			int colCord = col - colAdjust;
 			//add piece to list of placed pieces
-			placedPieces.add(piece);
+			Point pt = new Point(colCord,rowCord);
+			placedPieces.put(pt, piece);
 			//covers the place 
 			coverPieceArea(row, col, piece);
 			//use row and col to tell piece where it is located on the board
@@ -94,6 +102,8 @@ public class Board implements Serializable{
 
 	/**
 	 * Checks whether the piece is covering an already covered area.
+	 * 
+	 * i and j in the boardArray are as follows: i is the x distance and thus the column and j is the y distance and thus the row
 	 * 
 	 * @return true if piece is covering a place that's covered
 	 */
@@ -111,7 +121,7 @@ public class Board implements Serializable{
 				throw new RuntimeException("Out of Bounds");
 			}
 			
-			if(boardArray[rowCord][colCord].isCovered()){
+			if(boardArray[colCord][rowCord].isCovered()){
 				return true;
 			}
 		}
@@ -126,15 +136,32 @@ public class Board implements Serializable{
 			int rowCord = row + (piece.tiles[i].row - rowAdjust);
 			int colCord = col + (piece.tiles[i].col - colAdjust);
 			
-			boardArray[rowCord][colCord].cover();
+			boardArray[colCord][rowCord].cover();
 			//if its a lightningboard we should mark it
 			LightningBoardTile lTile = new LightningBoardTile(0, 0);
-			if(boardArray[rowCord][colCord].getClass() == lTile.getClass()){
-				((LightningBoardTile) boardArray[rowCord][colCord]).mark();
+			if(boardArray[colCord][rowCord].getClass() == lTile.getClass()){
+				((LightningBoardTile) boardArray[colCord][rowCord]).mark();
 			}
 		}
 	}
-	public ArrayList<Piece> getPlacedPieces(){
+	public void uncoverPieceArea(int row, int col, Piece piece){
+		int rowAdjust = piece.tiles[0].row;
+		int colAdjust = piece.tiles[0].col;
+		
+		for(int i = 0; i<piece.numTilesInPiece(); i++){
+			
+			int rowCord = row + (piece.tiles[i].row - rowAdjust);
+			int colCord = col + (piece.tiles[i].col - colAdjust);
+			
+			boardArray[colCord][rowCord].uncover();
+			//if its a lightningboard we should mark it
+			LightningBoardTile lTile = new LightningBoardTile(0, 0);
+			if(boardArray[colCord][rowCord].getClass() == lTile.getClass()){
+				((LightningBoardTile) boardArray[colCord][rowCord]).unmark();
+			}
+		}
+	}
+	public HashMap<Point,Piece> getPlacedPieces(){
 		return this.placedPieces;
 	}
 	public Tile[][] getBoardArray(){
@@ -180,7 +207,34 @@ public class Board implements Serializable{
 		return value;
 	}
 	public int getLightningProgress(){
-		return 0;
+		
+		int i,j,count = 0, marked = 0;
+		//iterate over board array
+		for(i = 0;i<12;i++){
+			for(j = 0;j<12;j++){
+				UnplayableTile tile = new UnplayableTile(i, j);
+				
+				//if this doesn't work use instancOf
+				//if its a board tile
+				//old code was to check is spot was not an unplayable tile then count
+				if(!(boardArray[i][j].getClass() == tile.getClass()) ){
+					count++;
+				}
+				LightningBoardTile ltile = new LightningBoardTile(i, j);
+				
+				//if this doesn't work use instancOf
+				//if its a board tile
+				//old code was to check is spot was not an unplayable tile then count
+				if(boardArray[i][j].getClass() == tile.getClass()){
+					if(((LightningBoardTile) boardArray[i][j]).isMarked()){
+						marked++;
+					}
+				}
+			}
+		}
+		
+		return (marked/count) * 100;
+		
 	}
 	public int getReleaseProgress(){
 		return 0;
