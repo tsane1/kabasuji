@@ -73,10 +73,8 @@ public class Piece implements Serializable {
 	 * @return void
 	 */
 	public void flipX(){
-		int i = 0;
-		while (i < this.numTilesInPiece()){
-			this.tiles[i].setRow(5-this.tiles[i].getRow());
-			i++;
+		for(PieceTile pt : this.getTileLocations()){
+			pt.setRow(5-pt.getRow());
 		}
 	}
 
@@ -85,10 +83,8 @@ public class Piece implements Serializable {
 	 * @return void
 	 */
 	public void flipY(){
-		int i = 0;
-		while (i < this.numTilesInPiece()){
-			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
-			i++;
+		for(PieceTile pt : this.getTileLocations()){
+			pt.setColumn(5-pt.getColumn());
 		}
 	}
 
@@ -97,12 +93,17 @@ public class Piece implements Serializable {
 	 * @return void
 	 */
 	public void rotateLeft(){
-		int i = 0;
-		while (i < 6){
-			this.tiles[i].setRow(5-this.tiles[i].getColumn());
-			this.tiles[i].setColumn(5-this.tiles[i].getRow());
-			i++;
+//		int i = 0;
+//		while (i < 6){
+//			this.tiles[i].setRow(5-this.tiles[i].getColumn());
+//			this.tiles[i].setColumn(5-this.tiles[i].getRow());
+//			i++;
+//		}
+		for(PieceTile pt : this.getTileLocations()){
+			pt.setRow(5-pt.getColumn());
+			pt.setColumn(5-pt.getRow());
 		}
+		
 	}	
 
 	/**
@@ -110,11 +111,15 @@ public class Piece implements Serializable {
 	 * @return void
 	 */
 	public void rotateRight(){
-		int i = 0;
-		while (i < 6){
-			this.tiles[i].setRow(5-this.tiles[i].getRow());
-			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
-			i++;
+//		int i = 0;
+//		while (i < 6){
+//			this.tiles[i].setRow(5-this.tiles[i].getRow());
+//			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
+//			i++;
+//		}
+		for(PieceTile pt : this.getTileLocations()){
+			pt.setRow(5-pt.getRow());
+			pt.setColumn(5-pt.getColumn());
 		}
 	}
 
