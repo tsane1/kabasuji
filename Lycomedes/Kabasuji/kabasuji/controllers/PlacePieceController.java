@@ -34,10 +34,10 @@ public class PlacePieceController  extends MouseAdapter{
 		
 		int row = y/32;
 		int col = x/32;
-		if(draggingPiece == null){
-			System.err.println("Nothing being dragged");
-			return;
-		}
+//		if(draggingPiece == null){
+//			System.err.println("Nothing being dragged");
+//			return;
+//		}
 		
 		if(!(lvl.getBoard().place(row, col, draggingPiece))){
 			System.out.print("piece not able to be placed");
@@ -85,10 +85,10 @@ public class PlacePieceController  extends MouseAdapter{
 	@Override
 	public void mouseDragged(MouseEvent me){
 		//draggingPiece = lvl.getActivePiece();
-		if(draggingPiece == null){
-			System.out.println("Not Dragging Anything");
-			return;
-		}
+//		if(draggingPiece == null){
+//			System.out.println("Not Dragging Anything");
+//			return;
+//		}
 		int diffX = me.getPoint().x;
 		int diffY = me.getPoint().y;
 		

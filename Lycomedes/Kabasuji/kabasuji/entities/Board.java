@@ -44,12 +44,14 @@ public class Board implements Serializable{
 	 * @param type
 	 */
 	//creates a tile that can be played on at the given grid location in the 12x12
-	public void createBoardTile(int row, int col, String type){
-		if(type.equals("puzzle")){
+	public void createBoardTile(int row, int col, String type) {
+		if(type.equals("Puzzle")){
 			boardArray[row][col] = new PuzzleBoardTile(row, col);
-		}else if(type.equals("lightning")){
+		}
+		else if(type.equals("Lightning")) {
 			boardArray[row][col] = new LightningBoardTile(row, col);
-		}else{
+		}
+		else {
 			boardArray[row][col] = new ReleaseBoardTile(row, col);
 		}
 	}

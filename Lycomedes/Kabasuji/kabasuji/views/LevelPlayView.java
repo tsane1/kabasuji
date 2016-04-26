@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.SelectPieceController;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.PuzzleLevel;
@@ -83,13 +84,9 @@ public class LevelPlayView extends Screen {
 	@Override
 	public void populate() {
 	
-		JPanel board = new JPanel();
-		board.setBounds(273, 100, 384, 384);
-		this.add(board);
-		
-//		this.add(boardView);
-//		boardView.validate();
-//		boardView.repaint();
+		this.add(boardView);
+		boardView.validate();
+		boardView.repaint();
 
 		pieceScroll = new JScrollPane();
 		pieceScroll.setBounds(13, 512, 904, 228);
@@ -115,8 +112,11 @@ public class LevelPlayView extends Screen {
 	
 	@Override
 	public void installControllers() {
-		SelectPieceController psc = new SelectPieceController(level, bullpenView);
-		bullpenView.addMouseListener(psc);
+		bullpenView.addMouseListener(new SelectPieceController(level, bullpenView));
+		
+		PlacePieceController ppc = new PlacePieceController(model, boardView);
+		boardView.addMouseListener(ppc);
+		boardView.addMouseMotionListener(ppc);
 	}	
 
 	@Override

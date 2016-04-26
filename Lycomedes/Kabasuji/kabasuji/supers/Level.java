@@ -52,9 +52,9 @@ public abstract class Level implements Serializable {
 	 */
 	boolean locked;
 	/** The board associated with the current level. */
-	Board theBoard;
+	protected Board theBoard;
 	/** The bullpen associated with the current level. */
-	Bullpen theBullpen;
+	protected Bullpen theBullpen;
 	/**
 	 * The number of "stars" or achievements the player has accrued for the
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
@@ -90,6 +90,11 @@ public abstract class Level implements Serializable {
 		this.type = type;
 		locked = false;
 		this.theBoard = new Board();
+		for(int i = 0; i<12; i++){
+			for(int j = 0; j<12; j++){
+				theBoard.createBoardTile(i, j, type);
+			}
+		}
 		this.theBullpen = new Bullpen();
 		this.numStars = 0;
 		setupPieces();

@@ -1,6 +1,7 @@
 package kabasuji.supers;
 
 import java.awt.Point;
+import java.io.Serializable;
 
 /**
  * <b>SUPER - Controllers</b> Superclass built to handle move events
@@ -10,7 +11,7 @@ import java.awt.Point;
  * @author Tanuj Sane
  *
  */
-public abstract class Move {
+public abstract class Move implements Serializable {
 	public Move() {
 		
 	}

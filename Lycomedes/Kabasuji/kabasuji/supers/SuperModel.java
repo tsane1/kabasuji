@@ -90,7 +90,6 @@ public class SuperModel {
 		}
 	}
 	
-	
 	/**
 	 * The following three methods track the pagination of the level play and edit
 	 * selection views. These methods are used to extract the necessary information

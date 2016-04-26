@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import kabasuji.controllers.DeleteLevelController;
+import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.SaveLevelController;
 import kabasuji.controllers.SelectPieceController;
@@ -60,9 +61,10 @@ public class ReleaseLevelEditView extends Screen {
 	
 	@Override
 	public void populate() {
-		JPanel board = new JPanel();
-		board.setBounds(273, 100, 384, 384);
-		this.add(board);
+
+		this.add(boardView);
+		boardView.validate();
+		boardView.repaint();
 		
 		btnSave.setActionCommand(level.getLevelName());
 		btnSave.setBackground(SystemColor.text);
@@ -106,8 +108,12 @@ public class ReleaseLevelEditView extends Screen {
 		btnRedo.addActionListener(new RedoController(this.app, this.model));
 		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
-		SelectPieceController psc = new SelectPieceController(level, bullpenView);
-		bullpenView.addMouseListener(psc);
+		
+		bullpenView.addMouseListener(new SelectPieceController(level, bullpenView));
+		
+		PlacePieceController ppc = new PlacePieceController(model, boardView);
+		boardView.addMouseListener(ppc);
+		boardView.addMouseMotionListener(ppc);
 	}
 
 	@Override
