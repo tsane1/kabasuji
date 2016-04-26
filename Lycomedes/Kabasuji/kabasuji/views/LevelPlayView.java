@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JScrollPane;
 
+import kabasuji.controllers.SelectPieceController;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
@@ -64,7 +65,8 @@ public class LevelPlayView extends Screen {
 	
 	@Override
 	public void installControllers() {
-		
+		SelectPieceController psc = new SelectPieceController(level, bullpenView);
+		bullpenView.addMouseListener(psc);
 	}	
 
 	@Override

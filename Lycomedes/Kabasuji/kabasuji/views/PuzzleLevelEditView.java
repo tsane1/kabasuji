@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.SaveLevelController;
+import kabasuji.controllers.SelectPieceController;
 import kabasuji.controllers.UndoController;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.supers.Application;
@@ -97,6 +98,8 @@ public class PuzzleLevelEditView extends Screen {
 		btnRedo.addActionListener(new RedoController(this.app, this.model));
 		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
+		SelectPieceController psc = new SelectPieceController(level, bullpenView);
+		bullpenView.addMouseListener(psc);
 	}
 
 	@Override
