@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import kabasuji.entities.*;
+import kabasuji.moves.BullpenToBoardMove;
 import kabasuji.supers.*;
 import kabasuji.views.BoardView;
 
@@ -39,7 +40,9 @@ public class PlacePieceController  extends MouseAdapter{
 		}
 		
 		lvl.getBoard().place(row, col, draggingPiece);
+		BullpenToBoardMove move = new BullpenToBoardMove(model, row, col);
 		
+		lvl.addMoveToUndo(move);
 		lvl.setActivePiece(null);
 		lvl.setSelected(null);
 		draggingPiece = null;

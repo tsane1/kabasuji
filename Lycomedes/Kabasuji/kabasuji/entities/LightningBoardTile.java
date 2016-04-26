@@ -60,6 +60,9 @@ public class LightningBoardTile extends Tile{
 	public void mark(){
 		marked = true;
 	}
+	public void unmark(){
+		marked = false;
+	}
 	/**
 	 * Gets the marked boolean
 	 * @return true is tile is marked

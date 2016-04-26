@@ -134,6 +134,23 @@ public class Board implements Serializable{
 			}
 		}
 	}
+	public void uncoverPieceArea(int row, int col, Piece piece){
+		int rowAdjust = piece.tiles[0].row;
+		int colAdjust = piece.tiles[0].col;
+		
+		for(int i = 0; i<piece.numTilesInPiece(); i++){
+			
+			int rowCord = row + (piece.tiles[i].row - rowAdjust);
+			int colCord = col + (piece.tiles[i].col - colAdjust);
+			
+			boardArray[rowCord][colCord].uncover();
+			//if its a lightningboard we should mark it
+			LightningBoardTile lTile = new LightningBoardTile(0, 0);
+			if(boardArray[rowCord][colCord].getClass() == lTile.getClass()){
+				((LightningBoardTile) boardArray[rowCord][colCord]).unmark();
+			}
+		}
+	}
 	public ArrayList<Piece> getPlacedPieces(){
 		return this.placedPieces;
 	}

@@ -127,7 +127,7 @@ public class BoardView extends JPanel {
 					//the tile start is i*width and goes to that plus width
 					offScreenGraphics.fillRect(i*tile.width, j*tile.height,(i*tile.width + tile.width), (j*tile.height + tile.height));
 				}else if(boardArray[i][j].isCovered()){ //this is for pieces because if a tile is covered then it colored like the pieces
-					offScreenGraphics.setColor(Color.RED);
+					offScreenGraphics.setColor(Color.MAGENTA); //either all pieces get this color or playedPieces are in a hashmap with their tile locations
 					offScreenGraphics.fillRect(i*tile.width, j*tile.height,(i*tile.width + tile.width), (j*tile.height + tile.height));
 				}else if((boardArray[i][j].getClass() == lTile.getClass())){
 					if(((LightningBoardTile) boardArray[i][j]).isMarked()){
