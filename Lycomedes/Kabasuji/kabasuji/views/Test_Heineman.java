@@ -57,7 +57,7 @@ public class Test_Heineman extends JFrame {
 		sm.setActiveLevel(level);
 		
 		BullpenView bpView = new BullpenView(sm);
-		BoardView bv = new BoardView();
+		//BoardView bv = new BoardView();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 718);
@@ -73,7 +73,7 @@ public class Test_Heineman extends JFrame {
 		JScrollPane boardPane = new JScrollPane();
 		boardPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		boardPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		boardPane.setViewportView(bv);
+		//boardPane.setViewportView(bv);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -102,8 +102,8 @@ public class Test_Heineman extends JFrame {
 		SelectPieceController psc = new SelectPieceController(sm.getActiveLevel(), bpView);
 		bpView.addMouseListener(psc);
 		
-		PlacePieceController ppc = new PlacePieceController(sm,bv);
-		bv.addMouseListener(ppc);
-		bv.addMouseMotionListener(ppc);
+		//PlacePieceController ppc = new PlacePieceController(sm,bv);
+		//bv.addMouseListener(ppc);
+		//bv.addMouseMotionListener(ppc);
 	}
 }
