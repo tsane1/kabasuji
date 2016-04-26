@@ -21,7 +21,7 @@ public class LaunchLevelBuilder {
 		SuperModel m = new SuperModel();
 		//edit s
 		Thread t1;
-		Thread t2;
+//		Thread t2;
 		
 		final BuilderSplashScreen sc = new BuilderSplashScreen();
 

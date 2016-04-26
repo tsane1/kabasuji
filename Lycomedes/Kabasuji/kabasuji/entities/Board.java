@@ -231,4 +231,22 @@ public class Board implements Serializable{
 		
 		boardArray[rowNum][colNum] = new UnplayableTile(rowNum, colNum);
 	}
+	
+	/**
+	 * Increments the number shown on a ReleaseBoardTile.
+	 * @param Point p
+	 */
+	public void incrementReleaseTile(Point p){
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseNum();
+	}
 }
