@@ -62,7 +62,7 @@ public class ReleaseBoardTile extends Tile{
 	 * increments release number up to six
 	 */
 	public void updateReleaseNum(){
-		if(value<6){
+		if(value<=6){
 			value++;
 		}else{
 			value = 0;

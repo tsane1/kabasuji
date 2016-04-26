@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.SaveLevelController;
+import kabasuji.controllers.SelectPieceController;
 import kabasuji.controllers.UndoController;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.supers.Application;
@@ -85,7 +86,7 @@ public class PuzzleLevelEditView extends Screen {
 		
 		pieceScroll = new JScrollPane();
 		pieceScroll.setBounds(13, 512, 904, 228);
-		pieceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		pieceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		pieceScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
@@ -97,6 +98,8 @@ public class PuzzleLevelEditView extends Screen {
 		btnRedo.addActionListener(new RedoController(this.app, this.model));
 		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
+		SelectPieceController psc = new SelectPieceController(level, bullpenView);
+		bullpenView.addMouseListener(psc);
 	}
 
 	@Override
@@ -108,6 +111,7 @@ public class PuzzleLevelEditView extends Screen {
 	public BullpenView getBullpenView(){
 		return this.bullpenView;
 	}
+	
 
 	@Override
 	public BoardView getBoardView(){
@@ -122,19 +126,5 @@ public class PuzzleLevelEditView extends Screen {
 	@Override
 	public Level getLevel() {
 		return this.level;
-	}
-	
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Application frame = new Application(new PuzzleLevelEditView("Test Level", new SuperModel()));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 }
