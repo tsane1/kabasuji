@@ -1,6 +1,11 @@
 package kabasuji.views;
 
+import java.awt.Font;
+import java.awt.SystemColor;
+
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 import kabasuji.controllers.SelectPieceController;
 import kabasuji.entities.LightningLevel;
@@ -36,6 +41,9 @@ public class LevelPlayView extends Screen {
 	private ProgressView progress;
 	private AchievementView achievement;
 	private JScrollPane pieceScroll = new JScrollPane();
+	
+	private JLabel levelParamTitle = new JLabel();
+	private JLabel levelParamDisplay = new JLabel();
 
 
 	public LevelPlayView(String levelName, SuperModel m) {
@@ -81,18 +89,18 @@ public class LevelPlayView extends Screen {
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
 		
-		switch(level.getLevelType()) { // add level-specific elements
-		case "Puzzle":
-			
-			break;
-		case "Lightning":
-			break;
-		case "Release":
-			break;
-		default:
-			System.err.println("This level type is not yet supported.");
-			break;				
-		}
+		
+		levelParamTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		levelParamTitle.setForeground(SystemColor.textHighlight);
+		levelParamTitle.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		levelParamTitle.setBounds(726, 150, 100, 25);
+		
+		levelParamDisplay.setHorizontalAlignment(SwingConstants.CENTER);
+		levelParamDisplay.setForeground(SystemColor.textHighlight);
+		levelParamDisplay.setFont(new Font("Kristen ITC", Font.BOLD, 32));
+		levelParamDisplay.setBounds(726, 200, 100, 50);
+		
+		refresh();
 	}
 	
 	@Override
@@ -103,7 +111,27 @@ public class LevelPlayView extends Screen {
 
 	@Override
 	public void refresh() {
+		switch(level.getLevelType()) { // add level-specific elements
+		case "Puzzle":
+			levelParamTitle.setText("Moves Left:");
+			pl.setMovesLeft(10);
+			levelParamDisplay.setText("" + pl.getMovesLeft());
+			break;
+		case "Lightning":
+			levelParamTitle.setText("Time Left:");
+			ll.setTimeLeft(10);
+			levelParamDisplay.setText("" + ll.getTimeLeft());
+			break;
+		case "Release":
+			levelParamTitle.setText("Number Left:");
+			break;
+		default:
+			System.err.println("This level type is not yet supported."); 
+			return;			
+		}
 		
+		this.add(levelParamTitle);
+		this.add(levelParamDisplay);
 	}
 	
 	@Override

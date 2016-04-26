@@ -208,6 +208,6 @@ public class SuperModel {
 	 */
 	public static void main(String[] args) {
 		SuperModel sm = new SuperModel();
-		//sm.generateDefaultLevels();
+		sm.generateDefaultLevels();
 	}
 }

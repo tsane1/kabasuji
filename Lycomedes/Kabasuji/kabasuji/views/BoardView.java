@@ -48,9 +48,7 @@ public class BoardView extends JPanel {
 	public BoardView(SuperModel model) {
 		super();
 		this.currLevel = model.getActiveLevel();
-		setLayout(null);
-
-		
+		setLayout(null);		
 	}
 	
 	
