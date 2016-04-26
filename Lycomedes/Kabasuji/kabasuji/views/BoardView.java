@@ -32,7 +32,7 @@ public class BoardView extends JPanel {
 	
 	private Level currLevel;
 	//not sure if needed since we are using a square
-	int offset = 32;
+	int offset = 8;
 	//size of puzzle if 12x12 with squares being 32 pixels long
 	private final int size = 384;
 	
@@ -144,6 +144,10 @@ public class BoardView extends JPanel {
 		
 		
 		
+		
+	}
+	public void drawActivePiece(int x, int y, Color c){
+		drawer.drawPiece(offScreenGraphics, currLevel.getActivePiece(), x, y, c);
 	}
 	public void refresh(){
 		redraw();

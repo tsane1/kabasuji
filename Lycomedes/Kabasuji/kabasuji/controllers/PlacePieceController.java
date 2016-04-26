@@ -1,5 +1,6 @@
 package kabasuji.controllers;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.dnd.MouseDragGestureRecognizer;
 import java.awt.event.MouseAdapter;
@@ -15,10 +16,11 @@ public class PlacePieceController  extends MouseAdapter{
 	BoardView view;
 	Level lvl;
 	PieceDrawer drawer = new PieceDrawer();
+	Piece draggingPiece;
 	int xDragging;
 	int yDragging;
 	
-	PlacePieceController(SuperModel model, BoardView view) {
+	public PlacePieceController(SuperModel model, BoardView view) {
 		this.model = model;
 		this.view = view;
 		lvl = model.getActiveLevel();
@@ -26,7 +28,23 @@ public class PlacePieceController  extends MouseAdapter{
 	
 	@Override
 	public void mousePressed(MouseEvent me){
+		int x = me.getPoint().x;
+		int y = me.getPoint().y;
 		
+		int row = x/32;
+		int col = y/32;
+		if(draggingPiece == null){
+			System.err.println("Nothing being dragged");
+			return;
+		}
+		
+		lvl.getBoard().place(row, col, draggingPiece);
+		
+		lvl.setActivePiece(null);
+		lvl.setSelected(null);
+		draggingPiece = null;
+		
+		view.refresh();
 	}
 	@Override
 	public void mouseMoved(MouseEvent me){
@@ -37,10 +55,15 @@ public class PlacePieceController  extends MouseAdapter{
 		int x = me.getPoint().x;
 		int y = me.getPoint().y;
 		Graphics g = view.getGraphics();
+		if(g == null){
+			System.err.println("graphics not loaded");
+			return;
+		}
 		drawer.drawPiece(g, selected, x, y, lvl.getPieceColor(selected));
 		xDragging = x;
 		yDragging = y;
 		lvl.setActivePiece(selected);
+		view.drawActivePiece(x, y, lvl.getPieceColor(selected));
 		view.repaint();
 		//Polygon p = computeActivePolygon(me.getPoint(), model.getSelected());
 		//PlacedPiece pp = new PlacedPiece(model.getSelected(), p);
@@ -53,18 +76,16 @@ public class PlacePieceController  extends MouseAdapter{
 	}
 	@Override
 	public void mouseDragged(MouseEvent me){
-		Piece draggingPiece = lvl.getActivePiece();
+		draggingPiece = lvl.getActivePiece();
 		if(draggingPiece == null){
 			System.out.println("Not Dragging Anything");
 			return;
 		}
-		
-		int diffX = me.getPoint().x - xDragging;
-		int diffY = me.getPoint().y - yDragging;
-		xDragging = me.getPoint().x;
-		yDragging = me.getPoint().y;
-		//hit CODE WALL need to figure out how to destroy after images without polygon or use polygon
-		//drawer.
+		int diffX = me.getPoint().x;
+		int diffY = me.getPoint().y;
+		view.redraw();
+		view.drawActivePiece(diffX, diffY, lvl.getPieceColor(draggingPiece));//fix color stuff later
+		view.repaint();
 		
 	}
 }

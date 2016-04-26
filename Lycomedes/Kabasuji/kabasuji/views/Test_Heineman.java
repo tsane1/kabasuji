@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kabasuji.controllers.SelectPieceController;
+import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.supers.Level;
@@ -50,8 +51,10 @@ public class Test_Heineman extends JFrame {
 		SuperModel sm = new SuperModel("test");
 		Level level = new PuzzleLevel("no name");
 		Bullpen bp = level.getBullpen();
+		Board board = level.getBoard();
 		sm.setActiveLevel(level);
 		
+		BoardView bView = new BoardView(sm);
 		BullpenView bpView = new BullpenView(sm);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,7 +66,7 @@ public class Test_Heineman extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setViewportView(bpView);
+		scrollPane.setViewportView(bView);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
