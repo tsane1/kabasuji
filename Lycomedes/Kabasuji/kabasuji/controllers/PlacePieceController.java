@@ -32,14 +32,22 @@ public class PlacePieceController  extends MouseAdapter{
 		int x = me.getPoint().x;
 		int y = me.getPoint().y;
 		
-		int row = x/32;
-		int col = y/32;
+		int row = y/32;
+		int col = x/32;
 		if(draggingPiece == null){
 			System.err.println("Nothing being dragged");
 			return;
 		}
 		
-		lvl.getBoard().place(row, col, draggingPiece);
+		if(!(lvl.getBoard().place(row, col, draggingPiece))){
+			System.out.print("piece not able to be placed");
+			lvl.setActivePiece(null);
+			lvl.setSelected(null);
+			draggingPiece = null;
+			view.refresh();
+			return;
+		}
+		System.out.println("placed");
 		BullpenToBoardMove move = new BullpenToBoardMove(model, row, col);
 		
 		lvl.addMoveToUndo(move);
@@ -53,19 +61,16 @@ public class PlacePieceController  extends MouseAdapter{
 	public void mouseMoved(MouseEvent me){
 		//need getSelected()
 		Piece selected = lvl.getSelected();
-		if (selected == null) { return; }
+		if (selected == null) { System.err.println("null selected"); return; }
 
 		int x = me.getPoint().x;
 		int y = me.getPoint().y;
-		Graphics g = view.getGraphics();
-		if(g == null){
-			System.err.println("graphics not loaded");
-			return;
-		}
-		drawer.drawPiece(g, selected, x, y, lvl.getPieceColor(selected));
+		
 		xDragging = x;
 		yDragging = y;
 		lvl.setActivePiece(selected);
+		draggingPiece = selected;
+		//sets activePiece point and color
 		view.drawActivePiece(x, y, lvl.getPieceColor(selected));
 		view.repaint();
 		//Polygon p = computeActivePolygon(me.getPoint(), model.getSelected());
@@ -79,16 +84,16 @@ public class PlacePieceController  extends MouseAdapter{
 	}
 	@Override
 	public void mouseDragged(MouseEvent me){
-		draggingPiece = lvl.getActivePiece();
+		//draggingPiece = lvl.getActivePiece();
 		if(draggingPiece == null){
 			System.out.println("Not Dragging Anything");
 			return;
 		}
 		int diffX = me.getPoint().x;
 		int diffY = me.getPoint().y;
-		view.redraw();
+		
 		view.drawActivePiece(diffX, diffY, lvl.getPieceColor(draggingPiece));//fix color stuff later
-		view.repaint();
+		view.refresh();
 		
 	}
 }

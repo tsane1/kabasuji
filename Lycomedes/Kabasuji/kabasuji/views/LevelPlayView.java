@@ -2,6 +2,7 @@ package kabasuji.views;
 
 import java.awt.EventQueue;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import kabasuji.supers.Application;
@@ -31,6 +32,7 @@ public class LevelPlayView extends Screen {
 	private ProgressView progress;
 	private AchievementView achievement;
 	private JScrollPane pieceScroll = new JScrollPane();
+	private JPanel boardPanel;
 
 
 	public LevelPlayView(String levelName, SuperModel m) {
@@ -50,9 +52,13 @@ public class LevelPlayView extends Screen {
 	public void populate() {
 	
 		//populate by adding the views
-		this.add(boardView);
-		boardView.validate();
-		boardView.repaint();
+		
+		boardPanel = new JPanel();
+		boardPanel.setBounds(13, 280, 384, 384);
+//		boardPanel.setLayout(null);
+		boardPanel.add(boardView);
+		boardView.refresh();
+		this.add(boardPanel);
 
 		pieceScroll = new JScrollPane();
 		pieceScroll.setBounds(13, 512, 904, 228);

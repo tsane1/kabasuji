@@ -38,7 +38,7 @@ public class testPlacePiece extends TestCase {
 		Piece testPiece = bullpen.getPieces().get(4);
 		bullpen.removePiece(testPiece);
 		if(board.place(2, 3, testPiece)){
-			assertEquals(true, board.getPlacedPieces().contains(testPiece));
+			assertEquals(true, board.getPlacedPieces().containsValue(testPiece));
 		}else{
 			System.err.println("place returned false");
 		}

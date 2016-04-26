@@ -16,12 +16,14 @@ import kabasuji.entities.*;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BoardView;
+import kabasuji.views.LevelPlayView;
 import kabasuji.views.Test_Heineman;
 
 //ATTEMPTS TO TEST BOARD VIEW BUT I DONT THINK ITS POSSIBLE CURRENTLY
 public class testBoardView extends JFrame{
 	
-	JPanel contentPane;
+	
+	private JPanel contentPane;
 	/**
 	 * Launch the application.
 	 */
@@ -29,7 +31,7 @@ public class testBoardView extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Test_Heineman frame = new Test_Heineman();
+					testBoardView frame = new testBoardView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,15 +40,15 @@ public class testBoardView extends JFrame{
 		});
 	}
 	public testBoardView(){
-		SuperModel model = new SuperModel();
+		SuperModel model = new SuperModel("test");
 		Level lvl = new PuzzleLevel("test");
 		Board board = lvl.getBoard();
 		model.setActiveLevel(lvl);
-		
+		LevelPlayView lpv = new LevelPlayView("test", model);
 		BoardView view = new BoardView(model);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 949, 718);
+		setBounds(100, 100, 1000, 1000);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -54,20 +56,20 @@ public class testBoardView extends JFrame{
 		JPanel Pane = new JPanel();
 		//Pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		//Pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		Pane.add(view);
+		Pane.add(lpv);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(Pane, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+					.addComponent(Pane, GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(Pane, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+					.addComponent(Pane, GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
