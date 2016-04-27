@@ -116,7 +116,7 @@ public class Test_Mike extends JFrame {
 		bView.addMouseMotionListener(placeCrtl);
 		
 		TileSelectController tsc = new TileSelectController(sm, bView);
-		tsc.addMouseListener(tsc);
-		tsc.addMouseMotionListener(psc);
+		bView.addMouseListener(tsc);
+		bView.addMouseMotionListener(tsc);
 	}
 }
