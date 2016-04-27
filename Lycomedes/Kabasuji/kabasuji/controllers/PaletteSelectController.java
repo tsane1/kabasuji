@@ -4,7 +4,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import kabasuji.entities.Piece;
+import kabasuji.supers.Application;
 import kabasuji.supers.Level;
+import kabasuji.supers.SuperModel;
 import kabasuji.views.PaletteView;
 
 public class PaletteSelectController extends MouseAdapter{
@@ -12,9 +14,9 @@ public class PaletteSelectController extends MouseAdapter{
 	Level currLevel;
 	PaletteView pview;
 	
-	public PaletteSelectController(Level l, PaletteView view){
-		this.currLevel = l;
-		this.pview = view;
+	public PaletteSelectController(Application app, SuperModel model){
+		this.currLevel = model.getActiveLevel();
+		this.pview = app.getCurrScreen().getPaletteView();
 	}
 	
 	public void mousePressed(MouseEvent me) {

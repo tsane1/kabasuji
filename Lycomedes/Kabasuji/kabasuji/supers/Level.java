@@ -56,25 +56,26 @@ public abstract class Level implements Serializable {
 	 */
 	boolean locked;
 	/** The board associated with the current level. */
-	Board theBoard;
+	protected Board theBoard;
 	/** The bullpen associated with the current level. */
+
 	Bullpen theBullpen;
 	/** Palette for building */
 	Palette thePalette;
-	
+
 	/**
 	 * The number of "stars" or achievements the player has accrued for the
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
 	 */
-	int numStars;
+	protected int numStars;
 
 	/**
 	 * Arraylist of pieces previously in the bullpen and now played on the
 	 * board.
 	 */
-	ArrayList<Piece> piecesOnBoard = new ArrayList<Piece>();
+	protected ArrayList<Piece> piecesOnBoard = new ArrayList<Piece>();
 	/** Arraylist of pieces left in the bullpen. */
-	ArrayList<Piece> piecesInBullpen = new ArrayList<Piece>();
+	protected ArrayList<Piece> piecesInBullpen = new ArrayList<Piece>();
 
 	/** Keeps track of the current selected piece. */
 	Piece selectedPiece = null;
@@ -97,6 +98,11 @@ public abstract class Level implements Serializable {
 		this.type = type;
 		locked = false;
 		this.theBoard = new Board();
+		for(int i = 0; i<12; i++){
+			for(int j = 0; j<12; j++){
+				theBoard.createBoardTile(i, j, type);
+			}
+		}
 		this.theBullpen = new Bullpen();
 		this.thePalette = new Palette();
 		this.numStars = 0;
@@ -532,5 +538,11 @@ public abstract class Level implements Serializable {
 		Random r = new Random();
 		int idx = r.nextInt(35);
 		return this.allPieces.get(idx);
+	}
+	
+	public abstract void setNumStars();
+	
+	public int getNumStars() {
+		return this.numStars;
 	}
 }

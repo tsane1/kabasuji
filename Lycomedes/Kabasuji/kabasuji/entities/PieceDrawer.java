@@ -33,5 +33,4 @@ public class PieceDrawer {
 			g.drawRect(x+(Tile.width*pt.getColumn()), y+(Tile.height*pt.getRow()), Tile.width, Tile.height);
 		}
 	}
-
 }

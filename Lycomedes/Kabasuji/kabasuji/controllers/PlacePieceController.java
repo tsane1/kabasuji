@@ -36,6 +36,7 @@ public class PlacePieceController  extends MouseAdapter{
 		
 		int row = y/32;
 		int col = x/32;
+
 		if(draggingPiece == null){
 			System.err.println("Nothing being dragged");
 			PuzzleBoardTile pTile = new PuzzleBoardTile(0, 0);
@@ -90,7 +91,7 @@ public class PlacePieceController  extends MouseAdapter{
 	public void mouseMoved(MouseEvent me){
 		//need getSelected()
 		Piece selected = lvl.getSelected();
-		if (selected == null) { System.err.println("null selected"); return; }
+//		if (selected == null) { System.err.println("null selected"); return; }
 
 		int x = me.getPoint().x;
 		int y = me.getPoint().y;
@@ -114,10 +115,10 @@ public class PlacePieceController  extends MouseAdapter{
 	@Override
 	public void mouseDragged(MouseEvent me){
 		//draggingPiece = lvl.getActivePiece();
-		if(draggingPiece == null){
-			System.out.println("Not Dragging Anything");
-			return;
-		}
+//		if(draggingPiece == null){
+//			System.out.println("Not Dragging Anything");
+//			return;
+//		}
 		int diffX = me.getPoint().x;
 		int diffY = me.getPoint().y;
 		

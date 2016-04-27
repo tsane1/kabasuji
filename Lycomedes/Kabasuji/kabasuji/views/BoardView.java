@@ -2,13 +2,10 @@ package kabasuji.views;
 
 import javax.swing.JPanel;
 
-
 import kabasuji.entities.*;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 
-
-import javax.swing.JLabel;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,7 +14,6 @@ import java.awt.Image;
 import java.awt.Point;
 import java.util.HashMap;
 
-import javax.swing.ImageIcon;
 /**
  * 
  * @author Michael
@@ -25,40 +21,39 @@ import javax.swing.ImageIcon;
  *
  */
 public class BoardView extends JPanel {
-	
+
 
 	/**
 	 *  serial id for BoardView
 	 */
 	private static final long serialVersionUID = -8800914211105754331L;
-	
+
 	private Level currLevel;
 	//not sure if needed since we are using a square
 	int offset = 8;
 	//size of puzzle if 12x12 with squares being 32 pixels long
 	private final int size = 384;
-	
+
 	private int setActiveX,setActiveY;
 	private Color setActiveColor;
-	
+
 	PieceDrawer drawer = new PieceDrawer();
 	Image offScreenImage = null;
 	Graphics offScreenGraphics = null;
-	
+
 	//in order open in window builder apparently
 	BoardView(){
-		
+
 	}
 
 	public BoardView(SuperModel model) {
 		super();
 		this.currLevel = model.getActiveLevel();
-		setLayout(null);
-
-		
+		setLayout(null);		
+		setBounds(273, 100, 384, 384);
 	}
-	
-	
+
+
 	@Override
 	public Dimension getMinimumSize() {
 		int width = 2*size + 2*offset;
@@ -70,7 +65,7 @@ public class BoardView extends JPanel {
 	public Dimension getPreferredSize() {
 		int width = 2*size + 2*offset;
 		int height = 2*size + 2*offset;
-		
+
 		return new Dimension (width, height);
 	}
 	/**
@@ -78,7 +73,7 @@ public class BoardView extends JPanel {
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		
+
 		if (offScreenImage == null) {
 			// create on demand
 			Dimension s = getPreferredSize();
@@ -92,11 +87,11 @@ public class BoardView extends JPanel {
 			System.err.println("Swing not ready for drawing.");
 			return;
 		}
-		
+
 		g.drawImage(offScreenImage, 0, 0, this);
 		//in case no model like for window builder
 		if(currLevel == null){return;}
-		
+
 		//draw active piece
 		if(currLevel.getActivePiece() != null){
 			//finds needed adjust for piece drawer
@@ -104,23 +99,23 @@ public class BoardView extends JPanel {
 			Piece active = currLevel.getActivePiece();
 			int rowAdjust = active.getTileLocations()[0].getRow();
 			int colAdjust = active.getTileLocations()[0].getColumn();
-			
+
 			setActiveY -= (rowAdjust*32);
 			setActiveX -= (colAdjust*32);
-			
+
 			drawer.drawPiece(g, currLevel.getActivePiece(), setActiveX, setActiveY, setActiveColor);
-			
+
 		}
-		
+
 	}
 	public void redraw(){
 		//set buffer
 		int x = offset;
 		int y = offset;
-		
+
 		Dimension dim = getPreferredSize();
 		offScreenGraphics.clearRect(0, 0, dim.width, dim.height);
-		
+
 		Board board = currLevel.getBoard();
 		Tile[][] boardArray = board.getBoardArray();
 		UnplayableTile tile = new UnplayableTile(0, 0);
@@ -187,40 +182,34 @@ public class BoardView extends JPanel {
 					if(played != null){
 						drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
 						//System.out.println(currLevel.getPieceColor(played).toString());
+					}
+
 				}
-				
-			}
-			
-		}
-		//System.out.println(board.getPlacedPieces().size());
-		int n,k = 0;
-		for(n = 0; n<12; n++){
-			for(k = 0; k<12; k++){
-				HashMap<Point,Piece> map = board.getPlacedPieces();
-				Point pt = new Point(i,j);
-				Piece played = map.get(pt);
-				if(played != null){
-					drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
-					System.out.println(currLevel.getPieceColor(played).toString());
+				//System.out.println(board.getPlacedPieces().size());
+				int n,k = 0;
+				for(n = 0; n<12; n++){
+					for(k = 0; k<12; k++){
+						HashMap<Point,Piece> map = board.getPlacedPieces();
+						Point pt = new Point(i,j);
+						Piece played = map.get(pt);
+						if(played != null){
+							drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
+							System.out.println(currLevel.getPieceColor(played).toString());
+						}
+					}
 				}
 			}
 		}
+	}
+			public void drawActivePiece(int x, int y, Color c){
+				setActiveColor = c;
+				setActiveX = x;
+				setActiveY = y;
+			}
+			public void refresh(){
+				redraw();
+				repaint();
+			}
+			//returns the graphics for this view???
+
 		}
-	
-		
-		
-		
-		
-	}
-	public void drawActivePiece(int x, int y, Color c){
-		setActiveColor = c;
-		setActiveX = x;
-		setActiveY = y;
-	}
-	public void refresh(){
-		redraw();
-		repaint();
-	}
-	//returns the graphics for this view???
-	
-}

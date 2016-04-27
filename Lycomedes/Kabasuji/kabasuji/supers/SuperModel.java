@@ -90,7 +90,6 @@ public class SuperModel {
 		}
 	}
 	
-	
 	/**
 	 * The following three methods track the pagination of the level play and edit
 	 * selection views. These methods are used to extract the necessary information
@@ -143,10 +142,10 @@ public class SuperModel {
 				input.close();
 			}
 			catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				
 			} 
 			catch (IOException e) {
-				e.printStackTrace();
+				
 			}
 			return loadedLevel;
 	}
@@ -189,14 +188,17 @@ public class SuperModel {
 		for(int i = 0; i < 15; i++) {
 			if(i%3 == 0) {
 				ReleaseLevel rl = new ReleaseLevel("Level " + (i+1));
+				if(i>2)rl.lock();
 				rl.saveLevel(this.getDefaultLevelDir());
 			}
 			else if(i%3 == 1) {
 				LightningLevel ll = new LightningLevel("Level " + (i+1));
+				if(i>2)ll.lock();
 				ll.saveLevel(this.getDefaultLevelDir());
 			}
 			else if(i%3 == 2) {
 				PuzzleLevel pl = new PuzzleLevel("Level " + (i+1));
+				if(i>2)pl.lock();
 				pl.saveLevel(this.getDefaultLevelDir());
 			}
 		}
@@ -208,6 +210,6 @@ public class SuperModel {
 	 */
 	public static void main(String[] args) {
 		SuperModel sm = new SuperModel();
-		//sm.generateDefaultLevels();
+		sm.generateDefaultLevels();
 	}
 }
