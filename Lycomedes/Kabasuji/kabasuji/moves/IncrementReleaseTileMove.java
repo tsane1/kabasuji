@@ -27,8 +27,9 @@ public class IncrementReleaseTileMove extends Move {
 
 	@Override
 	public boolean undo(Point p) {
-		currLevel.getBoard().deselectTile(p);
-		return true;
+		// There's no reason to undo such a move as the increment loops back around
+		// after 6 and eventually returns to 0 printing a blank tile again
+		return false;
 	}
 
 	@Override

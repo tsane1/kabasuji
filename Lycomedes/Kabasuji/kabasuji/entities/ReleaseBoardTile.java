@@ -17,7 +17,7 @@ public class ReleaseBoardTile extends Tile{
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
 	
-	int value;
+	int value, numColor;
 	
 	/**
 	 * Constructor for the releaseboardtile object.
@@ -70,9 +70,25 @@ public class ReleaseBoardTile extends Tile{
 		
 	}
 
+	/**
+	 * Increments release number's color supports up to six,
+	 * each number corresponds to a color, default color is black at value zero.
+	 */
+	public void updateReleaseColor(){
+		if(numColor<=6){
+			numColor++;
+		}else{
+			numColor= 0;
+		}
+		
+	}
+	
 	public int getValue(){
 		return value;
 	}
-	
-	
+
+	public int getNumColor(){
+		return numColor;
+	}
+
 }

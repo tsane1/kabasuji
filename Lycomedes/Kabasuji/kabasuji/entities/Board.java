@@ -249,4 +249,59 @@ public class Board implements Serializable{
 		
 		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseNum();
 	}
-}
+
+	/**
+	 * Getter for Release Tile number, only to be called on a ReleaseBoardTile.
+	 * @param Point p
+	 * @return int -Release Tile number.
+	 */
+	public int getReleaseNum(Point p){
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		 return ((ReleaseBoardTile) boardArray[rowNum][colNum]).getValue();
+	}
+
+	/**
+	 * Increments the number's color shown on a ReleaseBoardTile.
+	 * @param Point p
+	 */
+	public void changeReleaseNumColor(Point p) {
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseColor();
+	}
+
+	/**
+	 * Getter for Release Tile number, only to be called on a ReleaseBoardTile.
+	 * @param Point p
+	 * @return int -Release Tile number's Color.
+	 */
+	public int getReleaseColor(Point p){
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		 return ((ReleaseBoardTile) boardArray[rowNum][colNum]).getNumColor();
+	}}
