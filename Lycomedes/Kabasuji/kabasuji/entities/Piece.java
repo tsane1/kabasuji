@@ -35,7 +35,10 @@ public class Piece implements Serializable {
 		this.pieceID = "Piece " + idNum;;
 		try {
 			if(arr.length == 6) {
-				this.tiles = arr;
+				this.tiles = new PieceTile[6];
+				for (int i = 0; i < 6; i++) {
+					tiles[i] = new PieceTile(arr[i]);
+				}
 			}
 		}
 		catch(Exception e) {
@@ -73,10 +76,8 @@ public class Piece implements Serializable {
 	 * @return void
 	 */
 	public void flipX(){
-		int i = 0;
-		while (i < this.numTilesInPiece()){
-			this.tiles[i].setRow(5-this.tiles[i].getRow());
-			i++;
+		for(PieceTile pt : this.getTileLocations()){
+			pt.setRow(5-pt.getRow());
 		}
 	}
 
@@ -85,10 +86,8 @@ public class Piece implements Serializable {
 	 * @return void
 	 */
 	public void flipY(){
-		int i = 0;
-		while (i < this.numTilesInPiece()){
-			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
-			i++;
+		for(PieceTile pt : this.getTileLocations()){
+			pt.setColumn(5-pt.getColumn());
 		}
 	}
 
@@ -97,12 +96,17 @@ public class Piece implements Serializable {
 	 * @return void
 	 */
 	public void rotateLeft(){
-		int i = 0;
-		while (i < 6){
-			this.tiles[i].setRow(5-this.tiles[i].getColumn());
-			this.tiles[i].setColumn(5-this.tiles[i].getRow());
-			i++;
+//		int i = 0;
+//		while (i < 6){
+//			this.tiles[i].setRow(5-this.tiles[i].getColumn());
+//			this.tiles[i].setColumn(5-this.tiles[i].getRow());
+//			i++;
+//		}
+		for(PieceTile pt : this.getTileLocations()){
+			pt.setRow(5-pt.getColumn());
+			pt.setColumn(5-pt.getRow());
 		}
+		
 	}	
 
 	/**
@@ -110,11 +114,17 @@ public class Piece implements Serializable {
 	 * @return void
 	 */
 	public void rotateRight(){
-		int i = 0;
-		while (i < 6){
-			this.tiles[i].setRow(5-this.tiles[i].getRow());
-			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
-			i++;
+//		int i = 0;
+//		while (i < 6){
+//			this.tiles[i].setRow(5-this.tiles[i].getRow());
+//			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
+//			i++;
+//		}
+		PieceTile temp;
+		for(PieceTile pt : this.getTileLocations()){
+			//temp = pt;
+			pt.setColumn(5-pt.getRow());
+			pt.setRow(5-pt.getColumn());
 		}
 	}
 
@@ -150,6 +160,12 @@ public class Piece implements Serializable {
 		return this.pieceIDnum;
 	}
 
+	/**
+	 * Method to determine which piece has been selected.  Called in select piece controller.
+	 * @param int x coordinate
+	 * @param index
+	 * @return boolean
+	 */
 	public boolean contains(int x, int index) {
 		
 		int xpos = x;

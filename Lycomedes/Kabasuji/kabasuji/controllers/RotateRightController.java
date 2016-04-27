@@ -24,14 +24,19 @@ public class RotateRightController implements ActionListener {
 	}
 	
 	public boolean doRotateRight(){
+		boolean status = false;
 		Move m = new RotateRightMove(level);
 		if(m.execute()){
-			if(app.getCurrScreen().getName() != "LevelPlay")
+			if(!app.getCurrScreen().getName().equals("LevelPlay")) {
 				level.trackMove(m);
-			app.getCurrScreen().getBullpenView().refresh();
-			return true;
+			}
+			
+			status = true;
 		}
-		return false;
+
+		app.getCurrScreen().getBullpenView().refresh();
+		app.getCurrScreen().repaint();
+		return status;
 	}
 
 	@Override
