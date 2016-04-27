@@ -19,6 +19,11 @@ public class PaletteSelectController extends MouseAdapter{
 		this.pview = app.getCurrScreen().getPaletteView();
 	}
 	
+	public PaletteSelectController(SuperModel sm, PaletteView pv) {
+		this.currLevel = sm.getActiveLevel();
+		this.pview = pv;
+	}
+	
 	public void mousePressed(MouseEvent me) {
 		int idx = 0;
 		for(Piece p : pview.getPiecesInPalette())
