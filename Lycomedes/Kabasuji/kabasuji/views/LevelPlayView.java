@@ -105,19 +105,19 @@ public class LevelPlayView extends Screen {
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
 		
-		btnClockwise.setBounds(53, 472, 40, 40);
+		btnClockwise.setBounds(787, 472, 40, 40);
 		btnClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/clockwise.png")));
 		this.add(btnClockwise);
 		
-		btnCounterClockwise.setBounds(13, 472, 40, 40);
+		btnCounterClockwise.setBounds(747, 472, 40, 40);
 		btnCounterClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/counter_clockwise.png")));
 		this.add(btnCounterClockwise);
 		
-		btnFlipX.setBounds(103, 472, 40, 40);
+		btnFlipX.setBounds(837, 472, 40, 40);
 		btnFlipX.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipX.png")));
 		this.add(btnFlipX);
 		
-		btnFlipY.setBounds(143, 472, 40, 40);
+		btnFlipY.setBounds(877, 472, 40, 40);
 		btnFlipY.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipY.png")));
 		this.add(btnFlipY);
 		
