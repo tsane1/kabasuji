@@ -95,7 +95,7 @@ public class BullpenView extends JPanel {
 	@Override
 	public Dimension getPreferredSize() {
 		int height = containerSize + (2*pieceBuffer);
-		int width = pieceBuffer + (level.getBullpen().numPiecesInBullpen()*(pieceBuffer+containerSize));
+		int width = pieceBuffer + ((level.getBullpen().numPiecesInBullpen()+1)*(pieceBuffer+containerSize));
 
 		return new Dimension (width, height);
 	}
