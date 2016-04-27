@@ -292,7 +292,7 @@ public abstract class Level implements Serializable {
 		//If numStars previously is less than that achieved 
 		//in this game, update them to equal the new highest. 
 		if(numStars<achievedStars){
-			numStars = achievedStars;
+			numStars = achievedStars; 
 		}
 	}
 
