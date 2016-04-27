@@ -15,14 +15,17 @@ public class LaunchLevelBuilder {
 	/**
 	 * Launch the Builder application.
 	 * @throws InterruptedException
-	 * @author Ian +the peeps
+	 * @author Ian
+	 * @author Tanuj
 	 */
 	public static void main(String[] args) throws InterruptedException {
 
 		SuperModel m = new SuperModel();
 		final BuilderSplashScreen sc = new BuilderSplashScreen();
 
+
 		Thread t = new Thread(new Runnable() {
+
 			public void run() {
 				try {
 					sc.setVisible(true);

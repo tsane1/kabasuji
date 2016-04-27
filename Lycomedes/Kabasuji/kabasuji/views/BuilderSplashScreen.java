@@ -59,7 +59,6 @@ public class BuilderSplashScreen extends JWindow {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				count++;
 				progressBar.setValue(count);
-				System.out.println(count);
 				if (count == 65) {
 					timer1.stop();
 				}
