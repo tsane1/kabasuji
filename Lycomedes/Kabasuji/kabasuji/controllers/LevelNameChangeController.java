@@ -25,6 +25,8 @@ public class LevelNameChangeController implements FocusListener {
 
 	@Override
 	public void focusLost(FocusEvent e) {
+		if(((JTextField)e.getComponent()).getText().equals("")) return;
+			
 		model.deleteLevel(model.getUserLevelDir(), model.getActiveLevel().getLevelName()+".lev");
 		String newTitle;
 		if(app.getCurrScreen().getTitle().contains("New")) {
