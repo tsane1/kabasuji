@@ -2,6 +2,8 @@ package kabasuji.views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.List;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,6 +15,7 @@ import kabasuji.controllers.TileSelectController;
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.LightningLevel;
+import kabasuji.entities.Piece;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
@@ -58,6 +61,7 @@ public class Test_Mike extends JFrame {
 		Board board = level.getBoard();
 		sm.setActiveLevel(level);
 		
+		bp.addPieces(level.getAllPieces());
 		//creates a square of size x size
 		int size = 12;
 		for(int i = 0; i<size; i++){

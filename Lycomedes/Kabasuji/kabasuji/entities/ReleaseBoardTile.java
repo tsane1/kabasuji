@@ -75,11 +75,11 @@ public class ReleaseBoardTile extends Tile{
 	}
 
 	/**
-	 * Increments release number's color supports up to six,
+	 * Increments release number's color supports up to three,
 	 * each number corresponds to a color, default color is black at value zero.
 	 */
 	public void updateReleaseColor(){
-		if(numColor<=6){
+		if(numColor<=3){
 			numColor++;
 		}else{
 			numColor= 0;
