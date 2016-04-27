@@ -293,8 +293,8 @@ public class Board implements Serializable{
 	}
 	
 	/**
-	 * Converts an UnplayableTile to a PieceTile given a Point on the Board.
-	 * @param Point p
+	 * Converts an UnplayableTile to a active corresponding BoardTile.
+	 * @param Point p -Given a piece on the Board. 
 	 */
 	public void selectTile(Point p, String levType) {
 		int rowNum = (int) p.getY()/32; 
@@ -357,25 +357,6 @@ public class Board implements Serializable{
 	}
 
 	/**
-	 * Getter for Release Tile number, only to be called on a ReleaseBoardTile.
-	 * @param Point p
-	 * @return int -Release Tile number.
-	 */
-	public int getReleaseNum(Point p){
-		int rowNum = (int) p.getY()/32; 
-		int colNum = (int) p.getX()/32;
-		int x = (int)p.getX()%32;
-		int y = (int)p.getY()%32;
-		
-		if(x == 0)
-			colNum -= 1;
-		if(y == 0)
-			rowNum -= 1;
-		
-		 return ((ReleaseBoardTile) boardArray[rowNum][colNum]).getValue();
-	}
-
-	/**
 	 * Increments the number's color shown on a ReleaseBoardTile.
 	 * @param Point p
 	 */
@@ -393,21 +374,4 @@ public class Board implements Serializable{
 		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseColor();
 	}
 
-	/**
-	 * Getter for Release Tile number, only to be called on a ReleaseBoardTile.
-	 * @param Point p
-	 * @return int -Release Tile number's Color.
-	 */
-	public int getReleaseColor(Point p){
-		int rowNum = (int) p.getY()/32; 
-		int colNum = (int) p.getX()/32;
-		int x = (int)p.getX()%32;
-		int y = (int)p.getY()%32;
-		
-		if(x == 0)
-			colNum -= 1;
-		if(y == 0)
-			rowNum -= 1;
-		
-		 return ((ReleaseBoardTile) boardArray[rowNum][colNum]).getNumColor();
-	}}
+}

@@ -24,8 +24,6 @@ import kabasuji.views.BoardView;
 public class TileSelectController extends MouseAdapter{
 	BoardView boardView;
 	Level level;
-	int rNum = -1, rcNum = -1;
-	Point p; //This may be a hassel, it might corrupt the actual p we need
 	
 	public TileSelectController(SuperModel model, BoardView bv){
 		this.boardView = bv;
@@ -48,8 +46,6 @@ public class TileSelectController extends MouseAdapter{
 
 		if(m.execute(p)){ 
 			level.trackMove(m);
-			rNum = level.getBoard().getReleaseNum(p);
-			// "Color" num in tile with paintComponet()?????
 			boardView.refresh();
 			return true;
 		}
@@ -61,14 +57,35 @@ public class TileSelectController extends MouseAdapter{
 
 		if(m.execute(p)){ 
 			level.trackMove(m);
-			rcNum = level.getBoard().getReleaseColor(p);
-			// Color num in tile with paintComponet()?????
 			boardView.refresh();
 			return true;
 		}
 		return false;
 	}
 	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		Point clicked = e.getPoint();
+		
+		if(SwingUtilities.isRightMouseButton(e)){
+			if (e.getClickCount() == 1){
+				incrementRelease(clicked);
+			}
+			if (e.getClickCount() == 2){
+				changeNumColor(clicked);
+			}
+		}
+		else if(SwingUtilities.isLeftMouseButton(e)){
+			if (e.getClickCount() == 2){ // will be helpful for incrementing release
+				selectTile(clicked); 
+			}
+		}
+		else{
+			System.err.println("Button not supported on tile select.");
+		}
+	}
+
 //	@Override
 //	public void paintComponent(Graphics g) {
 //		super.paintComponent(g);
@@ -92,8 +109,8 @@ public class TileSelectController extends MouseAdapter{
 //		}
 //	}
 	
-	@Override
-	public void mousePressed(MouseEvent e) {
+//	@Override
+//	public void mousePressed(MouseEvent e) {
 //		try{ // +++LEFT PRESSED INSIDE BOARD+++
 //			// increment a counter in selectTile for every tile being selected that is already selected
 //			if((e.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK){
@@ -119,43 +136,6 @@ public class TileSelectController extends MouseAdapter{
 //			ex.printStackTrace();
 //		}
 		
-	}
-
-	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		
-		Point clicked = e.getPoint();
-		
-		if(SwingUtilities.isRightMouseButton(e)){
-			changeNumColor(clicked);
-		}
-		else if(SwingUtilities.isLeftMouseButton(e)){
-			if (e.getClickCount() == 1){ // will be helpful for incrementing release
-				selectTile(clicked); 
-			}
-			if (e.getClickCount() > 1){
-				incrementRelease(clicked);
-			}
-		}
-		else{
-			System.err.println("Button not supported on tile select.");
-		}
-	}
-
-//	@Override
-//	public void mouseReleased(MouseEvent e) {
-//		// Do nothing, otherwise releasing dragged pieces will be weird.
-//	}
-//
-//	@Override
-//	public void mouseEntered(MouseEvent e) {
-//		// Do nothing
-//	}
-//
-//	@Override
-//	public void mouseExited(MouseEvent e) {
-//		// Do nothing
 //	}
 }
 
