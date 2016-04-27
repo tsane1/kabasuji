@@ -19,6 +19,7 @@ import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Palette;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PuzzleLevel;
+import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 
@@ -134,7 +135,7 @@ public class Test_Mike extends JFrame {
 //		bView.addMouseListener(tsc);
 //		bView.addMouseMotionListener(tsc);
 		
-		PaletteSelectController pc = new PaletteSelectController(sm.getActiveLevel(), pview);
+		PaletteSelectController pc = new PaletteSelectController((Application)new JFrame(), sm);
 		pview.addMouseListener(pc);
 	}
 }
