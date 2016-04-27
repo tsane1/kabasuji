@@ -54,7 +54,7 @@ public class SelectPieceController extends MouseAdapter{
 
 		if(me.getClickCount() == 2){
 			System.out.println("Made it...You double clicked");
-			Move m = new PaletteToBullpenMove(currLevel);
+			Move m = new PaletteToBullpenMove(currLevel, currLevel.getSelected());
 			m.execute();
 		}
 
