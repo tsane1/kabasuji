@@ -13,6 +13,7 @@ public class MoveCounter {
 	Piece pieces;
 	/** current level being played */
 	Level level;
+	PuzzleLevel puzzleLevel;
 	
 	/**
 	 * Constructor for move counter.
@@ -29,9 +30,7 @@ public class MoveCounter {
 	 * @return int num moves
 	 */
 	public int moveCount(){
-		int count = 0;//Temporary
-//		int count = getMoveCount();
-		//look at undo stack - need it to say a move has been done.
+		int count = puzzleLevel.getMovesLeft();
 		while(count > 0){
 			if(isPuzzle(level)){
 				count--;

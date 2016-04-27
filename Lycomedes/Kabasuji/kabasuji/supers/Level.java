@@ -263,15 +263,6 @@ public abstract class Level implements Serializable {
 	/**
 	 * Achievement
 	 */
-	public void updateAchievement(){
-		
-		Random r = new Random();
-		for (Piece p : allPieces) {
-			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
-			colorMap.put(p, random);
-		}
-	}
-	
 	
 	public void updateAchievement(Progress progress) {
 		int achievedStars = 0;
