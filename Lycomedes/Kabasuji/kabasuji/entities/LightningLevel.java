@@ -2,9 +2,19 @@ package kabasuji.entities;
 
 import kabasuji.supers.Level;
 
+/**
+ * Subclass of level and entity class for lightning level.
+ * @author 
+ *
+ */
 public class LightningLevel extends Level {
+
 	private int minsLeft, secsLeft;
-	
+
+	/**
+	 * Constructor for the lightning level class.
+	 * @param String name
+	 */
 	public LightningLevel(String name) {
 		super(name, "Lightning");
 	}

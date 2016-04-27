@@ -94,6 +94,15 @@ public class BoardView extends JPanel {
 
 		//draw active piece
 		if(currLevel.getActivePiece() != null){
+			//finds needed adjust for piece drawer
+			//probably could just make piece drawer to adjust but for time this works
+			Piece active = currLevel.getActivePiece();
+			int rowAdjust = active.getTileLocations()[0].getRow();
+			int colAdjust = active.getTileLocations()[0].getColumn();
+			
+			setActiveY -= (rowAdjust*32);
+			setActiveX -= (colAdjust*32);
+			
 			drawer.drawPiece(g, currLevel.getActivePiece(), setActiveX, setActiveY, setActiveColor);
 
 		}

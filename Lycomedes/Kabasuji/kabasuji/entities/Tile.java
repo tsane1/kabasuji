@@ -10,6 +10,11 @@ import java.io.Serializable;
  */
 public abstract class Tile implements Serializable{
 	
+	/**
+	 * serial id.
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/** row and column attributes for a tile object. */
 	int row, col;
 	/** attribute for whether or not a tile is covered. */

@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.SelectPieceController;
+import kabasuji.controllers.TileSelectController;
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.LightningLevel;
@@ -113,5 +114,9 @@ public class Test_Mike extends JFrame {
 		PlacePieceController placeCrtl = new PlacePieceController(sm, bView);
 		bView.addMouseListener(placeCrtl);
 		bView.addMouseMotionListener(placeCrtl);
+		
+		TileSelectController tsc = new TileSelectController(sm, bView);
+		bView.addMouseListener(tsc);
+		bView.addMouseMotionListener(tsc);
 	}
 }

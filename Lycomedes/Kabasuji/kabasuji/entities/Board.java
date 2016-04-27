@@ -14,10 +14,20 @@ import java.util.HashMap;
 
 public class Board implements Serializable{
 
+	/**
+	 * Serial Id.
+	 */
+	private static final long serialVersionUID = 1L;
+	/** row and column arrays to make the board. */
 	private int rows[], cols[];
+	/** the array of tiles that make up the board. */
 	private Tile boardArray[][]; //needs to be initialized
+	/** Map of where the pieces are on the board. */
 	private HashMap<Point,Piece> placedPieces;
 	
+	/**
+	 * Constructor for the board class.  Initializes the board and piece map.
+	 */
 	public Board() {
 		this.rows = new int[12];
 		this.cols = new int[12];
@@ -27,6 +37,10 @@ public class Board implements Serializable{
 		
 	}
 	
+	/**
+	 * Method to initialize all of the board tiles to unplayable tiles. 
+	 * @return void
+	 */
 	void initializeBoardArray(){
 		int i,j = 0;
 		for(i = 0;i<12;i++){
@@ -36,12 +50,13 @@ public class Board implements Serializable{
 			}
 		}
 	}
+	
 	/**
 	 * createBoardTile at the given row and col of the specified type.
 	 * 
-	 * @param row
-	 * @param col
-	 * @param type
+	 * @param int row
+	 * @param int col
+	 * @param int type
 	 */
 	//creates a tile that can be played on at the given grid location in the 12x12
 	public void createBoardTile(int row, int col, String type) {
@@ -55,14 +70,15 @@ public class Board implements Serializable{
 			boardArray[row][col] = new ReleaseBoardTile(row, col);
 		}
 	}
+	
 	/**
 	 * Places piece at the specified grid location.
 	 * 
 	 * Only takes on piece with 0,0 starting point needs to be adapted.
 	 * 
-	 * @param row
-	 * @param col
-	 * @param piece
+	 * @param int row
+	 * @param int col
+	 * @param Piece piece
 	 * @return True if placing the piece succeeds.
 	 */
 	public boolean place(int row, int col, Piece piece) {
@@ -129,6 +145,13 @@ public class Board implements Serializable{
 		}
 		return false;
 	}
+	
+	/**
+	 * Method to mark the squares on the board where the piece has just been placed as covered.
+	 * @param int row
+	 * @param int col
+	 * @param int piece
+	 */
 	public void coverPieceArea(int row, int col, Piece piece){
 		int rowAdjust = piece.tiles[0].row;
 		int colAdjust = piece.tiles[0].col;
@@ -146,6 +169,13 @@ public class Board implements Serializable{
 			}
 		}
 	}
+	
+	/**
+	 * Method to unmark pieces on the board if a move is undone or a piece is moved to a different place.
+	 * @param int row
+	 * @param int col
+	 * @param Piece piece
+	 */
 	public void uncoverPieceArea(int row, int col, Piece piece){
 		int rowAdjust = piece.tiles[0].row;
 		int colAdjust = piece.tiles[0].col;
@@ -163,12 +193,23 @@ public class Board implements Serializable{
 			}
 		}
 	}
+	
+	/**
+	 * Getter function to return the map of pieces for searching. 
+	 * @return Hashmap
+	 */
 	public HashMap<Point,Piece> getPlacedPieces(){
 		return this.placedPieces;
 	}
+	
+	/**
+	 * Getter for the board array to manipulate it.
+	 * @return Tile[][]
+	 */
 	public Tile[][] getBoardArray(){
 		return boardArray;
 	}
+	
 	/**
 	 * General progress percentage return.
 	 * 
@@ -185,8 +226,9 @@ public class Board implements Serializable{
 			return getReleaseProgress();
 		}
 	}
+	
 	/**
-	 * Determine how much progress player has made on puzzle.
+	 * Determine how much progress player has made on a puzzle level.
 	 *  
 	 * @return integer value of between 0 and 100 for completion
 	 */
@@ -208,6 +250,12 @@ public class Board implements Serializable{
 		int value = ((placedPieces.size() * 6)/count) * 100;
 		return value;
 	}
+	
+	/**
+	 * Determine how much progress player has made on a lightning level.
+	 *  
+	 * @return integer value of between 0 and 100 for completion
+	 */
 	public int getLightningProgress(){
 		
 		int i,j,count = 0, marked = 0;
@@ -234,10 +282,14 @@ public class Board implements Serializable{
 				}
 			}
 		}
-		
 		return (marked/count) * 100;
-		
 	}
+	
+	/**
+	 * Determine how much progress player has made on a release level.
+	 *  
+	 * @return 
+	 */
 	public int getReleaseProgress(){
 		return 0;
 	}
@@ -258,11 +310,11 @@ public class Board implements Serializable{
 			rowNum -= 1;
 		
 		switch(levType){
-		case "puzzle" :
+		case "Puzzle" :
 			boardArray[rowNum][colNum] = new PuzzleBoardTile(rowNum,colNum); break;
-		case "lightning" :
+		case "Lightning" :
 			boardArray[rowNum][colNum] = new LightningBoardTile(rowNum,colNum); break;
-		case "release" :
+		case "Release" :
 			boardArray[rowNum][colNum] = new ReleaseBoardTile(rowNum,colNum); break;
 		default:
 			System.err.println("Type not found.");
@@ -305,4 +357,59 @@ public class Board implements Serializable{
 		
 		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseNum();
 	}
-}
+
+	/**
+	 * Getter for Release Tile number, only to be called on a ReleaseBoardTile.
+	 * @param Point p
+	 * @return int -Release Tile number.
+	 */
+	public int getReleaseNum(Point p){
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		 return ((ReleaseBoardTile) boardArray[rowNum][colNum]).getValue();
+	}
+
+	/**
+	 * Increments the number's color shown on a ReleaseBoardTile.
+	 * @param Point p
+	 */
+	public void changeReleaseNumColor(Point p) {
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseColor();
+	}
+
+	/**
+	 * Getter for Release Tile number, only to be called on a ReleaseBoardTile.
+	 * @param Point p
+	 * @return int -Release Tile number's Color.
+	 */
+	public int getReleaseColor(Point p){
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		 return ((ReleaseBoardTile) boardArray[rowNum][colNum]).getNumColor();
+	}}

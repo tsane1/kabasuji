@@ -12,9 +12,6 @@ import java.awt.Graphics;
  */
 
 public class PieceDrawer {
-	
-	/** Placeholder default color for a piece. */
-	private Color defaultColor = Color.BLUE;
 
 	/**
 	 * Default constructor for a piece drawer object to get access to the draw method.

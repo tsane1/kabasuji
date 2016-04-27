@@ -5,6 +5,7 @@ package kabasuji.entities;
  * 
  * @author Derek McMaster
  * @author Michael
+ * @author Ian Jacoway
  */
 public class ReleaseBoardTile extends Tile{
 
@@ -17,7 +18,9 @@ public class ReleaseBoardTile extends Tile{
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
 	
-	int value;
+
+	/** value of the tile, a number that will be translated into a color later */
+	int value, numColor;
 	
 	/**
 	 * Constructor for the releaseboardtile object.
@@ -58,8 +61,9 @@ public class ReleaseBoardTile extends Tile{
 	public boolean isCovered() {
 		return covered;
 	}
+
 	/**
-	 * increments release number up to six
+	 * Increments release number supports up to six then resets to zero.
 	 */
 	public void updateReleaseNum(){
 		if(value<=6){
@@ -70,9 +74,33 @@ public class ReleaseBoardTile extends Tile{
 		
 	}
 
+	/**
+	 * Increments release number's color supports up to six,
+	 * each number corresponds to a color, default color is black at value zero.
+	 */
+	public void updateReleaseColor(){
+		if(numColor<=6){
+			numColor++;
+		}else{
+			numColor= 0;
+		}
+		
+	}
+
+	/**	
+	 * Gets the value or number on the tile.
+	 * @return int
+	 */
 	public int getValue(){
 		return value;
 	}
-	
-	
+
+	/**	
+	 * Gets the value or number on the tile.
+	 * @return int
+	 */
+	public int getNumColor(){
+		return numColor;
+	}
+
 }

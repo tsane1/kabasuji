@@ -3,17 +3,25 @@ package kabasuji.entities;
 import kabasuji.supers.Level;
 
 /** 
- * 
+ * Timer entity class.
  * @author Chase St. Laurent
  *
  */
 public class Timer {
+	/** Current level */
 	Level level;
 
+	/**
+	 * generic constructor for timer.
+	 */
 	public Timer(){
-		super();
+		//super();
 	}
 	
+	/**
+	 * Keeps track of the seconds left on the timer.
+	 * @return int
+	 */
 	public int timerCount(){
 		int count = 1;
 		
@@ -25,6 +33,11 @@ public class Timer {
 		return count;
 	}
 
+	/**
+	 * determines if the current level is a lightning level.
+	 * @param level
+	 * @return boolean
+	 */
 	public boolean isLightning(Level level){
 		boolean isLightning = false;
 		//TODO: Checks if game mode is lightning

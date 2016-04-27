@@ -38,7 +38,9 @@ public abstract class Level implements Serializable {
 	/** A map of piece colors used for drawing the pieces. */
 	Map<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
 
+	/** Stack keeping track of the moves done for undoing. */
 	Stack<Move> undoStack = new Stack<Move>();
+	/** stack for redoable moves when moves are undone. */
 	Stack<Move> redoStack = new Stack<Move>();
 
 	/**
@@ -46,6 +48,7 @@ public abstract class Level implements Serializable {
 	 * lightning, or release.
 	 */
 	String name, type;
+	
 	/**
 	 * Boolean variable indicating whether or not the level is locked or
 	 * unlocked to the player.
@@ -126,10 +129,16 @@ public abstract class Level implements Serializable {
 		this.numStars = numStars;
 	}
 
+	/**
+	 * Generic constructor for testing purposes.
+	 */
 	public Level() {
 		this("level", "test");
 	}
 
+	/**
+	 * initializing method for setting up pieces.
+	 */
 	public void setupPieces() {
 		/**
 		 * The 35 possible hexominoes
@@ -248,12 +257,14 @@ public abstract class Level implements Serializable {
 		allPieces.add(p34);
 		allPieces.add(p35);	
 		
+		/** Random color generator for pieces */
 		Random r = new Random();
 		for(Piece p: allPieces){
 			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
 			colorMap.put(p, random);
 		}
 	}
+	
 	/**
 	 * Achievement
 	 */
@@ -265,6 +276,8 @@ public abstract class Level implements Serializable {
 			colorMap.put(p, random);
 		}
 	}
+	
+	
 	public void updateAchievement(Progress progress) {
 		int achievedStars = 0;
 		
@@ -291,62 +304,114 @@ public abstract class Level implements Serializable {
 		}
 	}
 
-
-	
+	/**
+	 * Gets the level's name.
+	 * @return String
+	 */
 	public String getLevelName() {
 		return name;
 	}
 
+	/**
+	 * Sets the levels name.
+	 * @param String name
+	 */
 	public void setLevelName(String name){
 		this.name = name;
 	}
 	
+	/**
+	 * Returns the level type as a string.
+	 * @return String
+	 */
 	public String getLevelType() {
 		return type;
 	}
 
+	/**
+	 * Sets the level type.
+	 * @param String type
+	 */
 	public void setLevelType(String type) {
 		this.type = type;
 	}
 
+	/**
+	 * returns the instance of the board for the level.
+	 * @return Board
+	 */
 	public Board getBoard() {
 		return this.theBoard;
 	}
 
+	/**
+	 * returns the instance of the bullpen for the level.
+	 * @return Bullpen
+	 */
 	public Bullpen getBullpen() {
 		return this.theBullpen;
 	}
 
+	/**
+	 * method for quitting a level.
+	 */
 	public void quit() {
 		// TODO: Put actual quit logic here...windowlistener?
 		System.out.println("Saving state and exiting.");
 	}
 
+	/**
+	 * Sets the active piece for the level.
+	 * @param Piece p
+	 */
 	public void setActivePiece(Piece p) {
 		activePiece = p;
 	}
+	
+	/**
+	 * Returns the active piece.
+	 * @return Piece
+	 */
+	public Piece getActivePiece() {
+		return activePiece;
+	}
 
+	/**
+	 * Returns the dragging piece for the level.
+	 * @return Piece
+	 */
 	public Piece getDraggingPiece() {
 		return activePiece;
 	}
 
+	/**
+	 * Sets the dragging piece.
+	 * @param Piece p
+	 */
 	public void setDraggingPiece(Piece p) {
 		activePiece = p;
 	}
 
+	/**
+	 * Adds a piece to the board
+	 * @param Piece p
+	 */
 	public void addPieceToBoard(Piece p) {
 		piecesOnBoard.add(p);
 	}
 
 	/**
 	 * Returns the currently selected piece.
-	 * 
 	 * @return a piece
 	 */
 	public Piece getSelected() {
 		return selectedPiece;
 	}
 
+	/**
+	 * Sets the selected piece.
+	 * @param Piece p
+	 */
 	public void setSelected(Piece p) {
 		this.selectedPiece = p;
 	}
@@ -361,31 +426,48 @@ public abstract class Level implements Serializable {
 		this.selectedPiece = p;
 	}
 
+	/**
+	 * Method to return a list of all possible 35 pieces.
+	 * @return List of pieces
+	 */
 	public List<Piece> getAllPieces() {
 		return allPieces;
 	}
 
+	/**
+	 * Locks the level.
+	 */
 	public void lock() {
 		this.locked = true;
 	}
 
+	/**
+	 * unlocks the level.
+	 */
 	public void unlock() {
 		this.locked = false;
 	}
 
+	/**
+	 * Checks whether or not the level is unlocked.
+	 * @return boolean
+	 */
 	public boolean isLocked() {
 		return this.locked;
 	}
 	
 	/**
-	 * Undo and redo handlers
+	 * Undo and redo handlers.
 	 */
-	
 	public void trackMove(Move m){
 		undoStack.add(m);
 		redoStack.clear();
 	}
 
+	/**
+	 * returns the last move done off the undo stack.
+	 * @return
+	 */
 	public Move getLastMove() {
 		if (undoStack.isEmpty()) {
 			return null;
@@ -393,14 +475,26 @@ public abstract class Level implements Serializable {
 		return undoStack.pop();
 	}
 
+	/**
+	 * Adds a move to the undo stack.
+	 * @param m
+	 */
 	public void addMoveToUndo(Move m) {
 		undoStack.push(m);
 	}
 
+	/**
+	 * Adds a move to be redoable.
+	 * @param Move m
+	 */
 	public void addRedoableMove(Move m) {
 		redoStack.push(m);
 	}
 
+	/**
+	 * Gets the last redone move.
+	 * @return Move
+	 */
 	public Move getRedoMove() {
 		if (redoStack.isEmpty()) {
 			return null;
@@ -424,13 +518,15 @@ public abstract class Level implements Serializable {
 		}
 	}
 
+	/**
+	 * Gets the color from the map for the piece.
+	 * @param Piece p
+	 * @return Color
+	 */
 	public Color getPieceColor(Piece p) {
 		return colorMap.get(p);
 	}
 
-	public Piece getActivePiece() {
-		return activePiece;
-	}
 	
 	/**
 	 * Method for generating a random piece for lightning levels.

@@ -1,15 +1,27 @@
 package kabasuji.entities;
 
-
 import java.util.ArrayList;
-
 import kabasuji.supers.Level;
 
+/**
+ * Level sublcass for the puzzle level entity.
+ * 
+ * @author Derek McMaster
+ * @author Tanuj Sane
+ */
 public class ReleaseLevel extends Level {
 	private ArrayList<Integer> redsCollected = new ArrayList<Integer>(6);
 	private ArrayList<Integer> greensCollected = new ArrayList<Integer>(6);
 	private ArrayList<Integer> yellowsCollected = new ArrayList<Integer>(6);
-	
+
+	/**
+	 * serial id.
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Public constructor for the release level entity.
+	 * @param String name
+	 */
 	public ReleaseLevel(String name) {
 		super(name, "Release");
 	}
@@ -25,7 +37,7 @@ public class ReleaseLevel extends Level {
 		}
 		return null;
 	}
-
+	
 	public void collect(String color, int num) {
 		switch(color) {
 		case "red":
