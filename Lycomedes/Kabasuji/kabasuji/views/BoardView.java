@@ -153,6 +153,27 @@ public class BoardView extends JPanel {
 						offScreenGraphics.drawRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
 					}
 				}
+				else if((boardArray[i][j].getClass() == rTile.getClass())){
+					if(((ReleaseBoardTile) boardArray[i][j]).getValue() > 0){
+						offScreenGraphics.setColor(Color.LIGHT_GRAY);
+						offScreenGraphics.fillRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
+						offScreenGraphics.drawRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						//need to actually make a switch case that changes the number color but yeah...
+						if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
+							offScreenGraphics.setColor(Color.GREEN);
+						}else{
+							offScreenGraphics.setColor(Color.GREEN);
+						}
+						
+						offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*tile.width + (tile.width / 2)), (j*tile.height + (tile.height / 2)));
+					}else{
+						offScreenGraphics.setColor(Color.LIGHT_GRAY); //regular board tiles are just light gray still need to figure out the release tile number stuff
+						offScreenGraphics.fillRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
+						offScreenGraphics.drawRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+					}
+				}
 				else {
 					offScreenGraphics.setColor(Color.LIGHT_GRAY); //regular board tiles are just light gray still need to figure out the release tile number stuff
 					offScreenGraphics.fillRect(i*tile.width, j*tile.height,(tile.width), (tile.height));

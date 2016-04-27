@@ -17,6 +17,7 @@ import kabasuji.entities.Bullpen;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PuzzleLevel;
+import kabasuji.entities.ReleaseBoardTile;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 
@@ -66,7 +67,8 @@ public class Test_Mike extends JFrame {
 		int size = 12;
 		for(int i = 0; i<size; i++){
 			for(int j = 0; j<size; j++){
-				board.createBoardTile(i, j, "puzzle");
+				board.createBoardTile(i, j, "release");
+				((ReleaseBoardTile)board.getBoardArray()[i][j]).updateReleaseNum();
 			}
 		}
 		
