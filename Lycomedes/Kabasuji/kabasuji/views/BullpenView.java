@@ -53,6 +53,7 @@ public class BullpenView extends JPanel {
 	public BullpenView(SuperModel m) {
 		super();
 		this.level = m.getActiveLevel();
+		this.setBackground(Color.white);
 		//this.setBounds(13, 522, 908, 218);
 	}
 	
@@ -98,10 +99,12 @@ public class BullpenView extends JPanel {
 
 		return new Dimension (width, height);
 	}
+	
 	/**
 	 * Override method to paint the pieces.
 	 * @param Graphics g
 	 */
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 
@@ -136,30 +139,31 @@ public class BullpenView extends JPanel {
 
 		offScreenImage = this.createImage(dim.width, dim.height);
 
-		if (offScreenImage == null) { return; }
+		if (offScreenImage == null) { 
+			System.err.println("Unable to create new Image.... HELP");
+			return; 
+		}
 
 		offScreenGraphics = offScreenImage.getGraphics();
 
 		for (Piece p : level.getBullpen().getOriginalSet()) {
 			if(p == level.getSelected()){
-				offScreenGraphics.setColor(Color.MAGENTA);
+				drawer.drawPiece(offScreenGraphics, p, x, y, Color.orange.brighter());
 			}
 			else{
 				boolean played = false;
-				for(Piece p2 : level.getBullpen().getPlayedPieces()){
-					if(p2.equals(p)){
-						played = true;
-						break;
-					}			
-				}
-				if(played) {
-					offScreenGraphics.setColor(Color.GRAY);
-				}
-				else {
-					offScreenGraphics.setColor(Color.GREEN);
-				}
+				if(level.getBullpen().getPlayedPieces().contains(p)){
+					played = true;
+					break;
+				}			
+			if(played) {
+				drawer.drawPiece(offScreenGraphics, p, x, y, Color.black);
 			}
-			drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
+			else {
+				drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
+			}
+		}
+			//drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
 			x+= containerSize+pieceBuffer;	
 		}
 	}

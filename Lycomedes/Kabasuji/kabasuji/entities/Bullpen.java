@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * IMPORTANT QUESTIONS
- * should allow duplicates?
- * should set max capacity?
+ * Class for the bullpen entity and associated logic.
+ * 
+ * @author Derek McMaster
  */
 public class Bullpen implements Serializable{
 	
+	/**
+	 * serial id.
+	 */
+	private static final long serialVersionUID = 1L;
 	/** arraylist of pieces in the bullpen for the level. */
 	List<Piece> pieces;
 	/** arraylist of pieces that were previously in the bullpen and are now on the board. */
@@ -115,6 +119,10 @@ public class Bullpen implements Serializable{
 		return this.pieces.isEmpty();
 	}
 	
+	/**
+	 * Helper method to return the number of pieces in the current bullpen.
+	 * @return int 
+	 */
 	public int numPiecesInBullpen(){
 		return pieces.size();
 	}
