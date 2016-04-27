@@ -6,6 +6,7 @@ import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.FlipXController;
 import kabasuji.controllers.FlipYController;
 import kabasuji.controllers.LevelNameChangeController;
+import kabasuji.controllers.PaletteSelectController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.RotateLeftController;
@@ -42,7 +43,9 @@ public class PuzzleLevelEditView extends Screen {
 	private PuzzleLevel level;
 	private BoardView boardView;
 	private BullpenView bullpenView;
-	private JScrollPane pieceScroll;
+	private PaletteView paletteView;
+	private JScrollPane bullpenViewScroll;
+	private JScrollPane paletteViewScroll;
 	
 	private JButton btnUndo = new JButton("Undo");
 	private JButton btnRedo = new JButton("Redo");
@@ -74,6 +77,7 @@ public class PuzzleLevelEditView extends Screen {
 		model.setActiveLevel(level);
 		this.boardView = new BoardView(this.model);
 		this.bullpenView = new BullpenView(this.model);
+		this.paletteView = new PaletteView(this.model);
 	}
 	
 	@Override
@@ -82,6 +86,20 @@ public class PuzzleLevelEditView extends Screen {
 		this.add(boardView);
 		boardView.validate();
 		boardView.repaint();
+		
+		JLabel lblPalette = new JLabel("Piece Palette");
+		lblPalette.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPalette.setForeground(SystemColor.textHighlight);
+		lblPalette.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		lblPalette.setBounds(697, 100, 192, 25);
+		this.add(lblPalette);
+		
+		paletteViewScroll = new JScrollPane();
+		paletteViewScroll.setBounds(697, 125, 192, 337);
+		paletteViewScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		paletteViewScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		paletteViewScroll.setViewportView(paletteView);
+		this.add(paletteViewScroll);
 		
 		btnSave.setActionCommand(level.getLevelName());
 		btnSave.setBackground(SystemColor.text);
@@ -111,12 +129,12 @@ public class PuzzleLevelEditView extends Screen {
 		
 		this.add(boardView);
 		
-		pieceScroll = new JScrollPane();
-		pieceScroll.setBounds(13, 512, 904, 228);
-		pieceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-		pieceScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		pieceScroll.setViewportView(bullpenView);
-		this.add(pieceScroll);
+		bullpenViewScroll = new JScrollPane();
+		bullpenViewScroll.setBounds(13, 512, 904, 228);
+		bullpenViewScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+		bullpenViewScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		bullpenViewScroll.setViewportView(bullpenView);
+		this.add(bullpenViewScroll);
 		
 		btnClockwise.setBounds(787, 472, 40, 40);
 		btnClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/clockwise.png")));
@@ -187,6 +205,8 @@ public class PuzzleLevelEditView extends Screen {
 		setMovesEditor.getTextField().addFocusListener(new SpinnerValueController(this.app, this.model));
 		
 		setLevelName.addFocusListener(new LevelNameChangeController(this.app, this.model));
+		
+		paletteView.addMouseListener(new PaletteSelectController(this.app, this.model));
 	}
 
 	@Override
@@ -213,5 +233,10 @@ public class PuzzleLevelEditView extends Screen {
 	@Override
 	public Level getLevel() {
 		return this.level;
+	}
+	
+	@Override
+	public PaletteView getPaletteView() {
+		return this.paletteView;
 	}
 }
