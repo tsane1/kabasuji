@@ -4,13 +4,18 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import kabasuji.controllers.DeleteLevelController;
+import kabasuji.controllers.FlipXController;
+import kabasuji.controllers.FlipYController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RedoController;
+import kabasuji.controllers.RotateLeftController;
+import kabasuji.controllers.RotateRightController;
 import kabasuji.controllers.SaveLevelController;
 import kabasuji.controllers.SelectPieceController;
 import kabasuji.controllers.UndoController;
@@ -32,13 +37,17 @@ public class ReleaseLevelEditView extends Screen {
 	private ReleaseLevel level;
 	private BoardView boardView;
 	private BullpenView bullpenView;
+	JScrollPane pieceScroll = new JScrollPane();
 	
 	private JButton btnUndo = new JButton("Undo");
 	private JButton btnRedo = new JButton("Redo");
 	private JButton btnSave = new JButton("Save");
 	private JButton btnDelete = new JButton("Delete");
 	
-	JScrollPane pieceScroll = new JScrollPane();
+	private JButton btnClockwise = new JButton();
+	private JButton btnCounterClockwise = new JButton();
+	private JButton btnFlipX = new JButton();
+	private JButton btnFlipY = new JButton();
 	
 	public ReleaseLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
@@ -100,6 +109,25 @@ public class ReleaseLevelEditView extends Screen {
 		pieceScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
+		
+		btnClockwise.setBounds(53, 472, 40, 40);
+		btnClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/clockwise.png")));
+		this.add(btnClockwise);
+		
+		btnCounterClockwise.setBounds(13, 472, 40, 40);
+		btnCounterClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/counter_clockwise.png")));
+		this.add(btnCounterClockwise);
+		
+		btnFlipX.setBounds(103, 472, 40, 40);
+		btnFlipX.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipX.png")));
+		this.add(btnFlipX);
+		
+		btnFlipY.setBounds(143, 472, 40, 40);
+		btnFlipY.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipY.png")));
+		this.add(btnFlipY);
+		
+		this.validate();
+		this.repaint();
 	}
 	
 	@Override
@@ -114,6 +142,11 @@ public class ReleaseLevelEditView extends Screen {
 		PlacePieceController ppc = new PlacePieceController(model, boardView);
 		boardView.addMouseListener(ppc);
 		boardView.addMouseMotionListener(ppc);
+		
+		btnClockwise.addActionListener(new RotateRightController(this.app, this.model.getActiveLevel()));
+		btnCounterClockwise.addActionListener(new RotateLeftController(this.app, this.model.getActiveLevel()));
+		btnFlipX.addActionListener(new FlipXController(this.app, this.model.getActiveLevel()));
+		btnFlipY.addActionListener(new FlipYController(this.app, this.model.getActiveLevel()));
 	}
 
 	@Override

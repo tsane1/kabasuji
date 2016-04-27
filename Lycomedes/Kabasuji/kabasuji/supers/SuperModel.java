@@ -188,14 +188,17 @@ public class SuperModel {
 		for(int i = 0; i < 15; i++) {
 			if(i%3 == 0) {
 				ReleaseLevel rl = new ReleaseLevel("Level " + (i+1));
+				if(i>2)rl.lock();
 				rl.saveLevel(this.getDefaultLevelDir());
 			}
 			else if(i%3 == 1) {
 				LightningLevel ll = new LightningLevel("Level " + (i+1));
+				if(i>2)ll.lock();
 				ll.saveLevel(this.getDefaultLevelDir());
 			}
 			else if(i%3 == 2) {
 				PuzzleLevel pl = new PuzzleLevel("Level " + (i+1));
+				if(i>2)pl.lock();
 				pl.saveLevel(this.getDefaultLevelDir());
 			}
 		}

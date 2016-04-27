@@ -13,6 +13,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JTabbedPane;
 import javax.swing.JFormattedTextField;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class LevelBuilder extends JFrame {
 
@@ -282,5 +284,22 @@ public class LevelBuilder extends JFrame {
 		button.setBounds(34, 34, 115, 37);
 		contentPane.add(button);
 		button.setFont(new Font("Segoe UI Semilight", Font.BOLD, 13));
+		
+		JSpinner mins = new JSpinner();
+		mins.setToolTipText("");
+		mins.setModel(new SpinnerNumberModel(0, 0, 5, 1));
+		mins.setForeground(SystemColor.textHighlight);
+		mins.setBackground(SystemColor.textHighlight);
+		mins.setFont(new Font("Kristen ITC", Font.PLAIN, 20));
+		mins.setBounds(67, 131, 115, 42);
+		contentPane.add(mins);
+		
+		JSpinner secs = new JSpinner();
+		secs.setModel(new SpinnerNumberModel(0, 0, 59, 1));
+		secs.setForeground(SystemColor.textHighlight);
+		secs.setFont(new Font("Kristen ITC", Font.PLAIN, 20));
+		secs.setBackground(Color.WHITE);
+		secs.setBounds(67, 200, 115, 42);
+		contentPane.add(secs);
 	}
 }
