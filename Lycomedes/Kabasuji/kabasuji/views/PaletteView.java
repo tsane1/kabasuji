@@ -123,7 +123,9 @@ public class PaletteView extends JPanel{
 			if(p == level.getSelected()){
 				drawer.drawPiece(offScreenGraphics, p, x, y, Color.orange.brighter());
 			}
-			drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
+			else {
+				drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
+			}
 			y+= containerSize+pieceBuffer;
 
 		}

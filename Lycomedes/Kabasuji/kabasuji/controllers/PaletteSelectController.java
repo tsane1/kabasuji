@@ -21,13 +21,13 @@ public class PaletteSelectController extends MouseAdapter{
 		int idx = 0;
 		for(Piece p : pview.getPiecesInPalette())
 		{
-			if(p.contains(me.getX(), idx))
+			if(p.containsy(me.getY(), idx))
 			{
-				if (currLevel.getSelected() == currLevel.getBullpen().getPieces().get(idx)) {
+				if (currLevel.getSelected() == currLevel.getPalette().getPieces().get(idx)) {
 					currLevel.setSelected(null); // deselect
 				}
 				else {
-					Piece temp = currLevel.getBullpen().getPieces().get(idx);
+					Piece temp = currLevel.getPalette().getPieces().get(idx);
 					currLevel.setSelected(temp);
 					System.out.println("Selected Piece: " + temp.getPieceName());
 				}
