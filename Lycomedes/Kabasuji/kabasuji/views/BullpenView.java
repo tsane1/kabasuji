@@ -53,7 +53,7 @@ public class BullpenView extends JPanel {
 	public BullpenView(SuperModel m) {
 		super();
 		this.level = m.getActiveLevel();
-		this.setBackground(Color.white);
+		//this.setBackground(Color.white);
 		//this.setBounds(13, 522, 908, 218);
 	}
 	

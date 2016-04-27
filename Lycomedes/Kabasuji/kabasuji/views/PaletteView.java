@@ -42,8 +42,8 @@ public class PaletteView extends JPanel{
 	public PaletteView(SuperModel m) {
 		super();
 		this.level = m.getActiveLevel();
-		this.setBackground(Color.white);
-		//this.setBounds(13, 522, 908, 218);
+		//this.setBackground(Color.white);
+		//this.setBounds(667, 100, 253, 362);
 	}
 	
 	

@@ -7,6 +7,7 @@ import javax.swing.border.EtchedBorder;
 import kabasuji.controllers.BackController;
 import kabasuji.views.BoardView;
 import kabasuji.views.BullpenView;
+import kabasuji.views.PaletteView;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -92,6 +93,10 @@ public abstract class Screen extends JPanel {
 	}
 	
 	public Level getLevel() {
+		return null;
+	}
+	
+	public PaletteView getPaletteView() {
 		return null;
 	}
 }

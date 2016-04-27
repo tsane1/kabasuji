@@ -1,9 +1,10 @@
 package kabasuji.entities;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-public class Palette {
+public class Palette implements Serializable {
 
 	List<Piece> pieces;
 	public Palette() {
