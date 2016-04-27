@@ -11,12 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
 import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.FlipXController;
 import kabasuji.controllers.FlipYController;
+import kabasuji.controllers.LevelNameChangeController;
 import kabasuji.controllers.SpinnerValueController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RedoController;
@@ -57,6 +59,7 @@ public class LightningLevelEditView extends Screen {
 	
 	private JSpinner mins = new JSpinner();
 	private JSpinner secs = new JSpinner();
+	private JTextField setLevelName = new JTextField();
 	
 	public LightningLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
@@ -65,10 +68,6 @@ public class LightningLevelEditView extends Screen {
 		if(this.level == null) { // create new level
 			this.level = new LightningLevel("Level " + (this.model.getTotalNumLevels()+1));
 			this.setTitle("New Lightning Level: " + "Level " + (this.model.getTotalNumLevels() + 1));
-		}
-		else if(!this.level.getLevelType().equals("Lightning")) {
-			this.level = new LightningLevel(levelName);
-			this.setTitle("New Lightning Level: " + levelName);
 		}
 		else this.setTitle(level.getLevelName() + ": " + level.getLevelType() + " [EDIT]");
 		
@@ -79,7 +78,7 @@ public class LightningLevelEditView extends Screen {
 	
 	@Override
 	public void populate() {
-
+		
 		this.add(boardView);
 		boardView.validate();
 		boardView.repaint();
@@ -139,21 +138,21 @@ public class LightningLevelEditView extends Screen {
 		lblMins.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMins.setForeground(SystemColor.textHighlight);
 		lblMins.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		lblMins.setBounds(79, 100, 115, 25);
+		lblMins.setBounds(79, 200, 115, 25);
 		this.add(lblMins);
 		
 		JLabel lblSecs = new JLabel("Seconds (0-59)");
 		lblSecs.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSecs.setForeground(SystemColor.textHighlight);
 		lblSecs.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		lblSecs.setBounds(79, 177, 115, 25);
+		lblSecs.setBounds(79, 277, 115, 25);
 		this.add(lblSecs);
 		
 		mins.setModel(new SpinnerNumberModel(level.getMinsLeft(), 0, 5, 1));
 		mins.setFont(new Font("Kristen ITC", Font.PLAIN, 20));
 		((JSpinner.DefaultEditor)mins.getEditor()).getTextField().setEditable(false);
 		((JSpinner.DefaultEditor)mins.getEditor()).getTextField().setName("mins");
-		mins.setBounds(79, 125, 115, 42);
+		mins.setBounds(79, 225, 115, 42);
 		this.add(mins);
 		
 		secs.setModel(new SpinnerNumberModel(level.getSecsLeft(), 0, 59, 1));
@@ -161,8 +160,22 @@ public class LightningLevelEditView extends Screen {
 		secs.setFont(new Font("Kristen ITC", Font.PLAIN, 20));
 		((JSpinner.DefaultEditor)secs.getEditor()).getTextField().setEditable(false);
 		((JSpinner.DefaultEditor)secs.getEditor()).getTextField().setName("secs");
-		secs.setBounds(79, 202, 115, 42);
+		secs.setBounds(79, 302, 115, 42);
 		this.add(secs);
+		
+		JLabel lblSetLevelName = new JLabel("Level Name:");
+		lblSetLevelName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSetLevelName.setForeground(SystemColor.textHighlight);
+		lblSetLevelName.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		lblSetLevelName.setBounds(35, 100, 200, 25);
+		this.add(lblSetLevelName);
+		
+		setLevelName.setHorizontalAlignment(SwingConstants.CENTER);
+		setLevelName.setBackground(SystemColor.text);
+		setLevelName.setForeground(SystemColor.textHighlight);
+		setLevelName.setFont(new Font("Kristen ITC", Font.BOLD, 20));
+		setLevelName.setBounds(35, 125, 200, 50);
+		this.add(setLevelName);
 		
 		this.validate();
 		this.repaint();
@@ -190,6 +203,8 @@ public class LightningLevelEditView extends Screen {
 		JSpinner.DefaultEditor secsEditor = (JSpinner.DefaultEditor)secs.getEditor();
 		minsEditor.getTextField().addFocusListener(new SpinnerValueController(this.app, this.model));
 		secsEditor.getTextField().addFocusListener(new SpinnerValueController(this.app, this.model));
+		
+		setLevelName.addFocusListener(new LevelNameChangeController(this.app, this.model));
 	}
 
 	@Override

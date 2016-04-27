@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.FlipXController;
 import kabasuji.controllers.FlipYController;
+import kabasuji.controllers.LevelNameChangeController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.RotateLeftController;
@@ -28,6 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 /**
@@ -53,6 +55,7 @@ public class PuzzleLevelEditView extends Screen {
 	private JButton btnFlipY = new JButton();
 	
 	private JSpinner setMoves = new JSpinner();
+	private JTextField setLevelName = new JTextField();
 	
 	public PuzzleLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
@@ -135,14 +138,28 @@ public class PuzzleLevelEditView extends Screen {
 		lblMoves.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMoves.setForeground(SystemColor.textHighlight);
 		lblMoves.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		lblMoves.setBounds(79, 100, 115, 25);
+		lblMoves.setBounds(79, 200, 115, 25);
 		this.add(lblMoves);
 		
 		setMoves.setModel(new SpinnerNumberModel(level.getMovesLeft(), 0, null, 1));
 		setMoves.setFont(new Font("Kristen ITC", Font.PLAIN, 20));
 		((JSpinner.DefaultEditor)setMoves.getEditor()).getTextField().setEditable(false);
-		setMoves.setBounds(79, 125, 115, 42);
+		setMoves.setBounds(79, 225, 115, 42);
 		this.add(setMoves);
+		
+		JLabel lblSetLevelName = new JLabel("Level Name:");
+		lblSetLevelName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSetLevelName.setForeground(SystemColor.textHighlight);
+		lblSetLevelName.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		lblSetLevelName.setBounds(35, 100, 200, 25);
+		this.add(lblSetLevelName);
+		
+		setLevelName.setHorizontalAlignment(SwingConstants.CENTER);
+		setLevelName.setBackground(SystemColor.text);
+		setLevelName.setForeground(SystemColor.textHighlight);
+		setLevelName.setFont(new Font("Kristen ITC", Font.BOLD, 20));
+		setLevelName.setBounds(35, 125, 200, 50);
+		this.add(setLevelName);
 		
 		this.validate();
 		this.repaint();
@@ -168,6 +185,8 @@ public class PuzzleLevelEditView extends Screen {
 		
 		JSpinner.DefaultEditor setMovesEditor = (JSpinner.DefaultEditor)setMoves.getEditor();
 		setMovesEditor.getTextField().addFocusListener(new SpinnerValueController(this.app, this.model));
+		
+		setLevelName.addFocusListener(new LevelNameChangeController(this.app, this.model));
 	}
 
 	@Override

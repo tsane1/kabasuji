@@ -6,12 +6,16 @@ import java.awt.SystemColor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.FlipXController;
 import kabasuji.controllers.FlipYController;
+import kabasuji.controllers.LevelNameChangeController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.RotateLeftController;
@@ -48,6 +52,7 @@ public class ReleaseLevelEditView extends Screen {
 	private JButton btnCounterClockwise = new JButton();
 	private JButton btnFlipX = new JButton();
 	private JButton btnFlipY = new JButton();
+	private JTextField setLevelName = new JTextField();
 	
 	public ReleaseLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
@@ -124,6 +129,20 @@ public class ReleaseLevelEditView extends Screen {
 		
 		btnFlipY.setBounds(143, 472, 40, 40);
 		btnFlipY.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipY.png")));
+		
+		JLabel lblSetLevelName = new JLabel("Level Name:");
+		lblSetLevelName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSetLevelName.setForeground(SystemColor.textHighlight);
+		lblSetLevelName.setFont(new Font("Kristen ITC", Font.BOLD, 12));
+		lblSetLevelName.setBounds(35, 100, 200, 25);
+		this.add(lblSetLevelName);
+		
+		setLevelName.setHorizontalAlignment(SwingConstants.CENTER);
+		setLevelName.setBackground(SystemColor.text);
+		setLevelName.setForeground(SystemColor.textHighlight);
+		setLevelName.setFont(new Font("Kristen ITC", Font.BOLD, 20));
+		setLevelName.setBounds(35, 125, 200, 50);
+		this.add(setLevelName);
 		this.add(btnFlipY);
 		
 		this.validate();
@@ -147,6 +166,8 @@ public class ReleaseLevelEditView extends Screen {
 		btnCounterClockwise.addActionListener(new RotateLeftController(this.app, this.model.getActiveLevel()));
 		btnFlipX.addActionListener(new FlipXController(this.app, this.model.getActiveLevel()));
 		btnFlipY.addActionListener(new FlipYController(this.app, this.model.getActiveLevel()));
+		
+		setLevelName.addFocusListener(new LevelNameChangeController(this.app, this.model));
 	}
 
 	@Override

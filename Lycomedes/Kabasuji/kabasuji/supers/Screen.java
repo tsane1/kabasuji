@@ -33,7 +33,7 @@ public abstract class Screen extends JPanel {
 	private JButton btnBack;
 	protected SuperModel model;
 	protected Application app;
-	private JLabel movesLeft;
+	private JLabel lblTitle;
 	
 	public Screen(String title, SuperModel m) {
 		this.model = m;
@@ -45,13 +45,13 @@ public abstract class Screen extends JPanel {
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		this.setLayout(null);
 		
-		movesLeft = new JLabel();
+		lblTitle = new JLabel();
 		setTitle(title);
-		movesLeft.setHorizontalAlignment(SwingConstants.CENTER);
-		movesLeft.setForeground(SystemColor.textHighlight);
-		movesLeft.setFont(new Font("Kristen ITC", Font.BOLD, 32));
-		movesLeft.setBounds(0,13,930,75);
-		this.add(movesLeft);
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setForeground(SystemColor.textHighlight);
+		lblTitle.setFont(new Font("Kristen ITC", Font.BOLD, 32));
+		lblTitle.setBounds(0,13,930,75);
+		this.add(lblTitle);
 			
 		btnBack = new JButton("Back");
 		btnBack.setBackground(Color.WHITE);
@@ -61,8 +61,12 @@ public abstract class Screen extends JPanel {
 		this.add(btnBack);
 	}
 	
-	protected void setTitle(String newTitle) {
-		movesLeft.setText(newTitle);
+	public void setTitle(String newTitle) {
+		lblTitle.setText(newTitle);
+	}
+	
+	public String getTitle() {
+		return lblTitle.getText();
 	}
 	
 	public void handshake(Application a) {
