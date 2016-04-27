@@ -23,6 +23,10 @@ public class PieceTile extends Tile implements Serializable {
 		super(row, column);
 	}
 
+	/**
+	 * Overloaded constructor for the piecetile. 
+	 * @param Piecetile other
+	 */
 	public PieceTile(PieceTile other) {
 		super(other.row, other.col);
 	}

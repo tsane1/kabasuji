@@ -17,6 +17,7 @@ public class ReleaseBoardTile extends Tile{
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
 	
+	/** value of the tile */
 	int value;
 	
 	/**
@@ -70,6 +71,10 @@ public class ReleaseBoardTile extends Tile{
 		
 	}
 
+	/**
+	 * Gets the value or number on the tile.
+	 * @return int
+	 */
 	public int getValue(){
 		return value;
 	}

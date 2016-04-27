@@ -160,6 +160,12 @@ public class Piece implements Serializable {
 		return this.pieceIDnum;
 	}
 
+	/**
+	 * Method to determine which piece has been selected.  Called in select piece controller.
+	 * @param int x coordinate
+	 * @param index
+	 * @return boolean
+	 */
 	public boolean contains(int x, int index) {
 		
 		int xpos = x;

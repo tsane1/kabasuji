@@ -4,7 +4,7 @@ package kabasuji.entities;
  * Tile Subclass which will make up the Lightning Level Boards.
  * 
  * @author Derek McMaster
- * @author Michael
+ * @author Michael Pickett
  */
 public class LightningBoardTile extends Tile{
 
@@ -16,7 +16,9 @@ public class LightningBoardTile extends Tile{
 	int row, col;
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
+	/** attribute to determine if a tile is covered for lightning levels. */
 	private boolean marked;
+	
 	/**
 	 * Constructor for the lightningboardtile object.
 	 * @param int row
@@ -54,17 +56,23 @@ public class LightningBoardTile extends Tile{
 	public boolean isCovered() {
 		return covered;
 	}
+	
 	/**
-	 * Marks a lightning tile
+	 * Marks a lightning tile.
 	 */
 	public void mark(){
 		marked = true;
 	}
+	
+	/**
+	 * Unmarks a tile.
+	 */
 	public void unmark(){
 		marked = false;
 	}
+	
 	/**
-	 * Gets the marked boolean
+	 * Gets the marked boolean.
 	 * @return true is tile is marked
 	 */
 	public boolean isMarked(){
