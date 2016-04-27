@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.Stack;
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
+import kabasuji.entities.Palette;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
 import kabasuji.entities.Progress;
@@ -57,7 +58,11 @@ public abstract class Level implements Serializable {
 	/** The board associated with the current level. */
 	protected Board theBoard;
 	/** The bullpen associated with the current level. */
-	protected Bullpen theBullpen;
+
+	Bullpen theBullpen;
+	/** Palette for building */
+	Palette thePalette;
+
 	/**
 	 * The number of "stars" or achievements the player has accrued for the
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
@@ -99,9 +104,11 @@ public abstract class Level implements Serializable {
 			}
 		}
 		this.theBullpen = new Bullpen();
+		this.thePalette = new Palette();
 		this.numStars = 0;
 		setupPieces();
-		theBullpen.addPieces(allPieces);
+		//theBullpen.addPieces(allPieces);
+		thePalette.addPieces(allPieces);
 		for (int i = 0; i < 36; i++) {
 			pieceGrid.add(new PieceTile(i / 6, i % 6));
 		}
@@ -350,6 +357,10 @@ public abstract class Level implements Serializable {
 	 */
 	public Bullpen getBullpen() {
 		return this.theBullpen;
+	}
+	
+	public Palette getPalette(){
+		return this.thePalette;
 	}
 
 	/**

@@ -23,6 +23,7 @@ public class MoveCounter {
 		this.level = level; 
 	}
 	 
+
 	/**
 	 * Keeps track of the number of moves done.
 	 * @return int num moves
