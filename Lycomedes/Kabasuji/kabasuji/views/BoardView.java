@@ -99,10 +99,10 @@ public class BoardView extends JPanel {
 			Piece active = currLevel.getActivePiece();
 			int rowAdjust = active.getTileLocations()[0].getRow();
 			int colAdjust = active.getTileLocations()[0].getColumn();
-			
+
 			setActiveY -= (rowAdjust*32);
 			setActiveX -= (colAdjust*32);
-			
+
 			drawer.drawPiece(g, currLevel.getActivePiece(), setActiveX, setActiveY, setActiveColor);
 
 		}
@@ -160,41 +160,35 @@ public class BoardView extends JPanel {
 					Piece played = map.get(pt);
 					if(played != null){
 						drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
-						System.out.println(currLevel.getPieceColor(played).toString());
+						//System.out.println(currLevel.getPieceColor(played).toString());
 					}
 
 				}
-
-			}
-			//System.out.println(board.getPlacedPieces().size());
-			int n,k = 0;
-			for(n = 0; n<12; n++){
-				for(k = 0; k<12; k++){
-					HashMap<Point,Piece> map = board.getPlacedPieces();
-					Point pt = new Point(i,j);
-					Piece played = map.get(pt);
-					if(played != null){
-						drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
-						System.out.println(currLevel.getPieceColor(played).toString());
+				//System.out.println(board.getPlacedPieces().size());
+				int n,k = 0;
+				for(n = 0; n<12; n++){
+					for(k = 0; k<12; k++){
+						HashMap<Point,Piece> map = board.getPlacedPieces();
+						Point pt = new Point(i,j);
+						Piece played = map.get(pt);
+						if(played != null){
+							drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
+							System.out.println(currLevel.getPieceColor(played).toString());
+						}
 					}
 				}
 			}
 		}
-
-
-
-
-
 	}
-	public void drawActivePiece(int x, int y, Color c){
-		setActiveColor = c;
-		setActiveX = x;
-		setActiveY = y;
-	}
-	public void refresh(){
-		redraw();
-		repaint();
-	}
-	//returns the graphics for this view???
+			public void drawActivePiece(int x, int y, Color c){
+				setActiveColor = c;
+				setActiveX = x;
+				setActiveY = y;
+			}
+			public void refresh(){
+				redraw();
+				repaint();
+			}
+			//returns the graphics for this view???
 
-}
+		}

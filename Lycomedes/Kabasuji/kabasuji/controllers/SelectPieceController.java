@@ -32,15 +32,9 @@ public class SelectPieceController extends MouseAdapter{
 				}
 				else {
 					Piece temp = currLevel.getBullpen().getPieces().get(idx);
-					if(currLevel.getBullpen().getPlayedPieces().contains(temp)){
-						currLevel.setSelected(null);
-						System.out.println("Selected Piece: " + temp.getPieceName());
-						return;
-					}
 					currLevel.setSelected(temp);
 					System.out.println("Selected Piece: " + temp.getPieceName());
 				}
-				
 				bullpenView.refresh();
 				return;
 			}
@@ -54,7 +48,7 @@ public class SelectPieceController extends MouseAdapter{
 
 		if(me.getClickCount() == 2){
 			System.out.println("Made it...You double clicked");
-			Move m = new PaletteToBullpenMove(currLevel);
+			Move m = new PaletteToBullpenMove(currLevel, currLevel.getSelected());
 			m.execute();
 		}
 

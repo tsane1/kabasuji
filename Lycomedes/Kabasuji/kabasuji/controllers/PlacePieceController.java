@@ -2,9 +2,11 @@ package kabasuji.controllers;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.dnd.MouseDragGestureRecognizer;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 
 import kabasuji.entities.*;
 import kabasuji.moves.BullpenToBoardMove;
@@ -34,10 +36,38 @@ public class PlacePieceController  extends MouseAdapter{
 		
 		int row = y/32;
 		int col = x/32;
-//		if(draggingPiece == null){
-//			System.err.println("Nothing being dragged");
-//			return;
-//		}
+
+		if(draggingPiece == null){
+			System.err.println("Nothing being dragged");
+			PuzzleBoardTile pTile = new PuzzleBoardTile(0, 0);
+			if(lvl.getBoard().getBoardArray()[col][row].isCovered() && (lvl.getBoard().getBoardArray()[col][row].getClass() == pTile.getClass())){
+				
+				Piece onBoard = ((PuzzleBoardTile) lvl.getBoard().getBoardArray()[col][row]).getCoveringPiece();
+				int idx = ((PuzzleBoardTile) lvl.getBoard().getBoardArray()[col][row]).getPieceTileIdx();
+				
+				//does reverse of the board's adjust method for covering area on the board to get the starting tiles position
+				int rowAdjust = onBoard.getTileLocations()[0].getRow();
+				int colAdjust = onBoard.getTileLocations()[0].getColumn();
+				int rowCord = row;
+				int colCord = col;
+				int rowStart = rowCord -(onBoard.getTileLocations()[idx].getRow() - rowAdjust);
+				int colStart = colCord - (onBoard.getTileLocations()[idx].getColumn() - colAdjust);
+				
+				Point pt = new Point(colStart,rowStart);
+				HashMap<Point,Piece> map = lvl.getBoard().getPlacedPieces();
+				//remove that piece from the place pieces map so it doesnt draw
+				map.remove(pt);
+				//return to bullpen
+				lvl.getBullpen().addPieceBackToBullpen(onBoard);
+				//uncovers the area that piece was on
+				lvl.getBoard().uncoverPieceArea(rowStart, colStart, onBoard);
+				//sets this piece to selected
+				lvl.setSelected(onBoard);
+				view.refresh();
+			}
+			
+			return;
+		}
 		
 		if(!(lvl.getBoard().place(row, col, draggingPiece))){
 			System.out.print("piece not able to be placed");
@@ -49,7 +79,7 @@ public class PlacePieceController  extends MouseAdapter{
 		}
 		System.out.println("placed");
 		BullpenToBoardMove move = new BullpenToBoardMove(model, row, col);
-		
+		move.execute();
 		lvl.addMoveToUndo(move);
 		lvl.setActivePiece(null);
 		lvl.setSelected(null);

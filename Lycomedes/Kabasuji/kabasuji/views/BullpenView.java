@@ -117,7 +117,7 @@ public class BullpenView extends JPanel {
 		}
 		g.drawImage(offScreenImage, 0, 0, this);
 	}
-	
+
 	/**
 	 * redraw method to refresh the images on the screen before repainting.
 	 * @return void
@@ -125,11 +125,11 @@ public class BullpenView extends JPanel {
 	public void redraw() {
 		if (level == null) { return; }
 		if (level.getBullpen() == null) { return; }
-		
+
 		int x = pieceBuffer;
 		int y = pieceBuffer;
 		Dimension dim = getPreferredSize();
-		
+
 		if (offScreenImage != null) {
 			offScreenImage.flush();
 		}
@@ -150,24 +150,13 @@ public class BullpenView extends JPanel {
 			if(p == level.getSelected()){
 				drawer.drawPiece(offScreenGraphics, p, x, y, Color.orange.brighter());
 			}
-			else{
-				boolean played = false;
-				if(level.getBullpen().getPlayedPieces().contains(p)){
-					played = true;
-					break;
-				}			
-			if(played) {
-				drawer.drawPiece(offScreenGraphics, p, x, y, Color.black);
-			}
 			else {
 				drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
 			}
-		}
-			//drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
 			x+= containerSize+pieceBuffer;	
 		}
 	}
-	
+
 	/**
 	 * Helper method that calls redraw then repaint to continually refresh the screen.
 	 * 
