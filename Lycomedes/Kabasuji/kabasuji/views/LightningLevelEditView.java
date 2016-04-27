@@ -87,26 +87,26 @@ public class LightningLevelEditView extends Screen {
 		btnSave.setBackground(SystemColor.text);
 		btnSave.setForeground(SystemColor.textHighlight);
 		btnSave.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnSave.setBounds(726, 370, 155, 57);
+		btnSave.setBounds(34, 459, 100, 25);
 		this.add(btnSave);
 		
 		btnDelete.setActionCommand(level.getLevelName());
 		btnDelete.setBackground(SystemColor.text);
 		btnDelete.setForeground(SystemColor.textHighlight);
 		btnDelete.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnDelete.setBounds(726, 437, 155, 57);
+		btnDelete.setBounds(139, 459, 100, 25);
 		this.add(btnDelete);
 		
 		btnUndo.setBackground(SystemColor.text);
 		btnUndo.setForeground(SystemColor.textHighlight);
 		btnUndo.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnUndo.setBounds(726, 110, 155, 57);
+		btnUndo.setBounds(34, 409, 100, 25);
 		this.add(btnUndo);
 		
 		btnRedo.setBackground(SystemColor.text);
 		btnRedo.setForeground(SystemColor.textHighlight);
 		btnRedo.setFont(new Font("Kristen ITC", Font.BOLD, 12));
-		btnRedo.setBounds(726, 177, 155, 57);
+		btnRedo.setBounds(139, 409, 100, 25);
 		this.add(btnRedo);
 		
 		this.add(boardView);
@@ -118,19 +118,19 @@ public class LightningLevelEditView extends Screen {
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
 		
-		btnClockwise.setBounds(53, 472, 40, 40);
+		btnClockwise.setBounds(787, 472, 40, 40);
 		btnClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/clockwise.png")));
 		this.add(btnClockwise);
 		
-		btnCounterClockwise.setBounds(13, 472, 40, 40);
+		btnCounterClockwise.setBounds(747, 472, 40, 40);
 		btnCounterClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/counter_clockwise.png")));
 		this.add(btnCounterClockwise);
 		
-		btnFlipX.setBounds(103, 472, 40, 40);
+		btnFlipX.setBounds(837, 472, 40, 40);
 		btnFlipX.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipX.png")));
 		this.add(btnFlipX);
 		
-		btnFlipY.setBounds(143, 472, 40, 40);
+		btnFlipY.setBounds(877, 472, 40, 40);
 		btnFlipY.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipY.png")));
 		this.add(btnFlipY);
 		
