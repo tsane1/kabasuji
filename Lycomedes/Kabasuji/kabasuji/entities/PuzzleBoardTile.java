@@ -16,6 +16,9 @@ public class PuzzleBoardTile extends Tile{
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
 	
+	private Piece pieceCovering;
+	private int pieceIndex;
+	
 	/**
 	 * Constructor for the  puzzleboardtile object.
 	 * @param int row
@@ -27,6 +30,7 @@ public class PuzzleBoardTile extends Tile{
 		this.row = row;
 		this.col = column;
 		covered = false;
+		pieceCovering = null;
 	}
 	
 	/**
@@ -35,8 +39,21 @@ public class PuzzleBoardTile extends Tile{
 	 */
 	public void cover() {
 		covered = true;
+		
 	}
 	
+	public void coveringPiece(Piece piece, int idx){
+		pieceCovering = piece;
+		pieceIndex = idx;
+	}
+	
+	public Piece getCoveringPiece(){
+		return pieceCovering;
+	}
+	
+	public int getPieceTileIdx(){
+		return pieceIndex;
+	}
 	/**
 	 * Method to change a tile to uncovered state.
 	 * @return void

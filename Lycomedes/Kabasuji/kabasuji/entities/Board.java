@@ -160,6 +160,12 @@ public class Board implements Serializable{
 			int colCord = col + (piece.tiles[i].col - colAdjust);
 			
 			boardArray[colCord][rowCord].cover();
+			
+			//tells a puzzle board the piece covering it so removing it from board is easy
+			PuzzleBoardTile pTile = new PuzzleBoardTile(0, 0);
+			if(boardArray[colCord][rowCord].getClass() == pTile.getClass()){
+				((PuzzleBoardTile) boardArray[colCord][rowCord]).coveringPiece(piece,i);
+			}
 			//if its a lightningboard we should mark it
 			LightningBoardTile lTile = new LightningBoardTile(0, 0);
 			if(boardArray[colCord][rowCord].getClass() == lTile.getClass()){

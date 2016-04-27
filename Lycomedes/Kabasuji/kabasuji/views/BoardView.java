@@ -165,7 +165,7 @@ public class BoardView extends JPanel {
 					Piece played = map.get(pt);
 					if(played != null){
 						drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
-						System.out.println(currLevel.getPieceColor(played).toString());
+						//System.out.println(currLevel.getPieceColor(played).toString());
 				}
 				
 			}
