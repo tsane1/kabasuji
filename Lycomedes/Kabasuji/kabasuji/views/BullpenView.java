@@ -146,7 +146,7 @@ public class BullpenView extends JPanel {
 
 		offScreenGraphics = offScreenImage.getGraphics();
 
-		for (Piece p : level.getBullpen().getOriginalSet()) {
+		for (Piece p : level.getBullpen().getPieces()) {
 			if(p == level.getSelected()){
 				drawer.drawPiece(offScreenGraphics, p, x, y, Color.orange.brighter());
 			}
