@@ -32,7 +32,7 @@ public class PieceDrawer {
 		for(PieceTile pt : p.getTileLocations()){
 			g.setColor(c);
 			g.fillRect(x+(Tile.width*pt.getColumn()), y+(Tile.height*pt.getRow()), Tile.width, Tile.height);
-			g.setColor(Color.white);
+			g.setColor(Color.black);
 			g.drawRect(x+(Tile.width*pt.getColumn()), y+(Tile.height*pt.getRow()), Tile.width, Tile.height);
 		}
 	}
