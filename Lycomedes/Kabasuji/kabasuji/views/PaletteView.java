@@ -1,41 +1,26 @@
 package kabasuji.views;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+
 import javax.swing.JPanel;
-import kabasuji.entities.Bullpen;
+
 import kabasuji.entities.Piece;
+import kabasuji.entities.PieceDrawer;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
-import kabasuji.entities.PieceDrawer;
-import kabasuji.entities.PieceTile;
 
-/**
- * View class for the bullpen which displays the pieces.
- * 
- * @author Derek McMaster
- * @author Tanuj Sane
- */
+public class PaletteView extends JPanel{
 
-public class BullpenView extends JPanel {
-	
 	/**
-	 * serial version id for bullpenview from eclipse.
+	 * Serial ID.
 	 */
-	private static final long serialVersionUID = -4329058249074751161L;
+	private static final long serialVersionUID = 1L;
 	
-	/** drawing object that knows how to draw pieces. */
-	PieceDrawer drawer = new PieceDrawer();
-	
-	Level level;
-	
-/** containersize global, equal to 6xtilesize or 6x32. */	
+	/** containersize global, equal to 6xtilesize or 6x32. */	
 	public static final int containerSize = 192;
 	/** buffer to separate pieces when drawing. */
 	public static final int pieceBuffer = 8;
@@ -45,35 +30,26 @@ public class BullpenView extends JPanel {
 	/** Graphics object to paint the images of the pieces. */
 	Graphics offScreenGraphics = null;
 	
+	Level level;
+	
+	/** drawing object that knows how to draw pieces. */
+	PieceDrawer drawer = new PieceDrawer();
+	
 	/**
-	 * Constructor for the bullpenview. Passed the model and a specific bullpen. 
+	 * Constructor for the paletteview. Passed the model and a specific bullpen. 
 	 * @param Model model
-	 * @param Bullpen bullpen
 	 */
-	public BullpenView(SuperModel m) {
+	public PaletteView(SuperModel m) {
 		super();
 		this.level = m.getActiveLevel();
 		//this.setBackground(Color.white);
-		//this.setBounds(13, 522, 908, 218);
+		//this.setBounds(667, 100, 253, 362);
 	}
 	
-
-	/**
-	 * get played pieces method.
-	 * @return
-	 */
-	public List<Piece> getPlayedPieces(){
-		return level.getBullpen().getPlayedPieces();
-	}
 	
-	public List<Piece> getPiecesInBullpen() {
-		return level.getBullpen().getPieces();
+	public List<Piece> getPiecesInPalette() {
+		return level.getPalette().getPieces();
 	}
-	
-	public List<Piece> getAllPieces() {
-		return level.getBullpen().getOriginalSet();
-	}
-	
 	/**
 	 * Overridden painting function for getting the minimum size.
 	 * Minimum size is one piece tall and wide with a buffer on all sides.
@@ -94,8 +70,8 @@ public class BullpenView extends JPanel {
 	 */
 	@Override
 	public Dimension getPreferredSize() {
-		int height = containerSize + (2*pieceBuffer);
-		int width = pieceBuffer + (level.getBullpen().numPiecesInBullpen()*(pieceBuffer+containerSize));
+		int width = containerSize + (2*pieceBuffer);
+		int height = pieceBuffer + (35*(pieceBuffer+containerSize));
 
 		return new Dimension (width, height);
 	}
@@ -117,19 +93,16 @@ public class BullpenView extends JPanel {
 		}
 		g.drawImage(offScreenImage, 0, 0, this);
 	}
-
+	
 	/**
 	 * redraw method to refresh the images on the screen before repainting.
 	 * @return void
 	 */
 	public void redraw() {
-		if (level == null) { return; }
-		if (level.getBullpen() == null) { return; }
-
 		int x = pieceBuffer;
 		int y = pieceBuffer;
 		Dimension dim = getPreferredSize();
-
+		
 		if (offScreenImage != null) {
 			offScreenImage.flush();
 		}
@@ -146,15 +119,19 @@ public class BullpenView extends JPanel {
 
 		offScreenGraphics = offScreenImage.getGraphics();
 
-		for (Piece p : level.getBullpen().getPieces()) {
+		for (Piece p : level.getPalette().getPieces()) {
 			if(p == level.getSelected()){
 				drawer.drawPiece(offScreenGraphics, p, x, y, Color.orange.brighter());
 			}
 			else {
 				drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
 			}
-			x+= containerSize+pieceBuffer;	
+			y+= containerSize+pieceBuffer;
+
 		}
+		//drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
+		//y+= containerSize+pieceBuffer;	
+
 	}
 
 	/**
@@ -166,4 +143,5 @@ public class BullpenView extends JPanel {
 		redraw();
 		repaint();
 	}
+
 }

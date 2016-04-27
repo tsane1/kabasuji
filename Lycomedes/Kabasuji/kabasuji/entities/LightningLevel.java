@@ -4,39 +4,41 @@ import kabasuji.supers.Level;
 
 /**
  * Subclass of level and entity class for lightning level.
- * @author 
- *
+ * 
+ * @author
+ *@author Chase St. Laurent
  */
 public class LightningLevel extends Level {
-	/**
-	 * serial id.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/** int storing the time left. */
-	private int timeLeft;
-	
+	private int minsLeft, secsLeft;
+
 	/**
 	 * Constructor for the lightning level class.
-	 * @param String name
+	 * 
+	 * @param String
+	 *            name
 	 */
 	public LightningLevel(String name) {
 		super(name, "Lightning");
 	}
 	
-	/**
-	 * Methodto check how many seconds are left for the level.
-	 * @return int seconds left
-	 */
-	public int getTimeLeft() {
-		return this.timeLeft;
+	public int getMinsLeft() {
+		return this.minsLeft;
 	}
 	
-	/**
-	 * Used for setting the initial timer time.
-	 * @param int setTime
-	 */
-	public void setTimeLeft(int setTime) {
-		this.timeLeft = setTime;
+	public void setMinsLeft(int setMins) {
+		this.minsLeft = setMins;
+	}
+	
+	public int getSecsLeft() {
+		return this.secsLeft;
+	}
+	
+	public void setSecsLeft(int setSecs) {
+		this.secsLeft = setSecs;
+	}
+	
+	@Override
+	public void setNumStars() {
+		this.numStars = 3;
 	}
 }

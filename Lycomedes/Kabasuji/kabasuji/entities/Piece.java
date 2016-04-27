@@ -176,4 +176,14 @@ public class Piece implements Serializable {
 		
 		return pieceIndex == index;
 	}
+
+	public boolean containsy(int y, int index) {
+		int ypos = y;
+		System.out.println("Y Coordinate Clicked: " + ypos);
+		
+		int pieceIndex = ypos/(BullpenView.containerSize+BullpenView.pieceBuffer);
+		System.out.println("Piece index from point: " + pieceIndex);
+		
+		return pieceIndex == index;
+	}
 }

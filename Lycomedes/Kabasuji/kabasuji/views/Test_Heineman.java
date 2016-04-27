@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kabasuji.controllers.FlipXController;
+import kabasuji.controllers.PaletteSelectController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RotateRightController;
 import kabasuji.controllers.SelectPieceController;

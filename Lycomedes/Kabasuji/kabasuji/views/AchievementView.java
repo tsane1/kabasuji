@@ -3,7 +3,9 @@ package kabasuji.views;
 /**
  * 
  * @author Chase St. Laurent
+ * @author Tanuj Sane
  * 
+ * @deprecated
  */
 
 import javax.swing.ImageIcon;
@@ -12,13 +14,15 @@ import javax.swing.JPanel;
 
 import kabasuji.entities.Achievement;
 
+@Deprecated
 public class AchievementView extends JPanel {
-	private Achievement achievement;
+	private int numStars;
 
-	public AchievementView(Achievement achievement) {
+	public AchievementView(int numStars) {
 		super();
-		this.achievement = achievement;
+		this.numStars = numStars;
 		setLayout(null);
+		
 
 		// For three stars
 		JLabel threeStar = new JLabel("");

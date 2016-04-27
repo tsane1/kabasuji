@@ -10,7 +10,7 @@ import kabasuji.supers.Level;
 public class Timer {
 	/** Current level */
 	Level level;
-
+	LightningLevel lightningLevel;
 	/**
 	 * generic constructor for timer.
 	 */
@@ -23,12 +23,12 @@ public class Timer {
 	 * @return int
 	 */
 	public int timerCount(){
-		int count = 1;
+		int count = 60*lightningLevel.getMinsLeft() + lightningLevel.getSecsLeft();
 		
 		while(isLightning(level) && count > 0){
-			//need this functon for getting time
-			//count = getTime();
+			//need this function for getting time
 			count--;
+			break;
 		} 
 		return count;
 	}

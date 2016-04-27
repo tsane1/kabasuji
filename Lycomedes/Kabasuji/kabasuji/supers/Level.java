@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.Stack;
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
+import kabasuji.entities.Palette;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
 import kabasuji.entities.Progress;
@@ -55,22 +56,26 @@ public abstract class Level implements Serializable {
 	 */
 	boolean locked;
 	/** The board associated with the current level. */
-	Board theBoard;
+	protected Board theBoard;
 	/** The bullpen associated with the current level. */
+
 	Bullpen theBullpen;
+	/** Palette for building */
+	Palette thePalette;
+
 	/**
 	 * The number of "stars" or achievements the player has accrued for the
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
 	 */
-	int numStars;
+	protected int numStars;
 
 	/**
 	 * Arraylist of pieces previously in the bullpen and now played on the
 	 * board.
 	 */
-	ArrayList<Piece> piecesOnBoard = new ArrayList<Piece>();
+	protected ArrayList<Piece> piecesOnBoard = new ArrayList<Piece>();
 	/** Arraylist of pieces left in the bullpen. */
-	ArrayList<Piece> piecesInBullpen = new ArrayList<Piece>();
+	protected ArrayList<Piece> piecesInBullpen = new ArrayList<Piece>();
 
 	/** Keeps track of the current selected piece. */
 	Piece selectedPiece = null;
@@ -93,10 +98,17 @@ public abstract class Level implements Serializable {
 		this.type = type;
 		locked = false;
 		this.theBoard = new Board();
+		for(int i = 0; i<12; i++){
+			for(int j = 0; j<12; j++){
+				theBoard.createBoardTile(i, j, type);
+			}
+		}
 		this.theBullpen = new Bullpen();
+		this.thePalette = new Palette();
 		this.numStars = 0;
 		setupPieces();
-		theBullpen.addPieces(allPieces);
+		//theBullpen.addPieces(allPieces);
+		thePalette.addPieces(allPieces);
 		for (int i = 0; i < 36; i++) {
 			pieceGrid.add(new PieceTile(i / 6, i % 6));
 		}
@@ -263,15 +275,6 @@ public abstract class Level implements Serializable {
 	/**
 	 * Achievement
 	 */
-	public void updateAchievement(){
-		
-		Random r = new Random();
-		for (Piece p : allPieces) {
-			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
-			colorMap.put(p, random);
-		}
-	}
-	
 	
 	public void updateAchievement(Progress progress) {
 		int achievedStars = 0;
@@ -295,7 +298,7 @@ public abstract class Level implements Serializable {
 		//If numStars previously is less than that achieved 
 		//in this game, update them to equal the new highest. 
 		if(numStars<achievedStars){
-			numStars = achievedStars;
+			numStars = achievedStars; 
 		}
 	}
 
@@ -345,6 +348,10 @@ public abstract class Level implements Serializable {
 	 */
 	public Bullpen getBullpen() {
 		return this.theBullpen;
+	}
+	
+	public Palette getPalette(){
+		return this.thePalette;
 	}
 
 	/**
@@ -531,5 +538,11 @@ public abstract class Level implements Serializable {
 		Random r = new Random();
 		int idx = r.nextInt(35);
 		return this.allPieces.get(idx);
+	}
+	
+	public abstract void setNumStars();
+	
+	public int getNumStars() {
+		return this.numStars;
 	}
 }

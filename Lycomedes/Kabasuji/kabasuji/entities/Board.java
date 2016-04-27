@@ -59,12 +59,14 @@ public class Board implements Serializable{
 	 * @param int type
 	 */
 	//creates a tile that can be played on at the given grid location in the 12x12
-	public void createBoardTile(int row, int col, String type){
-		if(type.equals("puzzle")){
+	public void createBoardTile(int row, int col, String type) {
+		if(type.equals("Puzzle")){
 			boardArray[row][col] = new PuzzleBoardTile(row, col);
-		}else if(type.equals("lightning")){
+		}
+		else if(type.equals("Lightning")) {
 			boardArray[row][col] = new LightningBoardTile(row, col);
-		}else{
+		}
+		else {
 			boardArray[row][col] = new ReleaseBoardTile(row, col);
 		}
 	}
@@ -160,6 +162,12 @@ public class Board implements Serializable{
 			int colCord = col + (piece.tiles[i].col - colAdjust);
 			
 			boardArray[colCord][rowCord].cover();
+			
+			//tells a puzzle board the piece covering it so removing it from board is easy
+			PuzzleBoardTile pTile = new PuzzleBoardTile(0, 0);
+			if(boardArray[colCord][rowCord].getClass() == pTile.getClass()){
+				((PuzzleBoardTile) boardArray[colCord][rowCord]).coveringPiece(piece,i);
+			}
 			//if its a lightningboard we should mark it
 			LightningBoardTile lTile = new LightningBoardTile(0, 0);
 			if(boardArray[colCord][rowCord].getClass() == lTile.getClass()){

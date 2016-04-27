@@ -1,9 +1,21 @@
 package kabasuji.views;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.SystemColor;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
+import kabasuji.controllers.FlipXController;
+import kabasuji.controllers.FlipYController;
+import kabasuji.controllers.PlacePieceController;
+import kabasuji.controllers.RotateLeftController;
+import kabasuji.controllers.RotateRightController;
 import kabasuji.controllers.SelectPieceController;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.PuzzleLevel;
@@ -39,7 +51,15 @@ public class LevelPlayView extends Screen {
 	private ProgressView progress;
 	private AchievementView achievement;
 	private JScrollPane pieceScroll = new JScrollPane();
-	private JPanel boardPanel;
+	
+	private JLabel levelParamTitle = new JLabel();
+	private JLabel levelParamDisplay = new JLabel();
+	private JLabel starsDisplay = new JLabel();
+	
+	private JButton btnClockwise = new JButton();
+	private JButton btnCounterClockwise = new JButton();
+	private JButton btnFlipX = new JButton();
+	private JButton btnFlipY = new JButton();
 
 
 	public LevelPlayView(String levelName, SuperModel m) {
@@ -74,11 +94,9 @@ public class LevelPlayView extends Screen {
 	@Override
 	public void populate() {
 	
-
 		this.add(boardView);
 		boardView.validate();
 		boardView.repaint();
-
 
 		pieceScroll = new JScrollPane();
 		pieceScroll.setBounds(13, 512, 904, 228);
@@ -87,29 +105,84 @@ public class LevelPlayView extends Screen {
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
 		
-		switch(level.getLevelType()) { // add level-specific elements
-		case "Puzzle":
-			
-			break;
-		case "Lightning":
-			break;
-		case "Release":
-			break;
-		default:
-			System.err.println("This level type is not yet supported.");
-			break;				
-		}
+		btnClockwise.setBounds(53, 472, 40, 40);
+		btnClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/clockwise.png")));
+		this.add(btnClockwise);
+		
+		btnCounterClockwise.setBounds(13, 472, 40, 40);
+		btnCounterClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/counter_clockwise.png")));
+		this.add(btnCounterClockwise);
+		
+		btnFlipX.setBounds(103, 472, 40, 40);
+		btnFlipX.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipX.png")));
+		this.add(btnFlipX);
+		
+		btnFlipY.setBounds(143, 472, 40, 40);
+		btnFlipY.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipY.png")));
+		this.add(btnFlipY);
+		
+		levelParamTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		levelParamTitle.setForeground(SystemColor.textHighlight);
+		levelParamTitle.setFont(new Font("Kristen ITC", Font.BOLD, 16));
+		levelParamTitle.setBounds(0, 100, 273, 25);
+		
+		levelParamDisplay.setHorizontalAlignment(SwingConstants.CENTER);
+		levelParamDisplay.setForeground(SystemColor.textHighlight);
+		levelParamDisplay.setFont(new Font("Kristen ITC", Font.BOLD, 72));
+		levelParamDisplay.setBounds(0, 125, 273, 200);
+		
+		starsDisplay.setBounds(697, 100, 192, 64);
+		
+		refresh();
 	}
 	
 	@Override
 	public void installControllers() {
-		SelectPieceController psc = new SelectPieceController(level, bullpenView);
-		bullpenView.addMouseListener(psc);
+		bullpenView.addMouseListener(new SelectPieceController(level, bullpenView));
+		
+		PlacePieceController ppc = new PlacePieceController(model, boardView);
+		boardView.addMouseListener(ppc);
+		boardView.addMouseMotionListener(ppc);
+		
+		btnClockwise.addActionListener(new RotateRightController(this.app, this.model.getActiveLevel()));
+		btnCounterClockwise.addActionListener(new RotateLeftController(this.app, this.model.getActiveLevel()));
+		btnFlipX.addActionListener(new FlipXController(this.app, this.model.getActiveLevel()));
+		btnFlipY.addActionListener(new FlipYController(this.app, this.model.getActiveLevel()));
 	}	
 
 	@Override
 	public void refresh() {
+		this.remove(levelParamDisplay);
+		this.remove(starsDisplay);
 		
+		switch(level.getLevelType()) { // add level-specific elements
+		case "Puzzle":
+			levelParamTitle.setText("Moves Left:");
+			levelParamDisplay.setText("" + pl.getMovesLeft());
+			if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
+			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + pl.getNumStars() + ".png")));
+			break;
+		case "Lightning":
+			levelParamTitle.setText("Time Left:");
+			levelParamDisplay.setText("" + ll.getMinsLeft() + ":" + String.format("%02d", ll.getSecsLeft()));
+			if(ll.getSecsLeft() < 10 && ll.getMinsLeft() == 0) levelParamDisplay.setForeground(Color.RED);
+			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + ll.getNumStars() + ".png")));
+			break;
+		case "Release":
+			levelParamTitle.setText("Number Left:");
+			rl.setNumStars();
+			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + rl.getNumStars() + ".png")));
+			break;
+		default:
+			System.err.println("This level type is not yet supported."); 
+			return;			
+		}
+		this.add(levelParamTitle);
+		this.add(starsDisplay);
+		this.add(levelParamDisplay);
+		
+		this.validate();
+		this.repaint();
 	}
 	
 	@Override
