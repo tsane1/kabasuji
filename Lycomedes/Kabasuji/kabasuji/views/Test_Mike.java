@@ -9,12 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kabasuji.controllers.PaletteSelectController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.SelectPieceController;
 import kabasuji.controllers.TileSelectController;
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.LightningLevel;
+import kabasuji.entities.Palette;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.supers.Level;
@@ -59,9 +61,10 @@ public class Test_Mike extends JFrame {
 		Level level = new PuzzleLevel("no name");
 		Bullpen bp = level.getBullpen();
 		Board board = level.getBoard();
+		Palette pal = level.getPalette();
 		sm.setActiveLevel(level);
 		
-		bp.addPieces(level.getAllPieces());
+		//bp.addPieces(level.getAllPieces());
 		//creates a square of size x size
 		int size = 12;
 		for(int i = 0; i<size; i++){
@@ -72,7 +75,7 @@ public class Test_Mike extends JFrame {
 		
 		BoardView bView = new BoardView(sm);
 		BullpenView bpView = new BullpenView(sm);
-		
+		PaletteView pview = new PaletteView(sm);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 1000);
@@ -83,32 +86,40 @@ public class Test_Mike extends JFrame {
 		JPanel boardPanel = new JPanel();
 		boardPanel.setBounds(100, 100, 384, 384);
 		boardPanel.add(bView);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setViewportView(bpView);
+		
+		JScrollPane palettePane = new JScrollPane();
+		palettePane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		palettePane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		palettePane.setViewportView(pview);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE)
-					.addGap(92))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(boardPanel, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 938, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(palettePane, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE)
+							.addGap(73)
+							.addComponent(boardPanel, GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					//.addContainerGap()
-					.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(50, 400))
-				.addGroup(gl_contentPane.createSequentialGroup()
-						.addContainerGap(418, Short.MAX_VALUE)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap())
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(65)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 552, GroupLayout.PREFERRED_SIZE)
+						.addComponent(palettePane, GroupLayout.PREFERRED_SIZE, 586, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 		
@@ -119,8 +130,11 @@ public class Test_Mike extends JFrame {
 		bView.addMouseListener(placeCrtl);
 		bView.addMouseMotionListener(placeCrtl);
 		
-		TileSelectController tsc = new TileSelectController(sm, bView);
-		bView.addMouseListener(tsc);
-		bView.addMouseMotionListener(tsc);
+//		TileSelectController tsc = new TileSelectController(sm, bView);
+//		bView.addMouseListener(tsc);
+//		bView.addMouseMotionListener(tsc);
+		
+		PaletteSelectController pc = new PaletteSelectController(sm.getActiveLevel(), pview);
+		pview.addMouseListener(pc);
 	}
 }

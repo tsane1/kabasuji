@@ -32,6 +32,7 @@ public class PaletteToBullpenMove extends Move {
 		this.id = currPiece.getPieceID();
 		newPiece = new Piece(id, arr);
 		level.getBullpen().addPiece(newPiece);
+		level.setSelected(null);
 		return true;
 	}
 
