@@ -180,7 +180,7 @@ public class BoardView extends JPanel {
 					Point pt = new Point(i,j);
 					Piece played = map.get(pt);
 					if(played != null){
-						drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
+						drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played.getPieceID()));
 						//System.out.println(currLevel.getPieceColor(played).toString());
 					}
 
@@ -193,8 +193,8 @@ public class BoardView extends JPanel {
 						Point pt = new Point(i,j);
 						Piece played = map.get(pt);
 						if(played != null){
-							drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
-							System.out.println(currLevel.getPieceColor(played).toString());
+							drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played.getPieceID()));
+							System.out.println(currLevel.getPieceColor(played.getPieceID()).toString());
 						}
 					}
 				}

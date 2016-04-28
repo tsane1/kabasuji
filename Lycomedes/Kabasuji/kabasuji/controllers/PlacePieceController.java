@@ -108,7 +108,7 @@ public class PlacePieceController  extends MouseAdapter{
 		lvl.setActivePiece(selected);
 		draggingPiece = selected;
 		//sets activePiece point and color
-		view.drawActivePiece(x, y, lvl.getPieceColor(selected));
+		view.drawActivePiece(x, y, lvl.getPieceColor(selected.getPieceID()));
 		view.repaint();
 		//Polygon p = computeActivePolygon(me.getPoint(), model.getSelected());
 		//PlacedPiece pp = new PlacedPiece(model.getSelected(), p);
@@ -129,7 +129,7 @@ public class PlacePieceController  extends MouseAdapter{
 		int diffX = me.getPoint().x;
 		int diffY = me.getPoint().y;
 		
-		view.drawActivePiece(diffX, diffY, lvl.getPieceColor(draggingPiece));//fix color stuff later
+		view.drawActivePiece(diffX, diffY, lvl.getPieceColor(draggingPiece.getPieceID()));//fix color stuff later
 		view.refresh();
 		
 	}
