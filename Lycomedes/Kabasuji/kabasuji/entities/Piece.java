@@ -33,18 +33,13 @@ public class Piece implements Serializable {
 	public Piece(int idNum, PieceTile[] arr){
 		this.pieceIDnum = idNum;
 		this.pieceID = "Piece " + idNum;;
-		try {
-			if(arr.length == 6) {
-				this.tiles = new PieceTile[6];
-				for (int i = 0; i < 6; i++) {
-					tiles[i] = new PieceTile(arr[i]);
-				}
+		if(arr.length == 6) {
+			this.tiles = new PieceTile[6];
+			for (int i = 0; i < 6; i++) {
+				tiles[i] = new PieceTile(arr[i]);
 			}
 		}
-		catch(Exception e) {
-			System.err.println("PIECE CONSTRUCTOR: PIECE NEEDS SIX TILES");
-			e.printStackTrace();
-		}
+	
 	}
 
 	/**
