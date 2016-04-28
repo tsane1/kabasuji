@@ -172,7 +172,7 @@ public class BoardView extends JPanel {
 						}else{
 							offScreenGraphics.setColor(Color.GREEN);
 						}
-						
+
 						offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*tile.width + (tile.width / 2)), (j*tile.height + (tile.height / 2)));
 					}else{
 						offScreenGraphics.setColor(Color.LIGHT_GRAY); //regular board tiles are just light gray still need to figure out the release tile number stuff
@@ -196,15 +196,15 @@ public class BoardView extends JPanel {
 			}
 		}
 	}
-			public void drawActivePiece(int x, int y, Color c){
-				setActiveColor = c;
-				setActiveX = x;
-				setActiveY = y;
-			}
-			public void refresh(){
-				redraw();
-				repaint();
-			}
-			//returns the graphics for this view???
+	public void drawActivePiece(int x, int y, Color c){
+		setActiveColor = c;
+		setActiveX = x;
+		setActiveY = y;
+	}
+	public void refresh(){
+		redraw();
+		repaint();
+	}
+	//returns the graphics for this view???
 
-		}
+}
