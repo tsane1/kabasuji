@@ -25,11 +25,13 @@ BUILDER
 17. Spinner seconds to be 30, minutes to be 0
 18. Save button, back button, back button.
 
-PLAYER
+PUZZLE - RUN BUILDER INSTRUCTIONS FIRST
 1. Run LaunchPlayer.java in kabasuji.executables. Splash then app.
-2. There will be 15 default levels, 3 open (one of each) and the rest locked. 
-3. Use the "next" button bottom right to see more levels, after "level 15" there will be the created levels.
-4. Click on your created puzzle level to play it
-5. You can move pieces from the bullpen to the board, and verify that levels load as saved. Other than that there is sadly 
-   little to no functionality.
-6 - 
+2. There will be 15 default levels, 3 open (one of each) and the rest locked. Use the "next" button bottom right to see 
+   more levels, after "level 15" there will be the created levels. Select the created puzzle level for play.
+3. Moves will be 8, as in step 12 of builder instructions.
+4. Select 6x1 from bullpen with click on it (turns yellow), move mouse onto board grid, click to place.
+5. see 5 pieces in bullpen, moves left will update
+6 - 10 rinse and repeat
+11. 
+ 

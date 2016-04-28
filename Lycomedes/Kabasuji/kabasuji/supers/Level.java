@@ -59,7 +59,7 @@ public abstract class Level implements Serializable {
 	protected Board theBoard;
 	/** The bullpen associated with the current level. */
 
-	Bullpen theBullpen;
+	protected Bullpen theBullpen;
 	/** Palette for building */
 	Palette thePalette;
 

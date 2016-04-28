@@ -42,7 +42,7 @@ public class PuzzleLevel extends Level {
 
 	@Override
 	public void setNumStars() {
-		this.numStars = 3 - this.piecesInBullpen.size();
+		this.numStars = 3 - this.theBullpen.pieces.size();
 		if(this.numStars < 1) this.numStars = 0;
 	}
 }

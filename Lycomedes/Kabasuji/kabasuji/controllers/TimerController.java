@@ -18,6 +18,7 @@ public class TimerController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(!model.getActiveLevel().getLevelType().equals("Lightning")) return;
 		if(((LightningLevel)model.getActiveLevel()).getSecsLeft() + ((LightningLevel)model.getActiveLevel()).getMinsLeft() == 0) return;		
 		int prev = ((LightningLevel)model.getActiveLevel()).getSecsLeft();
 		((LightningLevel)model.getActiveLevel()).setSecsLeft(prev - 1);
