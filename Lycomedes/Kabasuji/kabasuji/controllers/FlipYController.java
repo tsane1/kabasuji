@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import kabasuji.moves.FlipYMove;
+import kabasuji.moves.RotateRightMove;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
@@ -25,15 +26,19 @@ public class FlipYController implements ActionListener {
 	}
 	
 	public boolean doFlipY(){
+		boolean status = false;
 		Move m = new FlipYMove(level);
-		
 		if(m.execute()){
-			if(app.getCurrScreen().getName() != "LevelPlay")
+			if(!app.getCurrScreen().getName().equals("LevelPlay")) {
 				level.trackMove(m);
-			app.getCurrScreen().getBullpenView().refresh();
-			return true;
+			}
+			
+			status = true;
 		}
-		return false;
+
+		app.getCurrScreen().getBullpenView().refresh();
+		app.getCurrScreen().repaint();
+		return status;
 	}
 
 	@Override

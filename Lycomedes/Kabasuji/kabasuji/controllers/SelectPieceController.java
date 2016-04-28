@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import kabasuji.entities.Piece;
 import kabasuji.moves.PaletteToBullpenMove;
+import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
@@ -15,10 +16,21 @@ public class SelectPieceController extends MouseAdapter{
 	
 	Level currLevel;
 	BullpenView bullpenView;
+	Application app;
 	
-	public SelectPieceController(Level l, BullpenView view){
+	public SelectPieceController(Application app, SuperModel model){
+		this.currLevel = model.getActiveLevel();
+		this.bullpenView = app.getCurrScreen().getBullpenView();
+		this.app = app;
+	}
+	/**
+	 * Testing constructor
+	 * @param l
+	 * @param bp
+	 */
+	public SelectPieceController(Level l, BullpenView bp) {
 		this.currLevel = l;
-		this.bullpenView = view;
+		this.bullpenView = bp;
 	}
 	
 	public void mousePressed(MouseEvent me) {
@@ -36,34 +48,12 @@ public class SelectPieceController extends MouseAdapter{
 					System.out.println("Selected Piece: " + temp.getPieceName());
 				}
 				bullpenView.refresh();
+				if(app.getCurrScreen().getName().contains("Edit")) app.getCurrScreen().getPaletteView().refresh();
 				return;
 			}
 			idx++;
 		}
-	}
-	
-	@Override
-	public void mouseClicked(MouseEvent me){
-		if(currLevel.getSelected() == null) { return; }
-
-		if(me.getClickCount() == 2){
-			System.out.println("Made it...You double clicked");
-			Move m = new PaletteToBullpenMove(currLevel, currLevel.getSelected());
-			m.execute();
-		}
-
-		bullpenView.refresh();
-		if(currLevel.getBullpen().isEmpty()){
-			System.out.println("Bullpen empty");
-		}
-		else {
-			for(Piece p: currLevel.getBullpen().getPieces()){
-				System.out.println("Size of Bullpen:" + currLevel.getBullpen().numPiecesInBullpen());
-			}
-		}
-	}
-	
-	
+	}	
 	
 }
 

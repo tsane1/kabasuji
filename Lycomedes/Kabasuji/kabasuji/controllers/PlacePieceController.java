@@ -16,6 +16,7 @@ import kabasuji.views.BoardView;
 
 public class PlacePieceController  extends MouseAdapter{
 	SuperModel model;
+	Application app;
 	BoardView view;
 	Level lvl;
 	PieceDrawer drawer = new PieceDrawer();
@@ -23,10 +24,11 @@ public class PlacePieceController  extends MouseAdapter{
 	int xDragging;
 	int yDragging;
 	
-	public PlacePieceController(SuperModel model, BoardView view) {
+	public PlacePieceController(Application app, SuperModel model) {
 		this.model = model;
-		this.view = view;
-		lvl = model.getActiveLevel();
+		this.app = app;
+		this.view = app.getCurrScreen().getBoardView();
+		this.lvl = model.getActiveLevel();
 	}
 	
 	@Override
@@ -44,16 +46,18 @@ public class PlacePieceController  extends MouseAdapter{
 			if(lvl.getBoard().getBoardArray()[col][row].isCovered() && (lvl.getBoard().getBoardArray()[col][row].getClass() == pTile.getClass())){
 				Piece onBoard = ((PuzzleBoardTile) lvl.getBoard().getBoardArray()[col][row]).getCoveringPiece();
 				int idx = ((PuzzleBoardTile) lvl.getBoard().getBoardArray()[col][row]).getPieceTileIdx();
-				
+				System.out.println("Gotcha Bitch");
 				//does reverse of the board's adjust method for covering area on the board to get the starting tiles position
-				int rowAdjust = onBoard.getTileLocations()[0].getRow();
-				int colAdjust = onBoard.getTileLocations()[0].getColumn();
-				int rowCord = row;
-				int colCord = col;
-				int rowStart = rowCord -(onBoard.getTileLocations()[idx].getRow() - rowAdjust);
-				int colStart = colCord - (onBoard.getTileLocations()[idx].getColumn() - colAdjust);
+//				int rowAdjust = onBoard.getTileLocations()[0].getRow();
+//				int colAdjust = onBoard.getTileLocations()[0].getColumn();
+//				int rowCord = row;
+//				int colCord = col;
+//				int rowStart = rowCord -(onBoard.getTileLocations()[idx].getRow() - rowAdjust);
+//				int colStart = colCord - (onBoard.getTileLocations()[idx].getColumn() - colAdjust);
 				
-				Point pt = new Point(colStart,rowStart);
+				int rowStart = onBoard.getPiecePosition().y;
+				int colStart = onBoard.getPiecePosition().x;
+				Point pt = onBoard.getPiecePosition();
 				HashMap<Point,Piece> map = lvl.getBoard().getPlacedPieces();
 				//remove that piece from the place pieces map so it doesnt draw
 				//BUG IS SOMETHING WITH THE 
@@ -66,6 +70,7 @@ public class PlacePieceController  extends MouseAdapter{
 				//sets this piece to selected
 				lvl.setSelected(onBoard);
 				view.refresh();
+				app.getCurrScreen().getBullpenView().refresh();
 			}
 			
 			return;
@@ -78,12 +83,13 @@ public class PlacePieceController  extends MouseAdapter{
 //				view.refresh();
 //				return;
 //			}
-			lvl.setActivePiece(null);
-			lvl.setSelected(null);
-			draggingPiece = null;
-			
+//			lvl.setActivePiece(null);
+//			lvl.setSelected(null);
+//			draggingPiece = null;
+			//does not throw piece away incase player accidentally clicks on a covered square
 			
 			view.refresh();
+			app.getCurrScreen().getBullpenView().refresh();
 			return;
 		}
 		System.out.println("placed");
@@ -95,12 +101,20 @@ public class PlacePieceController  extends MouseAdapter{
 		draggingPiece = null;
 		
 		view.refresh();
+		app.getCurrScreen().getBullpenView().refresh();
+		if(app.getCurrScreen().getName().equals("LevelPlay") && model.getActiveLevel().getLevelType().equals("Puzzle")) {
+			int prev = ((PuzzleLevel)model.getActiveLevel()).getMovesLeft();
+			((PuzzleLevel)model.getActiveLevel()).setMovesLeft(prev - 1);
+			app.getCurrScreen().refresh();
+		}
 	}
 	@Override
 	public void mouseMoved(MouseEvent me){
 		//need getSelected()
 		Piece selected = lvl.getSelected();
-//		if (selected == null) { System.err.println("null selected"); return; }
+		if (selected == null) { 
+			//System.err.println("null selected"); 
+			return; }
 
 		int x = me.getPoint().x;
 		int y = me.getPoint().y;
@@ -110,7 +124,7 @@ public class PlacePieceController  extends MouseAdapter{
 		lvl.setActivePiece(selected);
 		draggingPiece = selected;
 		//sets activePiece point and color
-		view.drawActivePiece(x, y, lvl.getPieceColor(selected));
+		view.drawActivePiece(x, y, lvl.getPieceColor(selected.getPieceID()));
 		view.repaint();
 		//Polygon p = computeActivePolygon(me.getPoint(), model.getSelected());
 		//PlacedPiece pp = new PlacedPiece(model.getSelected(), p);
@@ -118,20 +132,26 @@ public class PlacePieceController  extends MouseAdapter{
 		//puzzleView.repaint();
 	}
 	@Override
-	public void mouseEntered(MouseEvent me){
+	public void mouseExited(MouseEvent me){
+		lvl.setActivePiece(null);
+		lvl.setSelected(null);
+		draggingPiece = null;
 		
+		
+		view.refresh();
+		app.getCurrScreen().getBullpenView().refresh();
 	}
 	@Override
 	public void mouseDragged(MouseEvent me){
 		//draggingPiece = lvl.getActivePiece();
-//		if(draggingPiece == null){
-//			System.out.println("Not Dragging Anything");
-//			return;
-//		}
+		if(draggingPiece == null){
+			System.out.println("Not Dragging Anything");
+			return;
+		}
 		int diffX = me.getPoint().x;
 		int diffY = me.getPoint().y;
 		
-		view.drawActivePiece(diffX, diffY, lvl.getPieceColor(draggingPiece));//fix color stuff later
+		view.drawActivePiece(diffX, diffY, lvl.getPieceColor(draggingPiece.getPieceID()));//fix color stuff later
 		view.refresh();
 		
 	}

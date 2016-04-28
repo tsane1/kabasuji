@@ -19,11 +19,8 @@ import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Palette;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PuzzleLevel;
-
 import kabasuji.entities.ReleaseBoardTile;
-
 import kabasuji.supers.Application;
-
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 
@@ -132,9 +129,9 @@ public class Test_Mike extends JFrame {
 		SelectPieceController psc = new SelectPieceController(sm.getActiveLevel(), bpView);
 		bpView.addMouseListener(psc);
 		
-		PlacePieceController placeCrtl = new PlacePieceController(sm, bView);
-		bView.addMouseListener(placeCrtl);
-		bView.addMouseMotionListener(placeCrtl);
+//		PlacePieceController placeCrtl = new PlacePieceController(sm, bView);
+//		bView.addMouseListener(placeCrtl);
+//		bView.addMouseMotionListener(placeCrtl);
 		
 //		TileSelectController tsc = new TileSelectController(sm, bView);
 //		bView.addMouseListener(tsc);

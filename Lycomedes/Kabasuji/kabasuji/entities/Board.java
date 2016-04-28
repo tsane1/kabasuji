@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 /** 
  * Main board object that represents a board of maximum size 12x12 and all the tiles and pieces it contains.
  * @author Michael
@@ -97,13 +98,14 @@ public class Board implements Serializable{
 		
 		if(!pieceCovering){
 			//need to adjust for hashmap to know where point is for drawing
-			int rowAdjust = piece.tiles[0].row;
-			int colAdjust = piece.tiles[0].col;
+//			int rowAdjust = piece.tiles[0].row;
+//			int colAdjust = piece.tiles[0].col;
 			
-			int rowCord = row - rowAdjust;
-			int colCord = col - colAdjust;
+//			int rowCord = Math.abs(row - rowAdjust);
+//			int colCord = Math.abs(col - colAdjust);
 			//add piece to list of placed pieces
-			Point pt = new Point(colCord,rowCord);
+			piece.setPiecePosition(col, row);
+			Point pt = piece.getPiecePosition();
 			placedPieces.put(pt, piece);
 			//covers the place 
 			coverPieceArea(row, col, piece);

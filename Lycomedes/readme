@@ -1,0 +1,59 @@
+KABASUJI - Lycomedes (Tanuj Sane, Derek McMaster, Ian Jacoway, Chase St. Laurent, Michael Pickett)
+
+
+G.Implementation 2:
+
+====================================================================================================
+BUILDER
+1. Run LaunchLevelBuilder.java in kabasuji.executables. Splash will pop up and then app will show.
+2. Click on "New Level" button and select "Puzzle".
+3. == THIS STEP IS CURRENTLY UNIMPLEMENTED ==
+4. User JSpinner to set moves to 10
+5. Drag 6x1 from palette on right to bullpen on bottom. Select in palette (will turn yellow), double-click on bullpen to place piece there.
+   Then reselect from palette and double-click in bullpen to place. Repeat as many times as necessary. 
+6. Click on piece in bullpen move mouse to board, hovering drawing will appear.
+7. Place on board by clicking where you want to put it.
+8. Click "Save Button" to save. Set name if desired, else saves as "Level 16"
+9. Press back in upper left to exit to main builder screen, level buttons should appear. Press back again to exit app.
+10. Run LaunchLevelBuilder.java again, it's still there.
+11. Click on level button to see pieces as is and moves still 10.
+12. JSpinner moves to 8
+13. Save Button
+14. Back button.
+15. New level button, select lightning as type.
+16. Select in palette (turns yellow), double-click in bullpen to place (MAKE SURE YOU CLICK ON THE SPOT TO PLACE IT), repeat 6x
+	THIS FUNCTIONALITY MIMICS PUZZLE, WE ARE WORKING ON RANDOM GENERATION
+17. Spinner seconds to be 30, minutes to be 0
+18. Save button, back button, back button.
+
+======================================================================================================
+
+PUZZLE - RUN BUILDER INSTRUCTIONS FIRST
+1. Run LaunchPlayer.java in kabasuji.executables. Splash then app.
+2. There will be 15 default levels, 3 open (one of each) and the rest locked. Use the "next" button bottom right to see 
+   more levels, after "level 15" there will be the created levels. Select the created puzzle level for play.
+3. Moves will be 8, as in step 12 of builder instructions.
+4. Select 6x1 from bullpen with click on it (turns yellow), move mouse onto board grid, click to place.
+5. see 5 pieces in bullpen, moves left will update
+6 - 10 rinse and repeat
+11. 1 star will show up
+12. do that
+13. two stars should show
+14. do it
+15. three stars!! yay!
+
+=======================================================================================================
+
+LIGHTNING - RUN BUILDER INSTRUCTIONS FIRST
+1. Levels do not operate dependently yet, so this will not work
+2. Select the built lightning level ("Level 17" if you didn't rename it)
+3. Timer is set from builder
+4. Move piece as before
+5. Squares mark barring a small error, lightning bullpen does not work as intended just yet, it works like a puzzle bullpen
+6. timer is running from the second you open the level, stops at 0 (DOES NOT FIRE END OF LEVEL SIGNAL, STILL WORKING ON THAT)
+7. top left, back button
+8. Winning does not work yet because boards do not exist yet
+9. Scoring not yet functional
+10. back, top left
+11. level complete not yet tracked
+ 

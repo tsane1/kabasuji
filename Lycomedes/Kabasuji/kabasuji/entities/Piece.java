@@ -1,5 +1,6 @@
 package kabasuji.entities;
 
+import java.awt.Point;
 import java.io.Serializable;
 
 import kabasuji.views.BullpenView;
@@ -23,6 +24,7 @@ public class Piece implements Serializable {
 	/** Array of 6 locations for the piece tiles.*/
 	PieceTile[] tiles;
 
+	private Point piecePosition;
 	/**
 	 * Constructor for a piece. Pass a number and 6 tile locations.
 	 * Name given to the piece with its ID num.  If given less than 6 tiles
@@ -95,39 +97,34 @@ public class Piece implements Serializable {
 	 * method for rotating a piece 90 degrees clockwise.
 	 * @return void
 	 */
-	public void rotateLeft(){
-//		int i = 0;
-//		while (i < 6){
-//			this.tiles[i].setRow(5-this.tiles[i].getColumn());
-//			this.tiles[i].setColumn(5-this.tiles[i].getRow());
-//			i++;
-//		}
+	public void rotateRight(){
 		for(PieceTile pt : this.getTileLocations()){
-			pt.setRow(5-pt.getColumn());
-			pt.setColumn(5-pt.getRow());
+			int row = pt.getRow();
+			int col = pt.getColumn();
+			pt.setRow(col);
+			pt.setColumn(5-row);
 		}
-		
 	}	
 
 	/**
 	 * method for rotating a piece 90 degrees counter-clockwise.
 	 * @return void
 	 */
-	public void rotateRight(){
-//		int i = 0;
-//		while (i < 6){
-//			this.tiles[i].setRow(5-this.tiles[i].getRow());
-//			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
-//			i++;
-//		}
-		PieceTile temp;
+	public void rotateLeft() {
 		for(PieceTile pt : this.getTileLocations()){
-			//temp = pt;
-			pt.setColumn(5-pt.getRow());
-			pt.setRow(5-pt.getColumn());
+			int row = pt.getRow();
+			int col = pt.getColumn();
+			pt.setRow(5-col);
+			pt.setColumn(row);
 		}
 	}
 
+	public void setPiecePosition(int col, int row){
+		piecePosition = new Point(col,row);
+	}
+	public Point getPiecePosition(){
+		return piecePosition;
+	}
 	/**
 	 * method for returning the locations of the tiles in the piece.
 	 * @return piecetile[] of 6 locations

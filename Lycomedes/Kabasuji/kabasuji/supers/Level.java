@@ -37,7 +37,7 @@ public abstract class Level implements Serializable {
 	/** Grid of all possible piecetiles that make up pieces. */
 	List<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	/** A map of piece colors used for drawing the pieces. */
-	Map<Piece, Color> colorMap = new HashMap<Piece, Color>(35);
+	Map<Integer, Color> colorMap = new HashMap<Integer, Color>(35);
 
 	/** Stack keeping track of the moves done for undoing. */
 	Stack<Move> undoStack = new Stack<Move>();
@@ -59,7 +59,7 @@ public abstract class Level implements Serializable {
 	protected Board theBoard;
 	/** The bullpen associated with the current level. */
 
-	Bullpen theBullpen;
+	protected Bullpen theBullpen;
 	/** Palette for building */
 	Palette thePalette;
 
@@ -268,7 +268,7 @@ public abstract class Level implements Serializable {
 		Random r = new Random();
 		for(Piece p: allPieces){
 			Color random = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
-			colorMap.put(p, random);
+			colorMap.put(p.getPieceID(), random);
 		}
 	}
 	
@@ -525,8 +525,8 @@ public abstract class Level implements Serializable {
 	 * @param Piece p
 	 * @return Color
 	 */
-	public Color getPieceColor(Piece p) {
-		return colorMap.get(p);
+	public Color getPieceColor(int pieceid) {
+		return colorMap.get(pieceid);
 	}
 
 	
