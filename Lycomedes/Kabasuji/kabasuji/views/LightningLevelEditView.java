@@ -208,7 +208,7 @@ public class LightningLevelEditView extends Screen {
 		
 		bullpenView.addMouseListener(new SelectPieceController(this.app, this.model));
 		
-		PlacePieceController ppc = new PlacePieceController(model, boardView);
+		PlacePieceController ppc = new PlacePieceController(this.app, this.model);
 		boardView.addMouseListener(ppc);
 		boardView.addMouseMotionListener(ppc);
 		
