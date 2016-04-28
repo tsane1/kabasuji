@@ -164,12 +164,14 @@ public class LevelPlayView extends Screen {
 			levelParamTitle.setText("Moves Left:");
 			levelParamDisplay.setText("" + pl.getMovesLeft());
 			if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
+			pl.setNumStars();
 			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + pl.getNumStars() + ".png")));
 			break;
 		case "Lightning":
 			levelParamTitle.setText("Time Left:");
 			levelParamDisplay.setText("" + ll.getMinsLeft() + ":" + String.format("%02d", ll.getSecsLeft()));
 			if(ll.getSecsLeft() < 10 && ll.getMinsLeft() == 0) levelParamDisplay.setForeground(Color.RED);
+			if(ll.getSecsLeft() + ll.getMinsLeft() == 0) t.stop();
 			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + ll.getNumStars() + ".png")));
 			break;
 		case "Release":

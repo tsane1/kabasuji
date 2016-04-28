@@ -65,7 +65,7 @@ public class SelectPieceController extends MouseAdapter{
 		}
 
 		bullpenView.refresh();
-		app.getCurrScreen().getPaletteView().refresh();
+		if(app.getCurrScreen().getName().contains("Edit")) app.getCurrScreen().getPaletteView().refresh();
 		if(currLevel.getBullpen().isEmpty()){
 			System.out.println("Bullpen empty");
 		}
