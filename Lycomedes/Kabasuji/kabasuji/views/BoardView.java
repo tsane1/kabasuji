@@ -186,18 +186,6 @@ public class BoardView extends JPanel {
 
 				}
 				//System.out.println(board.getPlacedPieces().size());
-				int n,k = 0;
-				for(n = 0; n<12; n++){
-					for(k = 0; k<12; k++){
-						HashMap<Point,Piece> map = board.getPlacedPieces();
-						Point pt = new Point(i,j);
-						Piece played = map.get(pt);
-						if(played != null){
-							drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
-							System.out.println(currLevel.getPieceColor(played).toString());
-						}
-					}
-				}
 			}
 		}
 	}

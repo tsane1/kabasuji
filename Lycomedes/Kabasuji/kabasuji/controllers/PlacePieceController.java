@@ -40,8 +40,8 @@ public class PlacePieceController  extends MouseAdapter{
 		if(draggingPiece == null){
 			System.err.println("Nothing being dragged");
 			PuzzleBoardTile pTile = new PuzzleBoardTile(0, 0);
+			
 			if(lvl.getBoard().getBoardArray()[col][row].isCovered() && (lvl.getBoard().getBoardArray()[col][row].getClass() == pTile.getClass())){
-				
 				Piece onBoard = ((PuzzleBoardTile) lvl.getBoard().getBoardArray()[col][row]).getCoveringPiece();
 				int idx = ((PuzzleBoardTile) lvl.getBoard().getBoardArray()[col][row]).getPieceTileIdx();
 				
@@ -56,7 +56,9 @@ public class PlacePieceController  extends MouseAdapter{
 				Point pt = new Point(colStart,rowStart);
 				HashMap<Point,Piece> map = lvl.getBoard().getPlacedPieces();
 				//remove that piece from the place pieces map so it doesnt draw
+				//BUG IS SOMETHING WITH THE 
 				map.remove(pt);
+				System.out.println(map.size());
 				//return to bullpen
 				lvl.getBullpen().addPieceBackToBullpen(onBoard);
 				//uncovers the area that piece was on
@@ -71,9 +73,16 @@ public class PlacePieceController  extends MouseAdapter{
 		
 		if(!(lvl.getBoard().place(row, col, draggingPiece))){
 			System.out.print("piece not able to be placed");
+//			PuzzleBoardTile tile = new PuzzleBoardTile(0, 0);
+//			if((lvl.getBoard().getBoardArray()[col][row].getClass() == tile.getClass())){
+//				view.refresh();
+//				return;
+//			}
 			lvl.setActivePiece(null);
 			lvl.setSelected(null);
 			draggingPiece = null;
+			
+			
 			view.refresh();
 			return;
 		}
