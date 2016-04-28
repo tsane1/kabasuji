@@ -281,7 +281,7 @@ public class Board implements Serializable{
 				//if this doesn't work use instancOf
 				//if its a board tile
 				//old code was to check is spot was not an unplayable tile then count
-				if(boardArray[i][j].getClass() == tile.getClass()){
+				if(boardArray[i][j].getClass() == ltile.getClass()){
 					if(((LightningBoardTile) boardArray[i][j]).isMarked()){
 						marked++;
 					}
@@ -297,7 +297,30 @@ public class Board implements Serializable{
 	 * @return 
 	 */
 	public int getReleaseProgress(){
-		return 0;
+		int i,j,count = 0, marked = 0;
+		//iterate over board array
+		for(i = 0;i<12;i++){
+			for(j = 0;j<12;j++){
+				ReleaseBoardTile tile = new ReleaseBoardTile(i, j);
+				
+				//if this doesn't work use instancOf
+				//if its a board tile
+				//old code was to check is spot was not an unplayable tile then count
+				if((boardArray[i][j].getClass() == tile.getClass()) && (((ReleaseBoardTile)boardArray[i][j]).getValue() > 0)){
+					count++;
+				}
+				
+				//if this doesn't work use instancOf
+				//if its a board tile
+				//old code was to check is spot was not an unplayable tile then count
+				if(boardArray[i][j].getClass() == tile.getClass()){
+					if(((ReleaseBoardTile) boardArray[i][j]).isCovered()){
+						marked++;
+					}
+				}
+			}
+		}
+		return (marked/count) * 100;
 	}
 	
 	/**
