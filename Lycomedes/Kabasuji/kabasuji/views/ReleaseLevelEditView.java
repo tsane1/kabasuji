@@ -175,9 +175,9 @@ public class ReleaseLevelEditView extends Screen {
 		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
 		
-		bullpenView.addMouseListener(new SelectPieceController(level, bullpenView));
+		bullpenView.addMouseListener(new SelectPieceController(this.app, this.model));
 		
-		PlacePieceController ppc = new PlacePieceController(model, boardView);
+		PlacePieceController ppc = new PlacePieceController(this.app, this.model);
 		boardView.addMouseListener(ppc);
 		boardView.addMouseMotionListener(ppc);
 		

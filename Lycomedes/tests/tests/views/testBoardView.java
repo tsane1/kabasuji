@@ -73,9 +73,9 @@ public class testBoardView extends JFrame{
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
-		
-		PlacePieceController psc = new PlacePieceController(model, view);
-		view.addMouseListener(psc);
+//		
+//		PlacePieceController psc = new PlacePieceController(model, view);
+//		view.addMouseListener(psc);
 	}
 	
 //	protected void setUp() throws Exception {

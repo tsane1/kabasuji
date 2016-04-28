@@ -7,9 +7,9 @@ import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 import kabasuji.controllers.FlipXController;
 import kabasuji.controllers.FlipYController;
@@ -17,6 +17,7 @@ import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RotateLeftController;
 import kabasuji.controllers.RotateRightController;
 import kabasuji.controllers.SelectPieceController;
+import kabasuji.controllers.TimerController;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
@@ -55,6 +56,7 @@ public class LevelPlayView extends Screen {
 	private JLabel levelParamTitle = new JLabel();
 	private JLabel levelParamDisplay = new JLabel();
 	private JLabel starsDisplay = new JLabel();
+	private Timer t;
 	
 	private JButton btnClockwise = new JButton();
 	private JButton btnCounterClockwise = new JButton();
@@ -64,7 +66,6 @@ public class LevelPlayView extends Screen {
 
 	public LevelPlayView(String levelName, SuperModel m) {
 		super(levelName, m);
-		
 		this.level = m.getActiveLevel();
 		pl = null; rl = null; ll = null;
 		this.setTitle(level.getLevelName() + ": " + level.getLevelType());
@@ -105,19 +106,19 @@ public class LevelPlayView extends Screen {
 		pieceScroll.setViewportView(bullpenView);
 		this.add(pieceScroll);
 		
-		btnClockwise.setBounds(53, 472, 40, 40);
+		btnClockwise.setBounds(787, 472, 40, 40);
 		btnClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/clockwise.png")));
 		this.add(btnClockwise);
 		
-		btnCounterClockwise.setBounds(13, 472, 40, 40);
+		btnCounterClockwise.setBounds(747, 472, 40, 40);
 		btnCounterClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/counter_clockwise.png")));
 		this.add(btnCounterClockwise);
 		
-		btnFlipX.setBounds(103, 472, 40, 40);
+		btnFlipX.setBounds(837, 472, 40, 40);
 		btnFlipX.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipX.png")));
 		this.add(btnFlipX);
 		
-		btnFlipY.setBounds(143, 472, 40, 40);
+		btnFlipY.setBounds(877, 472, 40, 40);
 		btnFlipY.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipY.png")));
 		this.add(btnFlipY);
 		
@@ -138,9 +139,9 @@ public class LevelPlayView extends Screen {
 	
 	@Override
 	public void installControllers() {
-		bullpenView.addMouseListener(new SelectPieceController(level, bullpenView));
+		bullpenView.addMouseListener(new SelectPieceController(this.app, this.model));
 		
-		PlacePieceController ppc = new PlacePieceController(model, boardView);
+		PlacePieceController ppc = new PlacePieceController(this.app, this.model);
 		boardView.addMouseListener(ppc);
 		boardView.addMouseMotionListener(ppc);
 		
@@ -148,6 +149,11 @@ public class LevelPlayView extends Screen {
 		btnCounterClockwise.addActionListener(new RotateLeftController(this.app, this.model.getActiveLevel()));
 		btnFlipX.addActionListener(new FlipXController(this.app, this.model.getActiveLevel()));
 		btnFlipY.addActionListener(new FlipYController(this.app, this.model.getActiveLevel()));
+		
+		if(model.getActiveLevel().getLevelType().equals("Lightning")) {
+			t = new Timer(1000, new TimerController(this.app, this.model));
+			t.start();
+		}
 	}	
 
 	@Override
@@ -160,12 +166,14 @@ public class LevelPlayView extends Screen {
 			levelParamTitle.setText("Moves Left:");
 			levelParamDisplay.setText("" + pl.getMovesLeft());
 			if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
+			pl.setNumStars();
 			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + pl.getNumStars() + ".png")));
 			break;
 		case "Lightning":
 			levelParamTitle.setText("Time Left:");
 			levelParamDisplay.setText("" + ll.getMinsLeft() + ":" + String.format("%02d", ll.getSecsLeft()));
 			if(ll.getSecsLeft() < 10 && ll.getMinsLeft() == 0) levelParamDisplay.setForeground(Color.RED);
+			if(ll.getSecsLeft() + ll.getMinsLeft() == 0) t.stop();
 			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + ll.getNumStars() + ".png")));
 			break;
 		case "Release":

@@ -96,35 +96,24 @@ public class Piece implements Serializable {
 	 * @return void
 	 */
 	public void rotateLeft(){
-//		int i = 0;
-//		while (i < 6){
-//			this.tiles[i].setRow(5-this.tiles[i].getColumn());
-//			this.tiles[i].setColumn(5-this.tiles[i].getRow());
-//			i++;
-//		}
 		for(PieceTile pt : this.getTileLocations()){
-			pt.setRow(5-pt.getColumn());
-			pt.setColumn(5-pt.getRow());
+			int row = pt.getRow();
+			int col = pt.getColumn();
+			pt.setRow(col);
+			pt.setColumn(5-row);
 		}
-		
 	}	
 
 	/**
 	 * method for rotating a piece 90 degrees counter-clockwise.
 	 * @return void
 	 */
-	public void rotateRight(){
-//		int i = 0;
-//		while (i < 6){
-//			this.tiles[i].setRow(5-this.tiles[i].getRow());
-//			this.tiles[i].setColumn(5-this.tiles[i].getColumn());
-//			i++;
-//		}
-		PieceTile temp;
+	public void rotateRight() {
 		for(PieceTile pt : this.getTileLocations()){
-			//temp = pt;
-			pt.setColumn(5-pt.getRow());
-			pt.setRow(5-pt.getColumn());
+			int row = pt.getRow();
+			int col = pt.getColumn();
+			pt.setRow(5-col);
+			pt.setColumn(row);
 		}
 	}
 
