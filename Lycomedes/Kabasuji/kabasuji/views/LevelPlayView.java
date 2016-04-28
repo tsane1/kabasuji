@@ -207,4 +207,8 @@ public class LevelPlayView extends Screen {
 	public BoardView getBoardView(){
 		return this.boardView;
 	}
+	
+	public void stopTimer() {
+		t.stop();
+	}
 }

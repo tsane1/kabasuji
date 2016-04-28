@@ -2,6 +2,7 @@ package kabasuji.views;
 
 import java.awt.EventQueue;
 
+import kabasuji.controllers.AddToBullpenController;
 import kabasuji.controllers.DeleteLevelController;
 import kabasuji.controllers.FlipXController;
 import kabasuji.controllers.FlipYController;
@@ -190,7 +191,7 @@ public class PuzzleLevelEditView extends Screen {
 		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
 		
-		bullpenView.addMouseListener(new SelectPieceController(this.app, this.model));
+		bullpenView.addMouseListener(new AddToBullpenController(this.app, this.model));
 		
 		PlacePieceController ppc = new PlacePieceController(this.app, this.model);
 		boardView.addMouseListener(ppc);

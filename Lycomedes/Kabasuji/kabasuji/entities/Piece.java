@@ -95,7 +95,7 @@ public class Piece implements Serializable {
 	 * method for rotating a piece 90 degrees clockwise.
 	 * @return void
 	 */
-	public void rotateLeft(){
+	public void rotateRight(){
 		for(PieceTile pt : this.getTileLocations()){
 			int row = pt.getRow();
 			int col = pt.getColumn();
@@ -108,7 +108,7 @@ public class Piece implements Serializable {
 	 * method for rotating a piece 90 degrees counter-clockwise.
 	 * @return void
 	 */
-	public void rotateRight() {
+	public void rotateLeft() {
 		for(PieceTile pt : this.getTileLocations()){
 			int row = pt.getRow();
 			int col = pt.getColumn();

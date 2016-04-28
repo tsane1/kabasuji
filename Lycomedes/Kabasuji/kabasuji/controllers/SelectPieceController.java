@@ -48,7 +48,7 @@ public class SelectPieceController extends MouseAdapter{
 					System.out.println("Selected Piece: " + temp.getPieceName());
 				}
 				bullpenView.refresh();
-				app.getCurrScreen().getPaletteView().refresh();
+				if(app.getCurrScreen().getName().contains("Edit")) app.getCurrScreen().getPaletteView().refresh();
 				return;
 			}
 			idx++;
