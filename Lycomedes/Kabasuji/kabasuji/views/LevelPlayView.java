@@ -150,8 +150,10 @@ public class LevelPlayView extends Screen {
 		btnFlipX.addActionListener(new FlipXController(this.app, this.model.getActiveLevel()));
 		btnFlipY.addActionListener(new FlipYController(this.app, this.model.getActiveLevel()));
 		
-		t = new Timer(1000, new TimerController(this.app, this.model));
-		t.start();
+		if(model.getActiveLevel().getLevelType().equals("Lightning")) {
+			t = new Timer(1000, new TimerController(this.app, this.model));
+			t.start();
+		}
 	}	
 
 	@Override
