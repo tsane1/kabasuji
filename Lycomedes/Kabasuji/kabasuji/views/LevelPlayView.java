@@ -138,7 +138,7 @@ public class LevelPlayView extends Screen {
 	
 	@Override
 	public void installControllers() {
-		bullpenView.addMouseListener(new SelectPieceController(level, bullpenView));
+		bullpenView.addMouseListener(new SelectPieceController(this.app, this.model));
 		
 		PlacePieceController ppc = new PlacePieceController(model, boardView);
 		boardView.addMouseListener(ppc);

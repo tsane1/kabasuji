@@ -206,7 +206,7 @@ public class LightningLevelEditView extends Screen {
 		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
 		
-		bullpenView.addMouseListener(new SelectPieceController(level, bullpenView));
+		bullpenView.addMouseListener(new SelectPieceController(this.app, this.model));
 		
 		PlacePieceController ppc = new PlacePieceController(model, boardView);
 		boardView.addMouseListener(ppc);
