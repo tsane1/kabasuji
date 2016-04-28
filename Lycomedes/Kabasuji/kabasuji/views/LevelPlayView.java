@@ -7,9 +7,9 @@ import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 import kabasuji.controllers.FlipXController;
 import kabasuji.controllers.FlipYController;
@@ -17,6 +17,7 @@ import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RotateLeftController;
 import kabasuji.controllers.RotateRightController;
 import kabasuji.controllers.SelectPieceController;
+import kabasuji.controllers.TimerController;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
@@ -55,6 +56,7 @@ public class LevelPlayView extends Screen {
 	private JLabel levelParamTitle = new JLabel();
 	private JLabel levelParamDisplay = new JLabel();
 	private JLabel starsDisplay = new JLabel();
+	private Timer t;
 	
 	private JButton btnClockwise = new JButton();
 	private JButton btnCounterClockwise = new JButton();
@@ -64,7 +66,6 @@ public class LevelPlayView extends Screen {
 
 	public LevelPlayView(String levelName, SuperModel m) {
 		super(levelName, m);
-		
 		this.level = m.getActiveLevel();
 		pl = null; rl = null; ll = null;
 		this.setTitle(level.getLevelName() + ": " + level.getLevelType());
@@ -148,6 +149,9 @@ public class LevelPlayView extends Screen {
 		btnCounterClockwise.addActionListener(new RotateLeftController(this.app, this.model.getActiveLevel()));
 		btnFlipX.addActionListener(new FlipXController(this.app, this.model.getActiveLevel()));
 		btnFlipY.addActionListener(new FlipYController(this.app, this.model.getActiveLevel()));
+		
+		t = new Timer(1000, new TimerController(this.app, this.model));
+		t.start();
 	}	
 
 	@Override
