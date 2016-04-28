@@ -140,7 +140,7 @@ public class Test_Mike extends JFrame {
 //		bView.addMouseListener(tsc);
 //		bView.addMouseMotionListener(tsc);
 		
-		PaletteSelectController pc = new PaletteSelectController((Application)new JFrame(), sm);
+		PaletteSelectController pc = new PaletteSelectController(sm, pview);
 		pview.addMouseListener(pc);
 	}
 }
