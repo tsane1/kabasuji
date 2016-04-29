@@ -183,7 +183,7 @@ public class Test_Sails extends JFrame {
 		SelectPieceController psc = new SelectPieceController(sm.getActiveLevel(), bpView);
 		bpView.addMouseListener(psc);
 		
-		PlacePieceController placeCrtl = new PlacePieceController(sm, bView);
+		PlacePieceController placeCrtl = new PlacePieceController(a, sm);
 		bView.addMouseListener(placeCrtl);
 		bView.addMouseMotionListener(placeCrtl);
 		
