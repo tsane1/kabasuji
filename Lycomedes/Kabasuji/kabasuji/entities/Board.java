@@ -26,6 +26,8 @@ public class Board implements Serializable{
 	/** Map of where the pieces are on the board. */
 	private HashMap<Point,Piece> placedPieces;
 	
+	PieceTile[] hintArray;
+	
 	/**
 	 * Constructor for the board class.  Initializes the board and piece map.
 	 */
@@ -34,6 +36,7 @@ public class Board implements Serializable{
 		this.cols = new int[12];
 		this.placedPieces = new HashMap<Point, Piece>();
 		this.boardArray = new Tile[12][12];
+		hintArray = new PieceTile[6];
 		initializeBoardArray();
 		
 	}
@@ -405,6 +408,10 @@ public class Board implements Serializable{
 			rowNum -= 1;
 		
 		((ReleaseBoardTile) boardArray[colNum][rowNum]).updateReleaseColor();
+	}
+
+	public PieceTile[] getHintLocations() {
+		return hintArray;
 	}
 
 }

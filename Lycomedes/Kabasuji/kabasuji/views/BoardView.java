@@ -209,4 +209,8 @@ public class BoardView extends JPanel {
 	}
 	
 
+	public void showHint() {
+		drawer.drawHintPiece(offScreenGraphics, currLevel.getBoard().getHintLocations());
+	}
+
 }

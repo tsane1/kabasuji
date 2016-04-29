@@ -53,11 +53,6 @@ public class PuzzleLevelEditView extends Screen {
 	private JButton btnSave = new JButton("Save");
 	private JButton btnDelete = new JButton("Delete");
 	
-	private JButton btnClockwise = new JButton();
-	private JButton btnCounterClockwise = new JButton();
-	private JButton btnFlipX = new JButton();
-	private JButton btnFlipY = new JButton();
-	
 	private JSpinner setMoves = new JSpinner();
 	private JTextField setLevelName = new JTextField();
 	
@@ -137,22 +132,6 @@ public class PuzzleLevelEditView extends Screen {
 		bullpenViewScroll.setViewportView(bullpenView);
 		this.add(bullpenViewScroll);
 		
-		btnClockwise.setBounds(787, 472, 40, 40);
-		btnClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/clockwise.png")));
-		this.add(btnClockwise);
-		
-		btnCounterClockwise.setBounds(747, 472, 40, 40);
-		btnCounterClockwise.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/counter_clockwise.png")));
-		this.add(btnCounterClockwise);
-		
-		btnFlipX.setBounds(837, 472, 40, 40);
-		btnFlipX.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipX.png")));
-		this.add(btnFlipX);
-		
-		btnFlipY.setBounds(877, 472, 40, 40);
-		btnFlipY.setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/flipY.png")));
-		this.add(btnFlipY);
-		
 		JLabel lblMoves = new JLabel("Moves");
 		lblMoves.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMoves.setForeground(SystemColor.textHighlight);
@@ -192,15 +171,6 @@ public class PuzzleLevelEditView extends Screen {
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
 		
 		bullpenView.addMouseListener(new AddToBullpenController(this.app, this.model));
-		
-		PlacePieceController ppc = new PlacePieceController(this.app, this.model);
-		boardView.addMouseListener(ppc);
-		boardView.addMouseMotionListener(ppc);
-		
-		btnClockwise.addActionListener(new RotateRightController(this.app, this.model.getActiveLevel()));
-		btnCounterClockwise.addActionListener(new RotateLeftController(this.app, this.model.getActiveLevel()));
-		btnFlipX.addActionListener(new FlipXController(this.app, this.model.getActiveLevel()));
-		btnFlipY.addActionListener(new FlipYController(this.app, this.model.getActiveLevel()));
 		
 		JSpinner.DefaultEditor setMovesEditor = (JSpinner.DefaultEditor)setMoves.getEditor();
 		setMovesEditor.getTextField().addFocusListener(new SpinnerValueController(this.app, this.model));
