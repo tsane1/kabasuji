@@ -21,6 +21,7 @@ public class IncrementReleaseTileMove extends Move {
 	@Override
 	public boolean execute(Point p) {
 		if(!valid()) { return false; }
+		System.err.println("Shhh im here");
 		currLevel.getBoard().incrementReleaseTile(p);
 		return true;
 	}
@@ -34,7 +35,7 @@ public class IncrementReleaseTileMove extends Move {
 
 	@Override
 	public boolean valid() {
-		if((currLevel.getBoard() == null)||(currLevel.getLevelType() != "ReleaseLevelEditView"))
+		if((currLevel.getBoard() == null))
 			return false;
 		return true;
 	}

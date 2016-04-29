@@ -40,6 +40,7 @@ public class UndoController implements ActionListener {
 		}		
 		if(m.undo()){
 			level.addRedoableMove(m);
+			app.getCurrScreen().getBoardView().refresh();
 		}
 		
 		/*

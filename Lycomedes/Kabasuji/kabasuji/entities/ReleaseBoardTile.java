@@ -66,7 +66,7 @@ public class ReleaseBoardTile extends Tile{
 	 * Increments release number supports up to six then resets to zero.
 	 */
 	public void updateReleaseNum(){
-		if(value<=6){
+		if(value<6){
 			value++;
 		}else{
 			value = 0;
@@ -79,7 +79,7 @@ public class ReleaseBoardTile extends Tile{
 	 * each number corresponds to a color, default color is black at value zero.
 	 */
 	public void updateReleaseColor(){
-		if(numColor<=3){
+		if(numColor<3){
 			numColor++;
 		}else{
 			numColor= 0;

@@ -39,4 +39,12 @@ public class PieceDrawer {
 			g.drawRect(colCord, rowCord, Tile.width, Tile.height);
 		}
 	}
+	public void drawPalettePiece(Graphics g, Piece p, int x, int y, Color c){
+		for(PieceTile pt: p.getTileLocations()){
+			g.setColor(c);
+			g.fillRect(x + (pt.getColumn() * Tile.width), y + (pt.getRow() * Tile.height), Tile.width, Tile.height);
+			g.setColor(Color.BLACK);
+			g.drawRect(x + (pt.getColumn() * Tile.width), y + (pt.getRow() * Tile.height), Tile.width, Tile.height);
+		}
+	}
 }

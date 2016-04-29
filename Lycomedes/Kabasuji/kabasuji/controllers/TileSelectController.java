@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import kabasuji.moves.ChangeReleaseNumColorMove;
 import kabasuji.moves.IncrementReleaseTileMove;
 import kabasuji.moves.SelectTileMove;
+import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
@@ -25,8 +26,8 @@ public class TileSelectController extends MouseAdapter{
 	BoardView boardView;
 	Level level;
 	
-	public TileSelectController(SuperModel model, BoardView bv){
-		this.boardView = bv;
+	public TileSelectController(Application app, SuperModel model){
+		this.boardView = app.getCurrScreen().getBoardView();
 		this.level = model.getActiveLevel();
 	}
 	
@@ -69,6 +70,7 @@ public class TileSelectController extends MouseAdapter{
 		Point clicked = e.getPoint();
 		
 		if(SwingUtilities.isRightMouseButton(e)){
+
 			if (e.getClickCount() == 1){
 				incrementRelease(clicked);
 			}

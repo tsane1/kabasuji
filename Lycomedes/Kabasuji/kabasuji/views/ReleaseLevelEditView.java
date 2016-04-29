@@ -24,6 +24,7 @@ import kabasuji.controllers.RotateLeftController;
 import kabasuji.controllers.RotateRightController;
 import kabasuji.controllers.SaveLevelController;
 import kabasuji.controllers.SelectPieceController;
+import kabasuji.controllers.TileSelectController;
 import kabasuji.controllers.UndoController;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
@@ -178,7 +179,8 @@ public class ReleaseLevelEditView extends Screen {
 		
 		bullpenView.addMouseListener(new AddToBullpenController(this.app, this.model));
 		
-		PlacePieceController ppc = new PlacePieceController(this.app, this.model);
+		TileSelectController ppc = new TileSelectController(this.app, this.model);
+		//PlacePieceController ppc = new PlacePieceController(this.app, this.model);
 		boardView.addMouseListener(ppc);
 		boardView.addMouseMotionListener(ppc);
 		
