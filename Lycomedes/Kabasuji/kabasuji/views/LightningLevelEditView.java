@@ -188,10 +188,6 @@ public class LightningLevelEditView extends Screen {
 		
 		bullpenView.addMouseListener(new AddToBullpenController(this.app, this.model));
 		
-		PlacePieceController ppc = new PlacePieceController(this.app, this.model);
-		boardView.addMouseListener(ppc);
-		boardView.addMouseMotionListener(ppc);
-		
 		JSpinner.DefaultEditor minsEditor = (JSpinner.DefaultEditor)mins.getEditor();
 		JSpinner.DefaultEditor secsEditor = (JSpinner.DefaultEditor)secs.getEditor();
 		minsEditor.getTextField().addFocusListener(new SpinnerValueController(this.app, this.model));

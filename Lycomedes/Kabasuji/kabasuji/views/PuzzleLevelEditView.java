@@ -172,10 +172,6 @@ public class PuzzleLevelEditView extends Screen {
 		
 		bullpenView.addMouseListener(new AddToBullpenController(this.app, this.model));
 		
-		PlacePieceController ppc = new PlacePieceController(this.app, this.model);
-		boardView.addMouseListener(ppc);
-		boardView.addMouseMotionListener(ppc);
-		
 		JSpinner.DefaultEditor setMovesEditor = (JSpinner.DefaultEditor)setMoves.getEditor();
 		setMovesEditor.getTextField().addFocusListener(new SpinnerValueController(this.app, this.model));
 		
