@@ -39,4 +39,11 @@ public class PieceDrawer {
 			g.drawRect(colCord, rowCord, Tile.width, Tile.height);
 		}
 	}
+	
+	public void drawHintPiece(Graphics g, PieceTile[] locationsOnBoard){
+		for(PieceTile pt : locationsOnBoard){
+			g.setColor(Color.green.brighter().brighter());
+			g.drawRect((Tile.height*pt.getRow())+(Tile.width*pt.getColumn()), (Tile.width*pt.getColumn())+(Tile.height*pt.getRow()), Tile.width, Tile.height);
+		}
+	}
 }
