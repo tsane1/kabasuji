@@ -21,9 +21,9 @@ public abstract class Tile implements Serializable{
 	boolean covered;
 	
 	/** global for the width of a tile which is 32 pixels. */
-	public static final int width = 32;
+	public static final int WIDTH = 32;
 	/** global for the height of a tile which is 32 pixels. */
-	public static final int height = 32;
+	public static final int HEIGHT = 32;
 	
 	/**
 	 * Constructor for the abstract tile object.

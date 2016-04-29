@@ -34,9 +34,9 @@ public class PieceDrawer {
 			int rowCord = y + ((p.tiles[i].row - rowAdjust)*32);
 			int colCord = x + ((p.tiles[i].col - colAdjust)*32);
 			g.setColor(c);
-			g.fillRect(colCord, rowCord, Tile.width, Tile.height);
+			g.fillRect(colCord, rowCord, Tile.WIDTH, Tile.HEIGHT);
 			g.setColor(Color.black);
-			g.drawRect(colCord, rowCord, Tile.width, Tile.height);
+			g.drawRect(colCord, rowCord, Tile.WIDTH, Tile.HEIGHT);
 		}
 	}
 }

@@ -136,8 +136,7 @@ public class PlacePieceController  extends MouseAdapter{
 		lvl.setActivePiece(null);
 		lvl.setSelected(null);
 		draggingPiece = null;
-		
-		
+				
 		view.refresh();
 		app.getCurrScreen().getBullpenView().refresh();
 	}

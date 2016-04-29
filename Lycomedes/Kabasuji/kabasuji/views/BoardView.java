@@ -147,25 +147,25 @@ public class BoardView extends JPanel {
 				else if(boardArray[i][j].getClass() == tile.getClass()){
 					offScreenGraphics.setColor(Color.WHITE);
 					//the tile start is i*width and goes to that plus width
-					offScreenGraphics.fillRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+					offScreenGraphics.fillRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 				}
 				else if((boardArray[i][j].getClass() == lTile.getClass())){
 					if(((LightningBoardTile) boardArray[i][j]).isMarked()){
 						offScreenGraphics.setColor(Color.GREEN);
-						offScreenGraphics.fillRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						offScreenGraphics.fillRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 					}else{
 						offScreenGraphics.setColor(Color.LIGHT_GRAY); //regular board tiles are just light gray still need to figure out the release tile number stuff
-						offScreenGraphics.fillRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						offScreenGraphics.fillRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 						offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
-						offScreenGraphics.drawRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						offScreenGraphics.drawRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 					}
 				}
 				else if((boardArray[i][j].getClass() == rTile.getClass())){
 					if(((ReleaseBoardTile) boardArray[i][j]).getValue() > 0){
 						offScreenGraphics.setColor(Color.LIGHT_GRAY);
-						offScreenGraphics.fillRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						offScreenGraphics.fillRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 						offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
-						offScreenGraphics.drawRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						offScreenGraphics.drawRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 						//need to actually make a switch case that changes the number color but yeah...
 						if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
 							offScreenGraphics.setColor(Color.GREEN);
@@ -173,19 +173,19 @@ public class BoardView extends JPanel {
 							offScreenGraphics.setColor(Color.GREEN);
 						}
 
-						offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*tile.width + (tile.width / 2)), (j*tile.height + (tile.height / 2)));
+						offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*Tile.WIDTH + (Tile.WIDTH / 2)), (j*Tile.HEIGHT + (Tile.HEIGHT / 2)));
 					}else{
 						offScreenGraphics.setColor(Color.LIGHT_GRAY); //regular board tiles are just light gray still need to figure out the release tile number stuff
-						offScreenGraphics.fillRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						offScreenGraphics.fillRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 						offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
-						offScreenGraphics.drawRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+						offScreenGraphics.drawRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 					}
 				}
 				else {
 					offScreenGraphics.setColor(Color.LIGHT_GRAY); //regular board tiles are just light gray still need to figure out the release tile number stuff
-					offScreenGraphics.fillRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+					offScreenGraphics.fillRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 					offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
-					offScreenGraphics.drawRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
+					offScreenGraphics.drawRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 				}
 //				if(!(boardArray[i][j].getClass() == lTile.getClass())){
 //					
