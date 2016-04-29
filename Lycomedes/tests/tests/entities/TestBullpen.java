@@ -53,10 +53,13 @@ public class TestBullpen extends TestCase {
 		assertFalse(bp2.isEmpty());
 		
 		assertTrue(bp.addPiece(testPiece));
+		assertEquals(1, bp.numPiecesInBullpen());
+		assertEquals(bp.getOriginalSet().size(), bp.getPieces().size());
 		assertFalse(bp.isEmpty());
 		
 		assertTrue(bp.removePiece(testPiece));
 		assertTrue(bp.isEmpty());
+		assertFalse(bp.removePiece(testPiece));
 		
 		assertTrue(bp.addPieces(temp));
 		assertFalse(bp.isEmpty());
@@ -71,6 +74,11 @@ public class TestBullpen extends TestCase {
 		
 		assertTrue(bp.setPieceAsPlayed(testPiece));
 		assertFalse(bp.getPlayedPieces().isEmpty());
+		assertTrue(bp.getPieces().isEmpty());
+		assertTrue(bp.addPieceBackToBullpen(testPiece));
+		assertTrue(bp.getPlayedPieces().isEmpty());
+		
+		assertTrue(bp.addPieces(temp));
 	}
 
 }

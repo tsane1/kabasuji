@@ -25,7 +25,7 @@ public class TimerController implements ActionListener {
 		if(((LightningLevel)model.getActiveLevel()).getSecsLeft() < 0) {
 			int prevM = ((LightningLevel)model.getActiveLevel()).getMinsLeft();
 			((LightningLevel)model.getActiveLevel()).setMinsLeft(prevM - 1);
-			((LightningLevel)model.getActiveLevel()).setSecsLeft(0);
+			((LightningLevel)model.getActiveLevel()).setSecsLeft(59);
 		}
 		app.getCurrScreen().refresh();
 	}

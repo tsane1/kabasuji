@@ -100,8 +100,8 @@ public class BoardView extends JPanel {
 			int rowAdjust = active.getTileLocations()[0].getRow();
 			int colAdjust = active.getTileLocations()[0].getColumn();
 
-			setActiveY -= (rowAdjust*32);
-			setActiveX -= (colAdjust*32);
+//			setActiveY -= (rowAdjust*32);
+//			setActiveX -= (colAdjust*32);
 
 			drawer.drawPiece(g, currLevel.getActivePiece(), setActiveX, setActiveY, setActiveColor);
 
@@ -130,6 +130,18 @@ public class BoardView extends JPanel {
 			for(j = 0;j<12;j++){
 				if(boardArray[i][j].isCovered()){
 					//if its covered dont do anything leave it alone
+					HashMap<Point,Piece> map = board.getPlacedPieces();
+					Point pt = new Point(i,j);
+					Piece played = map.get(pt);
+					if(played != null){
+//						int rowAdjust = played.getTileLocations()[0].getRow();
+//						int colAdjust = played.getTileLocations()[0].getColumn();
+//						
+//						int rowCord = pt.y + (pt.y - rowAdjust);
+//						int colCord = pt.x + (pt.x - colAdjust);
+						drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played.getPieceID()));
+//						System.out.println(currLevel.getPieceColor(played.getPieceID()).toString());
+					}
 				}
 				//unplayable tile then make a black tile there
 				else if(boardArray[i][j].getClass() == tile.getClass()){
@@ -160,7 +172,7 @@ public class BoardView extends JPanel {
 						}else{
 							offScreenGraphics.setColor(Color.GREEN);
 						}
-						
+
 						offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*tile.width + (tile.width / 2)), (j*tile.height + (tile.height / 2)));
 					}else{
 						offScreenGraphics.setColor(Color.LIGHT_GRAY); //regular board tiles are just light gray still need to figure out the release tile number stuff
@@ -175,41 +187,28 @@ public class BoardView extends JPanel {
 					offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
 					offScreenGraphics.drawRect(i*tile.width, j*tile.height,(tile.width), (tile.height));
 				}
-				if(!(boardArray[i][j].getClass() == lTile.getClass())){
-					HashMap<Point,Piece> map = board.getPlacedPieces();
-					Point pt = new Point(i,j);
-					Piece played = map.get(pt);
-					if(played != null){
-						drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
-						//System.out.println(currLevel.getPieceColor(played).toString());
-					}
-
-				}
+//				if(!(boardArray[i][j].getClass() == lTile.getClass())){
+//					
+//
+//				}
 				//System.out.println(board.getPlacedPieces().size());
-				int n,k = 0;
-				for(n = 0; n<12; n++){
-					for(k = 0; k<12; k++){
-						HashMap<Point,Piece> map = board.getPlacedPieces();
-						Point pt = new Point(i,j);
-						Piece played = map.get(pt);
-						if(played != null){
-							drawer.drawPiece(offScreenGraphics, played, (pt.x*32), (pt.y*32), currLevel.getPieceColor(played));
-							System.out.println(currLevel.getPieceColor(played).toString());
-						}
-					}
-				}
+
 			}
 		}
 	}
-			public void drawActivePiece(int x, int y, Color c){
-				setActiveColor = c;
-				setActiveX = x;
-				setActiveY = y;
-			}
-			public void refresh(){
-				redraw();
-				repaint();
-			}
-			//returns the graphics for this view???
+	public void drawActivePiece(int x, int y, Color c){
+		setActiveColor = c;
+		setActiveX = x;
+		setActiveY = y;
+	}
+	public void refresh(){
+		redraw();
+		repaint();
+	}
+	//returns the graphics for this view???
 
-		}
+	public void showHint() {
+		drawer.drawHintPiece(offScreenGraphics, currLevel.getBoard().getHintLocations());
+	}
+
+}

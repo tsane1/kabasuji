@@ -66,13 +66,13 @@ public class Test_Mike extends JFrame {
 		Palette pal = level.getPalette();
 		sm.setActiveLevel(level);
 		
-		//bp.addPieces(level.getAllPieces());
+		bp.addPieces(level.getAllPieces());
 		//creates a square of size x size
 		int size = 12;
 		for(int i = 0; i<size; i++){
 			for(int j = 0; j<size; j++){
-				board.createBoardTile(i, j, "release");
-				((ReleaseBoardTile)board.getBoardArray()[i][j]).updateReleaseNum();
+				board.createBoardTile(i, j, "Puzzle");
+				//((ReleaseBoardTile)board.getBoardArray()[i][j]).updateReleaseNum();
 			}
 		}
 		
@@ -137,7 +137,7 @@ public class Test_Mike extends JFrame {
 //		bView.addMouseListener(tsc);
 //		bView.addMouseMotionListener(tsc);
 		
-		PaletteSelectController pc = new PaletteSelectController((Application)new JFrame(), sm);
-		pview.addMouseListener(pc);
+//		PaletteSelectController pc = new PaletteSelectController(pview, sm);
+//		pview.addMouseListener(pc);
 	}
 }

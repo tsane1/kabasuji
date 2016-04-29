@@ -8,6 +8,7 @@ import kabasuji.supers.SuperModel;
 import kabasuji.supers.Screen;
 import kabasuji.views.LevelEditSelectView;
 import kabasuji.views.LevelPlaySelectView;
+import kabasuji.views.LevelPlayView;
 
 /** 
  * 
@@ -31,6 +32,7 @@ public class BackController implements ActionListener {
 			app.dispose();
 			break;
 		case "LevelPlay":
+			if(app.getCurrScreen().getLevel().getLevelType().equals("Lightning")) ((LevelPlayView)app.getCurrScreen()).stopTimer();
 			app.setCurrScreen(new LevelPlaySelectView(model));
 			break;
 		case "LightningLevelEditView": case "PuzzleLevelEditView": case "ReleaseLevelEditView": case "NewLevelTypeSelectView":
