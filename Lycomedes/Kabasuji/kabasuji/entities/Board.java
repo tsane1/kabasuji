@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 /** 
  * Main board object that represents a board of maximum size 12x12 and all the tiles and pieces it contains.
  * @author Michael
@@ -25,6 +26,8 @@ public class Board implements Serializable{
 	/** Map of where the pieces are on the board. */
 	private HashMap<Point,Piece> placedPieces;
 	
+	PieceTile[] hintArray;
+	
 	/**
 	 * Constructor for the board class.  Initializes the board and piece map.
 	 */
@@ -33,6 +36,7 @@ public class Board implements Serializable{
 		this.cols = new int[12];
 		this.placedPieces = new HashMap<Point, Piece>();
 		this.boardArray = new Tile[12][12];
+		hintArray = new PieceTile[6];
 		initializeBoardArray();
 		
 	}
@@ -97,13 +101,14 @@ public class Board implements Serializable{
 		
 		if(!pieceCovering){
 			//need to adjust for hashmap to know where point is for drawing
-			int rowAdjust = piece.tiles[0].row;
-			int colAdjust = piece.tiles[0].col;
+//			int rowAdjust = piece.tiles[0].row;
+//			int colAdjust = piece.tiles[0].col;
 			
-			int rowCord = row - rowAdjust;
-			int colCord = col - colAdjust;
+//			int rowCord = Math.abs(row - rowAdjust);
+//			int colCord = Math.abs(col - colAdjust);
 			//add piece to list of placed pieces
-			Point pt = new Point(colCord,rowCord);
+			piece.setPiecePosition(col, row);
+			Point pt = piece.getPiecePosition();
 			placedPieces.put(pt, piece);
 			//covers the place 
 			coverPieceArea(row, col, piece);
@@ -403,6 +408,10 @@ public class Board implements Serializable{
 			rowNum -= 1;
 		
 		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseColor();
+	}
+
+	public PieceTile[] getHintLocations() {
+		return hintArray;
 	}
 
 }
