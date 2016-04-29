@@ -132,7 +132,7 @@ public class LevelPlayView extends Screen {
 		levelParamDisplay.setFont(new Font("Kristen ITC", Font.BOLD, 72));
 		levelParamDisplay.setBounds(0, 125, 273, 200);
 		
-		starsDisplay.setBounds(697, 100, 192, 64);
+		starsDisplay.setBounds(725, 100, 192, 64);
 		
 		refresh();
 	}
