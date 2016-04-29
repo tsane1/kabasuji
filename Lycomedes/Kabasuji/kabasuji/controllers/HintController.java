@@ -28,7 +28,7 @@ public class HintController implements ActionListener{
 	}
 
 	private void showHint() {
-		// TODO Auto-generated method stub
+		app.getCurrScreen().getBoardView().showHint();
 		
 	}
 
