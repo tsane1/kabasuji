@@ -9,6 +9,7 @@ import java.awt.Graphics;
  * Includes some code adapted from Professor Heineman.
  * 
  * @author Derek McMaster
+ * @author Michael
  */
 
 public class PieceDrawer {
@@ -39,11 +40,20 @@ public class PieceDrawer {
 			g.drawRect(colCord, rowCord, Tile.width, Tile.height);
 		}
 	}
+	public void drawPalettePiece(Graphics g, Piece p, int x, int y, Color c){
+		for(PieceTile pt: p.getTileLocations()){
+			g.setColor(c);
+			g.fillRect(x + (pt.getColumn() * Tile.width), y + (pt.getRow() * Tile.height), Tile.width, Tile.height);
+			g.setColor(Color.BLACK);
+			g.drawRect(x + (pt.getColumn() * Tile.width), y + (pt.getRow() * Tile.height), Tile.width, Tile.height);
+		}
+	}
 	
 	public void drawHintPiece(Graphics g, PieceTile[] locationsOnBoard){
 		for(PieceTile pt : locationsOnBoard){
 			g.setColor(Color.green.brighter().brighter());
 			g.drawRect((Tile.height*pt.getRow())+(Tile.width*pt.getColumn()), (Tile.width*pt.getColumn())+(Tile.height*pt.getRow()), Tile.width, Tile.height);
+
 		}
 	}
 }

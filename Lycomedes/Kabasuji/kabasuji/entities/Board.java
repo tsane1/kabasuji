@@ -345,11 +345,11 @@ public class Board implements Serializable{
 		
 		switch(levType){
 		case "Puzzle" :
-			boardArray[rowNum][colNum] = new PuzzleBoardTile(rowNum,colNum); break;
+			boardArray[colNum][rowNum] = new PuzzleBoardTile(colNum,rowNum); break;
 		case "Lightning" :
-			boardArray[rowNum][colNum] = new LightningBoardTile(rowNum,colNum); break;
+			boardArray[colNum][rowNum] = new LightningBoardTile(colNum,rowNum); break;
 		case "Release" :
-			boardArray[rowNum][colNum] = new ReleaseBoardTile(rowNum,colNum); break;
+			boardArray[colNum][rowNum] = new ReleaseBoardTile(colNum,rowNum); break;
 		default:
 			System.err.println("Type not found.");
 		}
@@ -388,8 +388,8 @@ public class Board implements Serializable{
 			colNum -= 1;
 		if(y == 0)
 			rowNum -= 1;
-		
-		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseNum();
+		System.err.println("Shhh im here dad");
+		((ReleaseBoardTile) boardArray[colNum][rowNum]).updateReleaseNum();
 	}
 
 	/**
@@ -407,7 +407,7 @@ public class Board implements Serializable{
 		if(y == 0)
 			rowNum -= 1;
 		
-		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseColor();
+		((ReleaseBoardTile) boardArray[colNum][rowNum]).updateReleaseColor();
 	}
 
 	public PieceTile[] getHintLocations() {

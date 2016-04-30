@@ -32,6 +32,7 @@ public class BullpenToBoardMove extends Move {
 		//Piece p = level.getBullpen().getPlayedPieces().
 		level.getBoard().uncoverPieceArea(row, col, currPiece);
 		return level.getBullpen().addPieceBackToBullpen(currPiece);
+		
 	}
 
 	@Override

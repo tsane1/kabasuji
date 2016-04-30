@@ -45,11 +45,12 @@ public class PaletteToBullpenMove extends Move {
 		level.getBullpen().addPiece(newPiece);
 		
 		//to keep color consistent get color from original piece and put in color map with new id
-		Color c = level.getColorMap().get(currPiece);
+		System.out.println(currPiece.getPieceID());
+		Color c = level.getColorMap().get(currPiece.getPieceID());
 		level.getColorMap().put(newPiece.getPieceID(), c);
 		
 		//deselect the piece for next move
-		level.setSelected(null);
+		//level.setSelected(null);
 		
 		return true;
 	}

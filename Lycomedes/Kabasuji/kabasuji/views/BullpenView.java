@@ -148,10 +148,10 @@ public class BullpenView extends JPanel {
 
 		for (Piece p : level.getBullpen().getPieces()) {
 			if(p == level.getSelected()){
-				drawer.drawPiece(offScreenGraphics, p, x, y, Color.orange.brighter());
+				drawer.drawPalettePiece(offScreenGraphics, p, x, y, Color.orange.brighter());
 			}
 			else {
-				drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p.getPieceID()));
+				drawer.drawPalettePiece(offScreenGraphics, p, x, y, level.getPieceColor(p.getPieceID()));
 			}
 			x+= containerSize+pieceBuffer;	
 		}

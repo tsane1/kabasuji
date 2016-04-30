@@ -37,7 +37,7 @@ public abstract class Level implements Serializable {
 	/** Grid of all possible piecetiles that make up pieces. */
 	List<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	/** A map of piece colors used for drawing the pieces. */
-	Map<Integer, Color> colorMap = new HashMap<Integer, Color>(35);
+	HashMap<Integer, Color> colorMap = new HashMap<Integer, Color>(35);
 
 	/** Stack keeping track of the moves done for undoing. */
 	Stack<Move> undoStack = new Stack<Move>();
@@ -68,7 +68,18 @@ public abstract class Level implements Serializable {
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
 	 */
 	protected int numStars;
-	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * Get rid of...switch back
+	 * used size instead of keeping track of index.
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	int pieceIndex;
 
 	/**
@@ -100,11 +111,11 @@ public abstract class Level implements Serializable {
 		this.type = type;
 		locked = false;
 		this.theBoard = new Board();
-		for(int i = 0; i<12; i++){
-			for(int j = 0; j<12; j++){
-				theBoard.createBoardTile(i, j, type);
-			}
-		}
+//		for(int i = 0; i<12; i++){
+//			for(int j = 0; j<12; j++){
+//				theBoard.createBoardTile(i, j, type);
+//			}
+//		}
 		this.theBullpen = new Bullpen();
 		this.thePalette = new Palette();
 		this.numStars = 0;
@@ -364,14 +375,6 @@ public abstract class Level implements Serializable {
 	}
 
 	/**
-	 * method for quitting a level.
-	 */
-	public void quit() {
-		// TODO: Put actual quit logic here...windowlistener?
-		System.out.println("Saving state and exiting.");
-	}
-
-	/**
 	 * Sets the active piece for the level.
 	 * @param Piece p
 	 */
@@ -485,6 +488,13 @@ public abstract class Level implements Serializable {
 		}
 		return undoStack.pop();
 	}
+	
+	public Move peekLastMove() {
+		if (undoStack.isEmpty()) {
+			return null;
+		}
+		return undoStack.peek();
+	}
 
 	/**
 	 * Adds a move to the undo stack.
@@ -511,6 +521,13 @@ public abstract class Level implements Serializable {
 			return null;
 		}
 		return redoStack.pop();
+	}
+	
+	public Move peekRedoMove() {
+		if (redoStack.isEmpty()) {
+			return null;
+		}
+		return redoStack.peek();
 	}
 	
 	/**
@@ -541,7 +558,7 @@ public abstract class Level implements Serializable {
 	/**
 	 * Getter for the color map.
 	 */
-	public Map<Integer, Color> getColorMap(){
+	public HashMap<Integer, Color> getColorMap(){
 		return colorMap;
 	}
 	
