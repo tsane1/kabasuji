@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import kabasuji.moves.ChangeReleaseNumColorMove;
 import kabasuji.moves.IncrementReleaseTileMove;
 import kabasuji.moves.SelectTileMove;
+import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
@@ -22,11 +23,13 @@ import kabasuji.views.BoardView;
  */
 
 public class TileSelectController extends MouseAdapter{
+	private Application app;
 	BoardView boardView;
 	Level level;
 	
-	public TileSelectController(SuperModel model, BoardView bv){
-		this.boardView = bv;
+	public TileSelectController(Application app, SuperModel model){
+		this.app = app;
+		this.boardView = app.getCurrScreen().getBoardView();
 		this.level = model.getActiveLevel();
 	}
 	
@@ -35,9 +38,12 @@ public class TileSelectController extends MouseAdapter{
 
 		if(m.execute(p)){ 
 			level.trackMove(m);
+			System.out.println(level.peekLastMove().toString());
 			boardView.refresh();
+			app.getCurrScreen().refresh();
 			return true;
 		}
+		app.getCurrScreen().refresh();
 		return false;
 	}
 
@@ -69,13 +75,14 @@ public class TileSelectController extends MouseAdapter{
 		Point clicked = e.getPoint();
 		
 		if(SwingUtilities.isRightMouseButton(e)){
+
 			if (e.getClickCount() == 1){
 				incrementRelease(clicked);
 			}
 			if (e.getClickCount() == 2){
 				changeNumColor(clicked);
 			}
-		}
+		} 
 		else if(SwingUtilities.isLeftMouseButton(e)){
 			if (e.getClickCount() == 2){ // will be helpful for incrementing release
 				selectTile(clicked); 

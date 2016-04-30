@@ -37,7 +37,7 @@ public class FlipYController implements ActionListener {
 		}
 
 		app.getCurrScreen().getBullpenView().refresh();
-		app.getCurrScreen().repaint();
+		app.getCurrScreen().refresh();
 		return status;
 	}
 

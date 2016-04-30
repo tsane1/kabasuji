@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
+
+import kabasuji.entities.Achievement;
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.Palette;
@@ -68,6 +70,9 @@ public abstract class Level implements Serializable {
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
 	 */
 	protected int numStars;
+	
+	public Achievement achievement;
+	public Progress progress;
 
 	/**
 	 * Arraylist of pieces previously in the bullpen and now played on the
@@ -98,13 +103,14 @@ public abstract class Level implements Serializable {
 		this.type = type;
 		locked = false;
 		this.theBoard = new Board();
-		for(int i = 0; i<12; i++){
-			for(int j = 0; j<12; j++){
-				theBoard.createBoardTile(i, j, type);
-			}
-		}
+//		for(int i = 0; i<12; i++){
+//			for(int j = 0; j<12; j++){
+//				theBoard.createBoardTile(i, j, type);
+//			}
+//		}
 		this.theBullpen = new Bullpen();
 		this.thePalette = new Palette();
+		//this.progress = new Progress(theBoard);
 		this.numStars = 0;
 		setupPieces();
 		//theBullpen.addPieces(allPieces);
@@ -276,8 +282,9 @@ public abstract class Level implements Serializable {
 	 * Achievement
 	 */
 	
-	public void updateAchievement(Progress progress) {
+	public void updateAchievement() {
 		int achievedStars = 0;
+		progress = new Progress(theBoard);
 		
 		if ((progress.updateProgressPuzzle() == 100) 
 				|| progress.updateProgressLightning() == 100
@@ -295,6 +302,7 @@ public abstract class Level implements Serializable {
 		else {
 			achievedStars = 0;
 		}
+		System.out.println("achieved" + achievedStars);
 		//If numStars previously is less than that achieved 
 		//in this game, update them to equal the new highest. 
 		if(numStars<achievedStars){
@@ -352,14 +360,6 @@ public abstract class Level implements Serializable {
 	
 	public Palette getPalette(){
 		return this.thePalette;
-	}
-
-	/**
-	 * method for quitting a level.
-	 */
-	public void quit() {
-		// TODO: Put actual quit logic here...windowlistener?
-		System.out.println("Saving state and exiting.");
 	}
 
 	/**
@@ -476,6 +476,13 @@ public abstract class Level implements Serializable {
 		}
 		return undoStack.pop();
 	}
+	
+	public Move peekLastMove() {
+		if (undoStack.isEmpty()) {
+			return null;
+		}
+		return undoStack.peek();
+	}
 
 	/**
 	 * Adds a move to the undo stack.
@@ -504,6 +511,13 @@ public abstract class Level implements Serializable {
 		return redoStack.pop();
 	}
 	
+	public Move peekRedoMove() {
+		if (redoStack.isEmpty()) {
+			return null;
+		}
+		return redoStack.peek();
+	}
+	
 	/**
 	 * Save level handling
 	 */
@@ -528,7 +542,13 @@ public abstract class Level implements Serializable {
 	public Color getPieceColor(int pieceid) {
 		return colorMap.get(pieceid);
 	}
-
+	
+	/**
+	 * Getter for the color map.
+	 */
+	public Map<Integer, Color> getColorMap(){
+		return colorMap;
+	}
 	
 	/**
 	 * Method for generating a random piece for lightning levels.
@@ -543,6 +563,11 @@ public abstract class Level implements Serializable {
 	public abstract void setNumStars();
 	
 	public int getNumStars() {
+		updateAchievement();
 		return this.numStars;
+	}
+	
+	public void addPieceToAllPieces(Piece p){
+		this.allPieces.add(p);
 	}
 }

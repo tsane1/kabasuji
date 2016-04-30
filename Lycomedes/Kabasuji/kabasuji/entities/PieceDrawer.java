@@ -6,8 +6,6 @@ import java.awt.Graphics;
 /**
  * Helper Class that knows how to translate pieces into graphics.
  * 
- * Includes some code adapted from Professor Heineman.
- * 
  * @author Derek McMaster
  */
 
@@ -17,7 +15,7 @@ public class PieceDrawer {
 	 * Default constructor for a piece drawer object to get access to the draw method.
 	 */
 	public PieceDrawer() {
-		// TODO Auto-generated constructor stub
+		//nothing, piece drawer only knows how to draw
 	}
 	
 	/**
@@ -37,6 +35,21 @@ public class PieceDrawer {
 			g.fillRect(colCord, rowCord, Tile.WIDTH, Tile.HEIGHT);
 			g.setColor(Color.black);
 			g.drawRect(colCord, rowCord, Tile.WIDTH, Tile.HEIGHT);
+		}
+	}
+	public void drawPalettePiece(Graphics g, Piece p, int x, int y, Color c){
+		for(PieceTile pt: p.getTileLocations()){
+			g.setColor(c);
+			g.fillRect(x + (pt.getColumn() * Tile.WIDTH), y + (pt.getRow() * Tile.HEIGHT), Tile.WIDTH, Tile.HEIGHT);
+			g.setColor(Color.BLACK);
+			g.drawRect(x + (pt.getColumn() * Tile.WIDTH), y + (pt.getRow() * Tile.HEIGHT), Tile.WIDTH, Tile.HEIGHT);
+		}
+	}
+	
+	public void drawHintPiece(Graphics g, Tile[] locationsOnBoard){
+		for(Tile pt : locationsOnBoard){
+			g.setColor(Color.green.brighter().brighter());
+			g.drawRect((Tile.HEIGHT*pt.row)+(Tile.WIDTH*pt.col), (Tile.WIDTH*pt.col)+(Tile.HEIGHT*pt.row), Tile.WIDTH, Tile.HEIGHT);
 		}
 	}
 }

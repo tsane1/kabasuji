@@ -167,10 +167,12 @@ public class BoardView extends JPanel {
 						offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
 						offScreenGraphics.drawRect(i*Tile.WIDTH, j*Tile.HEIGHT,(Tile.WIDTH), (Tile.HEIGHT));
 						//need to actually make a switch case that changes the number color but yeah...
-						if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
+						if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 0){
 							offScreenGraphics.setColor(Color.GREEN);
+						}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
+							offScreenGraphics.setColor(Color.RED);
 						}else{
-							offScreenGraphics.setColor(Color.GREEN);
+							offScreenGraphics.setColor(Color.YELLOW);
 						}
 
 						offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*Tile.WIDTH + (Tile.WIDTH / 2)), (j*Tile.HEIGHT + (Tile.HEIGHT / 2)));
@@ -205,6 +207,10 @@ public class BoardView extends JPanel {
 		redraw();
 		repaint();
 	}
-	//returns the graphics for this view???
+	
+
+	public void showHint() {
+		drawer.drawHintPiece(offScreenGraphics, currLevel.getBoard().getHintLocations());
+	}
 
 }

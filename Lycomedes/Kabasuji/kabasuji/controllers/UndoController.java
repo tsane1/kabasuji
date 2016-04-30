@@ -42,10 +42,9 @@ public class UndoController implements ActionListener {
 			level.addRedoableMove(m);
 		}
 		
-		/*
-		 * Need to add a redraw method
-		 */
-		app.repaint();
+		app.getCurrScreen().getBoardView().refresh();
+		app.getCurrScreen().getBullpenView().refresh();
+		app.getCurrScreen().getPaletteView().refresh();
 		return true;
 	}
 }
