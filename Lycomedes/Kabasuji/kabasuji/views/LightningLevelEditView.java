@@ -22,6 +22,7 @@ import kabasuji.controllers.FlipYController;
 import kabasuji.controllers.LevelNameChangeController;
 import kabasuji.controllers.PaletteSelectController;
 import kabasuji.controllers.SpinnerValueController;
+import kabasuji.controllers.TileSelectController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RedoController;
 import kabasuji.controllers.RotateLeftController;
@@ -186,6 +187,7 @@ public class LightningLevelEditView extends Screen {
 		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
 		
+		boardView.addMouseListener(new TileSelectController(this.app, this.model));
 		bullpenView.addMouseListener(new AddToBullpenController(this.app, this.model));
 		
 		JSpinner.DefaultEditor minsEditor = (JSpinner.DefaultEditor)mins.getEditor();

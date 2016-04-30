@@ -15,6 +15,7 @@ import kabasuji.controllers.RotateRightController;
 import kabasuji.controllers.SaveLevelController;
 import kabasuji.controllers.SelectPieceController;
 import kabasuji.controllers.SpinnerValueController;
+import kabasuji.controllers.TileSelectController;
 import kabasuji.controllers.UndoController;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.supers.Application;
@@ -170,6 +171,7 @@ public class PuzzleLevelEditView extends Screen {
 		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
 		
+		boardView.addMouseListener(new TileSelectController(this.app, this.model));
 		bullpenView.addMouseListener(new AddToBullpenController(this.app, this.model));
 		
 		JSpinner.DefaultEditor setMovesEditor = (JSpinner.DefaultEditor)setMoves.getEditor();

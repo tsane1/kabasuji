@@ -100,11 +100,11 @@ public abstract class Level implements Serializable {
 		this.type = type;
 		locked = false;
 		this.theBoard = new Board();
-		for(int i = 0; i<12; i++){
-			for(int j = 0; j<12; j++){
-				theBoard.createBoardTile(i, j, type);
-			}
-		}
+//		for(int i = 0; i<12; i++){
+//			for(int j = 0; j<12; j++){
+//				theBoard.createBoardTile(i, j, type);
+//			}
+//		}
 		this.theBullpen = new Bullpen();
 		this.thePalette = new Palette();
 		this.numStars = 0;

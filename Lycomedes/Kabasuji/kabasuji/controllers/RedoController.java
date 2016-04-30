@@ -41,11 +41,10 @@ public class RedoController implements ActionListener {
 		}		
 		if(m.execute()) {
 			level.addMoveToUndo(m);
-			app.getCurrScreen().getBoardView().refresh();
-			app.getCurrScreen().getBullpenView().refresh();
-			app.getCurrScreen().getPaletteView().refresh();
 		}
-		app.getCurrScreen().refresh();
+		app.getCurrScreen().getBoardView().refresh();
+		app.getCurrScreen().getBullpenView().refresh();
+		app.getCurrScreen().getPaletteView().refresh();
 		return true;
 	}
 }

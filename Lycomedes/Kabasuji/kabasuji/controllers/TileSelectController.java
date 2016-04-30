@@ -23,10 +23,12 @@ import kabasuji.views.BoardView;
  */
 
 public class TileSelectController extends MouseAdapter{
+	private Application app;
 	BoardView boardView;
 	Level level;
 	
 	public TileSelectController(Application app, SuperModel model){
+		this.app = app;
 		this.boardView = app.getCurrScreen().getBoardView();
 		this.level = model.getActiveLevel();
 	}
@@ -36,9 +38,12 @@ public class TileSelectController extends MouseAdapter{
 
 		if(m.execute(p)){ 
 			level.trackMove(m);
+			System.out.println(level.peekLastMove().toString());
 			boardView.refresh();
+			app.getCurrScreen().refresh();
 			return true;
 		}
+		app.getCurrScreen().refresh();
 		return false;
 	}
 
