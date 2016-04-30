@@ -333,8 +333,11 @@ public class Board implements Serializable{
 				}
 			}
 		}
-		
-		return 0;
+		if(count == 0){
+			System.out.println("No release tiles with numbers");
+			return 0;
+		}
+		return (marked/count) * 100;
 	}
 	
 	/**
