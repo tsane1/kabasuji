@@ -134,9 +134,7 @@ public class PlacePieceController  extends MouseAdapter{
 	@Override
 	public void mouseExited(MouseEvent me){
 		lvl.setActivePiece(null);
-		lvl.setSelected(null);
-		draggingPiece = null;
-		
+		draggingPiece = null;		
 		
 		view.refresh();
 		app.getCurrScreen().getBullpenView().refresh();

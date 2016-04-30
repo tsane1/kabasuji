@@ -157,28 +157,24 @@ public class ReleaseLevelEditView extends Screen {
 		btnSave.addActionListener(new SaveLevelController(this.app, this.model));
 		btnDelete.addActionListener(new DeleteLevelController(this.app, this.model));
 		
+		boardView.addMouseListener(new TileSelectController(this.app, this.model));
 		bullpenView.addMouseListener(new AddToBullpenController(this.app, this.model));
-
 		
-		//TileSelectController ppc = new TileSelectController(this.app, this.model);
-		PlacePieceController ppc = new PlacePieceController(this.app, this.model);
+		TileSelectController ppc = new TileSelectController(this.app, this.model);
 		boardView.addMouseListener(ppc);
 		boardView.addMouseMotionListener(ppc);
-		
-//		btnClockwise.addActionListener(new RotateRightController(this.app, this.model.getActiveLevel()));
-//		btnCounterClockwise.addActionListener(new RotateLeftController(this.app, this.model.getActiveLevel()));
-//		btnFlipX.addActionListener(new FlipXController(this.app, this.model.getActiveLevel()));
-//		btnFlipY.addActionListener(new FlipYController(this.app, this.model.getActiveLevel()));
-
 		
 		setLevelName.addFocusListener(new LevelNameChangeController(this.app, this.model));
 		
 		paletteView.addMouseListener(new PaletteSelectController(this.app, this.model));
+		
+		refresh();
 	}
 
 	@Override
 	public void refresh() {
-
+		btnUndo.setEnabled(!(model.getActiveLevel().peekLastMove() == null));
+		btnRedo.setEnabled(!(model.getActiveLevel().peekRedoMove() == null));
 	}
 
 	@Override
