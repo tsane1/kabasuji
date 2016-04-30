@@ -383,7 +383,7 @@ public class Board implements Serializable{
 		if(y == 0)
 			rowNum -= 1;
 		
-		boardArray[rowNum][colNum] = new UnplayableTile(rowNum, colNum);
+		boardArray[colNum][rowNum] = new UnplayableTile(colNum, rowNum);
 	}
 	
 	/**
