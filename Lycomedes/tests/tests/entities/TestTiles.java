@@ -108,9 +108,23 @@ public class TestTiles extends TestCase {
 		
 		t5.updateReleaseNum();
 		assertEquals(1, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(2, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(3, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(4, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(5, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(0, t5.getValue());
 		
 		t5.updateReleaseColor();
 		assertEquals(1, t5.getNumColor());
+		t5.updateReleaseColor();
+		assertEquals(2, t5.getNumColor());
+		t5.updateReleaseColor();
+		assertEquals(0, t5.getNumColor());
 	}
 
 }
