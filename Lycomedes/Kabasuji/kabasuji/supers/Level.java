@@ -69,6 +69,18 @@ public abstract class Level implements Serializable {
 	 */
 	protected int numStars;
 	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * Get rid of...switch back
+	 * used size instead of keeping track of index.
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	int pieceIndex;
 
 	/**
