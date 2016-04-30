@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
+
+import kabasuji.entities.Achievement;
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.Palette;
@@ -68,6 +70,9 @@ public abstract class Level implements Serializable {
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
 	 */
 	protected int numStars;
+	
+	public Achievement achievement;
+	public Progress progress;
 
 	/**
 	 * Arraylist of pieces previously in the bullpen and now played on the
@@ -105,6 +110,7 @@ public abstract class Level implements Serializable {
 //		}
 		this.theBullpen = new Bullpen();
 		this.thePalette = new Palette();
+		//this.progress = new Progress(theBoard);
 		this.numStars = 0;
 		setupPieces();
 		//theBullpen.addPieces(allPieces);
@@ -276,8 +282,9 @@ public abstract class Level implements Serializable {
 	 * Achievement
 	 */
 	
-	public void updateAchievement(Progress progress) {
+	public void updateAchievement() {
 		int achievedStars = 0;
+		progress = new Progress(theBoard);
 		
 		if ((progress.updateProgressPuzzle() == 100) 
 				|| progress.updateProgressLightning() == 100
@@ -295,6 +302,7 @@ public abstract class Level implements Serializable {
 		else {
 			achievedStars = 0;
 		}
+		System.out.println("achieved" + achievedStars);
 		//If numStars previously is less than that achieved 
 		//in this game, update them to equal the new highest. 
 		if(numStars<achievedStars){
@@ -555,6 +563,7 @@ public abstract class Level implements Serializable {
 	public abstract void setNumStars();
 	
 	public int getNumStars() {
+		updateAchievement();
 		return this.numStars;
 	}
 	
