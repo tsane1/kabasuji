@@ -15,8 +15,6 @@ public class Progress {
 
 	public int updateProgressPuzzle() {
 		//int value = 0;
-		//int value = 50;
-		//getPuzzleProgress = (numberTilesCovered/numberTotalTiles)*100
 		int value = board.getPuzzleProgress();
 //		System.out.println(value);
 

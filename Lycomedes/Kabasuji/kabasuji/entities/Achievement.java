@@ -1,5 +1,7 @@
 package kabasuji.entities;
 
+import kabasuji.supers.Level;
+
 /**
  * 
  * @author Chase St. Laurent
@@ -8,53 +10,37 @@ package kabasuji.entities;
 
 public class Achievement {
 	Progress progress; // Change progress to ProgressBar java class?
-
+	Level level;
 	public Achievement(Progress progress) {
 		super();
 		this.progress = progress; 
 	}
 	
-	///////////////DEAD CODE I THINK//////////////////////////////
-//
-//	public boolean earnedAchievement() {
-//		boolean isEarned = false;
-//
-//		if (isEarnedOneStar(progress) || isEarnedTwoStar(progress) || isEarnedThreeStar(progress)) {
-//			isEarned = true;
-//		}
-//		return isEarned;
-//	}
-//
-//	public boolean isEarnedOneStar(Progress progress) {
-//		boolean isEarned = false;
-//
-//		if ((progress.updateProgressPuzzle() >= 50 && progress.updateProgressPuzzle() < 75)
-//				|| (progress.updateProgressLightning() >= 50 && progress.updateProgressLightning() < 75)
-//				|| (progress.updateProgressRelease() >= 32 && progress.updateProgressRelease() < 66)) {
-//			isEarned = true;
-//		}
-//		return isEarned;
-//	}
-//
-//	public boolean isEarnedTwoStar(Progress progress) {
-//		boolean isEarned = false;
-//
-//		if ((progress.updateProgressPuzzle() >= 75 && progress.updateProgressPuzzle() < 100)
-//				|| (progress.updateProgressLightning() >= 75 && progress.updateProgressLightning() < 100)
-//				|| progress.updateProgressRelease() >= 66 && progress.updateProgressRelease() < 100) {
-//			isEarned = true;
-//		}
-//		return isEarned;
-//	}
-//
-//	public boolean isEarnedThreeStar(Progress progress) {
-//		boolean isEarned = false;
-//
-//		if ((progress.updateProgressPuzzle() == 100) || progress.updateProgressLightning() == 100
-//				|| progress.updateProgressRelease() == 100) {
-//			isEarned = true;
-//		}
-//		return isEarned;
-//	}
-
+	public int updateAchievement() {
+		int achievedStars = 0;
+		
+		if ((progress.updateProgressPuzzle() == 100) 
+				|| progress.updateProgressLightning() == 100
+				|| progress.updateProgressRelease() == 100) {
+			achievedStars = 3;
+		}else if ((progress.updateProgressPuzzle() >= 75 && progress.updateProgressPuzzle() < 100)
+				|| (progress.updateProgressLightning() >= 75 && progress.updateProgressLightning() < 100)
+				|| progress.updateProgressRelease() >= 66 && progress.updateProgressRelease() < 100) {
+			achievedStars = 2;
+		}else if ((progress.updateProgressPuzzle() >= 50 && progress.updateProgressPuzzle() < 75)
+				|| (progress.updateProgressLightning() >= 50 && progress.updateProgressLightning() < 75)
+				|| (progress.updateProgressRelease() >= 32 && progress.updateProgressRelease() < 66)) {
+			achievedStars = 1;
+		}
+		else {
+			achievedStars = 0;
+		}
+		System.out.println("achieved" + achievedStars);
+		//If numStars previously is less than that achieved 
+		//in this game, update them to equal the new highest. 
+		//if(numStars<achievedStars){
+	//		level.numStars = achievedStars; 
+		//}
+		return achievedStars;
+	}
 }

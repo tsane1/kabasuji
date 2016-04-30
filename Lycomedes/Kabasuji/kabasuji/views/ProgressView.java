@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 /**
  * 
  * @author Chase St. Laurent
- * 
+ * @author Michael
  */
 
 import javax.swing.JPanel;
@@ -15,12 +15,7 @@ import javax.swing.SwingConstants;
 import kabasuji.entities.Progress;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
-/**
- * 
- * @author Michael
- * @author Chase St. Laurent
- *
- */
+
 public class ProgressView extends JPanel {
 	/**
 	 * 
