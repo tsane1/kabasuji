@@ -17,7 +17,7 @@ public class PieceDrawer {
 	 * Default constructor for a piece drawer object to get access to the draw method.
 	 */
 	public PieceDrawer() {
-		// TODO Auto-generated constructor stub
+		//nothing, piece drawer only knows how to draw
 	}
 	
 	/**
@@ -34,10 +34,10 @@ public class PieceDrawer {
 		}
 	}
 	
-	public void drawHintPiece(Graphics g, PieceTile[] locationsOnBoard){
-		for(PieceTile pt : locationsOnBoard){
+	public void drawHintPiece(Graphics g, Tile[] locationsOnBoard){
+		for(Tile pt : locationsOnBoard){
 			g.setColor(Color.green.brighter().brighter());
-			g.drawRect((Tile.height*pt.getRow())+(Tile.width*pt.getColumn()), (Tile.width*pt.getColumn())+(Tile.height*pt.getRow()), Tile.width, Tile.height);
+			g.drawRect((Tile.height*pt.row)+(Tile.width*pt.col), (Tile.width*pt.col)+(Tile.height*pt.row), Tile.width, Tile.height);
 		}
 	}
 }

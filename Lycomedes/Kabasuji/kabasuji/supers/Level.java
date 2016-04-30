@@ -68,20 +68,6 @@ public abstract class Level implements Serializable {
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
 	 */
 	protected int numStars;
-	
-	/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * Get rid of...switch back
-	 * used size instead of keeping track of index.
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-	int pieceIndex;
 
 	/**
 	 * Arraylist of pieces previously in the bullpen and now played on the
@@ -120,7 +106,6 @@ public abstract class Level implements Serializable {
 		this.theBullpen = new Bullpen();
 		this.thePalette = new Palette();
 		this.numStars = 0;
-		this.pieceIndex = 0;
 		setupPieces();
 		//theBullpen.addPieces(allPieces);
 		thePalette.addPieces(allPieces);
@@ -204,47 +189,41 @@ public abstract class Level implements Serializable {
 		 * hexominoes, the pieces are numbered horizontally 1-7, 8-14, 15-21,
 		 * 22-28,29-35
 		 */
-		p1 = new Piece(pieceIndex, new PieceTile[] { pt1, pt7, pt13, pt19, pt25, pt31 });
-		//System.out.println(pieceIndex);
-		p2 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt2, pt7, pt13, pt19, pt25 });
-		//System.out.println(pieceIndex);
-		p3 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt7, pt8, pt13, pt19, pt25 });
-		//System.out.println(pieceIndex);
-		p4 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt7, pt13, pt14, pt19, pt25 });
-		//System.out.println(pieceIndex);
-		p5 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt7, pt8, pt13, pt19, pt25 });
-		//System.out.println(pieceIndex);
-		p6 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt2, pt7, pt8, pt13, pt19 });
-		//System.out.println(pieceIndex);
-		p7 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt2, pt7, pt13, pt14, pt19 });
-		p8 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt2, pt7, pt13, pt19, pt20 });
-		p9 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt7, pt8, pt13, pt14, pt19 });
-		p10 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt2, pt3, pt7, pt13, pt19 });
-		p11 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt7, pt8, pt9, pt13, pt19 });
-		p12 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt2, pt3, pt8, pt14, pt20 });
-		p13 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt3, pt7, pt8, pt14, pt20 });
-		p14 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt3, pt8, pt13, pt14, pt20 });
-		p15 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt3, pt8, pt14, pt19, pt20 });
-		p16 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt8, pt9, pt13, pt14, pt20 });
-		p17 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt7, pt8, pt9, pt14, pt20 });
-		p18 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt7, pt8, pt9, pt13, pt19 });
-		p19 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt7, pt8, pt13, pt19, pt20 });
-		p20 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt8, pt13, pt14, pt19, pt25 });
-		p21 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt7, pt8, pt13, pt14, pt19 });
-		p22 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt2, pt7, pt8, pt13, pt14 });
-		p23 = new Piece(++pieceIndex, new PieceTile[] { pt3, pt7, pt8, pt9, pt14, pt20 });
-		p24 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt2, pt3, pt8, pt9, pt14 });
-		p25 = new Piece(++pieceIndex, new PieceTile[] { pt3, pt8, pt9, pt13, pt14, pt20 });
-		p26 = new Piece(++pieceIndex, new PieceTile[] { pt3, pt7, pt8, pt9, pt13, pt19 });
-		p27 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt3, pt7, pt8, pt13, pt19 });
-		p28 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt2, pt3, pt7, pt9, pt13 });
-		p29 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt3, pt7, pt8, pt9, pt13 });
-		p30 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt3, pt7, pt8, pt9, pt14 });
-		p31 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt3, pt8, pt13, pt14, pt19 });
-		p32 = new Piece(++pieceIndex, new PieceTile[] { pt1, pt7, pt8, pt13, pt14, pt15 });
-		p33 = new Piece(++pieceIndex, new PieceTile[] { pt2, pt7, pt8, pt9, pt13, pt14 });
-		p34 = new Piece(++pieceIndex, new PieceTile[] { pt3, pt7, pt8, pt9, pt13, pt14 });
-		p35 = new Piece(++pieceIndex, new PieceTile[] { pt3, pt8, pt9, pt13, pt14, pt19 });
+		p1 = new Piece(1, new PieceTile[] { pt1, pt7, pt13, pt19, pt25, pt31 });
+		p2 = new Piece(2, new PieceTile[] { pt1, pt2, pt7, pt13, pt19, pt25 });
+		p3 = new Piece(3, new PieceTile[] { pt1, pt7, pt8, pt13, pt19, pt25 });
+		p4 = new Piece(4, new PieceTile[] { pt1, pt7, pt13, pt14, pt19, pt25 });
+		p5 = new Piece(5, new PieceTile[] { pt2, pt7, pt8, pt13, pt19, pt25 });
+		p6 = new Piece(6, new PieceTile[] { pt1, pt2, pt7, pt8, pt13, pt19 });
+		p7 = new Piece(7, new PieceTile[] { pt1, pt2, pt7, pt13, pt14, pt19 });
+		p8 = new Piece(8, new PieceTile[] { pt1, pt2, pt7, pt13, pt19, pt20 });
+		p9 = new Piece(9, new PieceTile[] { pt1, pt7, pt8, pt13, pt14, pt19 });
+		p10 = new Piece(10, new PieceTile[] { pt1, pt2, pt3, pt7, pt13, pt19 });
+		p11 = new Piece(11, new PieceTile[] { pt1, pt7, pt8, pt9, pt13, pt19 });
+		p12 = new Piece(12, new PieceTile[] { pt1, pt2, pt3, pt8, pt14, pt20 });
+		p13 = new Piece(13, new PieceTile[] { pt2, pt3, pt7, pt8, pt14, pt20 });
+		p14 = new Piece(14, new PieceTile[] { pt2, pt3, pt8, pt13, pt14, pt20 });
+		p15 = new Piece(15, new PieceTile[] { pt2, pt3, pt8, pt14, pt19, pt20 });
+		p16 = new Piece(16, new PieceTile[] { pt2, pt8, pt9, pt13, pt14, pt20 });
+		p17 = new Piece(17, new PieceTile[] { pt2, pt7, pt8, pt9, pt14, pt20 });
+		p18 = new Piece(18, new PieceTile[] { pt2, pt7, pt8, pt9, pt13, pt19 });
+		p19 = new Piece(19, new PieceTile[] { pt2, pt7, pt8, pt13, pt19, pt20 });
+		p20 = new Piece(20, new PieceTile[] { pt2, pt8, pt13, pt14, pt19, pt25 });
+		p21 = new Piece(21, new PieceTile[] { pt2, pt7, pt8, pt13, pt14, pt19 });
+		p22 = new Piece(22, new PieceTile[] { pt1, pt2, pt7, pt8, pt13, pt14 });
+		p23 = new Piece(23, new PieceTile[] { pt3, pt7, pt8, pt9, pt14, pt20 });
+		p24 = new Piece(24, new PieceTile[] { pt1, pt2, pt3, pt8, pt9, pt14 });
+		p25 = new Piece(25, new PieceTile[] { pt3, pt8, pt9, pt13, pt14, pt20 });
+		p26 = new Piece(26, new PieceTile[] { pt3, pt7, pt8, pt9, pt13, pt19 });
+		p27 = new Piece(27, new PieceTile[] { pt2, pt3, pt7, pt8, pt13, pt19 });
+		p28 = new Piece(28, new PieceTile[] { pt1, pt2, pt3, pt7, pt9, pt13 });
+		p29 = new Piece(29, new PieceTile[] { pt1, pt3, pt7, pt8, pt9, pt13 });
+		p30 = new Piece(30, new PieceTile[] { pt1, pt3, pt7, pt8, pt9, pt14 });
+		p31 = new Piece(31, new PieceTile[] { pt2, pt3, pt8, pt13, pt14, pt19 });
+		p32 = new Piece(32, new PieceTile[] { pt1, pt7, pt8, pt13, pt14, pt15 });
+		p33 = new Piece(33, new PieceTile[] { pt2, pt7, pt8, pt9, pt13, pt14 });
+		p34 = new Piece(34, new PieceTile[] { pt3, pt7, pt8, pt9, pt13, pt14 });
+		p35 = new Piece(35, new PieceTile[] { pt3, pt8, pt9, pt13, pt14, pt19 });
 
 		/*
 		 * add them to the array list

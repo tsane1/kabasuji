@@ -2,7 +2,6 @@ package kabasuji.entities;
 
 import java.awt.Point;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /** 
@@ -24,8 +23,8 @@ public class Board implements Serializable{
 	private Tile boardArray[][]; //needs to be initialized
 	/** Map of where the pieces are on the board. */
 	private HashMap<Point,Piece> placedPieces;
-	
-	PieceTile[] hintArray;
+	/** Array to store the locations of a 'hint' piece. */
+	Tile[] hintArray;
 	
 	/**
 	 * Constructor for the board class.  Initializes the board and piece map.
@@ -35,7 +34,7 @@ public class Board implements Serializable{
 		this.cols = new int[12];
 		this.placedPieces = new HashMap<Point, Piece>();
 		this.boardArray = new Tile[12][12];
-		hintArray = new PieceTile[6];
+		hintArray = new Tile[6];
 		initializeBoardArray();
 		
 	}
@@ -408,8 +407,24 @@ public class Board implements Serializable{
 		((ReleaseBoardTile) boardArray[rowNum][colNum]).updateReleaseColor();
 	}
 
-	public PieceTile[] getHintLocations() {
+	/**
+	 * returns the locations of the squares on the board for hints.  Will be board locations not piecetile.
+	 * @return Tile[]
+	 */
+	public Tile[] getHintLocations() {
 		return hintArray;
+	}
+	
+	/**
+	 * Method for adding a location to the hint piece array.
+	 * @param Tile t
+	 */
+	public void setHintLocation(Tile t){
+		/*
+		 * Will length return current length or declared length?
+		 */
+		if(hintArray[5] != null){ return; }
+		hintArray[hintArray.length-1] = t;
 	}
 
 }
