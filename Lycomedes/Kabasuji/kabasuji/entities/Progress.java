@@ -10,7 +10,7 @@ public class Progress {
 	Board board;
 
 	public Progress(Board board) {
-		this.board = board;
+		this.board = board; 
 	}
 
 	public int updateProgressPuzzle() {

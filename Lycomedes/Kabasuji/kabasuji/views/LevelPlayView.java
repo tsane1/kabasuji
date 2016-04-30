@@ -53,7 +53,6 @@ public class LevelPlayView extends Screen {
 	private BoardView boardView;
 	private BullpenView bullpenView;
 	private ProgressView progressView;
-	private AchievementView achievement;
 	private JScrollPane pieceScroll = new JScrollPane();
 	
 	private JLabel levelParamTitle = new JLabel();
@@ -187,9 +186,12 @@ public class LevelPlayView extends Screen {
 		
 		switch(level.getLevelType()) { // add level-specific elements
 		case "Puzzle":
-			levelParamTitle.setText("Moves Left:");
-			levelParamDisplay.setText("" + pl.getMovesLeft());
-			if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
+			while(pl.getMovesLeft()>=0){
+				levelParamTitle.setText("Moves Left:");
+				levelParamDisplay.setText("" + pl.getMovesLeft());
+				if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
+				break;
+			}
 			pl.setNumStars();
 
 			threeStarDisplay.setBounds(715, 75, 192, 64);
@@ -218,7 +220,7 @@ public class LevelPlayView extends Screen {
 			levelParamTitle.setText("Time Left:");
 			levelParamDisplay.setText("" + ll.getMinsLeft() + ":" + String.format("%02d", ll.getSecsLeft()));
 			if(ll.getSecsLeft() < 10 && ll.getMinsLeft() == 0) levelParamDisplay.setForeground(Color.RED);
-			if(ll.getSecsLeft() + ll.getMinsLeft() == 0) t.stop();
+			//if(ll.getSecsLeft() + ll.getMinsLeft() == 0) t.stop();
 			
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 175, 192, 64);
@@ -242,12 +244,6 @@ public class LevelPlayView extends Screen {
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
 			}
 			progressView.updateProgressBar("Lightning");
-			threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
-			twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
-			oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
-			progressView.updateProgressBar("Lightning");
-			//starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + ll.getNumStars() + ".png")));
-
 			break;
 		case "Release":
 			levelParamTitle.setText("Number Left:");
@@ -278,7 +274,6 @@ public class LevelPlayView extends Screen {
 			twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 			oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
 			progressView.updateProgressBar("Release");
-			//starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + rl.getNumStars() + ".png")));
 			break;
 		default:
 			System.err.println("This level type is not yet supported."); 
