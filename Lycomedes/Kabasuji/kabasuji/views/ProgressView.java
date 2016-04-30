@@ -18,7 +18,7 @@ import kabasuji.supers.SuperModel;
 
 public class ProgressView extends JPanel {
 	/**
-	 * 
+	 * @author Chase St. Laurent
 	 */
 	private static final long serialVersionUID = 1L;
 	private Progress progress;
