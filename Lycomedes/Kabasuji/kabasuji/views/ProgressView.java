@@ -15,7 +15,12 @@ import javax.swing.SwingConstants;
 import kabasuji.entities.Progress;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
-
+/**
+ * 
+ * @author Michael
+ * @author Chase St. Laurent
+ *
+ */
 public class ProgressView extends JPanel {
 	/**
 	 * 
@@ -37,17 +42,28 @@ public class ProgressView extends JPanel {
 		progressBar.setBounds(0, 0, 25, 384);// x,y,w,h
 		add(progressBar);
 		this.setBounds(675, 100, 25, 384);// x,y,w,h
-		while(progressBar.getValue()<=progress.updateProgressPuzzle()){
-			updateProgressBar();
-			break;
-		}
+//		while(progressBar.getValue()<=progress.updateProgressPuzzle()){
+//			updateProgressBar();
+//			break;
+//		}
 
 	}
 
-	public void updateProgressBar() {
+	public void updateProgressBar(String type) {
 	//	while(progressBar.getValue()<=100){
-			progressBar.setValue(+1);
-			progressBar.setValue(progress.updateProgressPuzzle()+1);
+//			progressBar.setValue(+1);
+		switch (type){
+			case "Puzzle":
+				progressBar.setValue(progress.updateProgressPuzzle());
+				break;
+			case "Lightning":
+				progressBar.setValue(progress.updateProgressLightning());
+				break;
+			case "Release":
+				progressBar.setValue(progress.updateProgressRelease());
+				break;
+		}
+			
 		//	break;
 	//}
 	}

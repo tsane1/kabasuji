@@ -188,7 +188,7 @@ public class LevelPlayView extends Screen {
 			if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
 			pl.setNumStars();
 			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + pl.getNumStars() + ".png")));
-			progressView.updateProgressBar();
+			progressView.updateProgressBar("Puzzle");
 			break;
 		case "Lightning":
 			levelParamTitle.setText("Time Left:");
@@ -196,11 +196,13 @@ public class LevelPlayView extends Screen {
 			if(ll.getSecsLeft() < 10 && ll.getMinsLeft() == 0) levelParamDisplay.setForeground(Color.RED);
 			if(ll.getSecsLeft() + ll.getMinsLeft() == 0) t.stop();
 			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + ll.getNumStars() + ".png")));
+			progressView.updateProgressBar("Lightning");
 			break;
 		case "Release":
 			levelParamTitle.setText("Number Left:");
 			rl.setNumStars();
 			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + rl.getNumStars() + ".png")));
+			progressView.updateProgressBar("Release");
 			break;
 		default:
 			System.err.println("This level type is not yet supported."); 
