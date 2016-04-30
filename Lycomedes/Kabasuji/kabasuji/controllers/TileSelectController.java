@@ -82,7 +82,7 @@ public class TileSelectController extends MouseAdapter{
 			if (e.getClickCount() == 2){
 				changeNumColor(clicked);
 			}
-		}
+		} 
 		else if(SwingUtilities.isLeftMouseButton(e)){
 			if (e.getClickCount() == 2){ // will be helpful for incrementing release
 				selectTile(clicked); 

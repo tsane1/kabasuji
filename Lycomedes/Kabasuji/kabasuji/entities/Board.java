@@ -2,7 +2,6 @@ package kabasuji.entities;
 
 import java.awt.Point;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -25,8 +24,8 @@ public class Board implements Serializable{
 	private Tile boardArray[][]; //needs to be initialized
 	/** Map of where the pieces are on the board. */
 	private HashMap<Point,Piece> placedPieces;
-	
-	PieceTile[] hintArray;
+	/** Array to store the locations of a 'hint' piece. */
+	Tile[] hintArray;
 	
 	/**
 	 * Constructor for the board class.  Initializes the board and piece map.
@@ -36,7 +35,7 @@ public class Board implements Serializable{
 		this.cols = new int[12];
 		this.placedPieces = new HashMap<Point, Piece>();
 		this.boardArray = new Tile[12][12];
-		hintArray = new PieceTile[6];
+		hintArray = new Tile[6];
 		initializeBoardArray();
 		
 	}
@@ -258,7 +257,11 @@ public class Board implements Serializable{
 				}
 			}
 		}
-		int value = ((placedPieces.size() * 6)/count) * 100;
+		int placed = placedPieces.size() * 6;
+		float div = ((float)placed/count);
+		System.out.println(div);
+		int value = (int)(div * 100);
+		System.out.println(value);
 		return value;
 	}
 	
@@ -293,7 +296,12 @@ public class Board implements Serializable{
 				}
 			}
 		}
-		return (marked/count) * 100;
+		System.out.println(marked);
+		System.out.println(count);
+		float value = ((float)marked/count);
+		int last = (int)(value * 100);
+		System.out.println(value);
+		return last;
 	}
 	
 	/**
@@ -318,12 +326,16 @@ public class Board implements Serializable{
 				//if this doesn't work use instancOf
 				//if its a board tile
 				//old code was to check is spot was not an unplayable tile then count
-				if(boardArray[i][j].getClass() == tile.getClass()){
+				if(boardArray[i][j].getClass() == tile.getClass() && (((ReleaseBoardTile)boardArray[i][j]).getValue() > 0)){
 					if(((ReleaseBoardTile) boardArray[i][j]).isCovered()){
 						marked++;
 					}
 				}
 			}
+		}
+		if(count == 0){
+			System.out.println("No release tiles with numbers");
+			return 0;
 		}
 		return (marked/count) * 100;
 	}
@@ -410,8 +422,24 @@ public class Board implements Serializable{
 		((ReleaseBoardTile) boardArray[colNum][rowNum]).updateReleaseColor();
 	}
 
-	public PieceTile[] getHintLocations() {
+	/**
+	 * returns the locations of the squares on the board for hints.  Will be board locations not piecetile.
+	 * @return Tile[]
+	 */
+	public Tile[] getHintLocations() {
 		return hintArray;
+	}
+	
+	/**
+	 * Method for adding a location to the hint piece array.
+	 * @param Tile t
+	 */
+	public void setHintLocation(Tile t){
+		/*
+		 * Will length return current length or declared length?
+		 */
+		if(hintArray[5] != null){ return; }
+		hintArray[hintArray.length-1] = t;
 	}
 
 }

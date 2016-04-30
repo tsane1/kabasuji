@@ -34,6 +34,7 @@ public class ReleaseBoardTile extends Tile{
 		this.row = row;
 		this.col = column;
 		value = 0;
+		numColor = 0;
 		covered = false;
 		
 	}

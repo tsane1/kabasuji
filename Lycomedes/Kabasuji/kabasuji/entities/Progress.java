@@ -10,15 +10,13 @@ public class Progress {
 	Board board;
 
 	public Progress(Board board) {
-		this.board = board;
+		this.board = board; 
 	}
 
 	public int updateProgressPuzzle() {
 		//int value = 0;
-		int value = 50;
-		//getPuzzleProgress = (numberTilesCovered/numberTotalTiles)*100
-	//	value = board.getPuzzleProgress();
-		System.out.println(value);
+		int value = board.getPuzzleProgress();
+//		System.out.println(value);
 
 		return value;
 	}

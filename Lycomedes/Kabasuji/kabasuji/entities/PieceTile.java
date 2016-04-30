@@ -65,4 +65,31 @@ public class PieceTile extends Tile implements Serializable {
 	public int getColumn(){
 		return col;
 	}
+
+	/**
+	 * Method to change a tile to covered state.
+	 * @return void
+	 */
+	@Override
+	public void cover() {
+		//nothing
+	}
+
+	/**
+	 * Method to change a tile to uncovered state.
+	 * @return void
+	 */
+	@Override
+	public void uncover() {
+		//nothing
+	}
+
+	/**
+	 * Method to determine a tile's covered state.
+	 * @return boolean
+	 */
+	@Override
+	public boolean isCovered() {
+		return true;
+	}
 }

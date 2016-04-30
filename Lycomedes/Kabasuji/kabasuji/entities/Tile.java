@@ -39,23 +39,17 @@ public abstract class Tile implements Serializable{
 	 * Method to change a tile to covered state.
 	 * @return void
 	 */
-	public void cover() {
-		covered = true;
-	}
+	public abstract void cover();
 	
 	/**
 	 * Method to change a tile to uncovered state.
 	 * @return void
 	 */
-	public void uncover(){
-		covered = false;
-	}
+	public abstract void uncover();
 	
 	/**
 	 * Method to determine a tile's covered state.
 	 * @return boolean
 	 */
-	public boolean isCovered() {
-		return covered;
-	}
+	public abstract boolean isCovered();
 }
