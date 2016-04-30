@@ -7,6 +7,7 @@ import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
@@ -19,6 +20,7 @@ import kabasuji.controllers.RotateRightController;
 import kabasuji.controllers.SelectPieceController;
 import kabasuji.controllers.TimerController;
 import kabasuji.entities.LightningLevel;
+import kabasuji.entities.Progress;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
 import kabasuji.supers.Level;
@@ -46,10 +48,11 @@ public class LevelPlayView extends Screen {
 	private PuzzleLevel pl;
 	private LightningLevel ll;
 	private ReleaseLevel rl;
+	private Progress progress;
 	
 	private BoardView boardView;
 	private BullpenView bullpenView;
-	private ProgressView progress;
+	private ProgressView progressView;
 	private AchievementView achievement;
 	private JScrollPane pieceScroll = new JScrollPane();
 	
@@ -64,6 +67,9 @@ public class LevelPlayView extends Screen {
 	private JButton btnFlipY = new JButton();
 	
 	private JButton helpMe = new JButton();
+	
+	private JProgressBar progressBar = new JProgressBar();
+
 
 
 	public LevelPlayView(String levelName, SuperModel m) {
@@ -73,6 +79,7 @@ public class LevelPlayView extends Screen {
 		this.setTitle(level.getLevelName() + ": " + level.getLevelType());
 		this.boardView = new BoardView(m);
 		this.bullpenView = new BullpenView(m);
+		this.progressView = new ProgressView(m);
 		
 		switch(level.getLevelType()) { // add level-specific elements
 		case "Puzzle":
@@ -100,6 +107,8 @@ public class LevelPlayView extends Screen {
 		this.add(boardView);
 		boardView.validate();
 		boardView.repaint();
+
+		this.add(progressView);
 
 		pieceScroll = new JScrollPane();
 		pieceScroll.setBounds(13, 512, 904, 228);
@@ -143,6 +152,7 @@ public class LevelPlayView extends Screen {
 		helpMe.setFont(new Font("Kristen ITC", Font.BOLD, 16));
 		helpMe.setBounds(87, 409, 100, 50);
 		this.add(helpMe);
+				
 		
 		refresh();
 	}
@@ -178,6 +188,7 @@ public class LevelPlayView extends Screen {
 			if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
 			pl.setNumStars();
 			starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + pl.getNumStars() + ".png")));
+			progressView.updateProgressBar();
 			break;
 		case "Lightning":
 			levelParamTitle.setText("Time Left:");

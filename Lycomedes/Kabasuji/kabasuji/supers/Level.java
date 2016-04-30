@@ -69,6 +69,9 @@ public abstract class Level implements Serializable {
 	 */
 	protected int numStars;
 	
+	/** The progress associated with the current level. */
+	protected Progress progress;
+	
 	int pieceIndex;
 
 	/**

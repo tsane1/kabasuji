@@ -14,11 +14,11 @@ public class Progress {
 	}
 
 	public int updateProgressPuzzle() {
-		int value = 0;
-
+		//int value = 0;
+		int value = 50;
 		//getPuzzleProgress = (numberTilesCovered/numberTotalTiles)*100
-		value = board.getPuzzleProgress();
-		
+	//	value = board.getPuzzleProgress();
+		System.out.println(value);
 
 		return value;
 	}
