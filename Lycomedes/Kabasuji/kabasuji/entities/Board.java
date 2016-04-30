@@ -334,7 +334,7 @@ public class Board implements Serializable{
 			}
 		}
 		
-		return (marked/count) * 100;
+		return 0;
 	}
 	
 	/**
