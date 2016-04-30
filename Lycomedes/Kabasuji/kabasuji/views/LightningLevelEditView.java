@@ -202,8 +202,8 @@ public class LightningLevelEditView extends Screen {
 
 	@Override
 	public void refresh() {
-		btnUndo.setEnabled(!(model.getActiveLevel().getLastMove() == null));
-		btnRedo.setEnabled(!(model.getActiveLevel().getRedoMove() == null));
+		btnUndo.setEnabled(!(model.getActiveLevel().peekLastMove() == null));
+		btnRedo.setEnabled(!(model.getActiveLevel().peekRedoMove() == null));
 	}
 
 	@Override

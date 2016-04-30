@@ -39,13 +39,13 @@ public class AddToBullpenController extends MouseAdapter {
 		if(me.getClickCount() == 2){
 			System.out.println("Made it...You double clicked");
 			Move m = new PaletteToBullpenMove(currLevel, currLevel.getSelected());
-			m.execute();
-			currLevel.trackMove(m);
+			if(m.execute()) currLevel.trackMove(m);
 		}
 
 		bullpenView.refresh();
 		app.getCurrScreen().getPaletteView().refresh();
 		if(app.getCurrScreen().getName().contains("Edit")) app.getCurrScreen().getPaletteView().refresh();
+		app.getCurrScreen().refresh();
 		if(currLevel.getBullpen().isEmpty()){
 			System.out.println("Bullpen empty");
 		}

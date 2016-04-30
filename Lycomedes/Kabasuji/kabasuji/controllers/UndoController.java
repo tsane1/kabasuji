@@ -43,13 +43,12 @@ public class UndoController implements ActionListener {
 			app.getCurrScreen().getBoardView().refresh();
 			app.getCurrScreen().getBullpenView().refresh();
 			app.getCurrScreen().getPaletteView().refresh();
-			app.getCurrScreen().refresh();
 		}
 		
 		/*
 		 * Need to add a redraw method
 		 */
-		app.repaint();
+		app.getCurrScreen().refresh();
 		return true;
 	}
 }

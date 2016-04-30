@@ -477,6 +477,13 @@ public abstract class Level implements Serializable {
 		}
 		return undoStack.pop();
 	}
+	
+	public Move peekLastMove() {
+		if (undoStack.isEmpty()) {
+			return null;
+		}
+		return undoStack.peek();
+	}
 
 	/**
 	 * Adds a move to the undo stack.
@@ -503,6 +510,13 @@ public abstract class Level implements Serializable {
 			return null;
 		}
 		return redoStack.pop();
+	}
+	
+	public Move peekRedoMove() {
+		if (redoStack.isEmpty()) {
+			return null;
+		}
+		return redoStack.peek();
 	}
 	
 	/**
