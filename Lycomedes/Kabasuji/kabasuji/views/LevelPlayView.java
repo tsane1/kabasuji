@@ -191,7 +191,6 @@ public class LevelPlayView extends Screen {
 			levelParamDisplay.setText("" + pl.getMovesLeft());
 			if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
 			pl.setNumStars();
-			//starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + pl.getNumStars() + ".png")));
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 175, 192, 64);
 			oneStarDisplay.setBounds(715, 275, 192, 64);
@@ -222,11 +221,24 @@ public class LevelPlayView extends Screen {
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 175, 192, 64);
 			oneStarDisplay.setBounds(715, 275, 192, 64);
-			threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
-			twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
-			oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
+			if(level.getNumStars()==3){
+				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars3.png")));
+				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
+				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
+			} else if(level.getNumStars()==2){
+				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
+				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
+				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
+			} else if(level.getNumStars()==1){
+				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
+				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
+				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
+			} else if(level.getNumStars()==0){
+				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
+				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
+				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
+			}
 			progressView.updateProgressBar();
-			//starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + ll.getNumStars() + ".png")));
 			break;
 		case "Release":
 			levelParamTitle.setText("Number Left:");
@@ -234,11 +246,24 @@ public class LevelPlayView extends Screen {
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 200, 192, 64);
 			oneStarDisplay.setBounds(715, 300, 192, 64);
-			threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
-			twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
-			oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
+			if(level.getNumStars()==3){
+				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars3.png")));
+				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
+				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
+			} else if(level.getNumStars()==2){
+				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
+				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
+				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
+			} else if(level.getNumStars()==1){
+				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
+				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
+				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
+			} else if(level.getNumStars()==0){
+				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
+				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
+				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
+			}
 			progressView.updateProgressBar();
-			//starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + rl.getNumStars() + ".png")));
 			break;
 		default:
 			System.err.println("This level type is not yet supported."); 
