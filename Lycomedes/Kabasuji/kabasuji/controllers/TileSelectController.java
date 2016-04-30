@@ -34,23 +34,20 @@ public class TileSelectController extends MouseAdapter{
 	}
 	
 	public boolean selectTile(Point p){
-		Move m = new SelectTileMove(level);
+		Move m = new SelectTileMove(level, p);
 
-		if(m.execute(p)){ 
+		if(m.execute()){ 
 			level.trackMove(m);
-			System.out.println(level.peekLastMove().toString());
 			boardView.refresh();
-			app.getCurrScreen().refresh();
 			return true;
 		}
-		app.getCurrScreen().refresh();
 		return false;
 	}
 
 	public boolean incrementRelease(Point p){
-		Move m = new IncrementReleaseTileMove(level);
+		Move m = new IncrementReleaseTileMove(level, p);
 
-		if(m.execute(p)){ 
+		if(m.execute()){ 
 			level.trackMove(m);
 			boardView.refresh();
 			return true;
@@ -59,9 +56,9 @@ public class TileSelectController extends MouseAdapter{
 	}
 
 	public boolean changeNumColor(Point p){
-		Move m = new ChangeReleaseNumColorMove(level);
+		Move m = new ChangeReleaseNumColorMove(level, p);
 
-		if(m.execute(p)){ 
+		if(m.execute()){ 
 			level.trackMove(m);
 			boardView.refresh();
 			return true;
@@ -91,6 +88,7 @@ public class TileSelectController extends MouseAdapter{
 		else{
 			System.err.println("Button not supported on tile select.");
 		}
+		app.getCurrScreen().refresh();
 	}
 
 //	@Override

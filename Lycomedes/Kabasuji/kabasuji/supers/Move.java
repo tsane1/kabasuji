@@ -21,14 +21,4 @@ public abstract class Move implements Serializable {
 	public abstract boolean undo();
 	
 	public abstract boolean valid();
-
-	public boolean execute(Point p) {
-		// Used to de/select Tiles
-		return false;
-	}
-
-	public boolean undo(Point p) {
-		// Used to de/select Tiles
-		return false;
-	}
 }
