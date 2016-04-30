@@ -59,6 +59,10 @@ public class TestTiles extends TestCase {
 		assertEquals(1, t2.getColumn());
 		t2.setColumn(3);
 		assertEquals(3, t2.getColumn());
+		
+		t2.cover();
+		t2.uncover();
+		assertTrue(t2.isCovered());
 	}
 	
 	public void testPuzzleBoardTile() {
