@@ -45,6 +45,7 @@ public class RedoController implements ActionListener {
 		app.getCurrScreen().getBoardView().refresh();
 		app.getCurrScreen().getBullpenView().refresh();
 		app.getCurrScreen().getPaletteView().refresh();
+		app.getCurrScreen().refresh();
 		return true;
 	}
 }
