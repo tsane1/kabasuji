@@ -191,6 +191,7 @@ public class LevelPlayView extends Screen {
 			levelParamDisplay.setText("" + pl.getMovesLeft());
 			if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
 			pl.setNumStars();
+
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 175, 192, 64);
 			oneStarDisplay.setBounds(715, 275, 192, 64);
@@ -211,16 +212,18 @@ public class LevelPlayView extends Screen {
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
 			}
-			progressView.updateProgressBar();
+			progressView.updateProgressBar("Puzzle");
 			break;
 		case "Lightning":
 			levelParamTitle.setText("Time Left:");
 			levelParamDisplay.setText("" + ll.getMinsLeft() + ":" + String.format("%02d", ll.getSecsLeft()));
 			if(ll.getSecsLeft() < 10 && ll.getMinsLeft() == 0) levelParamDisplay.setForeground(Color.RED);
 			if(ll.getSecsLeft() + ll.getMinsLeft() == 0) t.stop();
+			
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 175, 192, 64);
 			oneStarDisplay.setBounds(715, 275, 192, 64);
+
 			if(level.getNumStars()==3){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
@@ -238,11 +241,18 @@ public class LevelPlayView extends Screen {
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
 			}
-			progressView.updateProgressBar();
+			progressView.updateProgressBar("Lightning");
+			threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
+			twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
+			oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
+			progressView.updateProgressBar("Lightning");
+			//starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + ll.getNumStars() + ".png")));
+
 			break;
 		case "Release":
 			levelParamTitle.setText("Number Left:");
 			rl.setNumStars();
+		
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 200, 192, 64);
 			oneStarDisplay.setBounds(715, 300, 192, 64);
@@ -263,7 +273,12 @@ public class LevelPlayView extends Screen {
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
 			}
-			progressView.updateProgressBar();
+			progressView.updateProgressBar("Release");
+			threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
+			twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
+			oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
+			progressView.updateProgressBar("Release");
+			//starsDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars" + rl.getNumStars() + ".png")));
 			break;
 		default:
 			System.err.println("This level type is not yet supported."); 

@@ -15,10 +15,8 @@ public class Progress {
 
 	public int updateProgressPuzzle() {
 		//int value = 0;
-		int value = 100;
-		//getPuzzleProgress = (numberTilesCovered/numberTotalTiles)*100
-		//value = board.getPuzzleProgress();
-		System.out.println(value);
+		int value = board.getPuzzleProgress();
+//		System.out.println(value);
 
 		return value;
 	}
@@ -27,7 +25,7 @@ public class Progress {
 		int value = 0;
 
 		//getLightningProgress = numberTilesCovered/numberTotalTile)*100
-		//value = board.getLightningProgress();
+		value = board.getLightningProgress();
 		
 		return value;
 	}
@@ -36,7 +34,7 @@ public class Progress {
 		int value = 0;
 
 		// getReleaseProgress = numberReleaseTilesCovered/numberTotalReleaseTiles)*100
-		//value = board.getReleaseProgress();
+		value = board.getReleaseProgress();
 		
 		
 		return value;

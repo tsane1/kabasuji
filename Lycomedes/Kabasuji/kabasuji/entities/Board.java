@@ -257,7 +257,11 @@ public class Board implements Serializable{
 				}
 			}
 		}
-		int value = ((placedPieces.size() * 6)/count) * 100;
+		int placed = placedPieces.size() * 6;
+		float div = ((float)placed/count);
+		System.out.println(div);
+		int value = (int)(div * 100);
+		System.out.println(value);
 		return value;
 	}
 	
@@ -292,7 +296,12 @@ public class Board implements Serializable{
 				}
 			}
 		}
-		return (marked/count) * 100;
+		System.out.println(marked);
+		System.out.println(count);
+		float value = ((float)marked/count);
+		int last = (int)(value * 100);
+		System.out.println(value);
+		return last;
 	}
 	
 	/**
@@ -317,13 +326,14 @@ public class Board implements Serializable{
 				//if this doesn't work use instancOf
 				//if its a board tile
 				//old code was to check is spot was not an unplayable tile then count
-				if(boardArray[i][j].getClass() == tile.getClass()){
+				if(boardArray[i][j].getClass() == tile.getClass() && (((ReleaseBoardTile)boardArray[i][j]).getValue() > 0)){
 					if(((ReleaseBoardTile) boardArray[i][j]).isCovered()){
 						marked++;
 					}
 				}
 			}
 		}
+		
 		return (marked/count) * 100;
 	}
 	
