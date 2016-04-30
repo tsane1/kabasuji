@@ -37,7 +37,7 @@ public abstract class Level implements Serializable {
 	/** Grid of all possible piecetiles that make up pieces. */
 	List<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	/** A map of piece colors used for drawing the pieces. */
-	Map<Integer, Color> colorMap = new HashMap<Integer, Color>(35);
+	HashMap<Integer, Color> colorMap = new HashMap<Integer, Color>(35);
 
 	/** Stack keeping track of the moves done for undoing. */
 	Stack<Move> undoStack = new Stack<Move>();
@@ -541,7 +541,7 @@ public abstract class Level implements Serializable {
 	/**
 	 * Getter for the color map.
 	 */
-	public Map<Integer, Color> getColorMap(){
+	public HashMap<Integer, Color> getColorMap(){
 		return colorMap;
 	}
 	
