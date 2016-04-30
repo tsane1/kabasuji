@@ -178,11 +178,14 @@ public class PuzzleLevelEditView extends Screen {
 		setLevelName.addFocusListener(new LevelNameChangeController(this.app, this.model));
 		
 		paletteView.addMouseListener(new PaletteSelectController(this.app, this.model));
+		
+		refresh();
 	}
 
 	@Override
 	public void refresh() {
-
+		btnUndo.setEnabled(!(model.getActiveLevel().getLastMove() == null));
+		btnRedo.setEnabled(!(model.getActiveLevel().getRedoMove() == null));
 	}
 	
 	@Override

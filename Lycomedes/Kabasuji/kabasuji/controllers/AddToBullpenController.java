@@ -40,6 +40,7 @@ public class AddToBullpenController extends MouseAdapter {
 			System.out.println("Made it...You double clicked");
 			Move m = new PaletteToBullpenMove(currLevel, currLevel.getSelected());
 			m.execute();
+			currLevel.trackMove(m);
 		}
 
 		bullpenView.refresh();

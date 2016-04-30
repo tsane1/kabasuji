@@ -165,20 +165,17 @@ public class ReleaseLevelEditView extends Screen {
 		boardView.addMouseListener(ppc);
 		boardView.addMouseMotionListener(ppc);
 		
-//		btnClockwise.addActionListener(new RotateRightController(this.app, this.model.getActiveLevel()));
-//		btnCounterClockwise.addActionListener(new RotateLeftController(this.app, this.model.getActiveLevel()));
-//		btnFlipX.addActionListener(new FlipXController(this.app, this.model.getActiveLevel()));
-//		btnFlipY.addActionListener(new FlipYController(this.app, this.model.getActiveLevel()));
-
-		
 		setLevelName.addFocusListener(new LevelNameChangeController(this.app, this.model));
 		
 		paletteView.addMouseListener(new PaletteSelectController(this.app, this.model));
+		
+		refresh();
 	}
 
 	@Override
 	public void refresh() {
-
+		btnUndo.setEnabled(!(model.getActiveLevel().getLastMove() == null));
+		btnRedo.setEnabled(!(model.getActiveLevel().getRedoMove() == null));
 	}
 
 	@Override

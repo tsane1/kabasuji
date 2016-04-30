@@ -50,7 +50,7 @@ public class PaletteToBullpenMove extends Move {
 		level.getColorMap().put(newPiece.getPieceID(), c);
 		
 		//deselect the piece for next move
-		level.setSelected(null);
+		//level.setSelected(null);
 		
 		return true;
 	}

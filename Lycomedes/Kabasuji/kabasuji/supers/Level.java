@@ -364,14 +364,6 @@ public abstract class Level implements Serializable {
 	}
 
 	/**
-	 * method for quitting a level.
-	 */
-	public void quit() {
-		// TODO: Put actual quit logic here...windowlistener?
-		System.out.println("Saving state and exiting.");
-	}
-
-	/**
 	 * Sets the active piece for the level.
 	 * @param Piece p
 	 */
