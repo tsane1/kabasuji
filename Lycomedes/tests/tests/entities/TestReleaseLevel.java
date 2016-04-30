@@ -1,7 +1,6 @@
 package tests.entities;
 
 import junit.framework.TestCase;
-import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
 
 public class TestReleaseLevel extends TestCase {
@@ -26,6 +25,7 @@ public class TestReleaseLevel extends TestCase {
 		assertTrue(testLevel.getNumsCollectedByColor("red").isEmpty());
 		assertTrue(testLevel.getNumsCollectedByColor("yellow").isEmpty());
 		assertTrue(testLevel.getNumsCollectedByColor("green").isEmpty());
+		assertNull(testLevel.getNumsCollectedByColor("notacolor"));
 		
 		testLevel.collect("red", 1);
 		testLevel.collect("yellow", 1);
