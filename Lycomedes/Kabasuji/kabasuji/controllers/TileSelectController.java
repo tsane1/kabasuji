@@ -21,6 +21,7 @@ import kabasuji.views.BoardView;
  * A controller to select tiles as active on a Board with one <+/+/+SUPPOSE TO BE: "LEFT click"+/+/+> click, 
  * up to the following 6 clicks it then increment a number to appear on the tile (for release).
  * @author Ian Jacoway
+ * @author Michael
  */
 
 public class TileSelectController extends MouseAdapter{
@@ -49,7 +50,7 @@ public class TileSelectController extends MouseAdapter{
 		Move m = new IncrementReleaseTileMove(level, p);
 
 		if(m.execute()){ 
-			level.trackMove(m);
+			//level.trackMove(m);
 			boardView.refresh();
 			return true;
 		}
@@ -60,7 +61,7 @@ public class TileSelectController extends MouseAdapter{
 		Move m = new ChangeReleaseNumColorMove(level, p);
 
 		if(m.execute()){ 
-			level.trackMove(m);
+			//level.trackMove(m);
 			boardView.refresh();
 			return true;
 		}
@@ -97,23 +98,14 @@ public class TileSelectController extends MouseAdapter{
 		
 		if(SwingUtilities.isRightMouseButton(e)){
 
-//			if (numClicks == 1){
-				incrementRelease(clicked);
-//			}
-//			else if (numClicks == 2){
-//				changeNumColor(clicked);
-//			}
-//			else{
-//				System.out.println("No action for more than 2 clicks");
-//			}
+			incrementRelease(clicked);
+
 		} 
 		else if(SwingUtilities.isLeftMouseButton(e)){
 			if (numClicks == 1){ // will be helpful for incrementing release
-				System.out.println("Adding tile...");
 				selectTile(clicked); 
 			}
 			else if(numClicks == 2){
-				System.out.println("Adding hint...");
 				addToHint(clicked);
 			}
 			else{

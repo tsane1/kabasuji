@@ -10,6 +10,7 @@ import kabasuji.supers.SuperModel;
 /** 
  * 
  * @author Chase St. Laurent
+ * @author Ian Jaocoway
  *
  */
 public class TestMoveCounter extends TestCase {

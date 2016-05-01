@@ -43,13 +43,14 @@ public class UpdateHintLocationMove extends Move {
 
 	@Override
 	public boolean undo() {
-		b.getHintLocations().remove(b.getHintLocations().size()-1);
+		if(b.getHintLocations().size() > 0) b.getHintLocations().remove(b.getHintLocations().size()-1);
+		else return false;
 		return true;
 	}
 
 	@Override
 	public boolean valid() {
-		return true;
+		return !(b.getHintLocations().size() > 6);
 	}
 
 }

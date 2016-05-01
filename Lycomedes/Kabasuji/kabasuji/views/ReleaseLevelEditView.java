@@ -159,11 +159,7 @@ public class ReleaseLevelEditView extends Screen {
 		
 //		boardView.addMouseListener(new TileSelectController(this.app, this.model));
 		bullpenView.addMouseListener(new AddToBullpenController(this.app, this.model));
-		
-		TileSelectController ppc = new TileSelectController(this.app, this.model);
-		boardView.addMouseListener(ppc);
-		boardView.addMouseMotionListener(ppc);
-		
+	
 		setLevelName.addFocusListener(new LevelNameChangeController(this.app, this.model));
 		
 		paletteView.addMouseListener(new PaletteSelectController(this.app, this.model));

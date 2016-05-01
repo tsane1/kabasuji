@@ -36,8 +36,6 @@ public class ChangeReleaseNumColorMove extends Move {
 
 	@Override
 	public boolean valid() {
-		if((currLevel.getBoard() == null)||(currLevel.getLevelType() != "ReleaseLevelEditView"))
-			return false;
-		return true;
+		return currLevel.getLevelType().equals("Release");
 	}
 }
