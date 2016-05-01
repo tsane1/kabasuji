@@ -222,7 +222,6 @@ public class LevelPlayView extends Screen {
 			levelParamTitle.setText("Time Left:");
 			levelParamDisplay.setText("" + ll.getMinsLeft() + ":" + String.format("%02d", ll.getSecsLeft()));
 			if(ll.getSecsLeft() < 10 && ll.getMinsLeft() == 0) levelParamDisplay.setForeground(Color.RED);
-			//if(ll.getSecsLeft() + ll.getMinsLeft() == 0) t.stop();
 			
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 175, 192, 64);
