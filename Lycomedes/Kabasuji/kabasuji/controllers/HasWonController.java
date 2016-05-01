@@ -14,6 +14,7 @@ import kabasuji.supers.SuperModel;
 /** 
  * 
  * @author Chase St. Laurent
+ * 
  *
  */
 
