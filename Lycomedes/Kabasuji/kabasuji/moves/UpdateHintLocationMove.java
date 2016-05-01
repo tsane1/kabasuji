@@ -19,6 +19,7 @@ public class UpdateHintLocationMove extends Move {
 		this.lev = l;
 		this.b = l.getBoard();
 	}
+	
 	@Override
 	public boolean execute() {
 		if(!valid()) { return false; }

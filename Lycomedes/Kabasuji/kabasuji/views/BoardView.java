@@ -129,15 +129,16 @@ public class BoardView extends JPanel {
 		int i,j = 0;
 		for(i = 0;i<12;i++){
 			for(j = 0;j<12;j++){
-				if(isHintLocation(i, j) && showHint){
+				if(isHintLocation(i, j) && showHint && (!boardArray[i][j].isCovered())){
 					
 					System.out.println("in here");
-					for(Tile pt: currLevel.getBoard().getHintLocations()){
-						offScreenGraphics.setColor(Color.orange.brighter());
-						offScreenGraphics.fillRect((Tile.height*pt.getRow())+(Tile.width*pt.getColumn()), (Tile.width*pt.getColumn())+(Tile.height*pt.getRow()), Tile.width, Tile.height);
-						
 					
-					}
+					offScreenGraphics.setColor(Color.orange.brighter());
+					offScreenGraphics.fillRect(i*Tile.width, j*Tile.height,(Tile.width), (Tile.height));
+					offScreenGraphics.setColor(Color.BLACK);
+					offScreenGraphics.drawRect(i*Tile.width, j*Tile.height,(Tile.width), (Tile.height));
+					
+					
 				}
 				else if(boardArray[i][j].isCovered()){
 					//if its covered dont do anything leave it alone
