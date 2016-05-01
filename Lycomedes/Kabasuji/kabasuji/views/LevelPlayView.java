@@ -14,6 +14,7 @@ import javax.swing.Timer;
 
 import kabasuji.controllers.FlipXController;
 import kabasuji.controllers.FlipYController;
+import kabasuji.controllers.HintController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RotateLeftController;
 import kabasuji.controllers.RotateRightController;
@@ -177,6 +178,7 @@ public class LevelPlayView extends Screen {
 			t = new Timer(1000, new TimerController(this.app, this.model));
 			t.start();
 		}
+		helpMe.addActionListener(new HintController(this.app, this.model));
 	}	
 
 	@Override

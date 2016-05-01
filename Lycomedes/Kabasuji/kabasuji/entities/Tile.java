@@ -52,4 +52,12 @@ public abstract class Tile implements Serializable{
 	 * @return boolean
 	 */
 	public abstract boolean isCovered();
+	
+	public int getRow(){
+		return row;
+	}
+	
+	public int getColumn(){
+		return col;
+	}
 }

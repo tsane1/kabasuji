@@ -17,7 +17,6 @@ import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BoardView;
 import kabasuji.views.LevelPlayView;
-import kabasuji.views.Test_Mike;
 
 //ATTEMPTS TO TEST BOARD VIEW BUT I DONT THINK ITS POSSIBLE CURRENTLY
 public class testBoardView extends JFrame{
