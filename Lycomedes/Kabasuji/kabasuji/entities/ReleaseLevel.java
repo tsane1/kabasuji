@@ -8,6 +8,7 @@ import kabasuji.supers.Level;
  * 
  * @author Derek McMaster
  * @author Tanuj Sane
+ * @author Chase St. Laurent
  */
 public class ReleaseLevel extends Level {
 	private ArrayList<Integer> redsCollected = new ArrayList<Integer>(6);
@@ -60,5 +61,17 @@ public class ReleaseLevel extends Level {
 		byte g =(byte)((this.greensCollected.size() == 6)? 1:0);
 		
 		this.numStars = ((r&g | r&y | g&y) << 1) + (r^g^y);
+	}
+
+	@Override
+	public boolean hasEnded() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean hasWon() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

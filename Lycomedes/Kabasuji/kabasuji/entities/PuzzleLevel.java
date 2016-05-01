@@ -6,6 +6,7 @@ import kabasuji.supers.Level;
  * Level sublcass for the puzzle level entity.
  * 
  * @author Derek McMaster
+ * @author Chase St. Laurent
  */
 public class PuzzleLevel extends Level {
 	/**
@@ -45,5 +46,17 @@ public class PuzzleLevel extends Level {
 		//this.numStars = 3 - this.theBullpen.pieces.size();
 		//if(this.numStars < 1) this.numStars = 0;
 		this.numStars=0;
+	}
+
+	@Override
+	public boolean hasEnded() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean hasWon() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

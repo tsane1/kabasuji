@@ -562,6 +562,10 @@ public abstract class Level implements Serializable {
 	
 	public abstract void setNumStars();
 	
+	public abstract boolean hasEnded();
+	
+	public abstract boolean hasWon();
+	
 	public int getNumStars() {
 		updateAchievement();
 		return this.numStars;
