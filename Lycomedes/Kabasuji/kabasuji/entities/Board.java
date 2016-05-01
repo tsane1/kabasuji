@@ -64,15 +64,21 @@ public class Board implements Serializable{
 	 * @param int type
 	 */
 	//creates a tile that can be played on at the given grid location in the 12x12
-	public void createBoardTile(int row, int col, String type) {
+	public boolean createBoardTile(int row, int col, String type) {
 		if(type.equals("Puzzle")){
 			boardArray[row][col] = new PuzzleBoardTile(row, col);
+			return true;
 		}
 		else if(type.equals("Lightning")) {
 			boardArray[row][col] = new LightningBoardTile(row, col);
+			return true;
 		}
-		else {
+		else if(type.equals("Release")){
 			boardArray[row][col] = new ReleaseBoardTile(row, col);
+			return true;
+		}
+		else{
+			return false;
 		}
 	}
 	
@@ -322,11 +328,11 @@ public class Board implements Serializable{
 				//if its a board tile
 				//old code was to check is spot was not an unplayable tile then count
 				if((boardArray[i][j].getClass() == tile.getClass()) && (((ReleaseBoardTile)boardArray[i][j]).getValue() > 0)){
-					if(((ReleaseBoardTile)boardArray[i][j]).getNumColor() == 0){
+					if(((ReleaseBoardTile)boardArray[i][j]).getValue() > 6 && ((ReleaseBoardTile) boardArray[i][j]).getValue() <= 12){
 						countGreen++;
-					}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
+					}else if(((ReleaseBoardTile) boardArray[i][j]).getValue() > 12){
 						countRed++;
-					}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 2){
+					}else{
 						countYellow++;
 					}
 				}
@@ -336,11 +342,11 @@ public class Board implements Serializable{
 				//old code was to check is spot was not an unplayable tile then count
 				if(boardArray[i][j].getClass() == tile.getClass() && (((ReleaseBoardTile)boardArray[i][j]).getValue() > 0)){
 					if(((ReleaseBoardTile) boardArray[i][j]).isCovered()){
-						if(((ReleaseBoardTile)boardArray[i][j]).getNumColor() == 0){
+						if(((ReleaseBoardTile)boardArray[i][j]).getValue() > 6 && ((ReleaseBoardTile) boardArray[i][j]).getValue() <= 12){
 							markedGreen++;
-						}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
+						}else if(((ReleaseBoardTile) boardArray[i][j]).getValue() > 12){
 							markedRed++;
-						}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 2){
+						}else{
 							markedYellow++;
 						}
 					}
@@ -349,7 +355,7 @@ public class Board implements Serializable{
 		}
 		if(countGreen == 0 || countRed == 0 || countYellow == 0){
 			System.out.println("Missing release tiles with numbers");
-			return 0;
+//			return 0;
 		}
 		int value = 0;
 		if(markedGreen == countGreen){
