@@ -2,7 +2,9 @@ package kabasuji.entities;
 
 import java.awt.Point;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 /** 
@@ -25,7 +27,7 @@ public class Board implements Serializable{
 	/** Map of where the pieces are on the board. */
 	private HashMap<Point,Piece> placedPieces;
 	/** Array to store the locations of a 'hint' piece. */
-	Tile[] hintArray;
+	ArrayList<Tile> hintArray;
 	
 	/**
 	 * Constructor for the board class.  Initializes the board and piece map.
@@ -35,7 +37,7 @@ public class Board implements Serializable{
 		this.cols = new int[12];
 		this.placedPieces = new HashMap<Point, Piece>();
 		this.boardArray = new Tile[12][12];
-		hintArray = new Tile[6];
+		hintArray = new ArrayList<Tile>();
 		initializeBoardArray();
 		
 	}
@@ -426,7 +428,7 @@ public class Board implements Serializable{
 	 * returns the locations of the squares on the board for hints.  Will be board locations not piecetile.
 	 * @return Tile[]
 	 */
-	public Tile[] getHintLocations() {
+	public List<Tile> getHintLocations() {
 		return hintArray;
 	}
 	
@@ -438,8 +440,8 @@ public class Board implements Serializable{
 		/*
 		 * Will length return current length or declared length?
 		 */
-		if(hintArray[5] != null){ return; }
-		hintArray[hintArray.length-1] = t;
+		if(hintArray.size() < 6)
+			hintArray.add(t);
 	}
 
 }
