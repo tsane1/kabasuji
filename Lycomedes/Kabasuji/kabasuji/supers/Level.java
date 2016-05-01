@@ -567,7 +567,7 @@ public abstract class Level implements Serializable {
 		return this.numStars;
 	}
 	
-	public void addPieceToAllPieces(Piece p){
-		this.allPieces.add(p);
+	public boolean addPieceToAllPieces(Piece p){
+		return this.allPieces.add(p);
 	}
 }

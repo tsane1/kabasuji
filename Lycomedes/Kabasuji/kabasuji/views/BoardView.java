@@ -171,7 +171,7 @@ public class BoardView extends JPanel {
 							offScreenGraphics.setColor(Color.GREEN);
 						}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
 							offScreenGraphics.setColor(Color.RED);
-						}else{
+						}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 2) {
 							offScreenGraphics.setColor(Color.YELLOW);
 						}
 

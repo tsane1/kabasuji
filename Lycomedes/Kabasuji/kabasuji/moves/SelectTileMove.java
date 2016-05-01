@@ -13,20 +13,22 @@ import kabasuji.supers.Move;
  */
 public class SelectTileMove extends Move {
 	Level currLevel;
+	Point p;
 	
-	public SelectTileMove(Level l) {
+	public SelectTileMove(Level l, Point p) {
 		this.currLevel = l;
+		this.p = p;
 	}
 	
 	@Override
-	public boolean execute(Point p) {
+	public boolean execute() {
 		if(!valid()) { return false; }
 		currLevel.getBoard().selectTile(p, currLevel.getLevelType());
 		return true;
 	}
 
 	@Override
-	public boolean undo(Point p) {
+	public boolean undo() {
 		currLevel.getBoard().deselectTile(p);
 		return true;
 	}
@@ -36,17 +38,5 @@ public class SelectTileMove extends Move {
 		if(currLevel.getBoard() == null)
 			return false;
 		return true;
-	}
-
-	@Override //Not use as we need to pass it a point
-	public boolean execute() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override // not the one to use as we need ot pass it a point
-	public boolean undo() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }
