@@ -45,7 +45,7 @@ public class TestPieceDrawer extends TestCase {
 	public void testPieceDrawer(){
 		PieceDrawer pd = new PieceDrawer();
 		
-		pd.drawHintPiece(gr, (Tile[])arr);
+		//pd.drawHintPiece(gr, arr);
 		
 		pd.drawPalettePiece(gr, testPiece, 0, 0, Color.black);
 		
