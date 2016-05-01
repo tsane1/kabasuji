@@ -2,7 +2,9 @@ package kabasuji.entities;
 
 import java.awt.Point;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 /** 
@@ -25,7 +27,7 @@ public class Board implements Serializable{
 	/** Map of where the pieces are on the board. */
 	private HashMap<Point,Piece> placedPieces;
 	/** Array to store the locations of a 'hint' piece. */
-	Tile[] hintArray;
+	ArrayList<Tile> hintArray;
 	
 	/**
 	 * Constructor for the board class.  Initializes the board and piece map.
@@ -35,7 +37,7 @@ public class Board implements Serializable{
 		this.cols = new int[12];
 		this.placedPieces = new HashMap<Point, Piece>();
 		this.boardArray = new Tile[12][12];
-		hintArray = new Tile[6];
+		hintArray = new ArrayList<Tile>();
 		initializeBoardArray();
 		
 	}
@@ -310,7 +312,7 @@ public class Board implements Serializable{
 	 * @return 
 	 */
 	public int getReleaseProgress(){
-		int i,j,count = 0, marked = 0;
+		int i,j,countGreen = 0, countRed = 0, countYellow = 0, markedGreen = 0, markedRed = 0, markedYellow = 0;
 		//iterate over board array
 		for(i = 0;i<12;i++){
 			for(j = 0;j<12;j++){
@@ -320,7 +322,13 @@ public class Board implements Serializable{
 				//if its a board tile
 				//old code was to check is spot was not an unplayable tile then count
 				if((boardArray[i][j].getClass() == tile.getClass()) && (((ReleaseBoardTile)boardArray[i][j]).getValue() > 0)){
-					count++;
+					if(((ReleaseBoardTile)boardArray[i][j]).getNumColor() == 0){
+						countGreen++;
+					}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
+						countRed++;
+					}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 2){
+						countYellow++;
+					}
 				}
 				
 				//if this doesn't work use instancOf
@@ -328,16 +336,35 @@ public class Board implements Serializable{
 				//old code was to check is spot was not an unplayable tile then count
 				if(boardArray[i][j].getClass() == tile.getClass() && (((ReleaseBoardTile)boardArray[i][j]).getValue() > 0)){
 					if(((ReleaseBoardTile) boardArray[i][j]).isCovered()){
-						marked++;
+						if(((ReleaseBoardTile)boardArray[i][j]).getNumColor() == 0){
+							markedGreen++;
+						}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
+							markedRed++;
+						}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 2){
+							markedYellow++;
+						}
 					}
 				}
 			}
 		}
-		if(count == 0){
-			System.out.println("No release tiles with numbers");
+		if(countGreen == 0 || countRed == 0 || countYellow == 0){
+			System.out.println("Missing release tiles with numbers");
 			return 0;
 		}
-		return (marked/count) * 100;
+		int value = 0;
+		if(markedGreen == countGreen){
+			value += 33;
+		}
+		if(markedRed == countRed){
+			value += 33;
+		}
+		if(markedYellow == countYellow){
+			value += 33;
+		}
+		if(value == 99){
+			value++;
+		}
+		return value;
 	}
 	
 	/**
@@ -383,7 +410,7 @@ public class Board implements Serializable{
 		if(y == 0)
 			rowNum -= 1;
 		
-		boardArray[rowNum][colNum] = new UnplayableTile(rowNum, colNum);
+		boardArray[colNum][rowNum] = new UnplayableTile(rowNum, colNum);
 	}
 	
 	/**
@@ -400,7 +427,6 @@ public class Board implements Serializable{
 			colNum -= 1;
 		if(y == 0)
 			rowNum -= 1;
-		System.err.println("Shhh im here dad");
 		((ReleaseBoardTile) boardArray[colNum][rowNum]).updateReleaseNum();
 	}
 
@@ -426,7 +452,7 @@ public class Board implements Serializable{
 	 * returns the locations of the squares on the board for hints.  Will be board locations not piecetile.
 	 * @return Tile[]
 	 */
-	public Tile[] getHintLocations() {
+	public List<Tile> getHintLocations() {
 		return hintArray;
 	}
 	
@@ -438,8 +464,8 @@ public class Board implements Serializable{
 		/*
 		 * Will length return current length or declared length?
 		 */
-		if(hintArray[5] != null){ return; }
-		hintArray[hintArray.length-1] = t;
+		if(hintArray.size() < 6)
+			hintArray.add(t);
 	}
 
 }

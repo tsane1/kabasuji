@@ -18,10 +18,11 @@ public class SaveLevelController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Level hi = app.getCurrScreen().getLevel();
-		if(hi == null);
+		Level newLevel = app.getCurrScreen().getLevel();
+		if(newLevel == null);
 		else {
-			hi.saveLevel(model.getUserLevelDir());
+			newLevel.setSelected(null);
+			newLevel.saveLevel(model.getUserLevelDir());
 			model.updateUserLevelNames();
 		}
 	}

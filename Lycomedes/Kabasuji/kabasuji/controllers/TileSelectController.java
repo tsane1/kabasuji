@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import kabasuji.moves.ChangeReleaseNumColorMove;
 import kabasuji.moves.IncrementReleaseTileMove;
 import kabasuji.moves.SelectTileMove;
+import kabasuji.moves.UpdateHintLocationMove;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
@@ -34,23 +35,20 @@ public class TileSelectController extends MouseAdapter{
 	}
 	
 	public boolean selectTile(Point p){
-		Move m = new SelectTileMove(level);
+		Move m = new SelectTileMove(level, p);
 
-		if(m.execute(p)){ 
+		if(m.execute()){ 
 			level.trackMove(m);
-			System.out.println(level.peekLastMove().toString());
 			boardView.refresh();
-			app.getCurrScreen().refresh();
 			return true;
 		}
-		app.getCurrScreen().refresh();
 		return false;
 	}
 
 	public boolean incrementRelease(Point p){
-		Move m = new IncrementReleaseTileMove(level);
+		Move m = new IncrementReleaseTileMove(level, p);
 
-		if(m.execute(p)){ 
+		if(m.execute()){ 
 			level.trackMove(m);
 			boardView.refresh();
 			return true;
@@ -59,9 +57,9 @@ public class TileSelectController extends MouseAdapter{
 	}
 
 	public boolean changeNumColor(Point p){
-		Move m = new ChangeReleaseNumColorMove(level);
+		Move m = new ChangeReleaseNumColorMove(level, p);
 
-		if(m.execute(p)){ 
+		if(m.execute()){ 
 			level.trackMove(m);
 			boardView.refresh();
 			return true;
@@ -69,52 +67,62 @@ public class TileSelectController extends MouseAdapter{
 		return false;
 	}
 	
+	public boolean addToHint(Point p){
+		int rowNum = (int) p.getY()/32; 
+		int colNum = (int) p.getX()/32;
+		int x = (int)p.getX()%32;
+		int y = (int)p.getY()%32;
+		
+		if(x == 0)
+			colNum -= 1;
+		if(y == 0)
+			rowNum -= 1;
+		
+		Move m = new UpdateHintLocationMove(rowNum, colNum, level);
+		
+		if(m.execute()){ 
+			level.trackMove(m);
+			boardView.refresh();
+			return true;
+		}
+		return false;
+		
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
 		Point clicked = e.getPoint();
+		int numClicks = e.getClickCount();
 		
 		if(SwingUtilities.isRightMouseButton(e)){
 
-			if (e.getClickCount() == 1){
+			if (numClicks == 1){
 				incrementRelease(clicked);
 			}
-			if (e.getClickCount() == 2){
+			else if (numClicks == 2){
 				changeNumColor(clicked);
+			}
+			else{
+				System.out.println("No action for more than 2 clicks");
 			}
 		} 
 		else if(SwingUtilities.isLeftMouseButton(e)){
-			if (e.getClickCount() == 2){ // will be helpful for incrementing release
+			if (numClicks == 1){ // will be helpful for incrementing release
 				selectTile(clicked); 
+			}
+			else if(numClicks == 2){
+				addToHint(clicked);
+			}
+			else{
+				System.out.println("No action for more than 2 clicks");
 			}
 		}
 		else{
 			System.err.println("Button not supported on tile select.");
 		}
+		app.getCurrScreen().refresh();
 	}
-
-//	@Override
-//	public void paintComponent(Graphics g) {
-//		super.paintComponent(g);
-//		
-//		Font font = new Font("Comic Sans MS", Font.PLAIN, 28); // 28 size of a Tile -4
-//		g.setFont(font);
-//		
-////		ArrayList<int> rNums = level.getRNums(); // an idea
-////		for (int n : rNums) {
-//		if(rcNum == -1){ try {
-//			throw new Exception("EXCEPTION CAUGHT : TileSelectController: paintComponent(): rcNum = -1");
-//		} catch (Exception e) {
-//			System.err.println("EXCEPTION CAUGHT : TileSelectController: <<EXCEPTION INCEPTION>>");
-//			e.printStackTrace();
-//		} }
-//		switch (rcNum) {
-//			case 1: g.setColor(Color.pink); case 2: g.setColor(Color.red); case 3: g.setColor(Color.orange);
-//			case 4: g.setColor(Color.green); case 5: g.setColor(Color.cyan); case 6: g.setColor(Color.blue);
-//			default: g.setColor(Color.black);
-//				g.drawString(""+rNum, p.x, p.y);
-//		}
-//	}
 	
 //	@Override
 //	public void mousePressed(MouseEvent e) {

@@ -2,6 +2,7 @@ package kabasuji.entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
 
 /**
  * Helper Class that knows how to translate pieces into graphics.
@@ -46,7 +47,7 @@ public class PieceDrawer {
 		}
 	}
 	
-	public void drawHintPiece(Graphics g, Tile[] locationsOnBoard){
+	public void drawHintPiece(Graphics g, List<Tile> locationsOnBoard){
 		for(Tile pt : locationsOnBoard){
 			g.setColor(Color.green.brighter().brighter());
 			g.drawRect((Tile.height*pt.row)+(Tile.width*pt.col), (Tile.width*pt.col)+(Tile.height*pt.row), Tile.width, Tile.height);

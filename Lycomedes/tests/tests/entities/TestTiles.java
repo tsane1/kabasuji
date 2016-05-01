@@ -59,6 +59,10 @@ public class TestTiles extends TestCase {
 		assertEquals(1, t2.getColumn());
 		t2.setColumn(3);
 		assertEquals(3, t2.getColumn());
+		
+		t2.cover();
+		t2.uncover();
+		assertTrue(t2.isCovered());
 	}
 	
 	public void testPuzzleBoardTile() {
@@ -117,12 +121,16 @@ public class TestTiles extends TestCase {
 		t5.updateReleaseNum();
 		assertEquals(5, t5.getValue());
 		t5.updateReleaseNum();
+		assertEquals(6, t5.getValue());
+		t5.updateReleaseNum();
 		assertEquals(0, t5.getValue());
 		
 		t5.updateReleaseColor();
 		assertEquals(1, t5.getNumColor());
 		t5.updateReleaseColor();
 		assertEquals(2, t5.getNumColor());
+		t5.updateReleaseColor();
+		assertEquals(3, t5.getNumColor());
 		t5.updateReleaseColor();
 		assertEquals(0, t5.getNumColor());
 	}

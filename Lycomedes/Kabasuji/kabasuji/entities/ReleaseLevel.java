@@ -49,6 +49,7 @@ public class ReleaseLevel extends Level {
 		case "green":
 			this.greensCollected.add(num);
 			break;
+		
 		}
 	}
 
