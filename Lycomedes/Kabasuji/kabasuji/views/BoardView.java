@@ -178,16 +178,37 @@ public class BoardView extends JPanel {
 						offScreenGraphics.fillRect(i*Tile.width, j*Tile.height,(Tile.width), (Tile.height));
 						offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
 						offScreenGraphics.drawRect(i*Tile.width, j*Tile.height,(Tile.width), (Tile.height));
+						
 						//need to actually make a switch case that changes the number color but yeah...
-						if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 0){
-							offScreenGraphics.setColor(Color.GREEN);
-						}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
-							offScreenGraphics.setColor(Color.RED);
-						}else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 2) {
+//						if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 0){
+//							offScreenGraphics.setColor(Color.GREEN.darker());
+//							offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*Tile.width + (Tile.width / 2)), (j*Tile.height + (Tile.height / 2)));
+//
+//						}
+//						else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 1){
+//							offScreenGraphics.setColor(Color.YELLOW);
+//							offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*Tile.width + (Tile.width / 2)), (j*Tile.height + (Tile.height / 2)));
+//
+//						}
+//						else if(((ReleaseBoardTile) boardArray[i][j]).getNumColor() == 2){
+//							offScreenGraphics.setColor(Color.RED.darker());
+//							offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*Tile.width + (Tile.width / 2)), (j*Tile.height + (Tile.height / 2)));
+//
+//						}
+						if(((ReleaseBoardTile) boardArray[i][j]).getValue() > 6 && ((ReleaseBoardTile) boardArray[i][j]).getValue() <= 12){
+							offScreenGraphics.setColor(Color.GREEN.darker());
+							offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()-6), (i*Tile.width + (Tile.width / 2)), (j*Tile.height + (Tile.height / 2)));
+
+						}else if(((ReleaseBoardTile) boardArray[i][j]).getValue() > 12){
+							offScreenGraphics.setColor(Color.RED.darker());
+							offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()-12), (i*Tile.width + (Tile.width / 2)), (j*Tile.height + (Tile.height / 2)));
+
+						}else{
 							offScreenGraphics.setColor(Color.YELLOW);
+							offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*Tile.width + (Tile.width / 2)), (j*Tile.height + (Tile.height / 2)));
+
 						}
 
-						offScreenGraphics.drawString(Integer.toString(((ReleaseBoardTile) boardArray[i][j]).getValue()), (i*Tile.width + (Tile.width / 2)), (j*Tile.height + (Tile.height / 2)));
 					}else{
 						offScreenGraphics.setColor(Color.LIGHT_GRAY); //regular board tiles are just light gray still need to figure out the release tile number stuff
 						offScreenGraphics.fillRect(i*Tile.width, j*Tile.height,(Tile.width), (Tile.height));

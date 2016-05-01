@@ -97,15 +97,15 @@ public class TileSelectController extends MouseAdapter{
 		
 		if(SwingUtilities.isRightMouseButton(e)){
 
-			if (numClicks == 1){
+//			if (numClicks == 1){
 				incrementRelease(clicked);
-			}
-			else if (numClicks == 2){
-				changeNumColor(clicked);
-			}
-			else{
-				System.out.println("No action for more than 2 clicks");
-			}
+//			}
+//			else if (numClicks == 2){
+//				changeNumColor(clicked);
+//			}
+//			else{
+//				System.out.println("No action for more than 2 clicks");
+//			}
 		} 
 		else if(SwingUtilities.isLeftMouseButton(e)){
 			if (numClicks == 1){ // will be helpful for incrementing release
