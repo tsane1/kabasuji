@@ -1,5 +1,7 @@
 package kabasuji.views;
 
+import javax.swing.JLabel;
+
 import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
