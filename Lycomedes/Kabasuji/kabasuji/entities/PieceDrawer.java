@@ -50,6 +50,7 @@ public class PieceDrawer {
 	public void drawHintPiece(Graphics g, List<Tile> locationsOnBoard){
 		for(Tile pt : locationsOnBoard){
 			g.setColor(Color.green.brighter().brighter());
+			System.out.println("fuck you");
 			g.drawRect((Tile.height*pt.row)+(Tile.width*pt.col), (Tile.width*pt.col)+(Tile.height*pt.row), Tile.width, Tile.height);
 		}
 	}

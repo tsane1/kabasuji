@@ -22,14 +22,14 @@ public class HintController implements ActionListener{
 			showHint();
 		}
 		catch(Exception ex){
-			System.err.println("EXCEPTION CAUGHT : FlipXController");
+			System.err.println("EXCEPTION CAUGHT : HintController");
 			ex.printStackTrace();
 		}
+		app.getCurrScreen().getBoardView().refresh();
 	}
 
 	private void showHint() {
 		app.getCurrScreen().getBoardView().showHint();
-		
 	}
 
 }

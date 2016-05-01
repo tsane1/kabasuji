@@ -109,9 +109,11 @@ public class TileSelectController extends MouseAdapter{
 		} 
 		else if(SwingUtilities.isLeftMouseButton(e)){
 			if (numClicks == 1){ // will be helpful for incrementing release
+				System.out.println("Adding tile...");
 				selectTile(clicked); 
 			}
 			else if(numClicks == 2){
+				System.out.println("Adding hint...");
 				addToHint(clicked);
 			}
 			else{

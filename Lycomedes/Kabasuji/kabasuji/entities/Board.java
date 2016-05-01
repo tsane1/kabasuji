@@ -464,7 +464,9 @@ public class Board implements Serializable{
 		/*
 		 * Will length return current length or declared length?
 		 */
+		System.out.println("setHintLocation");
 		if(hintArray.size() < 6)
+			System.out.println("add to hintArray");
 			hintArray.add(t);
 	}
 
