@@ -11,7 +11,7 @@ import java.util.List;
  * Main board object that represents a board of maximum size 12x12 and all the tiles and pieces it contains.
  * @author Michael
  * @author Ian Jacoway as of @since 4/24/16
- *
+ * @author Derek McMaster - hints
  */
 
 public class Board implements Serializable{
