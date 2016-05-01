@@ -41,4 +41,16 @@ public class LightningLevel extends Level {
 	public void setNumStars() {
 		this.numStars = 3;
 	}
+
+	@Override
+	public boolean hasEnded() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean hasWon() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
