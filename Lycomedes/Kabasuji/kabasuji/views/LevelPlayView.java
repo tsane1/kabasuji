@@ -185,10 +185,10 @@ public class LevelPlayView extends Screen {
 	public void refresh() {
 		this.remove(levelParamDisplay);
 		//this.remove(starsDisplay);
-//		if(model.getActiveLevel().hasEnded() || !(model.getActiveLevel().hasWon())) {
-//			this.app.setCurrScreen(new LevelEndView(this.model));
-//			return;
-//		}
+		if(model.getActiveLevel().hasEnded() || !(model.getActiveLevel().hasWon())) {
+			this.app.setCurrScreen(new LevelEndView(this.model));
+			return;
+		}
 		
 		switch(level.getLevelType()) { // add level-specific elements
 		case "Puzzle":

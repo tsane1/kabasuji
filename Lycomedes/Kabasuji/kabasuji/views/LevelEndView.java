@@ -6,6 +6,7 @@ import java.awt.SystemColor;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import kabasuji.entities.LightningLevel;
 import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
@@ -29,13 +30,13 @@ public class LevelEndView extends Screen {
 		btnLevelSelect.setFont(new Font("Kristen ITC", Font.BOLD, 16));
 		btnLevelSelect.setBounds(87, 409, 100, 50);
 		
-//		if(model.getActiveLevel().hasEnded && !model.getActiveLevel().hasWon) {
-//			setTitle(model.getActiveLevel().getLevelName() + " LOST");
-//		}
-//		else if(model.getActiveLevel().hasEnded && model.getActiveLevel().hasWon) {
-//			setTitle(model.getActiveLevel().getLevelName() + " WON");
-//			this.add(btnContinue);
-//		}
+		if(model.getActiveLevel().hasEnded() && !model.getActiveLevel().hasWon()) {
+			setTitle(model.getActiveLevel().getLevelName() + " LOST");
+		}
+		else if(model.getActiveLevel().hasEnded() && model.getActiveLevel().hasWon()) {
+			setTitle(model.getActiveLevel().getLevelName() + " WON");
+			this.add(btnContinue);
+		}
 		
 		this.add(btnLevelSelect);
 		this.add(btnReplay);
@@ -57,7 +58,9 @@ public class LevelEndView extends Screen {
 	}
 	
 	public static void main(String[] args) {
-		Application app = new Application(new LevelEndView(new SuperModel()));
+		SuperModel m = new SuperModel();
+		m.setActiveLevel(new LightningLevel("Level Test"));
+		Application app = new Application(new LevelEndView(m));
 		app.setVisible(true);
 	}
 }
