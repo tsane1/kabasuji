@@ -466,7 +466,6 @@ public class Board implements Serializable{
 		 */
 		System.out.println("setHintLocation");
 		if(hintArray.size() < 6)
-			System.out.println("add to hintArray");
 			hintArray.add(t);
 	}
 
