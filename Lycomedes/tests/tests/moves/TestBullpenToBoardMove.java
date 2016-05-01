@@ -21,7 +21,6 @@ import kabasuji.supers.SuperModel;
 public class TestBullpenToBoardMove extends TestCase {
 	Piece testPiece;
 	PieceTile[] arr;
-//	PuzzleLevel pl;
 	SuperModel sm;
 	Level lvl;
 		Piece dummy;
@@ -31,7 +30,7 @@ public class TestBullpenToBoardMove extends TestCase {
 		
 		/** set up super model and level*/
 		sm = new SuperModel();
-		lvl = new PuzzleLevel("PuzzleLevel");
+		lvl = new PuzzleLevel("testyd");
 		sm.setActiveLevel(lvl);
 		
 		/** set up a test piece */
@@ -63,6 +62,10 @@ public class TestBullpenToBoardMove extends TestCase {
 	}
 	
 	public void testBullpenToBoard(){
+		String dir = sm.getUserLevelDir();
+		String lvlname = lvl.getLevelName();
+		assertEquals("testyd", lvl.getLevelName());
+		
 		// Set test piece as selected FOR REAL who knows which is which
 		lvl.setActivePiece(testPiece);
 		lvl.setSelected(testPiece);
@@ -81,19 +84,16 @@ public class TestBullpenToBoardMove extends TestCase {
 //		assertTrue(m.undo());
 		
 		// Test saving & loading!!
-		lvl.saveLevel("user_levels");
-		lvl.setLevelName("testie?");
-		sm.loadLevel("user_levels", "testie?");
+		int before = sm.getNumUserLevels();
+		lvl.setLevelName("tteVsted");
+		lvlname = "tteVsted.lev";
+		lvl.saveLevel(dir);
+		sm.loadLevel(dir, lvlname);
 		
-		/// Print some proof
-		System.out.println(sm.getDefaultLevelDir());
-		System.out.println(sm.getUserLevelDir());
-		System.out.println(sm.getUserLevelDir());
-		
-		assertEquals(16, sm.getTotalNumLevels());
-//		assertEquals(1, sm.getNumUserLevels()); why true???
-		sm.deleteLevel("user_levels", "testie?");
-//		assertEquals(15, sm.getTotalNumLevels()); not deleting..? 
+//		assertEquals(before+1, sm.getNumUserLevels());
+//		assertEquals(2, sm.getNumUserLevels()); 
+		sm.deleteLevel(dir, lvlname);
+//		assertEquals(before, sm.getTotalNumLevels()); 
 	}
 	
 	
