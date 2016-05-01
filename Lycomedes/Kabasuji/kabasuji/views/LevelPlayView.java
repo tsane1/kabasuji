@@ -195,23 +195,22 @@ public class LevelPlayView extends Screen {
 				break;
 			}
 			pl.setNumStars();
-
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 175, 192, 64);
 			oneStarDisplay.setBounds(715, 275, 192, 64);
-			if(level.getNumStars()==3){
+			if(pl.getNumStars()==3){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
-			} else if(level.getNumStars()==2){
+			} else if(pl.getNumStars()==2){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
-			} else if(level.getNumStars()==1){
+			} else if(pl.getNumStars()==1){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
-			} else if(level.getNumStars()==0){
+			} else if(pl.getNumStars()==0){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
@@ -228,19 +227,19 @@ public class LevelPlayView extends Screen {
 			twoStarDisplay.setBounds(715, 175, 192, 64);
 			oneStarDisplay.setBounds(715, 275, 192, 64);
 
-			if(level.getNumStars()==3){
+			if(ll.getNumStars()==3){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
-			} else if(level.getNumStars()==2){
+			} else if(ll.getNumStars()==2){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
-			} else if(level.getNumStars()==1){
+			} else if(ll.getNumStars()==1){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
-			} else if(level.getNumStars()==0){
+			} else if(ll.getNumStars()==0){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
@@ -254,19 +253,19 @@ public class LevelPlayView extends Screen {
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 200, 192, 64);
 			oneStarDisplay.setBounds(715, 300, 192, 64);
-			if(level.getNumStars()==3){
+			if(rl.getNumStars()==3){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
-			} else if(level.getNumStars()==2){
+			} else if(rl.getNumStars()==2){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
-			} else if(level.getNumStars()==1){
+			} else if(rl.getNumStars()==1){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars1.png")));
-			} else if(level.getNumStars()==0){
+			} else if(rl.getNumStars()==0){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
