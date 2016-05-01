@@ -210,7 +210,12 @@ public class BoardView extends JPanel {
 	
 
 	public void showHint() {
-		drawer.drawHintPiece(offScreenGraphics, currLevel.getBoard().getHintLocations());
+		//drawer.drawHintPiece(offScreenGraphics, currLevel.getBoard().getHintLocations());
+		for(Tile pt: currLevel.getBoard().getHintLocations()){
+			offScreenGraphics.setColor(Color.orange.brighter());
+			offScreenGraphics.drawRect((Tile.height*pt.getRow())+(Tile.width*pt.getColumn()), (Tile.width*pt.getColumn())+(Tile.height*pt.getRow()), Tile.width, Tile.height);
+			
+		}
 	}
 
 }
