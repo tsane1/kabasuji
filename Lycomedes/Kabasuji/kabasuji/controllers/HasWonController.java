@@ -59,7 +59,7 @@ public class HasWonController {
 			}
 			break;
 		case "Lightning":
-			if((level.progress.updateProgressLightning()>=50 && ll.getMinsLeft()==0 && ll.getMinsLeft()==0)
+			if((level.progress.updateProgressLightning()>=50 && ll.getMinsLeft()==0 && ll.getSecsLeft()==0)
 					|| (level.progress.updateProgressLightning()==100)){
 				hasWon=true;
 			}

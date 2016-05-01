@@ -44,13 +44,20 @@ public class LightningLevel extends Level {
 
 	@Override
 	public boolean hasEnded() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean hasEnded=false;
+		if((getMinsLeft()==0 && getSecsLeft()==0) && progress.updateProgressLightning()<50){
+			hasEnded=true;
+		}
+		return hasEnded;
 	}
 
 	@Override
 	public boolean hasWon() {
-		// TODO Auto-generated method stub
+		boolean hasWon = false;
+		if((progress.updateProgressLightning()>=50 && getMinsLeft()==0 && getMinsLeft()==0)
+				|| (progress.updateProgressLightning()==100)){
+			hasWon=true;
+		}
 		return false;
 	}
 }
