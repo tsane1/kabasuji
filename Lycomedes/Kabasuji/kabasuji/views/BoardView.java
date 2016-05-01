@@ -37,6 +37,7 @@ public class BoardView extends JPanel {
 	private int setActiveX,setActiveY;
 	private Color setActiveColor;
 
+	boolean showHint = false;
 	PieceDrawer drawer = new PieceDrawer();
 	Image offScreenImage = null;
 	Graphics offScreenGraphics = null;
@@ -128,7 +129,17 @@ public class BoardView extends JPanel {
 		int i,j = 0;
 		for(i = 0;i<12;i++){
 			for(j = 0;j<12;j++){
-				if(boardArray[i][j].isCovered()){
+				if(isHintLocation(i, j) && showHint){
+					
+					System.out.println("in here");
+					for(Tile pt: currLevel.getBoard().getHintLocations()){
+						offScreenGraphics.setColor(Color.orange.brighter());
+						offScreenGraphics.fillRect((Tile.height*pt.getRow())+(Tile.width*pt.getColumn()), (Tile.width*pt.getColumn())+(Tile.height*pt.getRow()), Tile.width, Tile.height);
+						
+					
+					}
+				}
+				else if(boardArray[i][j].isCovered()){
 					//if its covered dont do anything leave it alone
 					HashMap<Point,Piece> map = board.getPlacedPieces();
 					Point pt = new Point(i,j);
@@ -189,10 +200,8 @@ public class BoardView extends JPanel {
 					offScreenGraphics.setColor(Color.BLACK); //regular board tiles are just light gray still need to figure out the release tile number stuff
 					offScreenGraphics.drawRect(i*Tile.width, j*Tile.height,(Tile.width), (Tile.height));
 				}
-//				if(!(boardArray[i][j].getClass() == lTile.getClass())){
-//					
-//
-//				}
+				
+				
 				//System.out.println(board.getPlacedPieces().size());
 
 			}
@@ -211,11 +220,16 @@ public class BoardView extends JPanel {
 
 	public void showHint() {
 		//drawer.drawHintPiece(offScreenGraphics, currLevel.getBoard().getHintLocations());
+		
+		showHint = true;
+	}
+	public boolean isHintLocation(int col, int row){
 		for(Tile pt: currLevel.getBoard().getHintLocations()){
-			offScreenGraphics.setColor(Color.orange.brighter());
-			offScreenGraphics.drawRect((Tile.height*pt.getRow())+(Tile.width*pt.getColumn()), (Tile.width*pt.getColumn())+(Tile.height*pt.getRow()), Tile.width, Tile.height);
-			
+			if(pt.getColumn()==col && pt.getRow()==row){
+				return true;
+			}
 		}
+		return false;
 	}
 
 }
