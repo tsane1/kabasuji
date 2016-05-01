@@ -36,8 +36,6 @@ public class IncrementReleaseTileMove extends Move {
 
 	@Override
 	public boolean valid() {
-		if((currLevel.getBoard() == null))
-			return false;
-		return true;
+		return !(currLevel.getBoard() == null);
 	}
 }
