@@ -14,7 +14,7 @@ public class ReleaseLevel extends Level {
 	private ArrayList<Integer> redsCollected = new ArrayList<Integer>(6);
 	private ArrayList<Integer> greensCollected = new ArrayList<Integer>(6);
 	private ArrayList<Integer> yellowsCollected = new ArrayList<Integer>(6);
-
+	Bullpen bullpen;
 	/**
 	 * serial id.
 	 */
@@ -65,13 +65,20 @@ public class ReleaseLevel extends Level {
 
 	@Override
 	public boolean hasEnded() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean hasEnded = false;
+		if(bullpen.isEmpty() && progress.updateProgressPuzzle()<32){
+			hasEnded = true;
+		}
+		return hasEnded;
 	}
 
 	@Override
 	public boolean hasWon() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean hasWon = false;
+		if((bullpen.isEmpty() && progress.updateProgressRelease()>=32)
+				|| (progress.updateProgressRelease()==100)){
+			hasWon=true;
+		}	
+		return hasWon;
 	}
 }

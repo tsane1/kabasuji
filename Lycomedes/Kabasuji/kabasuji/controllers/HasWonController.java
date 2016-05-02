@@ -26,12 +26,14 @@ public class HasWonController {
 	private LightningLevel ll;
 	private ReleaseLevel rl;
 	
-	public HasWonController(String levelName, SuperModel m) {
+	public HasWonController(Application app, SuperModel m) {
 		this.level = m.getActiveLevel();
+		this.model = m;
+		this.app = app;
 		pl = null; 
 		rl = null; 
 		ll = null;
-		switch(level.getLevelType()) { // add level-specific elements
+		switch(level.getLevelType()) {
 		case "Puzzle":
 			pl = (PuzzleLevel)level;
 			break;
@@ -59,7 +61,7 @@ public class HasWonController {
 			}
 			break;
 		case "Lightning":
-			if((level.progress.updateProgressLightning()>=50 && ll.getMinsLeft()==0 && ll.getMinsLeft()==0)
+			if((level.progress.updateProgressLightning()>=50 && ll.getMinsLeft()==0 && ll.getSecsLeft()==0)
 					|| (level.progress.updateProgressLightning()==100)){
 				hasWon=true;
 			}
@@ -77,7 +79,4 @@ public class HasWonController {
 		
 		return hasWon;
 	}
-	
-	
-	
 }
