@@ -19,6 +19,7 @@ import kabasuji.supers.Move;
 import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BullpenView;
+import kabasuji.views.LevelPlayView;
 import kabasuji.views.LightningLevelEditView;
 import kabasuji.views.PuzzleLevelEditView;
 import kabasuji.views.ReleaseLevelEditView;
@@ -86,20 +87,25 @@ public class TestFlipXCon extends TestCase {
 
 	public void testPressLogic() {
 		app = new Application(pls);
-		/** Select test Tiles. */
-		Move stm0 = new SelectTileMove(pl, p0);
-		stm0.execute();
-		Move stm1 = new SelectTileMove(pl, p1);
-		stm1.execute();
-		Move stm2 = new SelectTileMove(pl, p2);
-		stm2.execute();
-		Move stm3 = new SelectTileMove(pl, p3);
-		stm3.execute();
-		Move stm4 = new SelectTileMove(pl, p4);
-		stm4.execute();
-		Move stm5 = new SelectTileMove(pl, p5);
-		stm5.execute();
+//		/** Select test Tiles. */
+//		Move stm0 = new SelectTileMove(pl, p0);
+//		stm0.execute();
+//		Move stm1 = new SelectTileMove(pl, p1);
+//		stm1.execute();
+//		Move stm2 = new SelectTileMove(pl, p2);
+//		stm2.execute();
+//		Move stm3 = new SelectTileMove(pl, p3);
+//		stm3.execute();
+//		Move stm4 = new SelectTileMove(pl, p4);
+//		stm4.execute();
+//		Move stm5 = new SelectTileMove(pl, p5);
+//		stm5.execute();
 		
+		sm.setActiveLevel(pl);
+		pl.setActivePiece(testPiece);
+		pl.setSelected(testPiece);
+		pl.setSelectedPiece(testPiece);
+		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
 		//check that we start empty
 		assertTrue(pl.getBullpen().getPieces().isEmpty());
 		
@@ -110,7 +116,7 @@ public class TestFlipXCon extends TestCase {
 //		scr.getBullpenView().getMouseManager().handleMouseEvent(press);
 //		doClick();
 //		plc.actionPerformed(btn.doClick());
-		
+		lpv.getFlipXBtn().doClick();
 		// double check a piece is added to the bullpen
 		List<Piece> pieceArr = pl.getBullpen().getPieces();
 		assertEquals(1, pieceArr.size());

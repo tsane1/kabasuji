@@ -357,4 +357,36 @@ public class LevelPlayView extends Screen {
 	public void stopTimer() {
 		t.stop();
 	}
+	
+	/**
+	 * Getter for FlipXBtn.
+	 * @return FlipXBtn
+	 */
+	public JButton getFlipXBtn(){
+		return this.btnFlipX;
+	}
+	
+	/**
+	 * Getter for FlipYBtn.
+	 * @return FlipYBtn
+	 */
+	public JButton getFlipYBtn(){
+		return this.btnFlipY;
+	}
+	
+	/**
+	 * Getter for RotateRightBtn.
+	 * @return btnClockwise
+	 */
+	public JButton getRotateRightBtn(){
+		return this.btnClockwise;
+	}
+	
+	/**
+	 * Getter for RotateLeftBtn.
+	 * @return btnCounterClockwise
+	 */
+	public JButton getRotateLeftBtn(){
+		return this.btnCounterClockwise;
+	}
 }
