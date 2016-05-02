@@ -229,6 +229,7 @@ public class LevelPlayView extends Screen {
 				if(pl.getMovesLeft() < 10) levelParamDisplay.setForeground(Color.RED);
 				break;
 			}
+
 			pl.setNumStars();
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 175, 192, 64);
@@ -260,7 +261,7 @@ public class LevelPlayView extends Screen {
 			threeStarDisplay.setBounds(715, 75, 192, 64);
 			twoStarDisplay.setBounds(715, 175, 192, 64);
 			oneStarDisplay.setBounds(715, 275, 192, 64);
-
+			
 			if(ll.getNumStars()==3){
 				threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars3.png")));
 				twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/goldstars2.png")));
