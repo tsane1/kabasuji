@@ -56,7 +56,6 @@ public class PuzzleLevel extends Level {
 	 */
 	@Override
 	public boolean hasEnded() {
-		clearAchievement();
 		return getMovesLeft() == 0;
 	}
 

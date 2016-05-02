@@ -6,6 +6,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import kabasuji.controllers.AddToBullpenController;
+import kabasuji.controllers.FlipXController;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
@@ -18,6 +19,7 @@ import kabasuji.supers.Move;
 import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BullpenView;
+import kabasuji.views.LevelPlayView;
 import kabasuji.views.LightningLevelEditView;
 import kabasuji.views.PuzzleLevelEditView;
 import kabasuji.views.ReleaseLevelEditView;
@@ -28,7 +30,7 @@ import kabasuji.views.ReleaseLevelEditView;
  * @ERY_1 Didn't get much further than Chase...
  *
  */
-public class TestAddToBullpen extends TestCase {
+public class TestFlipXCon extends TestCase {
 	SuperModel sm;
 	Screen pls, lls, rls;
 	Application app;
@@ -85,32 +87,36 @@ public class TestAddToBullpen extends TestCase {
 
 	public void testPressLogic() {
 		app = new Application(pls);
-		/** Select test Tiles. */
-		Move stm0 = new SelectTileMove(pl, p0);
-		stm0.execute();
-		Move stm1 = new SelectTileMove(pl, p1);
-		stm1.execute();
-		Move stm2 = new SelectTileMove(pl, p2);
-		stm2.execute();
-		Move stm3 = new SelectTileMove(pl, p3);
-		stm3.execute();
-		Move stm4 = new SelectTileMove(pl, p4);
-		stm4.execute();
-		Move stm5 = new SelectTileMove(pl, p5);
-		stm5.execute();
+//		/** Select test Tiles. */
+//		Move stm0 = new SelectTileMove(pl, p0);
+//		stm0.execute();
+//		Move stm1 = new SelectTileMove(pl, p1);
+//		stm1.execute();
+//		Move stm2 = new SelectTileMove(pl, p2);
+//		stm2.execute();
+//		Move stm3 = new SelectTileMove(pl, p3);
+//		stm3.execute();
+//		Move stm4 = new SelectTileMove(pl, p4);
+//		stm4.execute();
+//		Move stm5 = new SelectTileMove(pl, p5);
+//		stm5.execute();
 		
+		sm.setActiveLevel(pl);
+		pl.setActivePiece(testPiece);
+		pl.setSelected(testPiece);
+		pl.setSelectedPiece(testPiece);
+		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
 		//check that we start empty
 		assertTrue(pl.getBullpen().getPieces().isEmpty());
 		
-		AddToBullpenController plc = new AddToBullpenController(app, sm);
+		FlipXController plc = new FlipXController(app, pl);
 		// create mouse press at (0,0) within the PaletteVew; should Select Piece then double click in BullpenView to place 
 		// I'm going to need to go fishing for the point that's actually clicking the piece..
-//		MouseEvent press = this.createPressed(pls, pls.getBullpenView(), 0, 0);
+//		MouseEvent press = this.createPressed(scr, scrn.getBullpenView(), 0, 0);
 //		scr.getBullpenView().getMouseManager().handleMouseEvent(press);
 //		doClick();
-//		plc.mouseClicked(press);
-		
-		
+//		plc.actionPerformed(btn.doClick());
+		lpv.getFlipXBtn().doClick();
 		// double check a piece is added to the bullpen
 		List<Piece> pieceArr = pl.getBullpen().getPieces();
 		assertEquals(1, pieceArr.size());
