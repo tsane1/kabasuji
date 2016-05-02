@@ -6,6 +6,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import kabasuji.controllers.AddToBullpenController;
+import kabasuji.controllers.FlipXController;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
@@ -28,7 +29,7 @@ import kabasuji.views.ReleaseLevelEditView;
  * @ERY_1 Didn't get much further than Chase...
  *
  */
-public class TestAddToBullpen extends TestCase {
+public class TestFlipXCon extends TestCase {
 	SuperModel sm;
 	Screen pls, lls, rls;
 	Application app;
@@ -102,14 +103,13 @@ public class TestAddToBullpen extends TestCase {
 		//check that we start empty
 		assertTrue(pl.getBullpen().getPieces().isEmpty());
 		
-		AddToBullpenController plc = new AddToBullpenController(app, sm);
+		FlipXController plc = new FlipXController(app, pl);
 		// create mouse press at (0,0) within the PaletteVew; should Select Piece then double click in BullpenView to place 
 		// I'm going to need to go fishing for the point that's actually clicking the piece..
-//		MouseEvent press = this.createPressed(pls, pls.getBullpenView(), 0, 0);
+//		MouseEvent press = this.createPressed(scr, scrn.getBullpenView(), 0, 0);
 //		scr.getBullpenView().getMouseManager().handleMouseEvent(press);
 //		doClick();
-//		plc.mouseClicked(press);
-		
+//		plc.actionPerformed(btn.doClick());
 		
 		// double check a piece is added to the bullpen
 		List<Piece> pieceArr = pl.getBullpen().getPieces();
