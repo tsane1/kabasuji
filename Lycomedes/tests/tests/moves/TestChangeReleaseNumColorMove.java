@@ -13,7 +13,7 @@ import kabasuji.supers.SuperModel;
 
 /**
  * Test cases involving changing the Release Tile's color.
- * Test an attempt on each kind of level.
+ * Test an attempt on each kind of level.updated.
  *  
  * @author Ian Jacoway
  *
