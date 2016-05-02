@@ -156,7 +156,6 @@ public class LevelPlayView extends Screen {
 		helpMe.setFont(new Font("Kristen ITC", Font.BOLD, 16));
 		helpMe.setBounds(87, 409, 100, 50);
 		this.add(helpMe);
-				
 		
 		refresh();
 	}
@@ -184,14 +183,15 @@ public class LevelPlayView extends Screen {
 	@Override
 	public void refresh() {
 		this.remove(levelParamDisplay);
-		//this.remove(starsDisplay);
-		if(model.getActiveLevel().hasEnded() || !(model.getActiveLevel().hasWon())) {
+		if(model.getActiveLevel().hasEnded() || model.getActiveLevel().hasWon()) {
+			if(model.getActiveLevel().getLevelType().equals("Lightning") && !(t == null)) t.stop();
 			this.app.setCurrScreen(new LevelEndView(this.model));
 			return;
 		}
 		
 		switch(level.getLevelType()) { // add level-specific elements
 		case "Puzzle":
+			System.out.println(pl.hasEnded());
 			while(pl.getMovesLeft()>=0){
 				levelParamTitle.setText("Moves Left:");
 				levelParamDisplay.setText("" + pl.getMovesLeft());

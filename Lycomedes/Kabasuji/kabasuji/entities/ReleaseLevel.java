@@ -65,20 +65,12 @@ public class ReleaseLevel extends Level {
 
 	@Override
 	public boolean hasEnded() {
-		boolean hasEnded = false;
-		if(bullpen.isEmpty() && progress.updateProgressPuzzle()<32){
-			hasEnded = true;
-		}
-		return hasEnded;
+		return bullpen.isEmpty();
 	}
 
 	@Override
 	public boolean hasWon() {
-		boolean hasWon = false;
-		if((bullpen.isEmpty() && progress.updateProgressRelease()>=32)
-				|| (progress.updateProgressRelease()==100)){
-			hasWon=true;
-		}	
-		return hasWon;
+		updateAchievement();
+		return (hasEnded() && progress.updateProgressRelease() >= 32) || progress.updateProgressRelease() == 100;
 	}
 }
