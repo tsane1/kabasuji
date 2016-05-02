@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
-import kabasuji.entities.Achievement;
 import kabasuji.entities.Board;
 import kabasuji.entities.Bullpen;
 import kabasuji.entities.Palette;
@@ -69,7 +68,7 @@ public abstract class Level implements Serializable {
 	 */
 	protected int numStars;
 	/** Achievement object for the level. */
-	public Achievement achievement;
+//	public Achievement achievement;
 	/** Progress object. */
 	public Progress progress;
 
