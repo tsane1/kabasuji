@@ -53,7 +53,7 @@ public class TestIncrementReleaseTileMove extends TestCase {
 	
 		/** Test on Puzzle Level. */
 		sm.setActiveLevel(pl);
-		pl.setLevelType("PuzzleLevelEditView");
+		pl.setLevelType("Puzzle");
 		assertEquals("SoPuzzled", pl.getLevelName());
 		assertFalse(plm.valid());
 		assertFalse(plm.execute());
@@ -61,7 +61,7 @@ public class TestIncrementReleaseTileMove extends TestCase {
 
 		/** Test on Lightning Level with LightningType. */
 		sm.setActiveLevel(ll);
-		ll.setLevelType("LightningLevelEditView");
+		ll.setLevelType("Lightning");
 		assertEquals("TestLights", ll.getLevelName());
 		assertFalse(llm.valid());
 		assertFalse(llm.execute());
