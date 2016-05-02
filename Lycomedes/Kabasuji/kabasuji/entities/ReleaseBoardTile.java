@@ -30,7 +30,6 @@ public class ReleaseBoardTile extends Tile{
 	public ReleaseBoardTile(int row, int column) {
 		super(row, column);
 		
-		
 		this.row = row;
 		this.col = column;
 		value = 0;
@@ -67,7 +66,8 @@ public class ReleaseBoardTile extends Tile{
 	 * Increments release number supports up to six then resets to zero.
 	 */
 	public void updateReleaseNum(){
-		if(value<6) {
+		if(value<18){
+
 			value++;
 		}
 		else {

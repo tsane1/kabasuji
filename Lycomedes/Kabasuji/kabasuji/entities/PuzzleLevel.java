@@ -6,6 +6,7 @@ import kabasuji.supers.Level;
  * Level sublcass for the puzzle level entity.
  * 
  * @author Derek McMaster
+ * @author Chase St. Laurent
  */
 public class PuzzleLevel extends Level {
 	/**
@@ -40,10 +41,30 @@ public class PuzzleLevel extends Level {
 		this.movesLeft = setMoves;
 	}
 
+	/**
+	 * Determines the number of stars for achievements based on the numbers collected.
+	 */
 	@Override
 	public void setNumStars() {
 		//this.numStars = 3 - this.theBullpen.pieces.size();
 		//if(this.numStars < 1) this.numStars = 0;
 		this.numStars=0;
+	}
+
+	/**
+	 * Determines whether or not the level has ended based on the progress.
+	 */
+	@Override
+	public boolean hasEnded() {
+		return getMovesLeft() == 0;
+	}
+
+	/**
+	 * Determines if the player has gotten the highest achievement on the level. 
+	 */
+	@Override
+	public boolean hasWon() {
+		updateAchievement();
+		return (hasEnded() && progress.updateProgressPuzzle() >= 50) || progress.updateProgressPuzzle() == 100;
 	}
 }

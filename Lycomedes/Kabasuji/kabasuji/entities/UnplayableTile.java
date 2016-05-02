@@ -1,6 +1,6 @@
 package kabasuji.entities;
 /**
- * Tile subclass that represents an unplayable boundary of the board
+ * Tile subclass that represents an unplayable boundary of the board.
  * @author Michael
  *
  */

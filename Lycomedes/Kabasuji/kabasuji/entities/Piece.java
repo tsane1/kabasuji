@@ -114,12 +114,23 @@ public class Piece implements Serializable {
 		}
 	}
 
+	/**
+	 * Sets the piece on the board at given row and col.
+	 * @param int col
+	 * @param int row
+	 */
 	public void setPiecePosition(int col, int row){
 		piecePosition = new Point(col,row);
 	}
+	
+	/**
+	 * Gets the position of the piece on the board.
+	 * @return Point
+	 */
 	public Point getPiecePosition(){
 		return piecePosition;
 	}
+	
 	/**
 	 * method for returning the locations of the tiles in the piece.
 	 * @return piecetile[] of 6 locations
@@ -153,7 +164,7 @@ public class Piece implements Serializable {
 	}
 
 	/**
-	 * Method to determine which piece has been selected.  Called in select piece controller.
+	 * Method to determine which piece has been selected based on x-coordinates.  Called in select piece controller.
 	 * @param int x coordinate
 	 * @param index
 	 * @return boolean
@@ -169,6 +180,12 @@ public class Piece implements Serializable {
 		return pieceIndex == index;
 	}
 
+	/**
+	 * Determines the index of the piece based on y-coordinates.
+	 * @param int y
+	 * @param int index
+	 * @return boolean
+	 */
 	public boolean containsy(int y, int index) {
 		int ypos = y;
 		System.out.println("Y Coordinate Clicked: " + ypos);

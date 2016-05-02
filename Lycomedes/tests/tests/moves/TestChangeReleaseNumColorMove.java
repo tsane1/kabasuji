@@ -70,6 +70,9 @@ public class TestChangeReleaseNumColorMove extends TestCase {
 		/** Test on Release Level with ReleaseType. */
 		sm.setActiveLevel(rl);
 		rl.setLevelType("Release");
+		/** Test on Release Level with ReleaseType. */
+		sm.setActiveLevel(rl);
+		rl.setLevelType("ReleaseLevelEditView");
 		assertEquals("ReleaseProcrastination", rl.getLevelName());
 		assertTrue(rlm.valid());
 		assertTrue(rlm.execute());

@@ -53,10 +53,18 @@ public abstract class Tile implements Serializable{
 	 */
 	public abstract boolean isCovered();
 	
+	/**
+	 * Returns the row of the tile.
+	 * @return int
+	 */
 	public int getRow(){
 		return row;
 	}
 	
+	/**
+	 * returns the column of the tile.
+	 * @return int
+	 */
 	public int getColumn(){
 		return col;
 	}
