@@ -120,8 +120,6 @@ public class Board implements Serializable{
 			//covers the place 
 			coverPieceArea(row, col, piece);
 			//use row and col to tell piece where it is located on the board
-			
-			
 			return true;
 		}else{
 			//throw? or boolean like now that says place failed
@@ -467,10 +465,6 @@ public class Board implements Serializable{
 	 * @param Tile t
 	 */
 	public void setHintLocation(Tile t){
-		/*
-		 * Will length return current length or declared length?
-		 */
-		System.out.println("setHintLocation");
 		if(hintArray.size() < 6)
 			hintArray.add(t);
 	}

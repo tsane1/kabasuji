@@ -4,9 +4,19 @@ import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Palette entity used in the level builder.
+ * 
+ * @author Derek McMaster
+ */
 public class Palette implements Serializable {
 
+	/** List of pieces in the palette */
 	List<Piece> pieces;
+	
+	/**
+	 * Generic constructor for the palette.
+	 */
 	public Palette() {
 		pieces = new ArrayList(35);
 	}
