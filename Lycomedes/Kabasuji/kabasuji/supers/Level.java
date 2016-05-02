@@ -284,7 +284,6 @@ public abstract class Level implements Serializable {
 	public void updateAchievement() {
 		int achievedStars = 0;
 		progress = new Progress(theBoard);
-		clearAchievement();
 		switch(this.getLevelType()){
 		case "Puzzle":
 			if(progress.updateProgressPuzzle()==100){
@@ -336,13 +335,6 @@ public abstract class Level implements Serializable {
 		if(numStars<achievedStars){
 			numStars = achievedStars; 
 		}
-	}
-	
-	/**
-	 * Helper method for clearing the achievements.
-	 */
-	public void clearAchievement() {
-		numStars=0;
 	}
 
 	/**
