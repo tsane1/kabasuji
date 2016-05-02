@@ -13,7 +13,7 @@ import kabasuji.supers.SuperModel;
 
 /**
  * Test cases involving changing the Release Tile's color.
- * Test an attempt on each kind of level.
+ * Test an attempt on each kind of level.updated.
  *  
  * @author Ian Jacoway
  *
@@ -53,7 +53,7 @@ public class TestChangeReleaseNumColorMove extends TestCase {
 	
 		/** Test on Puzzle Level. */
 		sm.setActiveLevel(pl);
-		pl.setLevelType("PuzzleLevelEditView");
+		pl.setLevelType("Puzzle");
 		assertEquals("SoPuzzled", pl.getLevelName());
 		assertFalse(plm.valid());
 		assertFalse(plm.execute());
@@ -61,7 +61,7 @@ public class TestChangeReleaseNumColorMove extends TestCase {
 
 		/** Test on Lightning Level with LightningType. */
 		sm.setActiveLevel(ll);
-		ll.setLevelType("LightningLevelEditView");
+		ll.setLevelType("Lightning");
 		assertEquals("TestLights", ll.getLevelName());
 		assertFalse(llm.valid());
 		assertFalse(llm.execute());
@@ -72,7 +72,7 @@ public class TestChangeReleaseNumColorMove extends TestCase {
 		rl.setLevelType("Release");
 		/** Test on Release Level with ReleaseType. */
 		sm.setActiveLevel(rl);
-		rl.setLevelType("ReleaseLevelEditView");
+		rl.setLevelType("Release");
 		assertEquals("ReleaseProcrastination", rl.getLevelName());
 		assertTrue(rlm.valid());
 		assertTrue(rlm.execute());
