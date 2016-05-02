@@ -32,7 +32,6 @@ public class BackController implements ActionListener {
 			app.dispose();
 			break;
 		case "LevelPlay": case "LevelEnd":
-			if(app.getCurrScreen().getLevel().getLevelType().equals("Lightning")) ((LevelPlayView)app.getCurrScreen()).stopTimer();
 			app.setCurrScreen(new LevelPlaySelectView(model));
 			break;
 		case "LightningLevelEditView": case "PuzzleLevelEditView": case "ReleaseLevelEditView": case "NewLevelTypeSelectView": 
