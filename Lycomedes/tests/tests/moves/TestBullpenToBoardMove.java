@@ -31,10 +31,6 @@ public class TestBullpenToBoardMove extends TestCase {
 	Point p0, p1, p2, p3, p4, p5, p6;
 	Piece testPiece;
 	PieceTile[] arr;
-<<<<<<< HEAD
-=======
-	Piece dummy;
->>>>>>> refs/remotes/origin/master
 	
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -129,7 +125,6 @@ public class TestBullpenToBoardMove extends TestCase {
 //		assertTrue(m.undo());
 		
 		// Test saving & loading!!
-<<<<<<< HEAD
 		pl.setLevelName("tteVsted");
 		plname = "tteVsted.lev";
 		pl.saveLevel(dir);
@@ -215,26 +210,14 @@ public class TestBullpenToBoardMove extends TestCase {
 		rlname = "tteVsted.lev";
 		rl.saveLevel(dir);
 		sm.loadLevel(dir, rlname);
-=======
-		int before = sm.getNumUserLevels();
-		pl.setLevelName("tteVsted");
-		plname = "tteVsted.lev";
-		pl.saveLevel(dir);
-		sm.loadLevel(dir, plname);
->>>>>>> refs/remotes/origin/master
 		
 //		assertEquals(before+1, sm.getNumUserLevels());
 //		assertEquals(2, sm.getNumUserLevels());
 		// Validated by not throwing an exception
-<<<<<<< HEAD
 		sm.deleteLevel(dir, rlname);
-=======
-		sm.deleteLevel(dir, plname);
->>>>>>> refs/remotes/origin/master
 //		assertEquals(before, sm.getTotalNumLevels()); 
 	}
 	
-<<<<<<< HEAD
 	public void testNULLPiece(){
 		Piece dummy = null;
 		pl.setActivePiece(dummy);
@@ -253,108 +236,5 @@ public class TestBullpenToBoardMove extends TestCase {
 		} catch( NullPointerException e ) {
 //			assertEquals( "Expected message", e.getMessage() ); // Optionally make sure you get the correct message, too
 		}
-=======
-	public void testBullpenToBoardLL(){
-		sm.setActiveLevel(ll);
-		ll.getBoard().createBoardTile(0, 0, "Lightning");
-		ll.getBoard().createBoardTile(1, 0, "Lightning");
-		ll.getBoard().createBoardTile(2, 0, "Lightning");
-		ll.getBoard().createBoardTile(3, 0, "Lightning");
-		ll.getBoard().createBoardTile(4, 0, "Lightning");
-		ll.getBoard().createBoardTile(5, 0, "Lightning");
-		
-		String dir = sm.getUserLevelDir();
-		String llname = ll.getLevelName();
-		assertEquals("L_testyd", ll.getLevelName());
-		
-		// Set test piece as selected FOR REAL who knows which is which
-		ll.setActivePiece(testPiece);
-		ll.setSelected(testPiece);
-		ll.setSelectedPiece(testPiece);
-		
-		// Place piece in Board on row 1 col 1
-		Move m = new BullpenToBoardMove(sm, 0, 0);
-		
-		assertTrue(m.valid());
-		assertTrue(ll.addPieceToAllPieces(testPiece));
-		ll.addMoveToUndo(m);
-		assertEquals(ll.peekLastMove(), m);
-		ll.addRedoableMove(m);
-		assertEquals(ll.peekRedoMove(), m);
-//		assertTrue(m.execute());
-//		assertTrue(m.undo());
-		
-		// Test saving & loading!!
-		int before = sm.getNumUserLevels();
-		ll.setLevelName("tteVsted");
-		llname = "tteVsted.lev";
-		ll.saveLevel(dir);
-		sm.loadLevel(dir, llname);
-		
-//		assertEquals(before+1, sm.getNumUserLevels());
-//		assertEquals(2, sm.getNumUserLevels());
-		// Validated by not throwing an exception
-		sm.deleteLevel(dir, llname);
-//		assertEquals(before, sm.getTotalNumLevels()); 
->>>>>>> refs/remotes/origin/master
 	}
-<<<<<<< HEAD
-=======
-	
-	public void testBullpenToBoardRL(){
-		sm.setActiveLevel(rl);
-		rl.getBoard().createBoardTile(0, 0, "Release");
-		rl.getBoard().createBoardTile(1, 0, "Release");
-		rl.getBoard().createBoardTile(2, 0, "Release");
-		rl.getBoard().createBoardTile(3, 0, "Release");
-		rl.getBoard().createBoardTile(4, 0, "Release");
-		rl.getBoard().createBoardTile(5, 0, "Release");
-		
-		String dir = sm.getUserLevelDir();
-		String rlname = rl.getLevelName();
-		assertEquals("R_testyd", rl.getLevelName());
-		
-		// Set test piece as selected FOR REAL who knows which is which
-		rl.setActivePiece(testPiece);
-		rl.setSelected(testPiece);
-		rl.setSelectedPiece(testPiece);
-		
-		// Place piece in Board on row 1 col 1
-		Move m = new BullpenToBoardMove(sm, 0, 0);
-		
-		assertTrue(m.valid());
-		assertTrue(rl.addPieceToAllPieces(testPiece));
-		rl.addMoveToUndo(m);
-		assertEquals(rl.peekLastMove(), m);
-		rl.addRedoableMove(m);
-		assertEquals(rl.peekRedoMove(), m);
-//		assertTrue(m.execute());
-//		assertTrue(m.undo());
-		
-		// Test saving & loading!!
-		int before = sm.getNumUserLevels();
-		rl.setLevelName("tteVsted");
-		rlname = "tteVsted.lev";
-		rl.saveLevel(dir);
-		sm.loadLevel(dir, rlname);
-		
-//		assertEquals(before+1, sm.getNumUserLevels());
-//		assertEquals(2, sm.getNumUserLevels());
-		// Validated by not throwing an exception
-		sm.deleteLevel(dir, rlname);
-//		assertEquals(before, sm.getTotalNumLevels()); 
-	}
-	
-//	public void testNULLPiece(){
-//		pl.setActivePiece(dummy);
-//		pl.setSelected(dummy);
-//		pl.setSelectedPiece(dummy);
-//		try{
-//		Move m = new BullpenToBoardMove(sm, 0, 0);
-//		}catch{ throws NullPointerException();
-//		assertNull(dummy);
-//		assertFalse(m.valid());
-//	}
-
->>>>>>> refs/remotes/origin/master
 }
