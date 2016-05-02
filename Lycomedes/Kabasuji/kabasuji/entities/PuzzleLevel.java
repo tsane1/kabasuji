@@ -56,7 +56,11 @@ public class PuzzleLevel extends Level {
 	 */
 	@Override
 	public boolean hasEnded() {
-		return getMovesLeft() == 0;
+		boolean hasEnded = false;
+		if(getMovesLeft()==0 && progress.updateProgressPuzzle()<50){
+			hasEnded = true;
+		}
+		return hasEnded;
 	}
 
 	/**
@@ -64,7 +68,11 @@ public class PuzzleLevel extends Level {
 	 */
 	@Override
 	public boolean hasWon() {
-		updateAchievement();
-		return (hasEnded() && progress.updateProgressPuzzle() >= 50) || progress.updateProgressPuzzle() == 100;
+		boolean hasWon = false;
+		if((progress.updateProgressPuzzle()>=50 && getMovesLeft()==0)
+				|| (progress.updateProgressPuzzle()==100)){
+			hasWon=true;
+		}	
+		return hasWon;
 	}
 }
