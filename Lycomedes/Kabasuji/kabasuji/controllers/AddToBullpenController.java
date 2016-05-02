@@ -12,7 +12,7 @@ import kabasuji.supers.SuperModel;
 import kabasuji.views.BullpenView;
 
 /**
- * Controller for adding pieces from the palette to bullpen.
+ * Controller for adding pieces from the palette to bullpen. test.
  * @author Derek McMaster
  *
  */
