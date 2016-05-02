@@ -16,15 +16,28 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/**
+ * View for choosing a new level type after requesting to make a new level.
+ */
 public class NewLevelTypeSelectView extends Screen {
+	/** Button to choose a lightning level. */
 	private JButton btnLightning = new JButton("Lightning");
+	/** Button to choose a puzzle level. */
 	private JButton btnPuzzle = new JButton("Puzzle");
+	/** Button to choose a release level. */
 	private JButton btnRelease = new JButton("Release");
 	
+	/**
+	 * Constructor for making a new level.
+	 * @param SuperModel m
+	 */
 	public NewLevelTypeSelectView(SuperModel m) {
 		super("Select Level Type", m);
 	}
 
+	/**
+	 * Overriden populate method from screen class.
+	 */
 	@Override
 	public void populate() {
 		JLabel lblLightning = new JLabel("Lightning");
@@ -67,6 +80,9 @@ public class NewLevelTypeSelectView extends Screen {
 		this.add(btnRelease);
 	}
 
+	/**
+	 * Overriden installation of controllers form screen class.
+	 */
 	@Override
 	public void installControllers() {
 		btnLightning.addActionListener(new NewLevelController(this.app, this.model));
@@ -74,16 +90,27 @@ public class NewLevelTypeSelectView extends Screen {
 		btnPuzzle.addActionListener(new NewLevelController(this.app, this.model));
 	}
 
+	/**
+	 * Overridden refresh method from Screen class.
+	 */
 	@Override
 	public void refresh() {
 		
 	}
 
+	/**
+	 * Getter for the level name.
+	 * @return String
+	 */
 	@Override
 	public String getName() {
 		return "NewLevelTypeSelectView";
 	}
 	
+	/**
+	 * Test Main class.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -96,73 +123,5 @@ public class NewLevelTypeSelectView extends Screen {
 			}
 		});
 	}
-//
-//	/**
-//	 * Create the frame.
-//	 */
-//	public NewLevelTypeSelectView() {
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setBounds(100, 100, 550, 600);
-//		contentPane = new JPanel();
-//		contentPane.setBackground(Color.WHITE);
-//		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-//		setContentPane(contentPane);
-//		
-//		JLabel titleLabel = new JLabel("Choose A Level Type");
-//		titleLabel.setForeground(new Color(30, 144, 255));
-//		titleLabel.setFont(new Font("Kristen ITC", Font.BOLD, 24));
-//		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-//		
-//		JButton NewPuzzleLevelBtn = new JButton("Puzzle Level");
-//		NewPuzzleLevelBtn.setBackground(new Color(245, 245, 245));
-//		NewPuzzleLevelBtn.setForeground(new Color(30, 144, 255));
-//		NewPuzzleLevelBtn.setFont(new Font("Kristen ITC", Font.BOLD, 16));
-//		
-//		JButton NewLightningLevelBtn = new JButton("Lightning Level");
-//		NewLightningLevelBtn.setForeground(new Color(30, 144, 255));
-//		NewLightningLevelBtn.setFont(new Font("Kristen ITC", Font.BOLD, 16));
-//		NewLightningLevelBtn.setBackground(new Color(245, 245, 245));
-//		
-//		JButton NewreleaseLevelBtn = new JButton("Release Level");
-//		NewreleaseLevelBtn.setForeground(new Color(30, 144, 255));
-//		NewreleaseLevelBtn.setFont(new Font("Kristen ITC", Font.BOLD, 16));
-//		NewreleaseLevelBtn.setBackground(new Color(245, 245, 245));
-//		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-//		gl_contentPane.setHorizontalGroup(
-//			gl_contentPane.createParallelGroup(Alignment.LEADING)
-//				.addGroup(gl_contentPane.createSequentialGroup()
-//					.addContainerGap(127, Short.MAX_VALUE)
-//					.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 272, GroupLayout.PREFERRED_SIZE)
-//					.addGap(123))
-//				.addGroup(gl_contentPane.createSequentialGroup()
-//					.addGap(171)
-//					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-//						.addComponent(NewreleaseLevelBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-//						.addComponent(NewLightningLevelBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-//						.addComponent(NewPuzzleLevelBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-//					.addGap(182))
-//		);
-//		gl_contentPane.setVerticalGroup(
-//			gl_contentPane.createParallelGroup(Alignment.LEADING)
-//				.addGroup(gl_contentPane.createSequentialGroup()
-//					.addContainerGap()
-//					.addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-//					.addGap(47)
-//					.addComponent(NewPuzzleLevelBtn)
-//					.addGap(32)
-//					.addComponent(NewLightningLevelBtn, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-//					.addGap(34)
-//					.addComponent(NewreleaseLevelBtn, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-//					.addContainerGap(254, Short.MAX_VALUE))
-//		);
-//		contentPane.setLayout(gl_contentPane);
-//	}
-//
-//	public void setPreviousFrame(Screen screen) {
-//		prevScreen = screen;
-//	}
-//
-//	public LevelEditSelectView getPreviousFrame() {
-//		return (LevelEditSelectView)prevScreen;
-//	}
+
 }

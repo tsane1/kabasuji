@@ -32,15 +32,26 @@ import kabasuji.supers.Screen;
  *
  */
 public class LevelPlaySelectView extends Screen {
+	/** list of buttons for the level. */
 	private ArrayList<JButton> levelButtons = new ArrayList<JButton>();
+	/** List of labels for the level. */
 	private ArrayList<JLabel> levelNames = new ArrayList<JLabel>();
+	/** next page button. */
 	private JButton btnNext = new JButton("Next");
+	/** previous page button. */
 	private JButton btnPrev = new JButton("Previous");
 	
+	/**
+	 * Constructor for selecting a level to play.
+	 * @param Supermodel m
+	 */
 	public LevelPlaySelectView(SuperModel m) {
 		super("Play a Level", m);
 	}
 	
+	/**
+	 * Overriden populate method from screen class.
+	 */
 	@Override
 	public void populate() {
 		btnNext.setActionCommand("Next");
@@ -115,6 +126,9 @@ public class LevelPlaySelectView extends Screen {
 		refresh();
 	}
 
+	/**
+	 * Overriden installation of controllers form screen class.
+	 */
 	@Override
 	public void installControllers() {
 		for(int idx = 0; idx < 15 + this.model.getNumUserLevels(); idx++) {
@@ -124,11 +138,18 @@ public class LevelPlaySelectView extends Screen {
 		btnPrev.addActionListener(new NavigateLevelSelectController(this.app, this.model));
 	}
 	
+	/**
+	 * Getter for the level name.
+	 * @return String
+	 */
 	@Override
 	public String getName() {
 		return "LevelEditSelect";
 	}
 
+	/**
+	 * Overridden refresh method from Screen class.
+	 */
 	@Override
 	public void refresh() {
 		for(int idx = 0; idx < 15 + this.model.getNumUserLevels(); idx++) {
@@ -162,6 +183,10 @@ public class LevelPlaySelectView extends Screen {
 		}
 	}
 	
+	/**
+	 * Test Main class.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {

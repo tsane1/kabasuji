@@ -29,7 +29,7 @@ public class PaletteView extends JPanel{
 	Image offScreenImage = null;
 	/** Graphics object to paint the images of the pieces. */
 	Graphics offScreenGraphics = null;
-	
+	/** Level that paleete is on. */
 	Level level;
 	
 	/** drawing object that knows how to draw pieces. */
@@ -46,7 +46,10 @@ public class PaletteView extends JPanel{
 		//this.setBounds(667, 100, 253, 362);
 	}
 	
-	
+	/**
+	 * Getter for the pieces in the palette.
+	 * @return List of pieces
+	 */
 	public List<Piece> getPiecesInPalette() {
 		return level.getPalette().getPieces();
 	}
@@ -127,10 +130,7 @@ public class PaletteView extends JPanel{
 				drawer.drawPalettePiece(offScreenGraphics, p, x, y, level.getPieceColor(p.getPieceID()));
 			}
 			y+= containerSize+pieceBuffer;
-
-		}
-		//drawer.drawPiece(offScreenGraphics, p, x, y, level.getPieceColor(p));
-		//y+= containerSize+pieceBuffer;	
+		}	
 
 	}
 

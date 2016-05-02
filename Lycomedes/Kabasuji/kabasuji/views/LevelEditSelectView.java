@@ -31,16 +31,28 @@ import kabasuji.supers.Screen;
  */
 
 public class LevelEditSelectView extends Screen {
+	/** list of buttons for the level. */
 	private ArrayList<JButton> levelButtons = new ArrayList<JButton>();
+	/** List of labels for the level. */
 	private ArrayList<JLabel> levelNames = new ArrayList<JLabel>();
+	/** New level button. */
 	private JButton btnNewLevel = new JButton("New Level");
+	/** next page button. */
 	private JButton btnNext = new JButton("Next");
+	/** previous page button. */
 	private JButton btnPrev = new JButton("Previous");
 	
+	/**
+	 * Constructor for editing or creating a level.
+	 * @param Supermodel m
+	 */
 	public LevelEditSelectView(SuperModel m) {
 		super("Edit a Level", m);
 	}
 	
+	/**
+	 * Overriden populate method from screen class.
+	 */
 	@Override
 	public void populate() {
 		btnNext.setActionCommand("Next");
@@ -100,6 +112,9 @@ public class LevelEditSelectView extends Screen {
 		refresh();
 	}
 
+	/**
+	 * Overriden installation of controllers form screen class.
+	 */
 	@Override
 	public void installControllers() {
 		for(int idx = 0; idx < this.model.getNumUserLevels(); idx++) {
@@ -110,11 +125,18 @@ public class LevelEditSelectView extends Screen {
 		btnPrev.addActionListener(new NavigateLevelSelectController(this.app, this.model));
 	}
 	
+	/**
+	 * Getter for the level name.
+	 * @return String
+	 */
 	@Override
 	public String getName() {
 		return "LevelEditSelect";
 	}
 
+	/**
+	 * Overridden refresh method from Screen class.
+	 */
 	@Override
 	public void refresh() {
 		for(int idx = 0; idx < this.levelButtons.size(); idx++) {
@@ -149,6 +171,10 @@ public class LevelEditSelectView extends Screen {
 		}
 	}
 	
+	/**
+	 * Test Main class.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {

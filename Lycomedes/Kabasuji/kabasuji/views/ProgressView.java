@@ -15,16 +15,25 @@ import javax.swing.SwingConstants;
 import kabasuji.entities.Progress;
 import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
-
+/**
+ * View class for the level progress.
+ * @author Chase St. Laurent
+ */
 public class ProgressView extends JPanel {
-	/**
-	 * @author Chase St. Laurent
-	 */
+
+	/** serial id. */
 	private static final long serialVersionUID = 1L;
+	/** Progress object for the level. */
 	private Progress progress;
+	/** current level associated with progress. */
 	private Level currLevel;
+	/** progressbar to control progress. */
 	JProgressBar progressBar = new JProgressBar();
 
+	/**
+	 * Constructor for the progress view.
+	 * @param model
+	 */
 	public ProgressView(SuperModel model) {
 		super();
 		this.currLevel = model.getActiveLevel();
@@ -39,6 +48,10 @@ public class ProgressView extends JPanel {
 
 	}
 
+	/**
+	 * Updates the level progress depending on type.
+	 * @param type
+	 */
 	public void updateProgressBar(String type) {
 		switch (type){
 			case "Puzzle":

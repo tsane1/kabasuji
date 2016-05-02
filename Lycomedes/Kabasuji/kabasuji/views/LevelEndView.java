@@ -15,17 +15,29 @@ import kabasuji.supers.Application;
 import kabasuji.supers.Screen;
 import kabasuji.supers.SuperModel;
 
+/**
+ * View displayed after ending a level. Either won or lost.
+ */
 public class LevelEndView extends Screen {
+	/** Supermodel instance being updated. */
 	private SuperModel model;
-	
+	/** Button to return to level choosing screen. */
 	private JButton btnBackToSelection = new JButton();
+	/** Replay button for the level. */
 	private JButton btnReplay = new JButton();
 	
+	/**
+	 * Constructor for level end view.
+	 * @param Supermodel m
+	 */
 	public LevelEndView(SuperModel m) {
 		super("", m);
 		this.model = m;
 	}
 
+	/**
+	 * Overriden populate method from screen class.
+	 */
 	@Override
 	public void populate() {
 		btnBackToSelection.setText("Back to Selection");
@@ -70,17 +82,27 @@ public class LevelEndView extends Screen {
 		this.repaint();
 	}
 
+	/**
+	 * Overriden installation of controllers form screen class.
+	 */
 	@Override
 	public void installControllers() {
 		btnReplay.addActionListener(new LevelPlayController(this.app, this.model));
 		btnBackToSelection.addActionListener(new BackController(this.app, this.model));
 	}
 
+	/**
+	 * Overridden refresh method from Screen class.
+	 */
 	@Override
 	public void refresh() {
 		
 	}
 
+	/**
+	 * Getter for the level name.
+	 * @return String
+	 */
 	@Override
 	public String getName() {
 		return "LevelEnd";

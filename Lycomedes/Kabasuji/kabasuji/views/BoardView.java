@@ -16,38 +16,47 @@ import java.awt.Point;
 import java.util.HashMap;
 
 /**
- * 
+ * Class for drawing the board to the application.
  * @author Michael
  * @author Heineman
  *
  */
 public class BoardView extends JPanel {
 
-
 	/**
 	 *  serial id for BoardView
 	 */
 	private static final long serialVersionUID = -8800914211105754331L;
-
+	/** Level that the board is pulled from. */
 	private Level currLevel;
-	//not sure if needed since we are using a square
+	/** offset for the view. */
 	int offset = 8;
-	//size of puzzle if 12x12 with squares being 32 pixels long
+	/** size of the largest bord length. */
 	private final int size = 384;
-
+	/** x,y coordinates for controlling active pieces. */
 	private int setActiveX,setActiveY;
+	/** Color object for active pieces. */
 	private Color setActiveColor;
-
+	/** flag for showing hints */
 	boolean showHint = false;
+	/** Object that knows how to draw pieces. */
 	PieceDrawer drawer = new PieceDrawer();
+	/** Image for the boardview. */
 	Image offScreenImage = null;
+	/** Graphics object for painting. */
 	Graphics offScreenGraphics = null;
 
-	//in order open in window builder apparently
+	/**
+	 * Constructor in order open in window builder.
+	 */
 	BoardView(){
 
 	}
 
+	/**
+	 * Constructor for boardview.
+	 * @param model
+	 */
 	public BoardView(SuperModel model) {
 		super();
 		this.currLevel = model.getActiveLevel();
@@ -55,7 +64,11 @@ public class BoardView extends JPanel {
 		setBounds(273, 100, 384, 384);
 	}
 
-
+	/**
+	 * Overridden painting function for getting the minimum size.
+	 * Minimum size is one piece tall and wide with a buffer on all sides.
+	 * @return Dimension
+	 */
 	@Override
 	public Dimension getMinimumSize() {
 		int width = 2*size + 2*offset;
@@ -63,6 +76,12 @@ public class BoardView extends JPanel {
 
 		return new Dimension (width, height);
 	}
+	
+	/**
+	 * Overridden painting function for getting the preferred size.
+	 * Preffered size is one piece tall and three pieces wide wide with a buffer on all sides.
+	 * @return Dimension
+	 */
 	@Override
 	public Dimension getPreferredSize() {
 		int width = 2*size + 2*offset;
@@ -70,8 +89,10 @@ public class BoardView extends JPanel {
 
 		return new Dimension (width, height);
 	}
+	
 	/**
-	 * Draws the background puzzle image and the unplayable tiles
+	 * Override method to paint the board.
+	 * @param Graphics g
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -106,10 +127,13 @@ public class BoardView extends JPanel {
 //			setActiveX -= (colAdjust*32);
 
 			drawer.drawPiece(g, currLevel.getActivePiece(), setActiveX, setActiveY, setActiveColor);
-
 		}
-
 	}
+
+	/**
+	 * redraw method to refresh the images on the screen before repainting.
+	 * @return void
+	 */
 	public void redraw(){
 		//set buffer
 		int x = offset;
@@ -219,22 +243,41 @@ public class BoardView extends JPanel {
 			}
 		}
 	}
+	
+	/**
+	 * Draws the active pieces on the board.
+	 * @param int x
+	 * @param int y
+	 * @param Color c
+	 */
 	public void drawActivePiece(int x, int y, Color c){
 		setActiveColor = c;
 		setActiveX = x;
 		setActiveY = y;
 	}
+	
+	/**
+	 * Helper method that calls redraw then repaint to continually refresh the screen.
+	 * @return void
+	 */
 	public void refresh(){
 		redraw();
 		repaint();
 	}
 	
-
+	/** 
+	 * Sets the showhint flag to true and paints the hint. 
+	 */
 	public void showHint() {
-		//drawer.drawHintPiece(offScreenGraphics, currLevel.getBoard().getHintLocations());
-		
 		showHint = true;
 	}
+	
+	/**
+	 * determines if a tile is part of a hint.
+	 * @param int col
+	 * @param int row
+	 * @return boolean
+	 */
 	public boolean isHintLocation(int col, int row){
 		for(Tile pt: currLevel.getBoard().getHintLocations()){
 			if(pt.getColumn()==col && pt.getRow()==row){

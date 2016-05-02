@@ -34,28 +34,41 @@ import kabasuji.supers.SuperModel;
 import kabasuji.supers.Screen;
 
 /**
- * 
+ * View for the release level editing screen.
  * @author Tanuj Sane
  * @author Michael
  * @since 4/23/16
  *
  */
-
 public class ReleaseLevelEditView extends Screen {
+	/** Release level being created. */
 	private ReleaseLevel level;
+	/** Boardview for the level. */
 	private BoardView boardView;
+	/** Bullpenview for the new level. */
 	private BullpenView bullpenView;
+	/** Paletteview for the level. */
 	private PaletteView paletteView;
+	/** Scrollpane for the bullpen. */
 	private JScrollPane bullpenViewScroll;
+	/** Scrollpane for the palette. */
 	private JScrollPane paletteViewScroll;
-	
+	/** undo button. */
 	private JButton btnUndo = new JButton("Undo");
+	/** redo button. */
 	private JButton btnRedo = new JButton("Redo");
+	/** save button. */
 	private JButton btnSave = new JButton("Save");
+	/** delete button. */
 	private JButton btnDelete = new JButton("Delete");
-
+	/** test field for level name. */
 	private JTextField setLevelName = new JTextField();
-	
+
+	/**
+	 * Constructor for creating or editing a new release level.
+	 * @param levelName
+	 * @param Supermodel m
+	 */
 	public ReleaseLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
 		this.level = (ReleaseLevel)this.model.loadLevel(m.getUserLevelDir(), levelName+".lev");
@@ -76,6 +89,9 @@ public class ReleaseLevelEditView extends Screen {
 		this.paletteView = new PaletteView(this.model);
 	}
 	
+	/**
+	 * Overriden populate method from Screen class.
+	 */
 	@Override
 	public void populate() {
 
@@ -150,6 +166,9 @@ public class ReleaseLevelEditView extends Screen {
 		this.repaint();
 	}
 	
+	/**
+	 * Overridden controller installation from Screen class.
+	 */
 	@Override
 	public void installControllers() {
 		btnUndo.addActionListener(new UndoController(this.app, this.model));
@@ -167,32 +186,55 @@ public class ReleaseLevelEditView extends Screen {
 		refresh();
 	}
 
+	/**
+	 * Overriden refresh for the screen from the screen class.
+	 */
 	@Override
 	public void refresh() {
 		btnUndo.setEnabled(!(model.getActiveLevel().peekLastMove() == null));
 		btnRedo.setEnabled(!(model.getActiveLevel().peekRedoMove() == null));
 	}
 
+	/**
+	 * Overridden getter for the screen name.
+	 * @return String
+	 */
 	@Override
 	public String getName() {
 		return this.level.getLevelType() + "LevelEditView";
 	}
 
+	/**
+	 * Overridden getter for the bullpenview.
+	 * @return bullpenview
+	 */
 	@Override
 	public BullpenView getBullpenView(){
 		return this.bullpenView;
 	}
 	
+	/**
+	 * Overridden getter for the boardview.
+	 * @return boardview
+	 */
 	@Override
 	public BoardView getBoardView(){
 		return this.boardView;
 	}
 	
+	/**
+	 * Overridden getter for the level.
+	 * @return Level
+	 */
 	@Override
 	public Level getLevel() {
 		return this.level;
 	}
 	
+	/**
+	 * Overridden getter for the paletteview.
+	 * @return paletteview
+	 */
 	@Override
 	public PaletteView getPaletteView() {
 		return this.paletteView;
