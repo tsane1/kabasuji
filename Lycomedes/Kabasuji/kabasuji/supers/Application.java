@@ -26,8 +26,13 @@ import javax.swing.SwingConstants;
  *
  */
 public class Application extends JFrame {
+	/** current screen for the application. */
 	private Screen currScreen;
 	
+	/**
+	 * Application constructor
+	 * @param Screen scr
+	 */
 	public Application(Screen scr) {
 		setTitle("Kabasuji");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,19 +41,34 @@ public class Application extends JFrame {
 		setCurrScreen(scr);
 	}
 	
+	/**
+	 * Overridden swing method.
+	 */
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(950, 800);
 	}
 	
+	/**
+	 * Handshake to introduce screens.
+	 * @param Screen scr
+	 */
 	private void handshake(Screen scr) {
 		scr.handshake(this);
 	}
 	
+	/**
+	 * Gets the current screen
+	 * @return Screen
+	 */
 	public Screen getCurrScreen() {
 		return this.currScreen;
 	}
 	
+	/**
+	 * Sets the current Screen.
+	 * @param newScr
+	 */
 	public void setCurrScreen(Screen newScr) {
 		this.currScreen = newScr;
 		setContentPane(this.currScreen);

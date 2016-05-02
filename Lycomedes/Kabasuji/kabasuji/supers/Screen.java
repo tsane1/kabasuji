@@ -31,16 +31,29 @@ import javax.swing.JButton;
  */
 
 public abstract class Screen extends JPanel {
+	/** back button installed on all screens. */
 	private JButton btnBack;
+	/** model instance for the application. */
 	protected SuperModel model;
+	/** application being run. */
 	protected Application app;
+	/** title label for screens. */
 	private JLabel lblTitle;
 	
+	/**
+	 * Screen entity constructor.
+	 * @param String title
+	 * @param SuperModel m
+	 */
 	public Screen(String title, SuperModel m) {
 		this.model = m;
 		initScreen(title);
 	}
 	
+	/**
+	 * Initialize method for all screens.  Sets defualt colors, buttons, setups, etc.
+	 * @param title
+	 */
 	private void initScreen(String title) {
 		this.setBackground(Color.WHITE);
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -62,40 +75,80 @@ public abstract class Screen extends JPanel {
 		this.add(btnBack);
 	}
 	
+	/**
+	 * Setter for the screen title.
+	 * @param newTitle
+	 */
 	public void setTitle(String newTitle) {
 		lblTitle.setText(newTitle);
 	}
 	
+	/** 
+	 * Gets the name of the current screen.
+	 * @return String.
+	 */
 	public String getTitle() {
 		return lblTitle.getText();
 	}
 	
+	/**
+	 * Handshake method for screens.
+	 * @param App a
+	 */
 	public void handshake(Application a) {
 		this.app = a;
 		// install supercontroller right after app and screen are bound.
 		btnBack.addActionListener(new BackController(this.app, this.model));
 	}
 	
+	/**
+	 * Populates the screen and initializes any views.
+	 */
 	public abstract void populate(); // initialize view
+	
+	/**
+	 * Installs controllers for each screen.
+	 */
 	public abstract void installControllers(); // initialize controllers
 	
+	/**
+	 * Generic refresh that handles views. 
+	 */
 	public abstract void refresh();// refresh view to show updated state
 	
-	
+	/**
+	 * Gets the name of the screen, Not title.
+	 */
 	public abstract String getName(); // get screen name
 
+	/**
+	 * Bullpenview getter.
+	 * @return Bullpenview
+	 */
 	public BullpenView getBullpenView() {
 		return null;
 	}
 
+	/**
+	 * BoardView Getter.
+	 * @return Boardview
+	 */
 	public BoardView getBoardView() {
 		return null;
 	}
 	
+	/**
+	 * Level getter for the screen.
+	 * @return Level
+	 */
 	public Level getLevel() {
 		return null;
 	}
 	
+	/**
+	 * Paletteview getter for the screen.
+	 * @return PaletteView
+	 */
 	public PaletteView getPaletteView() {
 		return null;
 	}
