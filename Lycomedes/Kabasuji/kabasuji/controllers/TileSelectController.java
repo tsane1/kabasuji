@@ -1,6 +1,5 @@
 package kabasuji.controllers;
 
-
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,16 +24,29 @@ import kabasuji.views.BoardView;
  */
 
 public class TileSelectController extends MouseAdapter{
+	/** Application being run. */
 	private Application app;
+	/** board view for the controller. */
 	BoardView boardView;
+	/** Level instance for the controller. */
 	Level level;
 	
+	/**
+	 * Constructor for the controller.
+	 * @param app
+	 * @param model
+	 */
 	public TileSelectController(Application app, SuperModel model){
 		this.app = app;
 		this.boardView = app.getCurrScreen().getBoardView();
 		this.level = model.getActiveLevel();
 	}
 	
+	/** 
+	 * Selects a tile as part of the board.
+	 * @param Point p
+	 * @return boolean
+	 */
 	public boolean selectTile(Point p){
 		Move m = new SelectTileMove(level, p);
 
@@ -46,6 +58,11 @@ public class TileSelectController extends MouseAdapter{
 		return false;
 	}
 
+	/** 
+	 * Increments value of a release tile.
+	 * @param Point p
+	 * @return boolean
+	 */
 	public boolean incrementRelease(Point p){
 		Move m = new IncrementReleaseTileMove(level, p);
 
@@ -57,6 +74,11 @@ public class TileSelectController extends MouseAdapter{
 		return false;
 	}
 
+	/** 
+	 * Changes the color of a release tile.
+	 * @param Point p
+	 * @return boolean
+	 */
 	public boolean changeNumColor(Point p){
 		Move m = new ChangeReleaseNumColorMove(level, p);
 
@@ -68,6 +90,11 @@ public class TileSelectController extends MouseAdapter{
 		return false;
 	}
 	
+	/**
+	 * Add a row and column to the hint piece.
+	 * @param Point p
+	 * @return boolean
+	 */
 	public boolean addToHint(Point p){
 		int rowNum = (int) p.getY()/32; 
 		int colNum = (int) p.getX()/32;
@@ -90,6 +117,9 @@ public class TileSelectController extends MouseAdapter{
 		
 	}
 	
+	/**
+	 * Listener for when the mouse is clicked on the boardview.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
@@ -117,35 +147,6 @@ public class TileSelectController extends MouseAdapter{
 		}
 		app.getCurrScreen().refresh();
 	}
-	
-//	@Override
-//	public void mousePressed(MouseEvent e) {
-//		try{ // +++LEFT PRESSED INSIDE BOARD+++
-//			// increment a counter in selectTile for every tile being selected that is already selected
-//			if((e.getModifiers() & InputEvent.BUTTON1_MASK) == InputEvent.BUTTON1_MASK){
-//				if (e.getSource() == boardView){
-//					p = e.getPoint(); // returns the X and Y with respect to the source object (board) yeah!!
-//					if (e.getClickCount() == 1){ // will be helpful for incrementing release
-//						selectTile(p); 
-//					}
-//					if (e.getClickCount() > 1){
-//						incrementRelease(p);
-//					}
-//				}
-//			} // +++RIGHT PRESSED INSIDE BOARD+++
-//			if((e.getModifiers() & InputEvent.BUTTON2_MASK) == InputEvent.BUTTON2_MASK){
-//				if (e.getSource() == boardView){
-//					Point p = e.getPoint(); // returns the X and Y with respect to the source object (board) yeah!!
-////					changeNumColor(p); // How many colors do we want?? Not random right cuz too hard to match to piece
-//				}
-//			}
-//		}
-//		catch(Exception ex){
-//			System.err.println("EXCEPTION CAUGHT : TileSelectController");
-//			ex.printStackTrace();
-//		}
-		
-//	}
 }
 
 

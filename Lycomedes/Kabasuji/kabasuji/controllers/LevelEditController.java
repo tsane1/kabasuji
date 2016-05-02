@@ -11,15 +11,28 @@ import kabasuji.views.LightningLevelEditView;
 import kabasuji.views.PuzzleLevelEditView;
 import kabasuji.views.ReleaseLevelEditView;
 
-
+/**
+ * Controller for handling editing of levels.
+ */
 public class LevelEditController implements ActionListener {
+	/** Model instance being updated. */
 	private SuperModel model;
+	/** Application being run. */
 	private Application app;
 
+	/**
+	 * Constructor for level edit controller.
+	 * @param App a
+	 * @param SuperModel m
+	 */
 	public LevelEditController(Application a, SuperModel m) {
 		this.app = a;
 		this.model = m;
 	}
+	
+	/**
+	 * Handles requesting to edit a level.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Level level;
