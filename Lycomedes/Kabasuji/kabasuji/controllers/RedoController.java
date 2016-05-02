@@ -9,20 +9,30 @@ import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 
 /**
- * Redo controller
+ * Redo controller.
  * 
- * @author SOMEBODY ELSE PUT THAT IN
+ * @author Derek McMaster
  * @author Tanuj Sane
  */
 public class RedoController implements ActionListener {
-	Application app;
+	/** Level where moves are executed. */
 	Level level;
+	/** Application being run. */
+	Application app;
 	
+	/**
+	 * Constructor for the redo controller.
+	 * @param app
+	 * @param model
+	 */
 	public RedoController(Application app, SuperModel model) {
 		this.app = app;
 		this.level = model.getActiveLevel();
 	}
 	
+	/**
+	 * Method for when the redo button is acted upon.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
@@ -34,6 +44,10 @@ public class RedoController implements ActionListener {
 		}
 	}
 	
+	/**
+	 * redo method called by the controller which creates the move and tries to execute it.
+	 * @return boolean
+	 */
 	public boolean doRedo() {
 		Move m = level.getRedoMove();
 		if(m == null) {

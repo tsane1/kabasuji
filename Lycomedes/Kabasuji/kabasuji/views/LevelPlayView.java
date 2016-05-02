@@ -149,6 +149,7 @@ public class LevelPlayView extends Screen {
 		twoStarDisplay.setBounds(725, 175, 192, 64);
 		oneStarDisplay.setBounds(725, 275, 192, 64);
 		
+		
 		helpMe.setText("Hint?");
 		helpMe.setActionCommand("Hint");
 		helpMe.setBackground(SystemColor.text);
@@ -188,7 +189,10 @@ public class LevelPlayView extends Screen {
 			this.app.setCurrScreen(new LevelEndView(this.model));
 			return;
 		}
+<<<<<<< HEAD
 		
+=======
+>>>>>>> refs/remotes/origin/master
 		switch(level.getLevelType()) { // add level-specific elements
 		case "Puzzle":
 			System.out.println(pl.hasEnded());
