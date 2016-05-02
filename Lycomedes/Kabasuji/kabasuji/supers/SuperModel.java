@@ -72,7 +72,7 @@ public class SuperModel {
               String number = name.substring(s, e);
               i = Integer.parseInt(number);
           } 
-          catch(Exception e) {
+          catch(Exception e) {  
               i = 0; // if filename does not match the format
                      // then default to 0
           }
@@ -89,7 +89,7 @@ public class SuperModel {
 			userLevelNames.add(loadLevel(userLevelsDirectory, f.getName()).getLevelName());
 		}
 	}
-	
+	//
 	/**
 	 * The following three methods track the pagination of the level play and edit
 	 * selection views. These methods are used to extract the necessary information
