@@ -12,14 +12,24 @@ import kabasuji.supers.Move;
  *
  */
 public class SelectTileMove extends Move {
+	/** Level being updated. */
 	Level currLevel;
+	/** point extracting the row, col from. */
 	Point p;
 	
+	/**
+	 * Constructor for selecting tile move.
+	 * @param Level l
+	 * @param Point p
+	 */
 	public SelectTileMove(Level l, Point p) {
 		this.currLevel = l;
 		this.p = p;
 	}
 	
+	/**
+	 * Handles the execution of the move.
+	 */
 	@Override
 	public boolean execute() {
 		if(!valid()) { return false; }
@@ -27,12 +37,18 @@ public class SelectTileMove extends Move {
 		return true;
 	}
 
+	/**
+	 * Handles undoing the move if requested.
+	 */
 	@Override
 	public boolean undo() {
 		currLevel.getBoard().deselectTile(p);
 		return true;
 	}
 
+	/**
+	 * Determines whether or not the move is valid.
+	 */
 	@Override
 	public boolean valid() {
 		if(currLevel.getBoard() == null)

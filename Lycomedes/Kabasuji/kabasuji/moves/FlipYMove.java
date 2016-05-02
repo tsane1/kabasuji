@@ -10,12 +10,20 @@ import kabasuji.supers.Move;
  */
 
 public class FlipYMove extends Move {
+	/** Level being updated. */
 	Level currLevel;
 	
+	/**
+	 * Constructor for flip y move.
+	 * @param Level l
+	 */
 	public FlipYMove(Level l) {
 		this.currLevel = l;
 	}
 
+	/**
+	 * Handles the execution of the move.
+	 */
 	@Override
 	public boolean execute() {
 		if(!valid()) { return false; }
@@ -23,12 +31,18 @@ public class FlipYMove extends Move {
 		return true;
 	}
 
+	/**
+	 * Handles undoing the move if requested.
+	 */
 	@Override
 	public boolean undo() {
 		currLevel.getSelected().flipY();
 		return true;
 	}
 
+	/**
+	 * Determines whether or not the move is valid.
+	 */
 	@Override
 	public boolean valid() {
 		if(currLevel.getSelected() == null)

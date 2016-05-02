@@ -7,12 +7,23 @@ import kabasuji.entities.ReleaseBoardTile;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 
+/**
+ * Move class for adding a board tile to a hint piece.
+ */
 public class UpdateHintLocationMove extends Move {
-
+	/** column and row of the tile. */
 	int col, row;
+	/** Level adding the hint to. */
 	Level lev;
+	/** Board adding the hint to. */
 	Board b;
 	
+	/**
+	 * Constructor for updating hint move.
+	 * @param int row
+	 * @param int col
+	 * @param Level l
+	 */
 	public UpdateHintLocationMove(int row, int col, Level l){
 		this.row = row;
 		this.col = col;
@@ -20,6 +31,9 @@ public class UpdateHintLocationMove extends Move {
 		this.b = l.getBoard();
 	}
 	
+	/**
+	 * Handles the execution of the move.
+	 */
 	@Override
 	public boolean execute() {
 		if(!valid()) { return false; }
@@ -41,6 +55,9 @@ public class UpdateHintLocationMove extends Move {
 		return true;
 	}
 
+	/**
+	 * Handles undoing the move if requested.
+	 */
 	@Override
 	public boolean undo() {
 		if(b.getHintLocations().size() > 0) b.getHintLocations().remove(b.getHintLocations().size()-1);
@@ -48,6 +65,9 @@ public class UpdateHintLocationMove extends Move {
 		return true;
 	}
 
+	/**
+	 * Determines whether or not the move is valid.
+	 */
 	@Override
 	public boolean valid() {
 		return !(b.getHintLocations().size() > 6);

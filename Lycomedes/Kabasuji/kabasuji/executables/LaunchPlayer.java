@@ -12,6 +12,10 @@ import kabasuji.views.LevelPlaySelectView;
 import kabasuji.views.LevelPlayView;
 import kabasuji.views.PlayerSplashScreen;
 
+/**
+ * Class for launching the game play entity of Kabasuji.
+ * @author Ian Jacoway - threading
+ */
 public class LaunchPlayer {
 
 	/**
