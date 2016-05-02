@@ -110,7 +110,6 @@ public abstract class Level implements Serializable {
 		this.theBullpen = new Bullpen();
 		this.thePalette = new Palette();
 		//this.progress = new Progress(theBoard);
-		this.numStars = 0;
 		setupPieces();
 		//theBullpen.addPieces(allPieces);
 		thePalette.addPieces(allPieces);
