@@ -1,11 +1,5 @@
 package kabasuji.views;
 
-/** 
- * 
- * @author Chase St. Laurent
- * 
- */
-
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import java.awt.HeadlessException;
@@ -21,18 +15,25 @@ import kabasuji.supers.SuperModel;
 import javax.swing.*;
 import java.awt.Container;
 
+/**
+ * Splash screen for the game play entity.
+ * @author Chase St. Laurent
+ */
 public class PlayerSplashScreen extends JWindow {
-
-	/**
-	 * Create the panel.
-	 */
-
+	/** static builder screen variable. */
 	static boolean isRegistered;
+	/** Progress bar for screen. */
 	private static JProgressBar progressBar = new JProgressBar();
+	/** Splash Screen instance. */
 	private static PlayerSplashScreen execute;
+	/** count for the progress bar. */
 	private static int count;
+	/** timer for the progress bar. */
 	private static Timer timer1;
 
+	/**
+	 * Constructor for creating player splash screen.
+	 */
 	public PlayerSplashScreen() {
 		getContentPane().setLayout(null);
 
@@ -55,6 +56,9 @@ public class PlayerSplashScreen extends JWindow {
 		setVisible(true);
 	}
 
+	/**
+	 * Method for controlling the progress bar.
+	 */
 	private void loadProgressBar() {
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -44,36 +44,54 @@ import kabasuji.supers.Screen;
  *
  */
 public class LevelPlayView extends Screen {
-	
+	/** Level being played. */
 	private Level level;
+	/** puzzle level instance. */
 	private PuzzleLevel pl;
+	/** lightning level instance. */
 	private LightningLevel ll;
+	/** release level instance. */
 	private ReleaseLevel rl;
+	/** Progress object for the level. */
 	private Progress progress;
-	
+	/** Boardview for the level. */
 	private BoardView boardView;
+	/** Bullpenview for the level. */
 	private BullpenView bullpenView;
+	/** progressview for the level. */
 	private ProgressView progressView;
+	/** scrollpane for the pieces. */
 	private JScrollPane pieceScroll = new JScrollPane();
-	
+	/** Label for displaying level params. */
 	private JLabel levelParamTitle = new JLabel();
+	/** Label for displaying the params. */
 	private JLabel levelParamDisplay = new JLabel();
+	/** label for displaying three stars. */
 	private JLabel threeStarDisplay = new JLabel();
+	/** label for displaying two stars. */
 	private JLabel twoStarDisplay = new JLabel ();
+	/** label for displaying one stars. */
 	private JLabel oneStarDisplay = new JLabel ();
+	/** Timer for lightning levels. */
 	private Timer t;
-	
+	/** clockwise rotate button. */
 	private JButton btnClockwise = new JButton();
+	/** ccw rotate button. */
 	private JButton btnCounterClockwise = new JButton();
+	/** flip over x axis button. */
 	private JButton btnFlipX = new JButton();
+	/** flip over y axis button. */
 	private JButton btnFlipY = new JButton();
-	
+	/** help button. */
 	private JButton helpMe = new JButton();
-	
+	/** Progress bar for achievements. */
 	private JProgressBar progressBar = new JProgressBar();
 
-
-
+	/**
+	 * Constructor for the level play view.
+	 * @param levelName
+	 * @param Supermodel m
+	 */
 	public LevelPlayView(String levelName, SuperModel m) {
 		super(levelName, m);
 		this.level = m.getActiveLevel();
@@ -99,10 +117,17 @@ public class LevelPlayView extends Screen {
 		}
 	}
 	
+	/**
+	 * Getter for the level instance.
+	 * @return Level
+	 */
 	public Level getLevel() {
 		return this.level;
 	}
 			
+	/**
+	 * Overriden populate method from Screen class.
+	 */
 	@Override
 	public void populate() {
 	
@@ -161,6 +186,9 @@ public class LevelPlayView extends Screen {
 		refresh();
 	}
 	
+	/**
+	 * Overridden controller installation from Screen class.
+	 */
 	@Override
 	public void installControllers() {
 		bullpenView.addMouseListener(new SelectPieceController(this.app, this.model));
@@ -181,6 +209,9 @@ public class LevelPlayView extends Screen {
 		helpMe.addActionListener(new HintController(this.app, this.model));
 	}	
 
+	/**
+	 * Overriden refresh for the screen from the screen class.
+	 */
 	@Override
 	public void refresh() {
 		this.remove(levelParamDisplay);
@@ -293,21 +324,36 @@ public class LevelPlayView extends Screen {
 		this.repaint();
 	}
 	
+	/**
+	 * Overridden getter for the screen name.
+	 * @return String
+	 */
 	@Override
 	public String getName() {
 		return "LevelPlay";
 	}
 	
+	/**
+	 * Overridden getter for the bullpenview.
+	 * @return bullpenview
+	 */
 	@Override
 	public BullpenView getBullpenView(){
 		return this.bullpenView;
 	}
 	
+	/**
+	 * Overridden getter for the boardview.
+	 * @return boardview
+	 */
 	@Override
 	public BoardView getBoardView(){
 		return this.boardView;
 	}
 	
+	/**
+	 * Method for stopping the timer on lightning levels.
+	 */
 	public void stopTimer() {
 		t.stop();
 	}

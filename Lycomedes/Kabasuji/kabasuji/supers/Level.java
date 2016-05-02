@@ -40,7 +40,6 @@ public abstract class Level implements Serializable {
 	List<PieceTile> pieceGrid = new ArrayList<PieceTile>(36);
 	/** A map of piece colors used for drawing the pieces. */
 	Map<Integer, Color> colorMap = new HashMap<Integer, Color>(35);
-
 	/** Stack keeping track of the moves done for undoing. */
 	Stack<Move> undoStack = new Stack<Move>();
 	/** stack for redoable moves when moves are undone. */
@@ -60,7 +59,6 @@ public abstract class Level implements Serializable {
 	/** The board associated with the current level. */
 	protected Board theBoard;
 	/** The bullpen associated with the current level. */
-
 	protected Bullpen theBullpen;
 	/** Palette for building */
 	Palette thePalette;
@@ -70,8 +68,9 @@ public abstract class Level implements Serializable {
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
 	 */
 	protected int numStars;
-	
+	/** Achievement object for the level. */
 	public Achievement achievement;
+	/** Progress object. */
 	public Progress progress;
 
 	/**
@@ -231,7 +230,7 @@ public abstract class Level implements Serializable {
 		p34 = new Piece(34, new PieceTile[] { pt3, pt7, pt8, pt9, pt13, pt14 });
 		p35 = new Piece(35, new PieceTile[] { pt3, pt8, pt9, pt13, pt14, pt19 });
 
-		/*
+		/**
 		 * add them to the array list
 		 */
 		allPieces.add(p1);
@@ -279,7 +278,7 @@ public abstract class Level implements Serializable {
 	}
 	
 	/**
-	 * Achievement
+	 * Updating Achievement method for the level.
 	 */
 	
 	public void updateAchievement() {
@@ -310,6 +309,9 @@ public abstract class Level implements Serializable {
 		}
 	}
 	
+	/**
+	 * Helper method for clearing the achievements.
+	 */
 	public void clearAchievement() {
 		numStars=0;
 	}
@@ -362,6 +364,10 @@ public abstract class Level implements Serializable {
 		return this.theBullpen;
 	}
 	
+	/**
+	 * Getter for the palette. 
+	 * @return Palette
+	 */
 	public Palette getPalette(){
 		return this.thePalette;
 	}
@@ -481,6 +487,10 @@ public abstract class Level implements Serializable {
 		return undoStack.pop();
 	}
 	
+	/**
+	 * Checks the last move on the stack.
+	 * @return Move
+	 */
 	public Move peekLastMove() {
 		if (undoStack.isEmpty()) {
 			return null;
@@ -515,6 +525,10 @@ public abstract class Level implements Serializable {
 		return redoStack.pop();
 	}
 	
+	/**
+	 * Check the last redone move.
+	 * @return Move
+	 */
 	public Move peekRedoMove() {
 		if (redoStack.isEmpty()) {
 			return null;
@@ -523,7 +537,7 @@ public abstract class Level implements Serializable {
 	}
 	
 	/**
-	 * Save level handling
+	 * Save level handling.
 	 */
 	public void saveLevel(String lvlDir) {
 		String filepath = lvlDir + this.getLevelName() + ".lev";
@@ -549,6 +563,7 @@ public abstract class Level implements Serializable {
 	
 	/**
 	 * Getter for the color map.
+	 * @return color map
 	 */
 	public Map<Integer, Color> getColorMap(){
 		return colorMap;
@@ -564,17 +579,37 @@ public abstract class Level implements Serializable {
 		return this.allPieces.get(idx);
 	}
 	
+	/**
+	 * sets the number of stars for the level.
+	 */
 	public abstract void setNumStars();
 	
+	/**
+	 * Checks whether or not the level has ended.
+	 * @return boolean
+	 */
 	public abstract boolean hasEnded();
 	
+	/**
+	 * Checks whether or not the level is won.
+	 * @return boolean
+	 */
 	public abstract boolean hasWon();
 	
+	/**
+	 * Returns the number of stars for the level.
+	 * @return int
+	 */
 	public int getNumStars() {
 		updateAchievement();
 		return this.numStars;
 	}
 	
+	/**
+	 * Adds a piece to the number of pieces made.
+	 * @param Piece p
+	 * @return boolean
+	 */
 	public boolean addPieceToAllPieces(Piece p){
 		return this.allPieces.add(p);
 	}

@@ -32,14 +32,14 @@ public class BullpenView extends JPanel {
 	
 	/** drawing object that knows how to draw pieces. */
 	PieceDrawer drawer = new PieceDrawer();
-	
+	/** level the bullpenview is displayed on. */
 	Level level;
-	
-/** containersize global, equal to 6xtilesize or 6x32. */	
+
+	/** containersize global, equal to 6xtilesize or 6x32. */	
 	public static final int containerSize = 192;
 	/** buffer to separate pieces when drawing. */
 	public static final int pieceBuffer = 8;
-	
+
 	/** Image object to create the piece images with. */
 	Image offScreenImage = null;
 	/** Graphics object to paint the images of the pieces. */
@@ -66,10 +66,18 @@ public class BullpenView extends JPanel {
 		return level.getBullpen().getPlayedPieces();
 	}
 	
+	/**
+	 * Getter for the pieces left in the bullpen.
+	 * @return
+	 */
 	public List<Piece> getPiecesInBullpen() {
 		return level.getBullpen().getPieces();
 	}
 	
+	/**
+	 * Getter for all pieces originally in the bullpen.
+	 * @return
+	 */
 	public List<Piece> getAllPieces() {
 		return level.getBullpen().getOriginalSet();
 	}
@@ -159,7 +167,6 @@ public class BullpenView extends JPanel {
 
 	/**
 	 * Helper method that calls redraw then repaint to continually refresh the screen.
-	 * 
 	 * @return void
 	 */
 	public void refresh(){

@@ -44,23 +44,39 @@ import kabasuji.supers.Screen;
  *
  */
 
-public class LightningLevelEditView extends Screen { 
+public class LightningLevelEditView extends Screen {
+	/** Lightning level being created. */
 	private LightningLevel level;
+	/** Boardview for the level. */
 	private BoardView boardView;
+	/** Bullpenview for the new level. */
 	private BullpenView bullpenView;
+	/** Paletteview for the level. */
 	private PaletteView paletteView;
+	/** Scrollpane for the bullpen. */
 	private JScrollPane bullpenViewScroll;
+	/** Scrollpane for the palette. */
 	private JScrollPane paletteViewScroll;
-	
+	/** undo button. */
 	private JButton btnUndo = new JButton("Undo");
+	/** redo button. */
 	private JButton btnRedo = new JButton("Redo");
+	/** save button. */
 	private JButton btnSave = new JButton("Save");
+	/** delete button. */
 	private JButton btnDelete = new JButton("Delete");
-	
-	private JSpinner mins = new JSpinner();
-	private JSpinner secs = new JSpinner();
+	/** test field for level name. */
 	private JTextField setLevelName = new JTextField();
-	
+	/** Spinner for the number of minutes. */
+	private JSpinner mins = new JSpinner();
+	/** Spinner for the number of seconds. */
+	private JSpinner secs = new JSpinner();
+
+	/**
+	 * Constructor for creating or editing a lightning level.
+	 * @param levelName
+	 * @param SuperModel m
+	 */
 	public LightningLevelEditView(String levelName, SuperModel m) {
 		super(levelName, m);
 		this.level = (LightningLevel)this.model.loadLevel(m.getUserLevelDir(), levelName+".lev");
@@ -77,6 +93,9 @@ public class LightningLevelEditView extends Screen {
 		this.paletteView = new PaletteView(this.model);
 	}
 	
+	/**
+	 * Overriden populate method from Screen class.
+	 */
 	@Override
 	public void populate() {
 		
@@ -180,6 +199,9 @@ public class LightningLevelEditView extends Screen {
 		this.repaint();
 	}
 	
+	/**
+	 * Overridden controller installation from Screen class.
+	 */
 	@Override
 	public void installControllers() {
 		btnUndo.addActionListener(new UndoController(this.app, this.model));
@@ -202,32 +224,55 @@ public class LightningLevelEditView extends Screen {
 		refresh();
 	}
 
+	/**
+	 * Overriden refresh for the screen from the screen class.
+	 */
 	@Override
 	public void refresh() {
 		btnUndo.setEnabled(!(model.getActiveLevel().peekLastMove() == null));
 		btnRedo.setEnabled(!(model.getActiveLevel().peekRedoMove() == null));
 	}
 
+	/**
+	 * Overridden getter for the screen name.
+	 * @return String
+	 */
 	@Override
 	public String getName() {
 		return this.level.getLevelType() + "LevelEditView";
 	}
-	
+
+	/**
+	 * Overridden getter for the bullpenview.
+	 * @return bullpenview
+	 */
 	@Override
 	public BullpenView getBullpenView(){
 		return this.bullpenView;
 	}
-
+	
+	/**
+	 * Overridden getter for the boardview.
+	 * @return boardview
+	 */
 	@Override
 	public BoardView getBoardView(){
 		return this.boardView;
 	}
 	
+	/**
+	 * Overridden getter for the level.
+	 * @return Level
+	 */
 	@Override
 	public Level getLevel() {
 		return this.level;
 	}
 	
+	/**
+	 * Overridden getter for the paletteview.
+	 * @return paletteview
+	 */
 	@Override
 	public PaletteView getPaletteView() {
 		return this.paletteView;

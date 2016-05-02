@@ -10,6 +10,10 @@ import kabasuji.views.BuilderSplashScreen;
 import kabasuji.views.LevelEditSelectView;
 import kabasuji.views.LevelPlayView;
 
+/**
+ * Class for launching the level builder entity of Kabasuji.
+ * @author Ian Jacoway - threading
+ */
 public class LaunchLevelBuilder {
 
 	/**
