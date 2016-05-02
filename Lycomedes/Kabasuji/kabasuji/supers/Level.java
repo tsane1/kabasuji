@@ -309,6 +309,10 @@ public abstract class Level implements Serializable {
 			numStars = achievedStars; 
 		}
 	}
+	
+	public void clearAchievement() {
+		numStars=0;
+	}
 
 	/**
 	 * Gets the level's name.
