@@ -6,20 +6,20 @@ import junit.framework.TestCase;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
-import kabasuji.moves.ChangeReleaseNumColorMove;
+import kabasuji.moves.IncrementReleaseTileMove;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 
 /**
- * Test cases involving changing the Release Tile's color.
+ * Test cases involving changing the Release Tile's number.
  * Test an attempt on each kind of level.
  *  
  * @author Ian Jacoway
  *
  */
 
-public class TestChangeReleaseNumColorMove extends TestCase {
+public class TestIncrementReleaseTileMove extends TestCase {
 	SuperModel sm;
 	Level pl, ll, rl;
 	Point p;
@@ -47,9 +47,9 @@ public class TestChangeReleaseNumColorMove extends TestCase {
 	public void testBullpenToBoard(){
 		
 		/** Activate tile in row 0 col 0 piece in Board on row 1 col 1. */
-		Move plm = new ChangeReleaseNumColorMove(pl, p);
-		Move llm = new ChangeReleaseNumColorMove(ll, p);
-		Move rlm = new ChangeReleaseNumColorMove(rl, p);
+		Move plm = new IncrementReleaseTileMove(pl, p);
+		Move llm = new IncrementReleaseTileMove(ll, p);
+		Move rlm = new IncrementReleaseTileMove(rl, p);
 	
 		/** Test on Puzzle Level. */
 		sm.setActiveLevel(pl);
