@@ -605,7 +605,18 @@ public abstract class Level implements Serializable {
 	public Piece generateRandomPiece(){
 		Random r = new Random();
 		int idx = r.nextInt(35);
-		return this.allPieces.get(idx);
+		
+		Piece temp = this.allPieces.get(idx);
+		PieceTile[] newList = new PieceTile[6];
+		int index = 0;
+		for (PieceTile pt : temp.getTileLocations()) {
+			int row = pt.getRow();
+			int col = pt.getColumn();
+			newList[index] = new PieceTile(row, col);
+			index++;
+		}
+		
+		return new Piece(allPieces.size(), newList);
 	}
 	
 	/**
