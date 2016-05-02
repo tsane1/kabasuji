@@ -69,9 +69,7 @@ public class LevelEndView extends Screen {
 			setTitle(model.getActiveLevel().getLevelName() + " LOST!");
 			lblPic.setIcon(new ImageIcon(LevelEndView.class.getResource("/imgs/" + model.getActiveLevel().getLevelType() + "Lost.png")));
 		}
-		else {
-			System.out.println("no fuck you you're not my real dad");
-		}
+		else ;
 		
 		this.add(btnBackToSelection);
 		this.add(btnReplay);
@@ -83,7 +81,7 @@ public class LevelEndView extends Screen {
 	}
 
 	/**
-	 * Overriden installation of controllers form screen class.
+	 * Overridden installation of controllers form screen class.
 	 */
 	@Override
 	public void installControllers() {
