@@ -82,7 +82,7 @@ public class Test_Sails extends JFrame {
 		int size = 12;
 		for(int i = 0; i<size; i++){
 			for(int j = 0; j<size; j++){
-				board.createBoardTile(i, j, "release");
+				board.createBoardTile(i, j, "Release");
 				((ReleaseBoardTile)board.getBoardArray()[i][j]).updateReleaseNum();
 			}
 		}
