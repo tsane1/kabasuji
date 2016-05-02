@@ -66,11 +66,7 @@ public class LightningLevel extends Level {
 	 */
 	@Override
 	public boolean hasEnded() {
-		boolean hasEnded=false;
-		if((getMinsLeft()==0 && getSecsLeft()==0) && progress.updateProgressLightning()<50){
-			hasEnded=true;
-		}
-		return hasEnded;
+		return getMinsLeft() + getSecsLeft() == 0;
 	}
 
 	/**
@@ -78,11 +74,7 @@ public class LightningLevel extends Level {
 	 */
 	@Override
 	public boolean hasWon() {
-		boolean hasWon = false;
-		if((progress.updateProgressLightning()>=50 && getMinsLeft()==0 && getMinsLeft()==0)
-				|| (progress.updateProgressLightning()==100)){
-			hasWon=true;
-		}
-		return false;
+		updateAchievement();
+		return (hasEnded() && progress.updateProgressLightning() >= 50) || progress.updateProgressLightning() == 100;
 	}
 }
