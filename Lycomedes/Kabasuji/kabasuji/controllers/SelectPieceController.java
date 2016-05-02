@@ -11,18 +11,30 @@ import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BullpenView;
 
-
+/**
+ * Controller for selecting a piece in the bullpen
+ * @author Derek McMaster
+ *
+ */
 public class SelectPieceController extends MouseAdapter{
-	
+	/** Level instance where the bullpen is. */
 	Level currLevel;
+	/** Bullpen view drawing the pieces. */
 	BullpenView bullpenView;
+	/** application being run. */
 	Application app;
 	
+	/**
+	 * Constructor for the controller.
+	 * @param app
+	 * @param model
+	 */
 	public SelectPieceController(Application app, SuperModel model){
 		this.currLevel = model.getActiveLevel();
 		this.bullpenView = app.getCurrScreen().getBullpenView();
 		this.app = app;
 	}
+	
 	/**
 	 * Testing constructor
 	 * @param l
@@ -33,6 +45,9 @@ public class SelectPieceController extends MouseAdapter{
 		this.bullpenView = bp;
 	}
 	
+	/**
+	 * Method for handling a press in the bullpen.
+	 */
 	public void mousePressed(MouseEvent me) {
 		int idx = 0;
 		for(Piece p : bullpenView.getPiecesInBullpen())

@@ -11,19 +11,27 @@ import kabasuji.views.LevelPlaySelectView;
 import kabasuji.views.LevelPlayView;
 
 /** 
- * 
- * test again
- *
+ * Controller for going back a screen.
  */
 public class BackController implements ActionListener {
+	/** Model being updated. */
 	private SuperModel model;
+	/** Application being run. */
 	private Application app;
 		
+	/**
+	 * Constructor for the back controller. 
+	 * @param App a
+	 * @param Model m
+	 */
 	public BackController(Application a, SuperModel m) {
 		this.app = a;
 		this.model = m;
 	}
 	
+	/**
+	 * Handles the request for going back a screen.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(app.getCurrScreen().getName()) {
