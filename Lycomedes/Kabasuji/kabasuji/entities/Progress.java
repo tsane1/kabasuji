@@ -23,8 +23,9 @@ public class Progress {
 	 * @return int
 	 */
 	public int updateProgressPuzzle() {
-
-		int value = board.getPuzzleProgress();
+		int value = 0;
+		
+		value = board.getPuzzleProgress();
 
 		return value;
 	}

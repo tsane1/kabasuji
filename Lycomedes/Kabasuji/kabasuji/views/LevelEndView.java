@@ -68,6 +68,7 @@ public class LevelEndView extends Screen {
 		else if(model.getActiveLevel().hasEnded()) {
 			setTitle(model.getActiveLevel().getLevelName() + " LOST!");
 			lblPic.setIcon(new ImageIcon(LevelEndView.class.getResource("/imgs/" + model.getActiveLevel().getLevelType() + "Lost.png")));
+			
 		}
 		else {
 			System.out.println("no fuck you you're not my real dad");
@@ -77,6 +78,8 @@ public class LevelEndView extends Screen {
 		this.add(btnReplay);
 		this.add(lblPic);
 		this.add(stars);
+		
+		
 		
 		this.validate();
 		this.repaint();

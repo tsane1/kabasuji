@@ -284,23 +284,52 @@ public abstract class Level implements Serializable {
 	public void updateAchievement() {
 		int achievedStars = 0;
 		progress = new Progress(theBoard);
-		
-		if ((progress.updateProgressPuzzle() == 100) 
-				|| progress.updateProgressLightning() == 100
-				|| progress.updateProgressRelease() == 100) {
+		clearAchievement();
+		switch(this.getLevelType()){
+		case "Puzzle":
+			if(progress.updateProgressPuzzle()==100){
+				achievedStars = 3;
+			}
+			else if(progress.updateProgressPuzzle() >= 75 && progress.updateProgressPuzzle() < 100){
+				achievedStars = 2;
+			}
+			else if(progress.updateProgressPuzzle() >= 50 && progress.updateProgressPuzzle() < 75){
+				achievedStars = 1;
+			}
+			else {
+				achievedStars = 0;
+			}
+			break;
+	case "Lightning":
+		if(progress.updateProgressLightning()==100){
 			achievedStars = 3;
-		}else if ((progress.updateProgressPuzzle() >= 75 && progress.updateProgressPuzzle() < 100)
-				|| (progress.updateProgressLightning() >= 75 && progress.updateProgressLightning() < 100)
-				|| progress.updateProgressRelease() >= 66 && progress.updateProgressRelease() < 100) {
+		}
+		else if(progress.updateProgressLightning() >= 75 && progress.updateProgressLightning() < 100){
 			achievedStars = 2;
-		}else if ((progress.updateProgressPuzzle() >= 50 && progress.updateProgressPuzzle() < 75)
-				|| (progress.updateProgressLightning() >= 50 && progress.updateProgressLightning() < 75)
-				|| (progress.updateProgressRelease() >= 32 && progress.updateProgressRelease() < 66)) {
+		}
+		else if(progress.updateProgressLightning() >= 50 && progress.updateProgressLightning() < 75){
 			achievedStars = 1;
 		}
 		else {
 			achievedStars = 0;
 		}
+		break;
+	case "Release":
+		if(progress.updateProgressRelease()==100){
+			achievedStars = 3;
+		}
+		else if(progress.updateProgressRelease() >= 75 && progress.updateProgressRelease() < 100){
+			achievedStars = 2;
+		}
+		else if(progress.updateProgressRelease() >= 50 && progress.updateProgressRelease() < 75){
+			achievedStars = 1;
+		}
+		else {
+			achievedStars = 0;
+		}
+		break;
+		}
+
 		System.out.println("achieved" + achievedStars);
 		//If numStars previously is less than that achieved 
 		//in this game, update them to equal the new highest. 
