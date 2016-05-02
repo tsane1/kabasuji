@@ -8,9 +8,11 @@ import kabasuji.supers.Level;
  *
  */
 public class Timer {
-	/** Current level */
+	/** Current level. */
 	Level level;
+	/** Lightning level instance where the timer is being used. */
 	LightningLevel lightningLevel;
+	
 	/**
 	 * generic constructor for timer.
 	 */

@@ -4,6 +4,7 @@ package kabasuji.entities;
  * Tile Subclass which will make up the Puzzle Level Boards.
  * 
  * @author Derek McMaster
+ * @author Michael Pickett
  */
 public class PuzzleBoardTile extends Tile{
 
@@ -15,8 +16,9 @@ public class PuzzleBoardTile extends Tile{
 	int row, col;
 	/** attribute for whether or not a tile is covered. */
 	private boolean covered;
-	
+	/** A piece instance to determine which piece is covering a certain location. */
 	private Piece pieceCovering;
+	/** The piece index when determining pieces on the board. */
 	private int pieceIndex;
 	
 	/**
@@ -42,15 +44,28 @@ public class PuzzleBoardTile extends Tile{
 		
 	}
 	
+	/**
+	 * Sets the covering piece for a board.
+	 * @param piece
+	 * @param idx
+	 */
 	public void coveringPiece(Piece piece, int idx){
 		pieceCovering = piece;
 		pieceIndex = idx;
 	}
 	
+	/**
+	 * returns the covering piece
+	 * @return Piece
+	 */
 	public Piece getCoveringPiece(){
 		return pieceCovering;
 	}
 	
+	/**
+	 * Gets the piece tile index.
+	 * @return int
+	 */
 	public int getPieceTileIdx(){
 		return pieceIndex;
 	}

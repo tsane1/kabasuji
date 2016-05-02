@@ -30,7 +30,6 @@ public class ReleaseBoardTile extends Tile{
 	public ReleaseBoardTile(int row, int column) {
 		super(row, column);
 		
-		
 		this.row = row;
 		this.col = column;
 		value = 0;

@@ -41,6 +41,9 @@ public class PuzzleLevel extends Level {
 		this.movesLeft = setMoves;
 	}
 
+	/**
+	 * Determines the number of stars for achievements based on the numbers collected.
+	 */
 	@Override
 	public void setNumStars() {
 		//this.numStars = 3 - this.theBullpen.pieces.size();
@@ -48,14 +51,28 @@ public class PuzzleLevel extends Level {
 		this.numStars=0;
 	}
 
+	/**
+	 * Determines whether or not the level has ended based on the progress.
+	 */
 	@Override
 	public boolean hasEnded() {
-		return getMovesLeft() == 0;
+		boolean hasEnded = false;
+		if(getMovesLeft()==0 && progress.updateProgressPuzzle()<50){
+			hasEnded = true;
+		}
+		return hasEnded;
 	}
 
+	/**
+	 * Determines if the player has gotten the highest achievement on the level. 
+	 */
 	@Override
 	public boolean hasWon() {
-		updateAchievement();
-		return (hasEnded() && progress.updateProgressPuzzle() >= 50) || progress.updateProgressPuzzle() == 100;
+		boolean hasWon = false;
+		if((progress.updateProgressPuzzle()>=50 && getMovesLeft()==0)
+				|| (progress.updateProgressPuzzle()==100)){
+			hasWon=true;
+		}	
+		return hasWon;
 	}
 }

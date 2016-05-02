@@ -3,19 +3,29 @@ package kabasuji.entities;
 import kabasuji.supers.Level;
 
 /**
- * 
+ * Achievement entity class.
  * @author Chase St. Laurent
- * 
  */
 
 public class Achievement {
+	/** Progress object associated with the level. */
 	Progress progress; // Change progress to ProgressBar java class?
+	/** associated level for the achievements. */
 	Level level;
+	
+	/**
+	 * Constructor for the achievement entity.
+	 * @param progress
+	 */
 	public Achievement(Progress progress) {
 		super();
 		this.progress = progress; 
 	}
 	
+	/**
+	 * updates the achievements for the level.
+	 * @return int stars
+	 */
 	public int updateAchievement() {
 		int achievedStars = 0;
 		

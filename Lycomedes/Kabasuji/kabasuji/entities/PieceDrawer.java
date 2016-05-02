@@ -38,6 +38,15 @@ public class PieceDrawer {
 			g.drawRect(colCord, rowCord, Tile.width, Tile.height);
 		}
 	}
+	
+	/**
+	 * Draw a piece in the palette. Only differences by centering of the pieces.
+	 * @param Graphics g
+	 * @param Piece p
+	 * @param x
+	 * @param y
+	 * @param Color c
+	 */
 	public void drawPalettePiece(Graphics g, Piece p, int x, int y, Color c){
 		for(PieceTile pt: p.getTileLocations()){
 			g.setColor(c);
@@ -47,6 +56,11 @@ public class PieceDrawer {
 		}
 	}
 	
+	/**
+	 * Draw a hint piece.
+	 * @param graphics g
+	 * @param list of tiles locationsOnBoard
+	 */
 	public void drawHintPiece(Graphics g, List<Tile> locationsOnBoard){
 		for(Tile pt : locationsOnBoard){
 			g.setColor(Color.GREEN.brighter().brighter());

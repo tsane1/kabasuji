@@ -6,7 +6,6 @@ import kabasuji.supers.Level;
  * Move counter entity to keep track of moves on levels.
  * 
  * @author Chase St. Laurent
- *
  */
 
 public class MoveCounter {
@@ -14,6 +13,7 @@ public class MoveCounter {
 	Piece pieces;
 	/** current level being played */
 	Level level;
+	/** Puzzle level instance the move counter is tied to. */
 	PuzzleLevel puzzleLevel;
 
 	/**

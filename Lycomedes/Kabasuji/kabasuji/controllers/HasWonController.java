@@ -1,9 +1,5 @@
 package kabasuji.controllers;
 
-import java.awt.Color;
-
-import javax.swing.ImageIcon;
-//
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
@@ -12,20 +8,29 @@ import kabasuji.supers.Level;
 import kabasuji.supers.SuperModel;
 
 /** 
- * 
+ * Controller for determining if the level is won.
  * @author Chase St. Laurent
- * 
- *
  */
 
 public class HasWonController {
+	/** model being updated. */
 	SuperModel model;
+	/** Application being run. */
 	Application app;
+	/** Level being played. */
 	private Level level;
+	/** puzzle level instance. */
 	private PuzzleLevel pl;
+	/** lightning level instance. */
 	private LightningLevel ll;
+	/** release level instance. */
 	private ReleaseLevel rl;
 	
+	/**
+	 * Controller for the has won controller.
+	 * @param app
+	 * @param model
+	 */
 	public HasWonController(Application app, SuperModel m) {
 		this.level = m.getActiveLevel();
 		this.model = m;
@@ -49,7 +54,10 @@ public class HasWonController {
 		}
 	}
 	
-	
+	/**
+	 * Handles whether or not the level is won.
+	 * @return boolean
+	 */
 	public boolean hasWon(){
 		boolean hasWon = false;
 
