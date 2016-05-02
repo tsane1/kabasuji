@@ -11,14 +11,28 @@ import kabasuji.views.LightningLevelEditView;
 import kabasuji.views.PuzzleLevelEditView;
 import kabasuji.views.ReleaseLevelEditView;
 
+/**
+ * Controller for loading and playing a level.
+ */
 public class LevelPlayController implements ActionListener {
+	/** Model instance being updated. */
 	private SuperModel model;
+	/** Application being run. */
 	private Application app;
 		
+	/**
+	 * Constructor for level play controller.
+	 * @param App a
+	 * @param Supermodel m
+	 */
 	public LevelPlayController(Application a, SuperModel m) {
 		this.app = a;
 		this.model = m;
 	}
+	
+	/**
+	 * Handles the loading and playing of the level.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Level level;

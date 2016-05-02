@@ -9,20 +9,30 @@ import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 
 /**
- * Undo controller
+ * Undo controller for undoing moves.
  * 
  * @author Derek McMaster
  * @author Tanuj Sane
  */
 public class UndoController implements ActionListener {
+	/** Level where moves are executed. */
 	Level level;
+	/** Application being run. */
 	Application app;
 	
+	/**
+	 * Constructor for the undo controller.
+	 * @param app
+	 * @param model
+	 */
 	public UndoController(Application app, SuperModel model) {
 		this.app = app;
 		this.level = model.getActiveLevel();
 	}
 	
+	/**
+	 * Method for when the undo button is acted upon.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
@@ -33,6 +43,12 @@ public class UndoController implements ActionListener {
 			x.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Undo method called by the controller which creates the move and tries to execute it.
+	 * @return boolean
+	 * @throws Exception
+	 */
 	public boolean doUndo() throws Exception {
 		Move m = level.getLastMove();
 		if(m == null){

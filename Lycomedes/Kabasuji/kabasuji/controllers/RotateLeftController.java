@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import kabasuji.moves.RotateLeftMove;
-import kabasuji.moves.RotateRightMove;
 import kabasuji.supers.Application;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
@@ -15,14 +14,25 @@ import kabasuji.supers.Move;
  */
 
 public class RotateLeftController implements ActionListener {
-	Application app;
+	/** Level where moves are executed. */
 	Level level;
+	/** Application being run. */
+	Application app;
 	
+	/**
+	 * Controller for rotate left controller.
+	 * @param App a
+	 * @param Level l
+	 */
 	public RotateLeftController(Application a, Level l) {
 		this.app = a;
 		this.level = l;
 	}
 	
+	/**
+	 * Method for handling the rotation of the piece.
+	 * @return boolean
+	 */
 	public boolean doRotateLeft(){
 		boolean status = false;
 		Move m = new RotateLeftMove(level);
@@ -39,6 +49,9 @@ public class RotateLeftController implements ActionListener {
 		return status;
 	}
 
+	/**
+	 * Method for handling an action when request to rotate left.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try{
@@ -50,42 +63,3 @@ public class RotateLeftController implements ActionListener {
 		}
 	}
 }
-
-
-
-//public class RotateLeftController implements ActionListener {
-//	Application app;
-//	Level level;
-//	
-//	public RotateLeftController(Application a, Level l) {
-//		this.app = a;
-//		this.level = l;
-//	}
-//	
-//	public void doRotateLeft(){
-//		if(level.getSelected() == null){
-//			return;
-//		}
-//		
-//		Move m = new RotateLeftMove(level);
-//		if(m.execute()){
-//			if(app.getCurrScreen().getName() != "LevelPlay")
-//				level.trackMove(m);
-//			app.getCurrScreen().getBullpenView().refresh();
-//		}
-//		else return;
-//	}
-//
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		try{
-//			doRotateLeft();
-//		}
-//		catch(Exception ex){
-//			System.err.println("EXCEPTION CAUGHT : RotateLeftController");
-//			ex.printStackTrace();
-//		}
-//	}
-//}
-//
-//

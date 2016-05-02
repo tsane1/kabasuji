@@ -17,14 +17,25 @@ import kabasuji.supers.SuperModel;
  */
 
 public class FlipXController implements ActionListener {
+	/** Application being run. */
 	Application app;
+	/** Level containing the pieces. */
 	Level level;
-	
+		
+	/**
+	 * Constructor for the flip x controller.
+	 * @param App a
+	 * @param Level l
+	 */
 	public FlipXController(Application a, Level l) {
 		this.app= a;
 		this.level = l;
 	}
 	
+	/**
+	 * Handles the flipping of the piece.
+	 * @return boolean
+	 */
 	public boolean doFlipX(){
 		boolean status = false;
 		Move m = new FlipXMove(level);
@@ -41,9 +52,11 @@ public class FlipXController implements ActionListener {
 		return status;
 	}
 
+	/**
+	 * Handles the request for flipping a piece.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	// THIS IS A REQUIREMENT OF THE ACTIONLISTENER CLASS 
 		try{
 			doFlipX();
 		}
