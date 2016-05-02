@@ -98,7 +98,7 @@ public class LevelEndView extends Screen {
 	@Override
 	public void refresh() {
 		
-	}
+	}  
 
 	/**
 	 * Getter for the level name.
