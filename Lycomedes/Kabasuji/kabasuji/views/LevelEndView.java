@@ -48,7 +48,7 @@ public class LevelEndView extends Screen {
 		JLabel stars = new JLabel();
 		stars.setBounds(725, 75, 192, 64);
 		System.out.println(model.getActiveLevel().getNumStars());
-		stars.setIcon(new ImageIcon(LevelEndView.class.getResource("stars" + model.getActiveLevel().getNumStars() + ".png")));
+		stars.setIcon(new ImageIcon(LevelEndView.class.getResource("/imgs/stars" + model.getActiveLevel().getNumStars() + ".png")));
 		
 		if(model.getActiveLevel().hasWon()) {
 			System.out.println("game was won");
