@@ -11,27 +11,43 @@ import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.BullpenView;
 
+/**
+ * Controller for adding pieces from the palette to bullpen.
+ * @author Derek McMaster
+ *
+ */
 public class AddToBullpenController extends MouseAdapter {
-	
+	/** Level instance being created. */
 	Level currLevel;
+	/** Bullpenview being updated. */
 	BullpenView bullpenView;
+	/** Application being run. */
 	Application app;
 	
+	/**
+	 * Constructor for adding a piece to the bullpen.
+	 * @param app
+	 * @param model
+	 */
 	public AddToBullpenController(Application app, SuperModel model){
 		this.currLevel = model.getActiveLevel();
 		this.bullpenView = app.getCurrScreen().getBullpenView();
 		this.app = app;
 	}
+	
 	/**
 	 * Testing constructor
-	 * @param l
-	 * @param bp
+	 * @param Level l
+	 * @param Bullpenview bp
 	 */
 	public AddToBullpenController(Level l, BullpenView bp) {
 		this.currLevel = l;
 		this.bullpenView = bp;
 	}
 	
+	/**
+	 * Handles the click on the bullpen.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent me){
 		if(currLevel.getSelected() == null) { return; }

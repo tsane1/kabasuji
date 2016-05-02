@@ -13,17 +13,32 @@ import kabasuji.moves.BullpenToBoardMove;
 import kabasuji.supers.*;
 import kabasuji.views.BoardView;
 
-
+/**
+ * Controller for placing a piece on the board.
+ */
 public class PlacePieceController  extends MouseAdapter{
+	/** supermodel instance being updated. */
 	SuperModel model;
+	/** application being run. */
 	Application app;
+	/** boardview the piece is being placed. */
 	BoardView view;
+	/** Level instance. */
 	Level lvl;
+	/** Piece drawing object that knows how to draw the pieces. */
 	PieceDrawer drawer = new PieceDrawer();
+	/** Piece being dragged. */
 	Piece draggingPiece;
+	/** x coordinate for dragging. */
 	int xDragging;
+	/** y coordinate for dragging. */
 	int yDragging;
 	
+	/**
+	 * Constructor for placing the piece controller.
+	 * @param app
+	 * @param model
+	 */
 	public PlacePieceController(Application app, SuperModel model) {
 		this.model = model;
 		this.app = app;
@@ -31,6 +46,9 @@ public class PlacePieceController  extends MouseAdapter{
 		this.lvl = model.getActiveLevel();
 	}
 	
+	/**
+	 * Method that handles the placing of the piece.
+	 */
 	@Override
 	public void mousePressed(MouseEvent me){
 		int x = me.getPoint().x;
@@ -108,6 +126,10 @@ public class PlacePieceController  extends MouseAdapter{
 			app.getCurrScreen().refresh();
 		}
 	}
+	
+	/**
+	 * Method to handle dragging the piece across the board.
+	 */
 	@Override
 	public void mouseMoved(MouseEvent me){
 		//need getSelected()
@@ -131,6 +153,10 @@ public class PlacePieceController  extends MouseAdapter{
 		//model.setActive(pp);
 		//puzzleView.repaint();
 	}
+	
+	/**
+	 * Handles when the mouse is dragging a piece and moves off the board.
+	 */
 	@Override
 	public void mouseExited(MouseEvent me){
 		lvl.setActivePiece(null);
@@ -139,6 +165,10 @@ public class PlacePieceController  extends MouseAdapter{
 		view.refresh();
 		app.getCurrScreen().getBullpenView().refresh();
 	}
+	
+	/**
+	 * handles painting the piece as its dragged.
+	 */
 	@Override
 	public void mouseDragged(MouseEvent me){
 		//draggingPiece = lvl.getActivePiece();

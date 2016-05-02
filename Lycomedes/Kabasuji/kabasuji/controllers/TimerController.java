@@ -7,15 +7,28 @@ import kabasuji.entities.LightningLevel;
 import kabasuji.supers.Application;
 import kabasuji.supers.SuperModel;
 
+/**
+ * Controller for the timer on lightning levels.
+ */
 public class TimerController implements ActionListener {
+	/** Application being run. */
 	private Application app;
+	/** Supermodel instance. */
 	private SuperModel model;
 	
+	/**
+	 * Constructor for the timer controller.
+	 * @param app
+	 * @param model
+	 */
 	public TimerController(Application app, SuperModel model) {
 		this.app = app;
 		this.model = model;
 	}
 
+	/**
+	 * Method for activating and keeping track of the timer.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(!model.getActiveLevel().getLevelType().equals("Lightning")) return;
