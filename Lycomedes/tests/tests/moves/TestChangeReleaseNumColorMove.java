@@ -4,18 +4,15 @@ import java.awt.Point;
 
 import junit.framework.TestCase;
 import kabasuji.entities.LightningLevel;
-import kabasuji.entities.Piece;
-import kabasuji.entities.PieceTile;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
-import kabasuji.moves.BullpenToBoardMove;
 import kabasuji.moves.ChangeReleaseNumColorMove;
 import kabasuji.supers.Level;
 import kabasuji.supers.Move;
 import kabasuji.supers.SuperModel;
 
 /**
- * Test cases involving changing the Release Tile's number and color.
+ * Test cases involving changing the Release Tile's color.
  * Test an attempt on each kind of level.
  *  
  * @author Ian Jacoway
@@ -48,7 +45,6 @@ public class TestChangeReleaseNumColorMove extends TestCase {
 	}
 	
 	public void testBullpenToBoard(){
-		String dir = sm.getUserLevelDir();
 		
 		/** Activate tile in row 0 col 0 piece in Board on row 1 col 1. */
 		Move plm = new ChangeReleaseNumColorMove(pl, p);
@@ -57,7 +53,6 @@ public class TestChangeReleaseNumColorMove extends TestCase {
 	
 		/** Test on Puzzle Level. */
 		sm.setActiveLevel(pl);
-		String lvlname = pl.getLevelName();
 		pl.setLevelType("PuzzleLevelEditView");
 		assertEquals("SoPuzzled", pl.getLevelName());
 		assertFalse(plm.valid());
@@ -66,7 +61,6 @@ public class TestChangeReleaseNumColorMove extends TestCase {
 
 		/** Test on Lightning Level with LightningType. */
 		sm.setActiveLevel(ll);
-		lvlname = ll.getLevelName();
 		ll.setLevelType("LightningLevelEditView");
 		assertEquals("TestLights", ll.getLevelName());
 		assertFalse(llm.valid());
@@ -75,7 +69,9 @@ public class TestChangeReleaseNumColorMove extends TestCase {
 
 		/** Test on Release Level with ReleaseType. */
 		sm.setActiveLevel(rl);
-		lvlname = rl.getLevelName();
+		rl.setLevelType("Release");
+		/** Test on Release Level with ReleaseType. */
+		sm.setActiveLevel(rl);
 		rl.setLevelType("ReleaseLevelEditView");
 		assertEquals("ReleaseProcrastination", rl.getLevelName());
 		assertTrue(rlm.valid());

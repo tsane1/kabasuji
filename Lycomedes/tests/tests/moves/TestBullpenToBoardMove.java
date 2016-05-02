@@ -31,7 +31,6 @@ public class TestBullpenToBoardMove extends TestCase {
 	Point p0, p1, p2, p3, p4, p5, p6;
 	Piece testPiece;
 	PieceTile[] arr;
-	Piece dummy;
 	
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -126,17 +125,13 @@ public class TestBullpenToBoardMove extends TestCase {
 //		assertTrue(m.undo());
 		
 		// Test saving & loading!!
-		int before = sm.getNumUserLevels();
 		pl.setLevelName("tteVsted");
 		plname = "tteVsted.lev";
 		pl.saveLevel(dir);
 		sm.loadLevel(dir, plname);
 		
-//		assertEquals(before+1, sm.getNumUserLevels());
-//		assertEquals(2, sm.getNumUserLevels());
 		// Validated by not throwing an exception
 		sm.deleteLevel(dir, plname);
-//		assertEquals(before, sm.getTotalNumLevels()); 
 	}
 	
 	public void testBullpenToBoardLL(){
@@ -170,17 +165,13 @@ public class TestBullpenToBoardMove extends TestCase {
 //		assertTrue(m.undo());
 		
 		// Test saving & loading!!
-		int before = sm.getNumUserLevels();
 		ll.setLevelName("tteVsted");
 		llname = "tteVsted.lev";
 		ll.saveLevel(dir);
 		sm.loadLevel(dir, llname);
 		
-//		assertEquals(before+1, sm.getNumUserLevels());
-//		assertEquals(2, sm.getNumUserLevels());
 		// Validated by not throwing an exception
 		sm.deleteLevel(dir, llname);
-//		assertEquals(before, sm.getTotalNumLevels()); 
 	}
 	
 	public void testBullpenToBoardRL(){
@@ -214,7 +205,7 @@ public class TestBullpenToBoardMove extends TestCase {
 //		assertTrue(m.undo());
 		
 		// Test saving & loading!!
-		int before = sm.getNumUserLevels();
+//		int before = sm.getNumUserLevels();
 		rl.setLevelName("tteVsted");
 		rlname = "tteVsted.lev";
 		rl.saveLevel(dir);
@@ -227,15 +218,23 @@ public class TestBullpenToBoardMove extends TestCase {
 //		assertEquals(before, sm.getTotalNumLevels()); 
 	}
 	
-//	public void testNULLPiece(){
-//		pl.setActivePiece(dummy);
-//		pl.setSelected(dummy);
-//		pl.setSelectedPiece(dummy);
-//		try{
-//		Move m = new BullpenToBoardMove(sm, 0, 0);
-//		}catch{ throws NullPointerException();
-//		assertNull(dummy);
-//		assertFalse(m.valid());
-//	}
-
+	public void testNULLPiece(){
+		Piece dummy = null;
+		pl.setActivePiece(dummy);
+		pl.setSelected(dummy);
+		pl.setSelectedPiece(dummy);
+		Move m = null;
+		try{
+			m = new BullpenToBoardMove(sm, 0, 0);
+			fail( "Missing exception" );
+		} catch( NullPointerException e ) {
+		}
+		assertNull(dummy);
+		try{
+			assertFalse(m.valid());
+			fail( "Missing exception" );
+		} catch( NullPointerException e ) {
+//			assertEquals( "Expected message", e.getMessage() ); // Optionally make sure you get the correct message, too
+		}
+	}
 }
