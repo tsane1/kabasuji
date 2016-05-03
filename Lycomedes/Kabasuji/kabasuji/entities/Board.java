@@ -226,22 +226,22 @@ public class Board implements Serializable{
 		return boardArray;
 	}
 	
-	/**
-	 * General progress percentage return.
-	 * 
-	 * @param x represents game type.
-	 * @return returns the percentage of completion for the given level.
-	 */
-	public int getProgress(String x){
-		if(x == "puzzle"){
-			return getPuzzleProgress();
-			
-		}else if(x == "lightning"){
-			return getLightningProgress();
-		}else{
-			return getReleaseProgress();
-		}
-	}
+//	/**
+//	 * General progress percentage return.
+//	 * 
+//	 * @param x represents game type.
+//	 * @return returns the percentage of completion for the given level.
+//	 */
+//	public int getProgress(String x){
+//		if(x == "puzzle"){
+//			return getPuzzleProgress();
+//			
+//		}else if(x == "lightning"){
+//			return getLightningProgress();
+//		}else{
+//			return getReleaseProgress();
+//		}
+//	}
 	
 	/**
 	 * Determine how much progress player has made on a puzzle level.

@@ -19,11 +19,11 @@ public class ReleaseLevel extends Level {
 	/** Arraylist for the yellow number tiles collected in the level. */
 	private ArrayList<Integer> yellowsCollected = new ArrayList<Integer>(6);
 	/** A bullpen instance to check the ending or completeing of the level.*/
-	Bullpen bullpen;
+//	Bullpen bullpen;
 	/**
 	 * serial id.
 	 */
-	private static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 	/**
 	 * Public constructor for the release level entity.
 	 * @param String name
@@ -85,7 +85,7 @@ public class ReleaseLevel extends Level {
 	 */
 	@Override
 	public boolean hasEnded() {
-		return bullpen.isEmpty();
+		return theBullpen.isEmpty();
 	}
 
 	/**
