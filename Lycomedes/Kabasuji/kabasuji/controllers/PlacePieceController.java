@@ -89,6 +89,9 @@ public class PlacePieceController  extends MouseAdapter{
 				lvl.setSelected(onBoard);
 				view.refresh();
 				app.getCurrScreen().getBullpenView().refresh();
+				if(model.getActiveLevel().getLevelType().equals("Release")) {
+					app.getCurrScreen().refresh();
+				}
 			}
 			
 			return;
