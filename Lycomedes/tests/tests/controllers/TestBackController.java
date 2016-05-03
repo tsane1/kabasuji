@@ -98,7 +98,7 @@ public class TestBackController extends TestCase {
 	}
 
 	public void testPressLogic() {
-		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
+//		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
 //		lpv.populate();
 //		lpv.installControllers();
 		sm.setActiveLevel(pl);
