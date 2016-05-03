@@ -68,6 +68,8 @@ public abstract class Level implements Serializable {
 	 * level. Can be (min of) 0, 1, 2, or (max of) 3.
 	 */
 	protected int numStars;
+	/**	Maximum achievement gotten through all playthroughs */
+	protected int maxAchievement = 0;
 	/** Achievement object for the level. */
 	public Achievement achievement;
 	/** Progress object. */
@@ -328,11 +330,15 @@ public abstract class Level implements Serializable {
 		break;
 		}
 
-		System.out.println("achieved" + achievedStars);
+		System.out.println("achieved " + achievedStars);
+		System.out.println("max " + numStars);
 		//If numStars previously is less than that achieved 
 		//in this game, update them to equal the new highest. 
-		if(numStars<achievedStars){
+		if(numStars<=achievedStars){
 			numStars = achievedStars; 
+		}
+		if(maxAchievement < numStars) {
+			maxAchievement = numStars;
 		}
 	}
 
@@ -570,6 +576,7 @@ public abstract class Level implements Serializable {
 		catch(IOException e){
 			e.printStackTrace();
 		}
+		maxAchievement = 0;
 	}
 
 	/**
@@ -634,6 +641,14 @@ public abstract class Level implements Serializable {
 	public int getNumStars() {
 		updateAchievement();
 		return this.numStars;
+	}
+	
+	/**
+	 * Returns the max number of stars for the level.
+	 * @return int
+	 */
+	public int getMaxAchievement() {
+		return maxAchievement;
 	}
 	
 	/**

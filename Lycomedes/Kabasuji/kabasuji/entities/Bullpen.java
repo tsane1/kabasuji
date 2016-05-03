@@ -116,7 +116,7 @@ public class Bullpen implements Serializable{
 	 * @return boolean
 	 */
 	public boolean isEmpty(){
-		return this.pieces.isEmpty();
+		return this.pieces.size() == 0;
 	}
 	
 	/**

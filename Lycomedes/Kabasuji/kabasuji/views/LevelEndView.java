@@ -78,7 +78,6 @@ public class LevelEndView extends Screen {
 		this.add(stars);
 		
 		
-		
 		this.validate();
 		this.repaint();
 	}
