@@ -48,6 +48,9 @@ public class TestTiles extends TestCase {
 		assertTrue(t1.isCovered());
 		t1.cover();
 		assertTrue(t1.isCovered());
+		
+		assertNotNull(t1.getRow());
+		assertNotNull(t1.getColumn());
 	}
 	
 	public void testPieceTile(){	
@@ -123,16 +126,39 @@ public class TestTiles extends TestCase {
 		t5.updateReleaseNum();
 		assertEquals(6, t5.getValue());
 		t5.updateReleaseNum();
+		assertEquals(7, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(8, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(9, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(10, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(11, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(12, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(13, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(14, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(15, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(16, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(17, t5.getValue());
+		t5.updateReleaseNum();
+		assertEquals(18, t5.getValue());
+		t5.updateReleaseNum();
 		assertEquals(0, t5.getValue());
 		
 		t5.updateReleaseColor();
-		assertEquals(1, t5.getNumColor());
-		t5.updateReleaseColor();
 		assertEquals(2, t5.getNumColor());
-		t5.updateReleaseColor();
-		assertEquals(3, t5.getNumColor());
+		//t5.updateReleaseColor();
+		//assertEquals(2, t5.getNumColor());
 		t5.updateReleaseColor();
 		assertEquals(0, t5.getNumColor());
+
 	}
 
 }
