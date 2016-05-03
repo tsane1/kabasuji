@@ -125,6 +125,9 @@ public class PlacePieceController  extends MouseAdapter{
 			((PuzzleLevel)model.getActiveLevel()).setMovesLeft(prev - 1);
 			app.getCurrScreen().refresh();
 		}
+		if(model.getActiveLevel().getLevelType().equals("Release")) {
+			app.getCurrScreen().refresh();
+		}
 	}
 	
 	/**

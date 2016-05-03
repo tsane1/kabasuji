@@ -306,10 +306,6 @@ public class LevelPlayView extends Screen {
 				oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
 			}
 			progressView.updateProgressBar("Release");
-			threeStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars3.png")));
-			twoStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars2.png")));
-			oneStarDisplay.setIcon(new ImageIcon(LevelPlayView.class.getResource("/imgs/stars1.png")));
-			progressView.updateProgressBar("Release");
 			break;
 		default:
 			System.err.println("This level type is not yet supported."); 
