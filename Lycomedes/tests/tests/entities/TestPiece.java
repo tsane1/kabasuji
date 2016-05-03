@@ -11,15 +11,6 @@ import kabasuji.entities.PieceTile;
  * JUnit test suite to test the Piece entitiy. 
  * @author Derek McMaster
  * 
- * 
- * 
- * 
- * 
- * 
- * Fixed commented out code. 
- * 
- * 
- *
  */
 public class TestPiece extends TestCase {
 

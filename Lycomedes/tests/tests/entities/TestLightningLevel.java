@@ -27,6 +27,15 @@ public class TestLightningLevel extends TestCase {
 		
 		testLevel.setSecsLeft(50);
 		assertEquals(50, testLevel.getSecsLeft());
+		
+		assertFalse(testLevel.hasEnded());
+		assertFalse(testLevel.hasWon());
+		
+		testLevel.setNumStars();
+		testLevel.setMinsLeft(0);
+		testLevel.setSecsLeft(0);
+		assertTrue(testLevel.hasEnded());
+		
 	}
 
 }
