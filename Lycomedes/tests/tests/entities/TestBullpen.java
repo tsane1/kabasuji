@@ -79,6 +79,7 @@ public class TestBullpen extends TestCase {
 		assertTrue(bp.getPlayedPieces().isEmpty());
 		
 		assertTrue(bp.addPieces(temp));
+	
 	}
 
 }
