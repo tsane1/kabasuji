@@ -66,15 +66,15 @@ public class Board implements Serializable{
 	//creates a tile that can be played on at the given grid location in the 12x12
 	public boolean createBoardTile(int row, int col, String type) {
 		if(type.equals("Puzzle")){
-			boardArray[row][col] = new PuzzleBoardTile(row, col);
+			boardArray[col][row] = new PuzzleBoardTile(col, row);
 			return true;
 		}
 		else if(type.equals("Lightning")) {
-			boardArray[row][col] = new LightningBoardTile(row, col);
+			boardArray[col][row] = new LightningBoardTile(col, row);
 			return true;
 		}
 		else if(type.equals("Release")){
-			boardArray[row][col] = new ReleaseBoardTile(row, col);
+			boardArray[col][row] = new ReleaseBoardTile(col, row);
 			return true;
 		}
 		else{
