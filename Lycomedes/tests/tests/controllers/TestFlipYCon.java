@@ -2,7 +2,7 @@ package tests.controllers;
 
 import java.awt.Point;
 import junit.framework.TestCase;
-import kabasuji.controllers.FlipXController;
+import kabasuji.controllers.FlipYController;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
@@ -22,7 +22,7 @@ import kabasuji.views.ReleaseLevelEditView;
  * @since 4/30/16
  *
  */
-public class TestFlipXCon extends TestCase {
+public class TestFlipYCon extends TestCase {
 	SuperModel sm;
 	Screen pls, lls, rls;
 	Application app;
@@ -78,7 +78,7 @@ public class TestFlipXCon extends TestCase {
 		PieceTile p6t = new PieceTile(5,0);
 		arr2[5] = p6t;
 		
-		/** Set up a flipx Tiles. */
+		/** Set up a flip y Tiles. */
 		changed = testPiece;
 		flip = new Piece(2, arr2);
 		
@@ -105,11 +105,11 @@ public class TestFlipXCon extends TestCase {
 		pl.setSelected(testPiece);
 		pl.setSelectedPiece(testPiece);
 		app = new Application(pls);
-		FlipXController plc = new FlipXController(app, pl);
+		FlipYController plc = new FlipYController(app, pl);
 		
-		lpv.getFlipXBtn().addActionListener(new FlipXController(app, sm.getActiveLevel()));
-		lpv.getFlipXBtn().doClick();
-		plc.doFlipX();
+		lpv.getFlipYBtn().addActionListener(new FlipYController(app, sm.getActiveLevel()));
+		lpv.getFlipYBtn().doClick();
+		plc.doFlipY();
 		assertEquals(testPiece, changed);
 	}
 }
