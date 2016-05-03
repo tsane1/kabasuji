@@ -157,7 +157,7 @@ public class SuperModel {
 	 * @return Integer 0-3 indicating number of stars gotten for that levels
 	 */
 	public int loadAch(String fileName) {
-		String filepath = System.getProperty("user.dir") + System.getProperty("file.separator") + fileName;
+		String filepath = System.getProperty("user.dir") + System.getProperty("file.separator") + "achievements" + System.getProperty("file.separator") + fileName;
 			Integer loadedAch = null;
 			try {
 				ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File(filepath)));

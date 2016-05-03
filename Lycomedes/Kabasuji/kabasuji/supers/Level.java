@@ -339,7 +339,7 @@ public abstract class Level implements Serializable {
 		if(maxAchievement < numStars) {
 			maxAchievement = numStars;
 		}
-		String achPath = System.getProperty("user.dir") + System.getProperty("file.separator") + this.getLevelName() + ".ach";
+		String achPath = System.getProperty("user.dir") + System.getProperty("file.separator") + "achievements" + System.getProperty("file.separator") + this.getLevelName() + ".ach";
 		File ach = new File(achPath);
 		try{
 			System.out.println("saving " + new Integer(maxAchievement));
@@ -587,7 +587,7 @@ public abstract class Level implements Serializable {
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		String achPath = System.getProperty("user.dir") + System.getProperty("file.separator") + this.getLevelName() + ".ach";
+		String achPath = System.getProperty("user.dir") + System.getProperty("file.separator") + "achievements" + System.getProperty("file.separator") + this.getLevelName() + ".ach";
 		File ach = new File(achPath);
 		try{
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ach));
