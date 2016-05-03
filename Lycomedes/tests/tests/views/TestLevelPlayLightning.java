@@ -16,7 +16,14 @@ public class TestLevelPlayLightning extends TestCase {
 		((LightningLevel)sm.getActiveLevel()).setSecsLeft(10);
 		play = new LevelPlayView("test", sm);
 		app = new Application(play);
+		app.getCurrScreen().getLevel().getBoard().createBoardTile(1, 1, "Lightning");
 		app.setVisible(true);
+		
+		try{
+			Thread.sleep(250);
+		}catch (Exception e){
+			
+		}
 		
 	}
 	

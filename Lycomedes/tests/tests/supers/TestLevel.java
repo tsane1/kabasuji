@@ -6,7 +6,9 @@ import junit.framework.TestCase;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
 import kabasuji.entities.PuzzleLevel;
+import kabasuji.moves.RotateLeftMove;
 import kabasuji.supers.Level;
+import kabasuji.supers.Move;
 
 /*
  * 
@@ -100,6 +102,19 @@ public class TestLevel extends TestCase {
 		assertEquals(Color.blue, testLevel.getPieceColor(testPiece.getPieceID()));
 		
 		assertNotNull(testLevel.generateRandomPiece());
+		
+		testLevel.addPieceToBoard(testPiece);
+		assertTrue(testPiece.equals(testLevel.getSelected()));
+	}
+	
+	public void testUndoRedo(){
+		
+		Move m = new RotateLeftMove(testLevel);
+		testLevel.addMoveToUndo(m);
+		testLevel.addRedoableMove(m);
+		
+		assertEquals(m, testLevel.getLastMove());
+		assertEquals(m, testLevel.getRedoMove());
 	}
 	
 

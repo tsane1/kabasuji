@@ -18,11 +18,11 @@ public class ReleaseLevel extends Level {
 	private ArrayList<Integer> greensCollected = new ArrayList<Integer>(6);
 	/** Arraylist for the yellow number tiles collected in the level. */
 	private ArrayList<Integer> yellowsCollected = new ArrayList<Integer>(6);
-	
+
 	/**
 	 * serial id.
 	 */
-	private static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 	/**
 	 * Public constructor for the release level entity.
 	 * @param String name

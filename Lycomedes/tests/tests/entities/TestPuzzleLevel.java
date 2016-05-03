@@ -26,6 +26,15 @@ public class TestPuzzleLevel extends TestCase {
 		testLevel.setMovesLeft(100);
 		
 		assertEquals(100, testLevel.getMovesLeft());
+		
+		assertFalse(testLevel.hasEnded());
+		assertFalse(testLevel.hasWon());
+		
+		testLevel.setNumStars();
+		
+		testLevel.setMovesLeft(0);
+		
+		assertTrue(testLevel.hasEnded());
 	}
 
 }

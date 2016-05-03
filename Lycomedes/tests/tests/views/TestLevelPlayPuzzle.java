@@ -20,7 +20,13 @@ public class TestLevelPlayPuzzle extends TestCase {
 		((PuzzleLevel)sm.getActiveLevel()).setMovesLeft(10);
 		play = new LevelPlayView("test", sm);
 		app = new Application(play);
+		app.getCurrScreen().getLevel().getBoard().createBoardTile(0, 0, "Puzzle");
 		app.setVisible(true);
+		try {
+			Thread.sleep(250);
+		} catch (Exception ex) {
+			
+		}
 		
 	}
 	
@@ -30,14 +36,16 @@ public class TestLevelPlayPuzzle extends TestCase {
 	}
 
 	public void testViews(){
-		
-//		assertTrue(app.getCurrScreen().getLevel().getBoard().createBoardTile(0, 0, "Puzzle"));
-//		assertTrue(app.getCurrScreen().getLevel().getBoard().createBoardTile(1, 1, "Lightning"));
-//		assertTrue(app.getCurrScreen().getLevel().getBoard().createBoardTile(1, 1, "Release"));
+//		app.getCurrScreen().getBoardView().repaint();
+//		app.getCurrScreen().getBoardView().redraw();
+		assertTrue(app.getCurrScreen().getLevel().getBoard().createBoardTile(0, 0, "Puzzle"));
+		assertTrue(app.getCurrScreen().getLevel().getBoard().createBoardTile(1, 1, "Lightning"));
+		assertTrue(app.getCurrScreen().getLevel().getBoard().createBoardTile(2, 2, "Release"));
 //		
 //		assertTrue(app.getCurrScreen().getBoardView() != null);
 //		assertFalse(app.getCurrScreen().getPaletteView() != null);
 //		assertTrue(app.getCurrScreen().getBullpenView() != null);
-		
+		app.getCurrScreen().refresh();
+//		assertTrue (true);
 	}
 }
