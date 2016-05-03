@@ -317,10 +317,10 @@ public abstract class Level implements Serializable {
 		if(progress.updateProgressRelease()==100){
 			achievedStars = 3;
 		}
-		else if(progress.updateProgressRelease() >= 75 && progress.updateProgressRelease() < 100){
+		else if(progress.updateProgressRelease() >= 66 && progress.updateProgressRelease() < 100){
 			achievedStars = 2;
 		}
-		else if(progress.updateProgressRelease() >= 50 && progress.updateProgressRelease() < 75){
+		else if(progress.updateProgressRelease() >= 32 && progress.updateProgressRelease() < 66){
 			achievedStars = 1;
 		}
 		else {
