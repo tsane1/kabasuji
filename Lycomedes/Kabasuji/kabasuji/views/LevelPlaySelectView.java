@@ -83,10 +83,9 @@ public class LevelPlaySelectView extends Screen {
 			levelButtons.get(idx).setActionCommand(model.getDefaultLevelNameByIndex(idx));
 			
 			
-			Level level = model.loadLevel(model.getDefaultLevelDir(), model.getDefaultLevelNameByIndex(idx)+".lev");
 			levelStars.add(new JLabel());
 			levelStars.get(idx).setSize(128, 42);
-			levelStars.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/stars" + level.getMaxAchievement() + "_smol.png")));
+			levelStars.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/stars" + model.loadAch(model.getDefaultLevelNameByIndex(idx)+".ach") + "_smol.png")));
 			
 			switch(model.loadLevel(model.getDefaultLevelDir(), model.getDefaultLevelNameByIndex(idx)+".lev").getLevelType()) {
 			case "Puzzle":
@@ -102,7 +101,7 @@ public class LevelPlaySelectView extends Screen {
 			levelButtons.get(idx).setDisabledIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/locked_icon.png")));
 			levelButtons.get(idx).setBackground(SystemColor.text);
 			levelButtons.get(idx).setSize(128, 128);
-			levelButtons.get(idx).setEnabled(!model.loadLevel(model.getDefaultLevelDir(), model.getDefaultLevelNameByIndex(idx)+".lev").isLocked());
+			if(idx > 1) levelButtons.get(idx).setEnabled(model.loadAch(model.getDefaultLevelNameByIndex(idx - 1)+".ach") > 0);
 		}	
 		
 		for(int idx = 0; idx < this.model.getNumUserLevels(); idx++) {
@@ -116,10 +115,9 @@ public class LevelPlaySelectView extends Screen {
 			levelButtons.add(new JButton());
 			levelButtons.get(idx + 15).setActionCommand(model.getUserLevelNameByIndex(idx));
 			
-			Level level = model.loadLevel(model.getUserLevelDir(), model.getUserLevelNameByIndex(idx)+".lev");
 			levelStars.add(new JLabel());
-			levelStars.get(idx).setSize(128, 42);
-			levelStars.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/stars" + level.getMaxAchievement() + "_smol.png")));
+			levelStars.get(idx + 15).setSize(128, 42);
+			levelStars.get(idx + 15).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/stars" + model.loadAch(model.getUserLevelNameByIndex(idx)+".ach") + "_smol.png")));
 			
 			switch(model.loadLevel(model.getUserLevelDir(), model.getUserLevelNameByIndex(idx)+".lev").getLevelType()) {
 			case "Puzzle":

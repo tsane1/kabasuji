@@ -49,7 +49,7 @@ public abstract class Level implements Serializable {
 	 * lightning, or release.
 	 */
 	String name, type;
-	
+
 	/**
 	 * Boolean variable indicating whether or not the level is locked or
 	 * unlocked to the player.
@@ -70,7 +70,7 @@ public abstract class Level implements Serializable {
 	/**	Maximum achievement gotten through all playthroughs */
 	protected int maxAchievement = 0;
 	/** Achievement object for the level. */
-//	public Achievement achievement;
+	//	public Achievement achievement;
 	/** Progress object. */
 	public Progress progress;
 
@@ -103,11 +103,11 @@ public abstract class Level implements Serializable {
 		this.type = type;
 		locked = false;
 		this.theBoard = new Board();
-//		for(int i = 0; i<12; i++){
-//			for(int j = 0; j<12; j++){
-//				theBoard.createBoardTile(i, j, type);
-//			}
-//		}
+		//		for(int i = 0; i<12; i++){
+		//			for(int j = 0; j<12; j++){
+		//				theBoard.createBoardTile(i, j, type);
+		//			}
+		//		}
 		this.theBullpen = new Bullpen();
 		this.thePalette = new Palette();
 		//this.progress = new Progress(theBoard);
@@ -156,7 +156,7 @@ public abstract class Level implements Serializable {
 		 * The 35 possible hexominoes
 		 */
 		Piece p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23,
-				p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35;
+		p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35;
 		/**
 		 * The 36 possible grid locations for a piece in 6x6 array
 		 */
@@ -181,7 +181,7 @@ public abstract class Level implements Serializable {
 		pt20 = new PieceTile(3,1);
 		pt25 = new PieceTile(4,0);
 		pt31 = new PieceTile(5,0);
-		
+
 		/**
 		 * Populate pieceGrid with all possible piece tiles
 		 */
@@ -268,7 +268,7 @@ public abstract class Level implements Serializable {
 		allPieces.add(p33);
 		allPieces.add(p34);
 		allPieces.add(p35);	
-		
+
 		/** Random color generator for pieces */
 		Random r = new Random();
 		for(Piece p: allPieces){
@@ -276,11 +276,11 @@ public abstract class Level implements Serializable {
 			colorMap.put(p.getPieceID(), random);
 		}
 	}
-	
+
 	/**
 	 * Updating Achievement method for the level.
 	 */
-	
+
 	public void updateAchievement() {
 		int achievedStars = 0;
 		progress = new Progress(theBoard);
@@ -299,34 +299,34 @@ public abstract class Level implements Serializable {
 				achievedStars = 0;
 			}
 			break;
-	case "Lightning":
-		if(progress.updateProgressLightning()==100){
-			achievedStars = 3;
-		}
-		else if(progress.updateProgressLightning() >= 75 && progress.updateProgressLightning() < 100){
-			achievedStars = 2;
-		}
-		else if(progress.updateProgressLightning() >= 50 && progress.updateProgressLightning() < 75){
-			achievedStars = 1;
-		}
-		else {
-			achievedStars = 0;
-		}
-		break;
-	case "Release":
-		if(progress.updateProgressRelease()==100){
-			achievedStars = 3;
-		}
-		else if(progress.updateProgressRelease() >= 66 && progress.updateProgressRelease() < 100){
-			achievedStars = 2;
-		}
-		else if(progress.updateProgressRelease() >= 32 && progress.updateProgressRelease() < 66){
-			achievedStars = 1;
-		}
-		else {
-			achievedStars = 0;
-		}
-		break;
+		case "Lightning":
+			if(progress.updateProgressLightning()==100){
+				achievedStars = 3;
+			}
+			else if(progress.updateProgressLightning() >= 75 && progress.updateProgressLightning() < 100){
+				achievedStars = 2;
+			}
+			else if(progress.updateProgressLightning() >= 50 && progress.updateProgressLightning() < 75){
+				achievedStars = 1;
+			}
+			else {
+				achievedStars = 0;
+			}
+			break;
+		case "Release":
+			if(progress.updateProgressRelease()==100){
+				achievedStars = 3;
+			}
+			else if(progress.updateProgressRelease() >= 66 && progress.updateProgressRelease() < 100){
+				achievedStars = 2;
+			}
+			else if(progress.updateProgressRelease() >= 32 && progress.updateProgressRelease() < 66){
+				achievedStars = 1;
+			}
+			else {
+				achievedStars = 0;
+			}
+			break;
 		}
 
 		System.out.println("achieved " + achievedStars);
@@ -338,6 +338,18 @@ public abstract class Level implements Serializable {
 		}
 		if(maxAchievement < numStars) {
 			maxAchievement = numStars;
+		}
+		String achPath = System.getProperty("user.dir") + System.getProperty("file.separator") + this.getLevelName() + ".ach";
+		File ach = new File(achPath);
+		try{
+			System.out.println("saving " + new Integer(maxAchievement));
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ach));
+			output.writeObject(new Integer(maxAchievement));
+			
+			output.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
 		}
 	}
 
@@ -356,7 +368,7 @@ public abstract class Level implements Serializable {
 	public void setLevelName(String name){
 		this.name = name;
 	}
-	
+
 	/**
 	 * Returns the level type as a string.
 	 * @return String
@@ -388,7 +400,7 @@ public abstract class Level implements Serializable {
 	public Bullpen getBullpen() {
 		return this.theBullpen;
 	}
-	
+
 	/**
 	 * Getter for the palette. 
 	 * @return Palette
@@ -404,7 +416,7 @@ public abstract class Level implements Serializable {
 	public void setActivePiece(Piece p) {
 		activePiece = p;
 	}
-	
+
 	/**
 	 * Returns the active piece.
 	 * @return Piece
@@ -452,7 +464,7 @@ public abstract class Level implements Serializable {
 	public void setSelected(Piece p) {
 		this.selectedPiece = p;
 	}
-	
+
 	/**
 	 * Sets the selected piece to the passed piece.
 	 * 
@@ -492,7 +504,7 @@ public abstract class Level implements Serializable {
 	public boolean isLocked() {
 		return this.locked;
 	}
-	
+
 	/**
 	 * Undo and redo handlers.
 	 */
@@ -511,7 +523,7 @@ public abstract class Level implements Serializable {
 		}
 		return undoStack.pop();
 	}
-	
+
 	/**
 	 * Checks the last move on the stack.
 	 * @return Move
@@ -549,7 +561,7 @@ public abstract class Level implements Serializable {
 		}
 		return redoStack.pop();
 	}
-	
+
 	/**
 	 * Check the last redone move.
 	 * @return Move
@@ -560,7 +572,7 @@ public abstract class Level implements Serializable {
 		}
 		return redoStack.peek();
 	}
-	
+
 	/**
 	 * Save level handling.
 	 */
@@ -570,6 +582,16 @@ public abstract class Level implements Serializable {
 		try{
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
 			output.writeObject(this);
+			output.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		String achPath = System.getProperty("user.dir") + System.getProperty("file.separator") + this.getLevelName() + ".ach";
+		File ach = new File(achPath);
+		try{
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(ach));
+			output.writeObject(new Integer(0));
 			output.close();
 		}
 		catch(IOException e){
@@ -585,7 +607,7 @@ public abstract class Level implements Serializable {
 	public Color getPieceColor(int pieceid) {
 		return colorMap.get(pieceid);
 	}
-	
+
 	/**
 	 * Getter for the color map.
 	 * @return color map
@@ -593,7 +615,7 @@ public abstract class Level implements Serializable {
 	public Map<Integer, Color> getColorMap(){
 		return colorMap;
 	}
-	
+
 	/**
 	 * Method for generating a random piece for lightning levels.
 	 * @return Piece
@@ -601,7 +623,7 @@ public abstract class Level implements Serializable {
 	public Piece generateRandomPiece(){
 		Random r = new Random();
 		int idx = r.nextInt(35);
-		
+
 		Piece temp = this.allPieces.get(idx);
 		PieceTile[] newList = new PieceTile[6];
 		int index = 0;
@@ -611,27 +633,27 @@ public abstract class Level implements Serializable {
 			newList[index] = new PieceTile(row, col);
 			index++;
 		}
-		
+
 		return new Piece(allPieces.size(), newList);
 	}
-	
+
 	/**
 	 * sets the number of stars for the level.
 	 */
 	public abstract void setNumStars();
-	
+
 	/**
 	 * Checks whether or not the level has ended.
 	 * @return boolean
 	 */
 	public abstract boolean hasEnded();
-	
+
 	/**
 	 * Checks whether or not the level is won.
 	 * @return boolean
 	 */
 	public abstract boolean hasWon();
-	
+
 	/**
 	 * Returns the number of stars for the level.
 	 * @return int
@@ -640,15 +662,7 @@ public abstract class Level implements Serializable {
 		updateAchievement();
 		return this.numStars;
 	}
-	
-	/**
-	 * Returns the max number of stars for the level.
-	 * @return int
-	 */
-	public int getMaxAchievement() {
-		return maxAchievement;
-	}
-	
+
 	/**
 	 * Adds a piece to the number of pieces made.
 	 * @param Piece p

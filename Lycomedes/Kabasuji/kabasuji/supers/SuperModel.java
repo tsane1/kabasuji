@@ -151,6 +151,30 @@ public class SuperModel {
 	}
 	
 	/**
+	 * 
+	 * @param dir Directory to look for files in
+	 * @param fileName Name of the file from which to open
+	 * @return Integer 0-3 indicating number of stars gotten for that levels
+	 */
+	public int loadAch(String fileName) {
+		String filepath = System.getProperty("user.dir") + System.getProperty("file.separator") + fileName;
+			Integer loadedAch = null;
+			try {
+				ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File(filepath)));
+				loadedAch = (Integer)input.readObject();
+				input.close();
+			}
+			catch (ClassNotFoundException e) {
+				
+			} 
+			catch (IOException e) {
+				
+			}
+			System.out.println("loaded ach " + (int)loadedAch);
+			return loadedAch;
+	}
+	
+	/**
 	 * Method to remove any level given its name
 	 * @param fileName
 	 */
