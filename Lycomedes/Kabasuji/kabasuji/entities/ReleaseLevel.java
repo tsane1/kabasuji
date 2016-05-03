@@ -85,7 +85,7 @@ public class ReleaseLevel extends Level {
 	 */
 	@Override
 	public boolean hasEnded() {
-		return bullpen.isEmpty();
+		return theBullpen.isEmpty();
 	}
 
 	/**
