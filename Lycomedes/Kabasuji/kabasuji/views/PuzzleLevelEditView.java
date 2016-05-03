@@ -258,4 +258,5 @@ public class PuzzleLevelEditView extends Screen {
 	public PaletteView getPaletteView() {
 		return this.paletteView;
 	}
+	
 }
