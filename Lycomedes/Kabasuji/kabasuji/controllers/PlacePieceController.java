@@ -89,9 +89,6 @@ public class PlacePieceController  extends MouseAdapter{
 				lvl.setSelected(onBoard);
 				view.refresh();
 				app.getCurrScreen().getBullpenView().refresh();
-				if(model.getActiveLevel().getLevelType().equals("Release")) {
-					app.getCurrScreen().refresh();
-				}
 			}
 			
 			return;
@@ -126,6 +123,9 @@ public class PlacePieceController  extends MouseAdapter{
 		if(app.getCurrScreen().getName().equals("LevelPlay") && model.getActiveLevel().getLevelType().equals("Puzzle")) {
 			int prev = ((PuzzleLevel)model.getActiveLevel()).getMovesLeft();
 			((PuzzleLevel)model.getActiveLevel()).setMovesLeft(prev - 1);
+			app.getCurrScreen().refresh();
+		}
+		if(model.getActiveLevel().getLevelType().equals("Release")) {
 			app.getCurrScreen().refresh();
 		}
 	}
