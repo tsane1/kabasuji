@@ -172,18 +172,18 @@ public class PlacePieceController  extends MouseAdapter{
 	/**
 	 * handles painting the piece as its dragged.
 	 */
-	@Override
-	public void mouseDragged(MouseEvent me){
-		//draggingPiece = lvl.getActivePiece();
-		if(draggingPiece == null){
-			System.out.println("Not Dragging Anything");
-			return;
-		}
-		int diffX = me.getPoint().x;
-		int diffY = me.getPoint().y;
-		
-		view.drawActivePiece(diffX, diffY, lvl.getPieceColor(draggingPiece.getPieceID()));//fix color stuff later
-		view.refresh();
-		
-	}
+//	@Override
+//	public void mouseDragged(MouseEvent me){
+//		//draggingPiece = lvl.getActivePiece();
+//		if(draggingPiece == null){
+//			System.out.println("Not Dragging Anything");
+//			return;
+//		}
+//		int diffX = me.getPoint().x;
+//		int diffY = me.getPoint().y;
+//		
+//		view.drawActivePiece(diffX, diffY, lvl.getPieceColor(draggingPiece.getPieceID()));//fix color stuff later
+//		view.refresh();
+//		
+//	}
 }
