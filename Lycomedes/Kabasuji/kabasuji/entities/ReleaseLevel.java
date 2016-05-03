@@ -80,7 +80,7 @@ public class ReleaseLevel extends Level {
 	}
 
 	/**
-	 * Determines whether or not the level has ended based on the progress.
+	 * Determines whether or not the level has ended based on the progress. 
 	 */
 	@Override
 	public boolean hasEnded() {
