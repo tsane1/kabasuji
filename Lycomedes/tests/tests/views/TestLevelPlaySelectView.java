@@ -21,6 +21,9 @@ public class TestLevelPlaySelectView extends TestCase {
 //			sm.setActiveLevel(new PuzzleLevel("Test"));
 //			((PuzzleLevel)sm.getActiveLevel()).setMovesLeft(10);
 			play = new LevelPlaySelectView(sm);
+			play.populate();
+			play.installControllers();
+			play.refresh();
 			app = new Application(play);
 			app.setVisible(true);
 			
@@ -33,6 +36,7 @@ public class TestLevelPlaySelectView extends TestCase {
 
 		public void testViews(){
 			
+			assertTrue(play.getName().equals("LevelEditSelect"));
 //			assertTrue(app.getCurrScreen().getLevel().getBoard().createBoardTile(0, 0, "Puzzle"));
 //			assertTrue(app.getCurrScreen().getLevel().getBoard().createBoardTile(1, 1, "Lightning"));
 //			assertTrue(app.getCurrScreen().getLevel().getBoard().createBoardTile(1, 1, "Release"));
