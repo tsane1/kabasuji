@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.LevelPlaySelectView;
 
-public class TestLevelPlaySelectView extends TestCase {
+public class TestLevelPlaySelectViewIJHuman extends TestCase {
 	SuperModel sm;
 
 	@Override
