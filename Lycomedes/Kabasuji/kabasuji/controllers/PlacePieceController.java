@@ -49,11 +49,7 @@ public class PlacePieceController  extends MouseAdapter{
 	/**
 	 * Method that handles the placing of the piece.
 	 */
-	@Override
-	public void mousePressed(MouseEvent me){
-		int x = me.getPoint().x;
-		int y = me.getPoint().y;
-		
+	public void doPlace(int x, int y){
 		int row = y/32;
 		int col = x/32;
 
@@ -128,6 +124,17 @@ public class PlacePieceController  extends MouseAdapter{
 		if(model.getActiveLevel().getLevelType().equals("Release")) {
 			app.getCurrScreen().refresh();
 		}
+		
+	}
+	
+	/**
+	 * Method that hands off the mouse click to doPlace, convenient for testing purposes.
+	 */
+	@Override
+	public void mousePressed(MouseEvent me){
+		int x = me.getPoint().x;
+		int y = me.getPoint().y;
+		doPlace(x,y);
 	}
 	
 	/**
