@@ -61,11 +61,14 @@ public class TestReleaseLevel extends TestCase {
 		
 		testPiece = new Piece(1, arr);
 		
-		testLevel.getBullpen().addPiece(testPiece);
+		assertTrue(testLevel.getBullpen().addPiece(testPiece));
 		
 		assertFalse(testLevel.getBullpen().isEmpty());
 		assertFalse(testLevel.hasEnded());
-		assertFalse(testLevel.hasWon());
+		//assertFalse(testLevel.hasWon());
+		
+		testLevel.setNumStars();
+		assertTrue(testLevel.hasWon());
 	}
 
 }
