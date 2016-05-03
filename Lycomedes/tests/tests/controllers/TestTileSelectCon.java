@@ -1,6 +1,7 @@
 package tests.controllers;
 
 import java.awt.AWTException;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
@@ -9,6 +10,7 @@ import junit.framework.TestCase;
 import kabasuji.controllers.HasWonController;
 import kabasuji.controllers.PlacePieceController;
 import kabasuji.controllers.RotateRightController;
+import kabasuji.controllers.TileSelectController;
 import kabasuji.entities.LightningLevel;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
@@ -31,7 +33,7 @@ import kabasuji.views.ReleaseLevelEditView;
  * @since 4/30/16
  *
  */
-public class TestHasWonCon extends TestCase {
+public class TestTileSelectCon extends TestCase {
 	SuperModel sm;
 	Screen pls, lls, rls;
 	Application app;
@@ -46,7 +48,6 @@ public class TestHasWonCon extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		sm = new SuperModel();
-		pls = new PuzzleLevelEditView("PuzzleTest", sm);
 		lls = new LightningLevelEditView("LightningTest", sm);
 		rls = new ReleaseLevelEditView("RealeaseTest", sm);
 		
@@ -101,6 +102,19 @@ public class TestHasWonCon extends TestCase {
 		p5 = new Point(164,1);
 		p6 = new Point(1, 55);
 		
+		/** Select test Tiles. */
+		Move stm0 = new SelectTileMove(pl, p0);
+		stm0.execute();
+		Move stm1 = new SelectTileMove(pl, p1);
+		stm1.execute();
+		Move stm2 = new SelectTileMove(pl, p2);
+		stm2.execute();
+		Move stm3 = new SelectTileMove(pl, p3);
+		stm3.execute();
+		Move stm4 = new SelectTileMove(pl, p4);
+		stm4.execute();
+		Move stm5 = new SelectTileMove(pl, p5);
+		stm5.execute();
 	}
 
 	protected void tearDown() throws Exception {
@@ -132,24 +146,18 @@ public class TestHasWonCon extends TestCase {
 
 	public void testPlacePiecePL() throws Exception{
 		/** Select test Tiles. */
-		Move stm0 = new SelectTileMove(pl, p0);
-		stm0.execute();
-		Move stm1 = new SelectTileMove(pl, p1);
-		stm1.execute();
-		Move stm2 = new SelectTileMove(pl, p2);
-		stm2.execute();
-		Move stm3 = new SelectTileMove(pl, p3);
-		stm3.execute();
-		Move stm4 = new SelectTileMove(pl, p4);
-		stm4.execute();
-		Move stm5 = new SelectTileMove(pl, p5);
-		stm5.execute();
 		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
 //		lpv.populate();
 //		lpv.installControllers();
-		sm.setActiveLevel(pl);
 		pl.setLevelType("Puzzle");
+		sm.setActiveLevel(pl);
+		pls = new PuzzleLevelEditView("PuzzleTest", sm);
 		app = new Application(pls);
+		Dimension d = new Dimension();
+		d.setSize(384, 384);
+		System.out.println("boobies/?");
+		System.out.println(pls.getPreferredSize());
+		pls.getBoardView().setPreferredSize(d);
 		pro = new Progress(pl.getBoard());
 		
 		pl.getBoard().createBoardTile(0, 0, "Puzzle");
@@ -166,7 +174,20 @@ public class TestHasWonCon extends TestCase {
 		pl.setSelected(testPiece);
 		pl.setSelectedPiece(testPiece);
 		
-		PlacePieceController rpc = new PlacePieceController(app, sm);
+		TileSelectController tsc = new TileSelectController(app, sm);
+		Point pw = new Point(6,6);
+		tsc.selectTile(pw);
+		tsc.selectTile(p1);
+		tsc.selectTile(p2);
+		tsc.selectTile(p3);
+		tsc.selectTile(p4);
+		tsc.selectTile(p5);
+		tsc.addToHint(p0);
+		tsc.addToHint(p1);
+		tsc.addToHint(p2);
+		tsc.addToHint(p3);
+		tsc.addToHint(p4);
+		tsc.addToHint(p5);
 		
 		pl.getBoard().place(0, 0, testPiece);
 //		assertEquals(100, pl.getBoard().getProgress("puzzle"));
