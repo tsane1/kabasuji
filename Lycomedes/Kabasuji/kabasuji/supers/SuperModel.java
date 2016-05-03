@@ -29,10 +29,15 @@ import kabasuji.entities.ReleaseLevel;
  */
 
 public class SuperModel {
+	/** Default 15 levels. */
 	ArrayList<String> defaultLevelNames = new ArrayList<String>(15);
+	/** User built level list. */
 	ArrayList<String> userLevelNames = new ArrayList<String>();
+	/** Active level for model. */
 	Level activeLevel;
+	/** page number relative to original screen. */
 	int page;
+	/** file paths of the irectories. */
 	private String userLevelsDirectory, defaultLevelsDirectory;	
 	
 	/**
@@ -47,12 +52,19 @@ public class SuperModel {
 		updateUserLevelNames();
 	}
 	
+	/**
+	 * Test constructor for a model.
+	 * @param testString
+	 */
 	public SuperModel(String testString){
 		//string passed should be test...used to test 
 		activeLevel = null;
 		page = 0;
 	}
 	
+	/**
+	 * Sets up the default levels for the player.
+	 */
 	private void setupDefaultLevelNames() {
 		System.out.println(defaultLevelsDirectory);
 		File[] files = new File(defaultLevelsDirectory).listFiles();
@@ -83,27 +95,41 @@ public class SuperModel {
 			defaultLevelNames.add(loadLevel(defaultLevelsDirectory, f.getName()).getLevelName());
 		}
 	}
+	
+	/**
+	 * Update the user level names after editing. 
+	 */
 	public void updateUserLevelNames() {
 		userLevelNames.removeAll(userLevelNames);
 		for(File f : new File(userLevelsDirectory).listFiles()) {
 			userLevelNames.add(loadLevel(userLevelsDirectory, f.getName()).getLevelName());
 		}
 	}
-	//
+	
 	/**
 	 * The following three methods track the pagination of the level play and edit
 	 * selection views. These methods are used to extract the necessary information
 	 * and set it properly via the proper controllers.
 	 */
 	
+	/**
+	 * Return the page number.
+	 * @return int
+	 */
 	public int getPage() {
 		return this.page;
 	}
 		
+	/**
+	 * go to the next page.
+	 */
 	public void nextPage() {
 		this.page += 1;
 	}
 	
+	/**
+	 * go to the previous page.
+	 */
 	public void prevPage() {
 		this.page -= 1;
 	}
@@ -113,17 +139,34 @@ public class SuperModel {
 	 * manipulated or played.
 	 */
 	
+	/**
+	 * set active level for the model.
+	 * @param level
+	 */
 	public void setActiveLevel(Level level) {
 		this.activeLevel = level;
 	}
 	
+	/**
+	 * Get the active level for the model.
+	 * @return Level
+	 */
 	public Level getActiveLevel() {
 		return this.activeLevel;
 	}
 	
+	/**
+	 * Get the filepath for default levels.
+	 * @return String
+	 */
 	public String getDefaultLevelDir() {
 		return defaultLevelsDirectory;
 	}
+	
+	/**
+	 * Get the file path for user levels.
+	 * @return String
+	 */
 	public String getUserLevelDir() {
 		return userLevelsDirectory;
 	}
@@ -169,21 +212,35 @@ public class SuperModel {
 		return defaultLevelNames.size() + getNumUserLevels();
 	}
 	
+	/**
+	 * Gets the number of built levels. 
+	 * @return int
+	 */
 	public int getNumUserLevels() {
 		return userLevelNames.size();
 	}
-	
+
 	/**
-	 * Level name getters
+	 * Gets the names of the default levels.
+	 * @param idx
+	 * @return String
 	 */
 	public String getDefaultLevelNameByIndex(int idx) {
 		return defaultLevelNames.get(idx);
 	}
-	
+
+	/**
+	 * Gets the name of the user levels.
+	 * @param idx
+	 * @return String
+	 */
 	public String getUserLevelNameByIndex(int idx) {
 		return userLevelNames.get(idx);
 	}
 	
+	/**
+	 * Loads the default levels.
+	 */
 	private void generateDefaultLevels() {
 		for(int i = 0; i < 15; i++) {
 			if(i%3 == 0) {
