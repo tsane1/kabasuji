@@ -18,8 +18,7 @@ public class ReleaseLevel extends Level {
 	private ArrayList<Integer> greensCollected = new ArrayList<Integer>(6);
 	/** Arraylist for the yellow number tiles collected in the level. */
 	private ArrayList<Integer> yellowsCollected = new ArrayList<Integer>(6);
-	/** A bullpen instance to check the ending or completeing of the level.*/
-//	Bullpen bullpen;
+
 	/**
 	 * serial id.
 	 */
@@ -81,7 +80,7 @@ public class ReleaseLevel extends Level {
 	}
 
 	/**
-	 * Determines whether or not the level has ended based on the progress.
+	 * Determines whether or not the level has ended based on the progress. 
 	 */
 	@Override
 	public boolean hasEnded() {

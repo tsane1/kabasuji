@@ -121,7 +121,7 @@ public class TestBullpenToBoardMove extends TestCase {
 		assertEquals(pl.peekLastMove(), m);
 		pl.addRedoableMove(m);
 		assertEquals(pl.peekRedoMove(), m);
-//		assertTrue(m.execute());
+		assertFalse(m.execute());
 //		assertTrue(m.undo());
 		
 		// Test saving & loading!!

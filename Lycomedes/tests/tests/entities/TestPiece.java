@@ -1,5 +1,6 @@
 package tests.entities;
 
+import java.awt.Point;
 import java.util.Arrays;
 
 import junit.framework.TestCase;
@@ -82,23 +83,8 @@ public class TestPiece extends TestCase {
 		assertEquals(testPiece3.hashCode(), testPiece3.getPieceID());
 	}
 	
-	public void testFlip() {
-		/*
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * UNDER CONSTRUCTION
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 */
+	public void testPoisitionAndContains() {
+
 		/** set up a test piece */
 		PieceTile[] arr = new PieceTile[6];
 		PieceTile pt1 = new PieceTile(5,0);
@@ -115,8 +101,23 @@ public class TestPiece extends TestCase {
 		arr[5] = pt6;
 		
 		Piece testPiece2 = new Piece(2, arr);
-		testPiece.flipX();
-		//assertTrue(Arrays.deepEquals(testPiece.getTileLocations(), testPiece2.getTileLocations()));
+		
+		assertFalse(testPiece.equals(testPiece2));
+		
+		testPiece.setPiecePosition(0, 1);
+		
+		Point pt = new Point(0,1);
+		
+		assertEquals(pt, testPiece.getPiecePosition());
+		
+		assertTrue(testPiece.contains(30, 0));
+		
+		assertTrue(testPiece.containsy(25, 0));
+		
+		assertFalse(testPiece.contains(250, 0));
+		
+		assertFalse(testPiece.containsy(250, 0));
+		
 		
 	}
 

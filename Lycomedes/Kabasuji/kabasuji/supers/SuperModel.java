@@ -29,15 +29,10 @@ import kabasuji.entities.ReleaseLevel;
  */
 
 public class SuperModel {
-	/** List of 15 default levels. */
 	ArrayList<String> defaultLevelNames = new ArrayList<String>(15);
-	/** List of user built levels. */
 	ArrayList<String> userLevelNames = new ArrayList<String>();
-	/** Active level being played. */
 	Level activeLevel;
-	/** current screen based on select view. */
 	int page;
-	/** Directory locations. */
 	private String userLevelsDirectory, defaultLevelsDirectory;	
 	
 	/**
@@ -52,19 +47,12 @@ public class SuperModel {
 		updateUserLevelNames();
 	}
 	
-	/**
-	 * Test constructor for supermodel.
-	 * @param testString
-	 */
 	public SuperModel(String testString){
 		//string passed should be test...used to test 
 		activeLevel = null;
 		page = 0;
 	}
 	
-	/**
-	 * Set up default levels on load and save.
-	 */
 	private void setupDefaultLevelNames() {
 		System.out.println(defaultLevelsDirectory);
 		File[] files = new File(defaultLevelsDirectory).listFiles();
@@ -95,77 +83,47 @@ public class SuperModel {
 			defaultLevelNames.add(loadLevel(defaultLevelsDirectory, f.getName()).getLevelName());
 		}
 	}
-	
-	/**
-	 * Updates the names of the user built levels. 
-	 */
 	public void updateUserLevelNames() {
 		userLevelNames.removeAll(userLevelNames);
 		for(File f : new File(userLevelsDirectory).listFiles()) {
 			userLevelNames.add(loadLevel(userLevelsDirectory, f.getName()).getLevelName());
 		}
 	}
-
+	//
 	/**
 	 * The following three methods track the pagination of the level play and edit
 	 * selection views. These methods are used to extract the necessary information
 	 * and set it properly via the proper controllers.
 	 */
-	/**
-	 * get the page number.
-	 * @return int
-	 */
+	
 	public int getPage() {
 		return this.page;
 	}
-
-	/**
-	 * keep track of how far from original screen.
-	 */
+		
 	public void nextPage() {
 		this.page += 1;
 	}
-
-	/**
-	 * go back to the previous screen.
-	 */
+	
 	public void prevPage() {
 		this.page -= 1;
 	}
-
+	
 	/**
 	 * These methods deal with the active level, which is used when levels are being
 	 * manipulated or played.
 	 */
-
-	/**
-	 * Set the active level for the model.
-	 * @param level
-	 */
+	
 	public void setActiveLevel(Level level) {
 		this.activeLevel = level;
 	}
 	
-	/**
-	 * return the active level being played. 
-	 * @return Level
-	 */
 	public Level getActiveLevel() {
 		return this.activeLevel;
 	}
 	
-	/**
-	 * gets the file path for default levels.
-	 * @return String 
-	 */
 	public String getDefaultLevelDir() {
 		return defaultLevelsDirectory;
 	}
-	
-	/**
-	 * gets the file path for user levels. 
-	 * @return String
-	 */
 	public String getUserLevelDir() {
 		return userLevelsDirectory;
 	}
@@ -211,10 +169,6 @@ public class SuperModel {
 		return defaultLevelNames.size() + getNumUserLevels();
 	}
 	
-	/**
-	 * getter for the total number of built levels.
-	 * @return int
-	 */
 	public int getNumUserLevels() {
 		return userLevelNames.size();
 	}
@@ -226,18 +180,10 @@ public class SuperModel {
 		return defaultLevelNames.get(idx);
 	}
 	
-	/**
-	 * returns the user names by index number. 
-	 * @param idx
-	 * @return String
-	 */
 	public String getUserLevelNameByIndex(int idx) {
 		return userLevelNames.get(idx);
 	}
 	
-	/**
-	 * Generates the 15 default levels to the player.
-	 */
 	private void generateDefaultLevels() {
 		for(int i = 0; i < 15; i++) {
 			if(i%3 == 0) {

@@ -17,6 +17,7 @@ import kabasuji.controllers.NavigateLevelSelectController;
 import kabasuji.controllers.NewLevelController;
 import kabasuji.supers.SuperModel;
 import kabasuji.supers.Application;
+import kabasuji.supers.Level;
 import kabasuji.supers.Screen;
 
 /**
@@ -36,6 +37,8 @@ public class LevelPlaySelectView extends Screen {
 	private ArrayList<JButton> levelButtons = new ArrayList<JButton>();
 	/** List of labels for the level. */
 	private ArrayList<JLabel> levelNames = new ArrayList<JLabel>();
+	/** List of labels for the levels. */
+	private ArrayList<JLabel> levelStars = new ArrayList<JLabel>();
 	/** next page button. */
 	private JButton btnNext = new JButton("Next");
 	/** previous page button. */
@@ -75,9 +78,16 @@ public class LevelPlaySelectView extends Screen {
 			levelNames.get(idx).setForeground(SystemColor.textHighlight);
 			levelNames.get(idx).setFont(new Font("Kristen ITC", Font.BOLD, 18));
 			levelNames.get(idx).setSize(128,50);
-			
+						
 			levelButtons.add(new JButton());
 			levelButtons.get(idx).setActionCommand(model.getDefaultLevelNameByIndex(idx));
+			
+			
+			Level level = model.loadLevel(model.getDefaultLevelDir(), model.getDefaultLevelNameByIndex(idx)+".lev");
+			levelStars.add(new JLabel());
+			levelStars.get(idx).setSize(128, 42);
+			levelStars.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/stars" + level.getMaxAchievement() + "_smol.png")));
+			
 			switch(model.loadLevel(model.getDefaultLevelDir(), model.getDefaultLevelNameByIndex(idx)+".lev").getLevelType()) {
 			case "Puzzle":
 				levelButtons.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/puzzle_icon_smol.png")));
@@ -105,7 +115,12 @@ public class LevelPlaySelectView extends Screen {
 
 			levelButtons.add(new JButton());
 			levelButtons.get(idx + 15).setActionCommand(model.getUserLevelNameByIndex(idx));
-
+			
+			Level level = model.loadLevel(model.getUserLevelDir(), model.getUserLevelNameByIndex(idx)+".lev");
+			levelStars.add(new JLabel());
+			levelStars.get(idx).setSize(128, 42);
+			levelStars.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/stars" + level.getMaxAchievement() + "_smol.png")));
+			
 			switch(model.loadLevel(model.getUserLevelDir(), model.getUserLevelNameByIndex(idx)+".lev").getLevelType()) {
 			case "Puzzle":
 				levelButtons.get(idx + 15).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/puzzle_icon_smol.png")));
@@ -155,6 +170,7 @@ public class LevelPlaySelectView extends Screen {
 		for(int idx = 0; idx < 15 + this.model.getNumUserLevels(); idx++) {
 			this.remove(levelButtons.get(idx));
 			this.remove(levelNames.get(idx));
+			this.remove(levelStars.get(idx));
 		}		
 		this.validate();
 		this.repaint();
@@ -170,15 +186,20 @@ public class LevelPlaySelectView extends Screen {
 			int btnIndex = (10*model.getPage()) + idx;
 			if(btnIndex >= model.getTotalNumLevels());
 			else {
-				levelNames.get(btnIndex).setLocation(125+(138*(idx%5)), 150+(188*(idx/5)));
+				levelNames.get(btnIndex).setLocation(125+(138*(idx%5)), 150+(218*(idx/5)));
 				this.add(levelNames.get(btnIndex));
 				levelNames.get(btnIndex).validate();
 				levelNames.get(btnIndex).repaint();
 				
-				levelButtons.get(btnIndex).setLocation(125+(138*(idx%5)), 200+(188*(idx/5)));
+				levelButtons.get(btnIndex).setLocation(125+(138*(idx%5)), 200+(218*(idx/5)));
 				this.add(levelButtons.get(btnIndex));
 				levelButtons.get(btnIndex).validate();
 				levelButtons.get(btnIndex).repaint();
+				
+				levelStars.get(btnIndex).setLocation(125+(138*(idx%5)), 328+(218*(idx/5)));
+				this.add(levelStars.get(btnIndex));
+				levelStars.get(btnIndex).validate();
+				levelStars.get(btnIndex).repaint();
 			}
 		}
 	}
