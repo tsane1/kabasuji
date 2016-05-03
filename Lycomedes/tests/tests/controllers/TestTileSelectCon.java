@@ -147,8 +147,6 @@ public class TestTileSelectCon extends TestCase {
 	public void testPlacePiecePL() throws Exception{
 		/** Select test Tiles. */
 		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
-//		lpv.populate();
-//		lpv.installControllers();
 		pl.setLevelType("Puzzle");
 		sm.setActiveLevel(pl);
 		pls = new PuzzleLevelEditView("PuzzleTest", sm);
@@ -175,19 +173,32 @@ public class TestTileSelectCon extends TestCase {
 		pl.setSelectedPiece(testPiece);
 		
 		TileSelectController tsc = new TileSelectController(app, sm);
-		Point pw = new Point(6,6);
-		tsc.selectTile(pw);
-		tsc.selectTile(p1);
-		tsc.selectTile(p2);
-		tsc.selectTile(p3);
-		tsc.selectTile(p4);
-		tsc.selectTile(p5);
-		tsc.addToHint(p0);
-		tsc.addToHint(p1);
-		tsc.addToHint(p2);
-		tsc.addToHint(p3);
-		tsc.addToHint(p4);
-		tsc.addToHint(p5);
+//		Point pw = new Point(6,6);
+//		tsc.selectTile(pw);
+//		tsc.selectTile(p1);
+//		tsc.selectTile(p2);
+//		tsc.selectTile(p3);
+//		tsc.selectTile(p4);
+//		tsc.selectTile(p5);
+//		tsc.addToHint(p0);
+//		tsc.addToHint(p1);
+//		tsc.addToHint(p2);
+//		tsc.addToHint(p3);
+//		tsc.addToHint(p4);
+//		tsc.addToHint(p5);
+		/** Select test Tiles. */
+		Move stm0 = new SelectTileMove(ll, p0);
+		stm0.execute();
+		Move stm1 = new SelectTileMove(ll, p1);
+		stm1.execute();
+		Move stm2 = new SelectTileMove(ll, p2);
+		stm2.execute();
+		Move stm3 = new SelectTileMove(ll, p3);
+		stm3.execute();
+		Move stm4 = new SelectTileMove(ll, p4);
+		stm4.execute();
+		Move stm5 = new SelectTileMove(ll, p5);
+		stm5.execute();
 		
 		pl.getBoard().place(0, 0, testPiece);
 //		assertEquals(100, pl.getBoard().getProgress("puzzle"));
@@ -199,6 +210,7 @@ public class TestTileSelectCon extends TestCase {
 		pl.progress = new Progress(pl.getBoard());
 		System.out.println(pro.updateProgressPuzzle());
 		System.out.print(pl.progress.updateProgressPuzzle());
+//		pl.setMovesLeft(0);
 //		assertTrue(hwc.hasWon());
 	}
 	
@@ -311,5 +323,64 @@ public class TestTileSelectCon extends TestCase {
 		assertTrue(hwc.hasWon());
 		rl.setNumStars();
 		assertEquals(3, rl.getNumStars());
+	}
+	public void testPlacePieceLLLLLLLL() throws Exception{
+		/** Select test Tiles. */
+		Move stm0 = new SelectTileMove(ll, p0);
+		stm0.execute();
+		Move stm1 = new SelectTileMove(ll, p1);
+		stm1.execute();
+		Move stm2 = new SelectTileMove(ll, p2);
+		stm2.execute();
+		Move stm3 = new SelectTileMove(ll, p3);
+		stm3.execute();
+		Move stm4 = new SelectTileMove(ll, p4);
+		stm4.execute();
+		Move stm5 = new SelectTileMove(ll, p5);
+		stm5.execute();
+		LevelPlayView lpv = new LevelPlayView("LightningTest", sm);
+//		lpv.populate();
+//		lpv.installControllers();
+		sm.setActiveLevel(ll);
+		ll.setLevelType("Lightning");
+		app = new Application(lls);
+		pro = new Progress(ll.getBoard());
+		
+		ll.getBoard().createBoardTile(0, 0, "Lightning");
+		ll.getBoard().createBoardTile(1, 0, "Lightning");
+		ll.getBoard().createBoardTile(2, 0, "Lightning");
+		ll.getBoard().createBoardTile(3, 0, "Lightning");
+		ll.getBoard().createBoardTile(4, 0, "Lightning");
+		ll.getBoard().createBoardTile(5, 0, "Lightning");
+		
+		assertEquals("L_testyd", ll.getLevelName());
+		
+		// Set test piece as selected FOR REAL who knows which is which
+		ll.setActivePiece(testPiece);
+		ll.setSelected(testPiece);
+		ll.setSelectedPiece(testPiece);
+		assertTrue(testPiece.contains(0, 0));
+		assertTrue(testPiece.containsy(0, 0));
+		PlacePieceController rpc = new PlacePieceController(app, sm);
+		
+//		Robot bot = new Robot();
+//		int mask = InputEvent.BUTTON1_DOWN_MASK;
+//		bot.mouseMove(5, 5); // this is a point not row/col        
+//		bot.mousePress(mask);     
+//		bot.mouseRelease(mask);
+		
+		ll.getBoard().place(0, 0, testPiece);
+//		assertEquals(100, ll.getBoard().getProgress("lightning"));
+		ll.getBoard().uncoverPieceArea(0, 0, testPiece);
+		ll.getBoard().coverPieceArea(0, 0, testPiece);
+		assertTrue(ll.getBoard().pieceCovering(0, 0, testPiece));
+		
+		HasWonController hwc = new HasWonController(app, sm);
+		ll.progress = new Progress(ll.getBoard());
+		System.out.println(pro.updateProgressLightning());
+		System.out.print(ll.progress.updateProgressLightning());
+//		assertTrue(hwc.hasWon());
+		ll.setNumStars();
+		assertEquals(3, ll.getNumStars());
 	}
 }

@@ -1,9 +1,11 @@
 package tests.controllers;
 
 import java.awt.AWTException;
+import java.awt.Component;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
 
 import junit.framework.TestCase;
 import kabasuji.controllers.HasWonController;
@@ -31,13 +33,13 @@ import kabasuji.views.ReleaseLevelEditView;
  * @since 4/30/16
  *
  */
-public class TestHasWonCon extends TestCase {
+public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 	SuperModel sm;
 	Screen pls, lls, rls;
 	Application app;
 	Level pl, ll, rl;
 	Point p0, p1, p2, p3, p4, p5, p6;
-	Piece testPiece, flip, changed;
+	Piece testPiece, tpcopy, flip, changed;
 	PieceTile[] arr, arr2;
 	Progress pro;
 	
@@ -72,6 +74,7 @@ public class TestHasWonCon extends TestCase {
 		
 		/** Set up a test Tiles. */
 		testPiece = new Piece(1, arr);
+		tpcopy = new Piece(1, arr);
 
 		/** Set up a test piece. */
 		arr2 = new PieceTile[6];
@@ -165,8 +168,15 @@ public class TestHasWonCon extends TestCase {
 		pl.setActivePiece(testPiece);
 		pl.setSelected(testPiece);
 		pl.setSelectedPiece(testPiece);
+		pl.setDraggingPiece(tpcopy);
 		
 		PlacePieceController rpc = new PlacePieceController(app, sm);
+//		Component source = new Component();
+//		MouseEvent me = new MouseEvent(source, int id, long when, int modifiers,
+//                      int x, int y, int clickCount, boolean popupTrigger,
+//                      int button);
+//		MouseEvent me = new MousePress();
+		rpc.doPlace(5, 5);
 		
 		pl.getBoard().place(0, 0, testPiece);
 //		assertEquals(100, pl.getBoard().getProgress("puzzle"));
