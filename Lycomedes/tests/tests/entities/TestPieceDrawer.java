@@ -1,7 +1,11 @@
 package tests.entities;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.JPanel;
 
 import junit.framework.TestCase;
 import kabasuji.entities.Piece;
@@ -13,7 +17,9 @@ public class TestPieceDrawer extends TestCase {
 
 	Piece testPiece;
 	PieceTile[] arr;
-	Graphics gr;
+	Graphics offScreenGraphics;
+	Image offScreenImage;
+	JPanel panel = new JPanel();
 	
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -35,7 +41,10 @@ public class TestPieceDrawer extends TestCase {
 		
 		testPiece = new Piece(1, arr);
 		
-		gr = null;
+		panel.setLayout(null);
+		panel.setBounds(0, 0, 400, 400);
+		
+		
 	}
 
 	protected void tearDown() throws Exception {
@@ -44,12 +53,17 @@ public class TestPieceDrawer extends TestCase {
 	
 	public void testPieceDrawer(){
 		PieceDrawer pd = new PieceDrawer();
-		
+		if (offScreenImage == null) {
+			// create on demand
+//			Dimension s = getPreferredSize();
+			offScreenImage = panel.createImage(200, 200);
+			offScreenGraphics = offScreenImage.getGraphics();
+		}
 		//pd.drawHintPiece(gr, arr);
 		
-		pd.drawPalettePiece(gr, testPiece, 0, 0, Color.black);
+		pd.drawPalettePiece(offScreenGraphics, testPiece, 0, 0, Color.black);
 		
-		pd.drawPiece(gr, testPiece, 100, 100, Color.gray);
+		pd.drawPiece(offScreenGraphics, testPiece, 100, 100, Color.gray);
 	}
 
 }
