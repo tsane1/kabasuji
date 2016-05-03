@@ -120,27 +120,103 @@ public class TestHasWonCon extends TestCase {
 		super.tearDown();
 	}
 
-	public void testPlacePiecePL() throws AWTException {
+//	public void testPlacePiecePL() throws AWTException {
+//		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
+////		lpv.populate();
+////		lpv.installControllers();
+//		sm.setActiveLevel(pl);
+//		pl.setActivePiece(testPiece);
+//		pl.setSelected(testPiece);
+//		pl.setSelectedPiece(testPiece);
+//		app = new Application(pls);
+//		PlacePieceController ppc = new PlacePieceController(app, sm);
+//		
+////		Robot bot = new Robot();
+////		int mask = InputEvent.BUTTON1_DOWN_MASK;
+////		bot.mouseMove(5, 5);           
+////		bot.mousePress(mask);     
+////		bot.mouseRelease(mask);
+//		
+////		lpv.getRotateRightBtn().addActionListener(new RotateRightController(app, sm.getActiveLevel()));
+////		lpv.getRotateRightBtn().doClick();
+////		ppc.mousePressed(mask);
+//		pl.getBoard().getProgress("puzzle");
+//	}
+
+	public void testPlacePiecePL() throws Exception{
 		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
 //		lpv.populate();
 //		lpv.installControllers();
 		sm.setActiveLevel(pl);
+		pl.setLevelType("Puzzle");
+		app = new Application(pls);
+		pro = new Progress(pl.getBoard());
+		
+		pl.getBoard().createBoardTile(0, 0, "Puzzle");
+		pl.getBoard().createBoardTile(1, 0, "Puzzle");
+		pl.getBoard().createBoardTile(2, 0, "Puzzle");
+		pl.getBoard().createBoardTile(3, 0, "Puzzle");
+		pl.getBoard().createBoardTile(4, 0, "Puzzle");
+		pl.getBoard().createBoardTile(5, 0, "Puzzle");
+		
+		assertEquals("P_testyd", pl.getLevelName());
+		
+		// Set test piece as selected FOR REAL who knows which is which
 		pl.setActivePiece(testPiece);
 		pl.setSelected(testPiece);
 		pl.setSelectedPiece(testPiece);
-		app = new Application(pls);
-		PlacePieceController ppc = new PlacePieceController(app, sm);
 		
-		Robot bot = new Robot();
-		int mask = InputEvent.BUTTON1_DOWN_MASK;
-		bot.mouseMove(5, 5);           
-		bot.mousePress(mask);     
-		bot.mouseRelease(mask);
+		PlacePieceController rpc = new PlacePieceController(app, sm);
 		
-//		lpv.getRotateRightBtn().addActionListener(new RotateRightController(app, sm.getActiveLevel()));
-//		lpv.getRotateRightBtn().doClick();
-//		ppc.mousePressed(mask);
-		pl.getBoard().getProgress("puzzle");
+		pl.getBoard().place(0, 0, testPiece);
+//		assertEquals(100, pl.getBoard().getProgress("puzzle"));
+		pl.getBoard().uncoverPieceArea(0, 0, testPiece);
+		pl.getBoard().coverPieceArea(0, 0, testPiece);
+		assertTrue(pl.getBoard().pieceCovering(0, 0, testPiece));
+		
+		HasWonController hwc = new HasWonController(app, sm);
+		pl.progress = new Progress(pl.getBoard());
+		System.out.println(pro.updateProgressPuzzle());
+		System.out.print(pl.progress.updateProgressPuzzle());
+//		assertTrue(hwc.hasWon());
+	}
+	
+	public void testPlacePieceLL() throws Exception{
+		LevelPlayView lpv = new LevelPlayView("LightningTest", sm);
+//		lpv.populate();
+//		lpv.installControllers();
+		sm.setActiveLevel(ll);
+		ll.setLevelType("Lightning");
+		app = new Application(lls);
+		pro = new Progress(ll.getBoard());
+		
+		ll.getBoard().createBoardTile(0, 0, "Lightning");
+		ll.getBoard().createBoardTile(1, 0, "Lightning");
+		ll.getBoard().createBoardTile(2, 0, "Lightning");
+		ll.getBoard().createBoardTile(3, 0, "Lightning");
+		ll.getBoard().createBoardTile(4, 0, "Lightning");
+		ll.getBoard().createBoardTile(5, 0, "Lightning");
+		
+		assertEquals("L_testyd", ll.getLevelName());
+		
+		// Set test piece as selected FOR REAL who knows which is which
+		ll.setActivePiece(testPiece);
+		ll.setSelected(testPiece);
+		ll.setSelectedPiece(testPiece);
+		
+		PlacePieceController rpc = new PlacePieceController(app, sm);
+		
+		ll.getBoard().place(0, 0, testPiece);
+//		assertEquals(100, ll.getBoard().getProgress("lightning"));
+		ll.getBoard().uncoverPieceArea(0, 0, testPiece);
+		ll.getBoard().coverPieceArea(0, 0, testPiece);
+		assertTrue(ll.getBoard().pieceCovering(0, 0, testPiece));
+		
+		HasWonController hwc = new HasWonController(app, sm);
+		ll.progress = new Progress(ll.getBoard());
+		System.out.println(pro.updateProgressLightning());
+		System.out.print(ll.progress.updateProgressLightning());
+//		assertTrue(hwc.hasWon());
 	}
 	
 	public void testPlacePieceRL() throws Exception{
