@@ -83,7 +83,7 @@ public class LevelPlaySelectView extends Screen {
 			levelButtons.get(idx).setActionCommand(model.getDefaultLevelNameByIndex(idx));
 			
 			
-			Level level = model.loadLevel(model.getDefaultLevelDir(), model.getDefaultLevelNameByIndex(idx));
+			Level level = model.loadLevel(model.getDefaultLevelDir(), model.getDefaultLevelNameByIndex(idx)+".lev");
 			levelStars.add(new JLabel());
 			levelStars.get(idx).setSize(128, 42);
 			levelStars.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/stars" + level.getMaxAchievement() + "_smol.png")));
@@ -115,10 +115,11 @@ public class LevelPlaySelectView extends Screen {
 
 			levelButtons.add(new JButton());
 			levelButtons.get(idx + 15).setActionCommand(model.getUserLevelNameByIndex(idx));
-
+			
+			Level level = model.loadLevel(model.getUserLevelDir(), model.getUserLevelNameByIndex(idx)+".lev");
 			levelStars.add(new JLabel());
 			levelStars.get(idx).setSize(128, 42);
-			levelStars.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/stars" + model.getActiveLevel().getMaxAchievement() + "_smol.png")));
+			levelStars.get(idx).setIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/stars" + level.getMaxAchievement() + "_smol.png")));
 			
 			switch(model.loadLevel(model.getUserLevelDir(), model.getUserLevelNameByIndex(idx)+".lev").getLevelType()) {
 			case "Puzzle":

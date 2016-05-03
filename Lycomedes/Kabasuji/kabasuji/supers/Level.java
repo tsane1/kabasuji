@@ -575,7 +575,6 @@ public abstract class Level implements Serializable {
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		maxAchievement = 0;
 	}
 
 	/**

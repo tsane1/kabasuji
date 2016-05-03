@@ -35,13 +35,11 @@ public class BackController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(app.getCurrScreen().getName()) {
-		case "LevelPlaySelect": case "LevelEditSelect": 
-			System.out.println("closing app...");
+		case "LevelPlaySelect": case "LevelEditSelect":
 			app.setVisible(false);
 			app.dispose();
 			break;
 		case "LevelPlay": case "LevelEnd":
-			System.out.println("back to select");
 			app.setCurrScreen(new LevelPlaySelectView(model));
 			break;
 		case "LightningLevelEditView": case "PuzzleLevelEditView": case "ReleaseLevelEditView": case "NewLevelTypeSelectView": 
