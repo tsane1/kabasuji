@@ -16,9 +16,19 @@ public class TestExecutables extends TestCase {
 	
 	public void testExec(){
 		LaunchLevelBuilder llb = new LaunchLevelBuilder();
-		
+		try {
+			llb.main(null);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		LaunchPlayer lp = new LaunchPlayer();
-		
+		try {
+			lp.main(null);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertTrue(true);
 	}
 
