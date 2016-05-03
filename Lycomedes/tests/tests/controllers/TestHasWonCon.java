@@ -278,7 +278,7 @@ public class TestHasWonCon extends TestCase {
 //		bot.mouseRelease(mask);
 		
 		rl.getBoard().place(0, 0, testPiece);
-		assertEquals(100, rl.getBoard().getProgress("release"));
+		assertEquals(100, (rl.getBoard()).getReleaseProgress());
 		rl.getBoard().uncoverPieceArea(0, 0, testPiece);
 		rl.getBoard().coverPieceArea(0, 0, testPiece);
 		assertTrue(rl.getBoard().pieceCovering(0, 0, testPiece));

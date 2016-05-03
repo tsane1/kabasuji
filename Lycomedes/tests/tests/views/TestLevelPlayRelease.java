@@ -3,6 +3,7 @@ package tests.views;
 import junit.framework.TestCase;
 import kabasuji.entities.PuzzleLevel;
 import kabasuji.entities.ReleaseLevel;
+import kabasuji.entities.*;
 import kabasuji.supers.Application;
 import kabasuji.supers.SuperModel;
 import kabasuji.views.LevelPlayView;
@@ -14,8 +15,17 @@ public class TestLevelPlayRelease extends TestCase {
 		SuperModel sm = new SuperModel();
 		sm.setActiveLevel(new ReleaseLevel("Test"));
 		play = new LevelPlayView("test", sm);
+		play.getLevel().getBoard().createBoardTile(0, 0, "Release");
+		((ReleaseBoardTile) play.getLevel().getBoard().getBoardArray()[0][0]).updateReleaseNum();
 		app = new Application(play);
+//		app.getCurrScreen().getLevel().getBoard().createBoardTile(0, 0, "Release");
 		app.setVisible(true);
+		
+		try{
+			Thread.sleep(250);
+		}catch(Exception e){
+			
+		}
 		
 	}
 	
