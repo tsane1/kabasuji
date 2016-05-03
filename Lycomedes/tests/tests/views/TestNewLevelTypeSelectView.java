@@ -20,6 +20,8 @@ public class TestNewLevelTypeSelectView extends TestCase {
 		NewLevelTypeSelectView nv = new NewLevelTypeSelectView(sm);
 		
 		nv.refresh();
+		nv.installControllers();
+		nv.populate();
 		assertTrue(nv.getName().equals("NewLevelTypeSelectView"));
 		
 		assertNull(nv.getBoardView());
