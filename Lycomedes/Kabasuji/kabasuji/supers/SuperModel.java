@@ -233,7 +233,7 @@ public class SuperModel {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SuperModel sm = new SuperModel();
-		sm.generateDefaultLevels();
+		//SuperModel sm = new SuperModel();
+		//sm.generateDefaultLevels();
 	}
 }

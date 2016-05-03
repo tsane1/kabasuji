@@ -101,7 +101,7 @@ public class LevelPlaySelectView extends Screen {
 			levelButtons.get(idx).setDisabledIcon(new ImageIcon(LevelPlaySelectView.class.getResource("/imgs/locked_icon.png")));
 			levelButtons.get(idx).setBackground(SystemColor.text);
 			levelButtons.get(idx).setSize(128, 128);
-			if(idx > 1) levelButtons.get(idx).setEnabled(model.loadAch(model.getDefaultLevelNameByIndex(idx - 1)+".ach") > 0);
+			if(idx > 0) levelButtons.get(idx).setEnabled(model.loadAch(model.getDefaultLevelNameByIndex(idx - 1)+".ach") > 0);
 		}	
 		
 		for(int idx = 0; idx < this.model.getNumUserLevels(); idx++) {
