@@ -110,29 +110,6 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		super.tearDown();
 	}
 
-//	public void testPlacePiecePL() throws AWTException {
-//		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
-////		lpv.populate();
-////		lpv.installControllers();
-//		sm.setActiveLevel(pl);
-//		pl.setActivePiece(testPiece);
-//		pl.setSelected(testPiece);
-//		pl.setSelectedPiece(testPiece);
-//		app = new Application(pls);
-//		PlacePieceController ppc = new PlacePieceController(app, sm);
-//		
-////		Robot bot = new Robot();
-////		int mask = InputEvent.BUTTON1_DOWN_MASK;
-////		bot.mouseMove(5, 5);           
-////		bot.mousePress(mask);     
-////		bot.mouseRelease(mask);
-//		
-////		lpv.getRotateRightBtn().addActionListener(new RotateRightController(app, sm.getActiveLevel()));
-////		lpv.getRotateRightBtn().doClick();
-////		ppc.mousePressed(mask);
-//		pl.getBoard().getProgress("puzzle");
-//	}
-
 	public void testPlacePiecePL() throws Exception{
 		/** Select test Tiles. */
 		Move stm0 = new SelectTileMove(pl, p0);
@@ -171,15 +148,10 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		pl.setDraggingPiece(tpcopy);
 		
 		PlacePieceController rpc = new PlacePieceController(app, sm);
-//		Component source = new Component();
-//		MouseEvent me = new MouseEvent(source, int id, long when, int modifiers,
-//                      int x, int y, int clickCount, boolean popupTrigger,
-//                      int button);
-//		MouseEvent me = new MousePress();
 		rpc.doPlace(5, 5);
 		
 		pl.getBoard().place(0, 0, testPiece);
-//		assertEquals(100, pl.getBoard().getProgress("puzzle"));
+//		assertEquals(100, pl.getBoard().getPuzzleProgress());
 		pl.getBoard().uncoverPieceArea(0, 0, testPiece);
 		pl.getBoard().coverPieceArea(0, 0, testPiece);
 		assertTrue(pl.getBoard().pieceCovering(0, 0, testPiece));
@@ -230,7 +202,7 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		PlacePieceController rpc = new PlacePieceController(app, sm);
 		
 		ll.getBoard().place(0, 0, testPiece);
-//		assertEquals(100, ll.getBoard().getProgress("lightning"));
+//		assertEquals(100, ll.getBoard().getLightningProgress());
 		ll.getBoard().uncoverPieceArea(0, 0, testPiece);
 		ll.getBoard().coverPieceArea(0, 0, testPiece);
 		assertTrue(ll.getBoard().pieceCovering(0, 0, testPiece));
