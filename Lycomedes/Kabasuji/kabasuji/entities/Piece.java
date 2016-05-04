@@ -6,7 +6,7 @@ import java.io.Serializable;
 import kabasuji.views.BullpenView;
 
 /**
- * Entity class for the hexomino piece object. 
+ * Entity class for the hexomino piece objects. 
  * 
  * @author Derek McMaster
  * @author Ian Jacoway
