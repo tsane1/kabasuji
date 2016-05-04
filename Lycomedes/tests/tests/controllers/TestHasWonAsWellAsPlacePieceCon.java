@@ -57,6 +57,12 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		ll = new LightningLevel("L_testyd");
 		rl = new ReleaseLevel("R_testyd");
 		
+		sm.setActiveLevel(pl);
+		pl.setLevelType("Puzzle");
+		app = new Application(pls);
+		pro = new Progress(pl.getBoard());
+		app.setVisible(true);
+		
 		/** Set up a test piece. */
 		arr = new PieceTile[6];
 		PieceTile pt1 = new PieceTile(0,0);
@@ -104,10 +110,17 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		p5 = new Point(164,1);
 		p6 = new Point(1, 55);
 		
+		try{
+			Thread.sleep(250);
+		}catch(Exception e){
+			
+		}
+		
 	}
 
 	protected void tearDown() throws Exception {
-		super.tearDown();
+		app.setVisible(false);
+		app.dispose();
 	}
 
 //	public void testPlacePiecePL() throws AWTException {
@@ -150,10 +163,7 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
 //		lpv.populate();
 //		lpv.installControllers();
-		sm.setActiveLevel(pl);
-		pl.setLevelType("Puzzle");
-		app = new Application(pls);
-		pro = new Progress(pl.getBoard());
+		
 		
 		pl.getBoard().createBoardTile(0, 0, "Puzzle");
 		pl.getBoard().createBoardTile(1, 0, "Puzzle");
@@ -168,7 +178,7 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		pl.setActivePiece(testPiece);
 		pl.setSelected(testPiece);
 		pl.setSelectedPiece(testPiece);
-		pl.setDraggingPiece(tpcopy);
+		pl.setDraggingPiece(testPiece);
 		
 		PlacePieceController rpc = new PlacePieceController(app, sm);
 //		Component source = new Component();
@@ -176,6 +186,10 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 //                      int x, int y, int clickCount, boolean popupTrigger,
 //                      int button);
 //		MouseEvent me = new MousePress();
+		
+		rpc.doMoving(5, 5);
+		
+		rpc.doPlace(5, 5);
 		rpc.doPlace(5, 5);
 		
 		pl.getBoard().place(0, 0, testPiece);
@@ -188,7 +202,8 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		pl.progress = new Progress(pl.getBoard());
 		System.out.println(pro.updateProgressPuzzle());
 		System.out.print(pl.progress.updateProgressPuzzle());
-//		assertTrue(hwc.hasWon());
+		assertTrue(hwc.hasWon());
+		rpc.doPlace(300, 300);
 	}
 	
 	public void testPlacePieceLL() throws Exception{
@@ -212,6 +227,7 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		ll.setLevelType("Lightning");
 		app = new Application(lls);
 		pro = new Progress(ll.getBoard());
+		app.setVisible(true);
 		
 		ll.getBoard().createBoardTile(0, 0, "Lightning");
 		ll.getBoard().createBoardTile(1, 0, "Lightning");
@@ -233,7 +249,7 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 //		assertEquals(100, ll.getBoard().getProgress("lightning"));
 		ll.getBoard().uncoverPieceArea(0, 0, testPiece);
 		ll.getBoard().coverPieceArea(0, 0, testPiece);
-		assertTrue(ll.getBoard().pieceCovering(0, 0, testPiece));
+		assertFalse(ll.getBoard().pieceCovering(0, 0, testPiece));
 		
 		HasWonController hwc = new HasWonController(app, sm);
 		ll.progress = new Progress(ll.getBoard());
@@ -263,6 +279,7 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 		rl.setLevelType("Release");
 		app = new Application(rls);
 		pro = new Progress(rl.getBoard());
+		app.setVisible(true);
 		
 		rl.getBoard().createBoardTile(0, 0, "Release");
 		rl.getBoard().createBoardTile(1, 0, "Release");
