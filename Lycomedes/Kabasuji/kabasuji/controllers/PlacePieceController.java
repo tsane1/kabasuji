@@ -128,29 +128,14 @@ public class PlacePieceController  extends MouseAdapter{
 	}
 	
 	/**
-	 * Method that hands off the mouse click to doPlace, convenient for testing purposes.
-	 */
-	@Override
-	public void mousePressed(MouseEvent me){
-		int x = me.getPoint().x;
-		int y = me.getPoint().y;
-		doPlace(x,y);
-	}
-	
-	/**
 	 * Method to handle dragging the piece across the board.
 	 */
-	@Override
-	public void mouseMoved(MouseEvent me){
+	public void doMoving(int x, int y){
 		//need getSelected()
 		Piece selected = lvl.getSelected();
 		if (selected == null) { 
 			//System.err.println("null selected"); 
 			return; }
-
-		int x = me.getPoint().x;
-		int y = me.getPoint().y;
-		
 		xDragging = x;
 		yDragging = y;
 		lvl.setActivePiece(selected);
@@ -162,6 +147,26 @@ public class PlacePieceController  extends MouseAdapter{
 		//PlacedPiece pp = new PlacedPiece(model.getSelected(), p);
 		//model.setActive(pp);
 		//puzzleView.repaint();
+	}
+	
+	/**
+	 * Method that hands off the mouse click to doPlace, convenient for testing purposes.
+	 */
+	@Override
+	public void mousePressed(MouseEvent me){
+		int x = me.getPoint().x;
+		int y = me.getPoint().y;
+		doPlace(x,y);
+	}
+	
+	/**
+	 * Method to hands off the dragging the piece across the board, for convenient testing.
+	 */
+	@Override
+	public void mouseMoved(MouseEvent me){
+		int x = me.getPoint().x;
+		int y = me.getPoint().y;
+		doMoving(x, y);
 	}
 	
 	/**
