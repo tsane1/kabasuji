@@ -50,7 +50,7 @@ public class TestTileSelectCon extends TestCase {
 		sm = new SuperModel();
 		lls = new LightningLevelEditView("LightningTest", sm);
 		rls = new ReleaseLevelEditView("RealeaseTest", sm);
-		
+		pls = new PuzzleLevelEditView("PuzzleTest", sm);
 		/** set up super model and level*/
 		pl = new PuzzleLevel("P_testyd");
 		ll = new LightningLevel("L_testyd");
@@ -149,7 +149,7 @@ public class TestTileSelectCon extends TestCase {
 		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
 		pl.setLevelType("Puzzle");
 		sm.setActiveLevel(pl);
-		pls = new PuzzleLevelEditView("PuzzleTest", sm);
+		//pls = new PuzzleLevelEditView("PuzzleTest", sm);
 		app = new Application(pls);
 		Dimension d = new Dimension();
 		d.setSize(384, 384);
@@ -256,7 +256,7 @@ public class TestTileSelectCon extends TestCase {
 //		assertEquals(100, ll.getBoard().getProgress("lightning"));
 		ll.getBoard().uncoverPieceArea(0, 0, testPiece);
 		ll.getBoard().coverPieceArea(0, 0, testPiece);
-		assertTrue(ll.getBoard().pieceCovering(0, 0, testPiece));
+		assertFalse(ll.getBoard().pieceCovering(0, 0, testPiece));
 		
 		HasWonController hwc = new HasWonController(app, sm);
 		ll.progress = new Progress(ll.getBoard());
@@ -373,7 +373,7 @@ public class TestTileSelectCon extends TestCase {
 //		assertEquals(100, ll.getBoard().getProgress("lightning"));
 		ll.getBoard().uncoverPieceArea(0, 0, testPiece);
 		ll.getBoard().coverPieceArea(0, 0, testPiece);
-		assertTrue(ll.getBoard().pieceCovering(0, 0, testPiece));
+		assertFalse(ll.getBoard().pieceCovering(0, 0, testPiece));
 		
 		HasWonController hwc = new HasWonController(app, sm);
 		ll.progress = new Progress(ll.getBoard());
@@ -382,5 +382,18 @@ public class TestTileSelectCon extends TestCase {
 //		assertTrue(hwc.hasWon());
 		ll.setNumStars();
 		assertEquals(3, ll.getNumStars());
+	}
+	
+	public void testStuff(){
+		Level t = new PuzzleLevel("test");
+		sm.setActiveLevel(t);
+		t.setLevelType("Puzzle");
+		app = new Application(pls);
+		
+		TileSelectController tsc = new TileSelectController(app, sm);
+		assertFalse(tsc.incrementRelease(new Point(10,10)));
+		assertFalse(tsc.changeNumColor(new Point(10,10)));
+		//tsc.selectTile(new Point(10,10));
+		//assertFalse(tsc.addToHint(new Point(10,10)));
 	}
 }
