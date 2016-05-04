@@ -1,11 +1,15 @@
 package tests.entities;
 
+import java.awt.Point;
+
 import junit.framework.TestCase;
+import kabasuji.entities.Board;
 import kabasuji.entities.LightningBoardTile;
 import kabasuji.entities.Piece;
 import kabasuji.entities.PieceTile;
 import kabasuji.entities.PuzzleBoardTile;
 import kabasuji.entities.ReleaseBoardTile;
+import kabasuji.entities.ReleaseLevel;
 import kabasuji.entities.Tile;
 import kabasuji.entities.UnplayableTile;
 
@@ -159,6 +163,22 @@ public class TestTiles extends TestCase {
 		t5.updateReleaseColor();
 		assertEquals(0, t5.getNumColor());
 
+	}
+	
+	public void testSomeStuff(){
+		ReleaseLevel lev = new ReleaseLevel("Test");
+		Board b = lev.getBoard();
+	
+		b.selectTile(new Point(32,32), lev.getLevelType());
+		b.incrementReleaseTile(new Point(32,32));
+		b.changeReleaseNumColor(new Point(32,32));
+		b.deselectTile(new Point(32,32));
+		
+		assertNotNull(b);
+		
+		int t = b.getReleaseProgress();
+		assertNotNull(t);
+		
 	}
 
 }

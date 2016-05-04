@@ -233,7 +233,7 @@ public class TestHasWonAsWellAsPlacePieceCon extends TestCase {
 //		assertEquals(100, ll.getBoard().getProgress("lightning"));
 		ll.getBoard().uncoverPieceArea(0, 0, testPiece);
 		ll.getBoard().coverPieceArea(0, 0, testPiece);
-		assertTrue(ll.getBoard().pieceCovering(0, 0, testPiece));
+		assertFalse(ll.getBoard().pieceCovering(0, 0, testPiece));
 		
 		HasWonController hwc = new HasWonController(app, sm);
 		ll.progress = new Progress(ll.getBoard());
