@@ -50,7 +50,7 @@ public class TestTileSelectCon extends TestCase {
 		sm = new SuperModel();
 		lls = new LightningLevelEditView("LightningTest", sm);
 		rls = new ReleaseLevelEditView("RealeaseTest", sm);
-		
+		pls = new PuzzleLevelEditView("PuzzleTest", sm);
 		/** set up super model and level*/
 		pl = new PuzzleLevel("P_testyd");
 		ll = new LightningLevel("L_testyd");
@@ -121,35 +121,12 @@ public class TestTileSelectCon extends TestCase {
 		super.tearDown();
 	}
 
-//	public void testPlacePiecePL() throws AWTException {
-//		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
-////		lpv.populate();
-////		lpv.installControllers();
-//		sm.setActiveLevel(pl);
-//		pl.setActivePiece(testPiece);
-//		pl.setSelected(testPiece);
-//		pl.setSelectedPiece(testPiece);
-//		app = new Application(pls);
-//		PlacePieceController ppc = new PlacePieceController(app, sm);
-//		
-////		Robot bot = new Robot();
-////		int mask = InputEvent.BUTTON1_DOWN_MASK;
-////		bot.mouseMove(5, 5);           
-////		bot.mousePress(mask);     
-////		bot.mouseRelease(mask);
-//		
-////		lpv.getRotateRightBtn().addActionListener(new RotateRightController(app, sm.getActiveLevel()));
-////		lpv.getRotateRightBtn().doClick();
-////		ppc.mousePressed(mask);
-//		pl.getBoard().getProgress("puzzle");
-//	}
-
 	public void testPlacePiecePL() throws Exception{
 		/** Select test Tiles. */
 		LevelPlayView lpv = new LevelPlayView("PuzzleTest", sm);
 		pl.setLevelType("Puzzle");
 		sm.setActiveLevel(pl);
-		pls = new PuzzleLevelEditView("PuzzleTest", sm);
+		//pls = new PuzzleLevelEditView("PuzzleTest", sm);
 		app = new Application(pls);
 		Dimension d = new Dimension();
 		d.setSize(384, 384);
@@ -256,7 +233,7 @@ public class TestTileSelectCon extends TestCase {
 //		assertEquals(100, ll.getBoard().getProgress("lightning"));
 		ll.getBoard().uncoverPieceArea(0, 0, testPiece);
 		ll.getBoard().coverPieceArea(0, 0, testPiece);
-		assertTrue(ll.getBoard().pieceCovering(0, 0, testPiece));
+		assertFalse(ll.getBoard().pieceCovering(0, 0, testPiece));
 		
 		HasWonController hwc = new HasWonController(app, sm);
 		ll.progress = new Progress(ll.getBoard());
@@ -303,12 +280,6 @@ public class TestTileSelectCon extends TestCase {
 		assertTrue(testPiece.contains(0, 0));
 		assertTrue(testPiece.containsy(0, 0));
 		PlacePieceController rpc = new PlacePieceController(app, sm);
-		
-//		Robot bot = new Robot();
-//		int mask = InputEvent.BUTTON1_DOWN_MASK;
-//		bot.mouseMove(5, 5); // this is a point not row/col        
-//		bot.mousePress(mask);     
-//		bot.mouseRelease(mask);
 		
 		rl.getBoard().place(0, 0, testPiece);
 		assertEquals(100, rl.getBoard().getReleaseProgress());
@@ -363,24 +334,31 @@ public class TestTileSelectCon extends TestCase {
 		assertTrue(testPiece.containsy(0, 0));
 		PlacePieceController rpc = new PlacePieceController(app, sm);
 		
-//		Robot bot = new Robot();
-//		int mask = InputEvent.BUTTON1_DOWN_MASK;
-//		bot.mouseMove(5, 5); // this is a point not row/col        
-//		bot.mousePress(mask);     
-//		bot.mouseRelease(mask);
-		
 		ll.getBoard().place(0, 0, testPiece);
 //		assertEquals(100, ll.getBoard().getProgress("lightning"));
 		ll.getBoard().uncoverPieceArea(0, 0, testPiece);
 		ll.getBoard().coverPieceArea(0, 0, testPiece);
-		assertTrue(ll.getBoard().pieceCovering(0, 0, testPiece));
+		assertFalse(ll.getBoard().pieceCovering(0, 0, testPiece));
 		
 		HasWonController hwc = new HasWonController(app, sm);
 		ll.progress = new Progress(ll.getBoard());
 		System.out.println(pro.updateProgressLightning());
 		System.out.print(ll.progress.updateProgressLightning());
-//		assertTrue(hwc.hasWon());
+		assertTrue(hwc.hasWon());
 		ll.setNumStars();
 		assertEquals(3, ll.getNumStars());
+	}
+	
+	public void testStuff(){
+		Level t = new PuzzleLevel("test");
+		sm.setActiveLevel(t);
+		t.setLevelType("Puzzle");
+		app = new Application(pls);
+		
+		TileSelectController tsc = new TileSelectController(app, sm);
+		assertFalse(tsc.incrementRelease(new Point(10,10)));
+		assertFalse(tsc.changeNumColor(new Point(10,10)));
+		//tsc.selectTile(new Point(10,10));
+		//assertFalse(tsc.addToHint(new Point(10,10)));
 	}
 }
